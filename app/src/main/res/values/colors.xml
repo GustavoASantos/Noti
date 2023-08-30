@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="deep_purple_100">#D1C4E9</color>
+    <color name="deep_purple_800">#4527A0</color>
+    <color name="text">#000000</color>
+    <color name="system_accent_color">@color/material_dynamic_primary40</color>
+</resources>

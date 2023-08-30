@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name" translatable="false">Noti Progress Bar</string>
+    <string name="app_name_short" translatable="false">noti</string>
+    <string name="menuReportBug">Report Bug</string>
+    <string name="settingsPreviewFab">Preview</string>
+    <string name="notificationListenerDescription">Reads notifications with a progress bar</string>
+    <string name="perAppSettingsEmptyView">No progress bar found yet. Noti will discover which apps have progress bars as you use your phone</string>
+
+    <string name="prefsCategorySetup">setup</string>
+    <string name="prefsNotificationPermissionTitle">Grant notification access</string>
+    <string name="prefsNotificationPermissionSummary">Required to read notifications with a progress bar</string>
+    <string name="prefsAccessibilityPermissionTitle">Grant accessibility permission</string>
+    <string name="prefsAccessibilityPermissionSummary">Required to display the progress bar overlay</string>
+    <string name="prefsCategoryCustomization">customization</string>
+    <string name="prefsProgressBarStyleTitle">Select progress bar style</string>
+    <string name="prefsProgressBarStyleEntryLinear">Linear progress bar</string>
+    <string name="prefsProgressBarStyleEntryCircular">Circular progress bar</string>
+    <string name="prefsCategoryTweaks">tweaks</string>
+    <string name="prefsLinearProgressBarTweaks">Linear progress bar tweaks</string>
+    <string name="prefsProgressBarHeightTitle">Progress bar track thickness</string>
+    <string name="prefsProgressBarHeightSummary">Change size of the progress bar\'s track</string>
+    <string name="prefsShowBelowNotchTitle">Show below display cutout</string>
+    <string name="prefsShowBelowNotchSummary">Display progress bar below any notch or hole punch</string>
+    <string name="prefsCircularProgressBarTweaks">Circular progress bar tweaks</string>
+    <string name="prefsProgressBarAlignmentTitle">Change progress bar alignment</string>
+    <string name="prefsProgressBarSizeTitle">Progress bar size</string>
+    <string name="prefsProgressBarSizeSummary">Change size of the progress bar</string>
+    <string name="prefsProgressBarMarginTopTitle">Margin from the top</string>
+    <string name="prefsProgressBarMarginTopSummary">Change spacing from top of the screen</string>
+    <string name="prefsProgressBarMarginLeftTitle">Margin from the left</string>
+    <string name="prefsProgressBarMarginLeftSummary">Change spacing from left of the screen</string>
+    <string name="prefsProgressBarMarginRightTitle">Margin from the right</string>
+    <string name="prefsProgressBarMarginRightSummary">Change spacing from right of the screen</string>
+    <string name="prefsProgressBarAlignmentEntryLeft">Left aligned</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">Centered</string>
+    <string name="prefsProgressBarAlignmentEntryRight">Right aligned</string>
+    <string name="prefsCircularBarOnlyPortraitTitle">Use only in portrait mode</string>
+    <string name="prefsCircularBarOnlyPortraitSummary">Switch to linear progress bar when in landscape</string>
+    <string name="prefsPerAppSettingsTitle">Per app settings</string>
+    <string name="prefsPerAppSettingsSummary">Toggle noti on per app basis</string>
+    <string name="prefsRoundedCornersTitle">Use progress bar with rounded corners</string>
+    <string name="prefsRoundedCornersSummary">Switch to progress bar with rounded ends</string>
+    <string name="prefsShowInLockScreenTitle">Show progress bar in lock screen</string>
+    <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
+    <string name="prefsChangeColorTitle">Change progress bar color</string>
+    <string name="prefsCategoryMore">more</string>
+    <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>
+    <string name="prefsCalentileSummary">Support the developer</string>
+
+    <string name="colorRed">Red</string>
+    <string name="colorPink">Pink</string>
+    <string name="colorPurple">Purple</string>
+    <string name="colorDeepPurple">Deep purple</string>
+    <string name="colorIndigo">Indigo</string>
+    <string name="colorBlue">Blue</string>
+    <string name="colorLightBlue">Light blue</string>
+    <string name="colorCyan">Cyan</string>
+    <string name="colorTeal">Teal</string>
+    <string name="colorGreen">Green</string>
+    <string name="colorLightGreen">Light green</string>
+    <string name="colorLime">Lime</string>
+    <string name="colorYellow">Yellow</string>
+    <string name="colorAmber">Amber</string>
+    <string name="colorOrange">Orange</string>
+    <string name="colorDeepOrange">Deep orange</string>
+    <string name="colorBrown">Brown</string>
+    <string name="colorBlack">Black</string>
+    <string name="colorGrey">Grey</string>
+    <string name="colorWhite">White</string>
+    <string name="colorMaterialYou" translatable="false">Material you</string>
+</resources>

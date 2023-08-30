@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colorsArray">
+        <item>@string/colorRed</item>
+        <item>@string/colorPink</item>
+        <item>@string/colorPurple</item>
+        <item>@string/colorDeepPurple</item>
+        <item>@string/colorIndigo</item>
+        <item>@string/colorBlue</item>
+        <item>@string/colorLightBlue</item>
+        <item>@string/colorCyan</item>
+        <item>@string/colorTeal</item>
+        <item>@string/colorGreen</item>
+        <item>@string/colorLightGreen</item>
+        <item>@string/colorLime</item>
+        <item>@string/colorYellow</item>
+        <item>@string/colorAmber</item>
+        <item>@string/colorOrange</item>
+        <item>@string/colorDeepOrange</item>
+        <item>@string/colorBlack</item>
+        <item>@string/colorGrey</item>
+        <item>@string/colorWhite</item>
+        <item>@string/colorMaterialYou</item>
+    </string-array>
+    <array name="colorsArrayValues">
+        <item>#D32F2F</item>
+        <item>#D81B60</item>
+        <item>#8E24AA</item>
+        <item>#6200EE</item>
+        <item>#303F9F</item>
+        <item>#1A73E9</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+        <item>#000000</item>
+        <item>#9E9E9E</item>
+        <item>#FFFFFF</item>
+        <item>@color/system_accent_color</item>
+    </array>
+</resources>

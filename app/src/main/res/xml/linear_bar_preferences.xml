@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/prefsCategoryTweaks"
+        app:iconSpaceReserved="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false">
+
+        <SeekBarPreference
+            android:key="linearProgressBarMarginTop"
+            android:title="@string/prefsProgressBarMarginTopTitle"
+            android:summary="@string/prefsProgressBarMarginTopSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="0"
+            android:max="10"
+            app:icon="@drawable/ic_margin_top"/>
+
+        <SeekBarPreference
+            android:key="progressBarHeight"
+            android:title="@string/prefsProgressBarHeightTitle"
+            android:summary="@string/prefsProgressBarHeightSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="5"
+            android:max="10"
+            app:icon="@drawable/ic_height"/>
+
+        <SwitchPreferenceCompat
+            android:key="showBelowNotch"
+            android:title="@string/prefsShowBelowNotchTitle"
+            android:summary="@string/prefsShowBelowNotchSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="false"
+            app:icon="@drawable/ic_notification_bar"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

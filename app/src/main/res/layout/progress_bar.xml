@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="10000"
+        app:trackColor="@android:color/transparent"
+        app:showAnimationBehavior="inward"
+        app:hideAnimationBehavior="outward"
+        android:theme="@style/Theme.NotiProgressBar" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/circularProgressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="10000"
+        app:indicatorInset="0dp"
+        app:trackColor="@android:color/transparent"
+        app:showAnimationBehavior="outward"
+        app:hideAnimationBehavior="inward"
+        android:theme="@style/Theme.NotiProgressBar" />
+
+</LinearLayout>

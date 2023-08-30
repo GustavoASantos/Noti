@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="setup"
+        android:title="@string/prefsCategorySetup"
+        app:iconSpaceReserved="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false">
+
+        <Preference
+            android:key="notificationPermission"
+            android:title="@string/prefsNotificationPermissionTitle"
+            android:summary="@string/prefsNotificationPermissionSummary"
+            app:singleLineTitle="false"
+            app:icon="@drawable/ic_notification">
+            <intent
+                android:action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"/>
+        </Preference>
+
+        <!--Dialog required for google to approve the app-->
+        <com.gustavoas.noti.AccessibilityPermissionDialog
+            android:key="accessibilityPermission"
+            android:title="@string/prefsAccessibilityPermissionTitle"
+            android:summary="@string/prefsAccessibilityPermissionSummary"
+            app:dialogMessage="@string/prefsAccessibilityPermissionSummary"
+            app:singleLineTitle="false"
+            app:icon="@drawable/ic_overlay"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/prefsCategoryCustomization"
+        app:iconSpaceReserved="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false">
+
+        <ListPreference
+            android:key="progressBarStyle"
+            android:title="@string/prefsProgressBarStyleTitle"
+            app:useSimpleSummaryProvider="true"
+            app:singleLineTitle="false"
+            android:defaultValue="linear"
+            app:entries="@array/progressBarStyle"
+            app:entryValues="@array/progressBarStyleValues"
+            app:icon="@drawable/ic_progress_bar_style"
+            app:negativeButtonText=""/>
+
+        <Preference
+            android:key="CircularBarFragment"
+            android:title="@string/prefsCircularProgressBarTweaks"
+            app:singleLineTitle="false"
+            app:fragment="CircularBarFragment"
+            app:icon="@drawable/ic_circular_progress_bar"/>
+
+        <Preference
+            android:key="LinearBarFragment"
+            android:title="@string/prefsLinearProgressBarTweaks"
+            app:singleLineTitle="false"
+            app:fragment="LinearBarFragment"
+            app:icon="@drawable/ic_linear_progress_bar"/>
+
+        <Preference
+            android:key="PerAppSettingsFragment"
+            android:title="@string/prefsPerAppSettingsTitle"
+            android:summary="@string/prefsPerAppSettingsSummary"
+            app:singleLineTitle="false"
+            app:fragment="PerAppSettingsFragment"
+            app:icon="@drawable/ic_apps"/>
+
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:key="progressBarColor"
+            android:title="@string/prefsChangeColorTitle"
+            android:defaultValue="@color/purple_500"
+            app:colorChoices="@array/colorsArrayValues"
+            app:icon="@drawable/ic_colors"/>
+
+        <SwitchPreferenceCompat
+            android:key="showInLockScreen"
+            android:title="@string/prefsShowInLockScreenTitle"
+            android:summary="@string/prefsShowInLockScreenSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_lockscreen"/>
+
+        <SwitchPreferenceCompat
+            android:key="useRoundedCorners"
+            android:title="@string/prefsRoundedCornersTitle"
+            android:summary="@string/prefsRoundedCornersSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="false"
+            app:icon="@drawable/ic_rounded_corners"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/prefsCategoryMore"
+        app:iconSpaceReserved="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false"
+        app:isPreferenceVisible="true">
+
+        <Preference
+            android:key="calentile"
+            android:title="@string/prefsCalentileTitle"
+            android:summary="@string/prefsCalentileSummary"
+            app:singleLineTitle="false"
+            app:icon="@drawable/ic_calentile">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/details?id=com.gustavoas.calendarqst"/>
+        </Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

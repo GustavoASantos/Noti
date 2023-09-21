@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 
@@ -62,6 +62,6 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
         val appName: TextView = view.findViewById(R.id.app_name)
         val appIcon: ImageView = view.findViewById(R.id.app_logo)
         val toggle: CheckBox = view.findViewById(R.id.checkbox)
-        val background: ConstraintLayout = view.findViewById(R.id.item_container)
+        val background: LinearLayout = view.findViewById(R.id.item_container)
     }
 }

@@ -4,13 +4,16 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.SeekBar
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 
 class CustomSeekBarPreference(context: Context, attrs: AttributeSet): Preference(context, attrs) {
+    private var preferenceHolder: View? = null
     private var seekBar: SeekBar? = null
     private var editText: EditText? = null
     init {
@@ -20,17 +23,21 @@ class CustomSeekBarPreference(context: Context, attrs: AttributeSet): Preference
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
 
-        seekBar = holder.itemView.findViewById(R.id.seekbar)
-        editText = holder.itemView.findViewById(R.id.edittext)
+        preferenceHolder = holder.itemView
+        seekBar = preferenceHolder?.findViewById(R.id.seekbar)
+        editText = preferenceHolder?.findViewById(R.id.edittext)
 
         val currentValue = getPersistedInt(70)
         seekBar?.progress = currentValue.div(10)
         editText?.setText((currentValue.plus(10)).toString())
+        editText?.setSelection(editText?.text?.length ?: 0)
 
         seekBar?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser)
+                if (fromUser) {
                     editText?.setText((progress.plus(1).times(10)).toString())
+                    editText?.setSelection(editText?.text?.length ?: 0)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -48,14 +55,17 @@ class CustomSeekBarPreference(context: Context, attrs: AttributeSet): Preference
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        editText?.setOnTouchListener { _, _ ->
-            editText?.isCursorVisible = true
-            false
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        preferenceHolder?.setOnClickListener {
+            editText?.requestFocus()
+            imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
         }
 
         editText?.setOnEditorActionListener { _, action, _ ->
             if (action == EditorInfo.IME_ACTION_DONE) {
-                editText?.isCursorVisible = false
+                editText?.clearFocus()
+                imm.hideSoftInputFromWindow(editText?.windowToken, 0)
             }
             false
         }

@@ -79,7 +79,7 @@
                 android:scrollbars="none"
                 android:paddingStart="0dp"
                 android:paddingEnd="16dp"
-                android:gravity="right"
+                android:gravity="end"
                 app:backgroundTint="@android:color/transparent"
                 android:textIsSelectable="false"
                 android:maxLength="4"

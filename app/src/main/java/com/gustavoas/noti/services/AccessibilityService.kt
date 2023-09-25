@@ -122,14 +122,14 @@ class AccessibilityService : AccessibilityService() {
             else -> container.gravity = Gravity.CENTER
         }
 
-        val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 7)
-        circularProgressBar.indicatorSize = (circularProgressBarSize*8.6).roundToInt() + 18
+        val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 70)
+        circularProgressBar.indicatorSize = (circularProgressBarSize*0.86).roundToInt() + 18
 
-        circularProgressBar.trackThickness = (circularProgressBarSize * 0.4).roundToInt() + 10
+        circularProgressBar.trackThickness = (circularProgressBarSize * 0.04).roundToInt() + 10
 
-        val paddingTop = (sharedPreferences.getInt("circularProgressBarMarginTop", 7)*1.7).roundToInt() + 13
-        val paddingLeft = sharedPreferences.getInt("circularProgressBarMarginLeft", 7)*5 + 15
-        val paddingRight = sharedPreferences.getInt("circularProgressBarMarginRight", 7)*5 + 15
+        val paddingTop = (sharedPreferences.getInt("circularProgressBarMarginTop", 70)*0.17).roundToInt() + 13
+        val paddingLeft = (sharedPreferences.getInt("circularProgressBarMarginLeft", 70)*0.5).roundToInt() + 15
+        val paddingRight = (sharedPreferences.getInt("circularProgressBarMarginRight", 70)*0.5).roundToInt() + 15
 
         val param = circularProgressBar.layoutParams as LinearLayout.LayoutParams
         param.setMargins(paddingLeft, paddingTop, paddingRight, 0)

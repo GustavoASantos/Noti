@@ -20,40 +20,32 @@
             app:icon="@drawable/ic_alignment"
             app:negativeButtonText=""/>
 
-        <SeekBarPreference
+        <com.gustavoas.noti.CustomSeekBarPreference
             android:key="circularProgressBarSize"
             android:title="@string/prefsProgressBarSizeTitle"
             android:summary="@string/prefsProgressBarSizeSummary"
             app:singleLineTitle="false"
-            android:defaultValue="7"
-            android:max="14"
             app:icon="@drawable/ic_size"/>
 
-        <SeekBarPreference
+        <com.gustavoas.noti.CustomSeekBarPreference
             android:key="circularProgressBarMarginTop"
             android:title="@string/prefsProgressBarMarginTopTitle"
             android:summary="@string/prefsProgressBarMarginTopSummary"
             app:singleLineTitle="false"
-            android:defaultValue="7"
-            android:max="14"
             app:icon="@drawable/ic_margin_top"/>
 
-        <SeekBarPreference
+        <com.gustavoas.noti.CustomSeekBarPreference
             android:key="circularProgressBarMarginLeft"
             android:title="@string/prefsProgressBarMarginLeftTitle"
             android:summary="@string/prefsProgressBarMarginLeftSummary"
             app:singleLineTitle="false"
-            android:defaultValue="7"
-            android:max="14"
             app:icon="@drawable/ic_margin_left"/>
 
-        <SeekBarPreference
+        <com.gustavoas.noti.CustomSeekBarPreference
             android:key="circularProgressBarMarginRight"
             android:title="@string/prefsProgressBarMarginRightTitle"
             android:summary="@string/prefsProgressBarMarginRightSummary"
             app:singleLineTitle="false"
-            android:defaultValue="7"
-            android:max="14"
             app:icon="@drawable/ic_margin_right"/>
 
         <SwitchPreferenceCompat

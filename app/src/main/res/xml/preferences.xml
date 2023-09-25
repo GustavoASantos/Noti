@@ -77,6 +77,14 @@
             app:icon="@drawable/ic_colors"/>
 
         <SwitchPreferenceCompat
+            android:key="blackBackground"
+            android:title="@string/prefsBlackBackgroundTitle"
+            android:summary="@string/prefsBlackBackgroundSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_contrast"/>
+
+        <SwitchPreferenceCompat
             android:key="showInLockScreen"
             android:title="@string/prefsShowInLockScreenTitle"
             android:summary="@string/prefsShowInLockScreenSummary"

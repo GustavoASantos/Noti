@@ -160,6 +160,15 @@ class AccessibilityService : AccessibilityService() {
         progressBar.setIndicatorColor(progressBarColor)
         circularProgressBar.setIndicatorColor(progressBarColor)
 
+        val blackBackground = sharedPreferences.getBoolean("blackBackground", true)
+        val backgroundColor = if (blackBackground) {
+            ContextCompat.getColor(this, android.R.color.black)
+        } else {
+            ContextCompat.getColor(this, android.R.color.transparent)
+        }
+        progressBar.trackColor = backgroundColor
+        circularProgressBar.trackColor = backgroundColor
+
         val useRoundedCorners = sharedPreferences.getBoolean("useRoundedCorners", false)
         if (useRoundedCorners) {
             progressBar.trackCornerRadius = 100

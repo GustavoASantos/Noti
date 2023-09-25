@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:progress="0"
         android:max="10000"
-        app:trackColor="@android:color/transparent"
         app:showAnimationBehavior="inward"
         app:hideAnimationBehavior="outward"
         android:theme="@style/Theme.NotiProgressBar" />
@@ -27,7 +26,6 @@
         android:progress="0"
         android:max="10000"
         app:indicatorInset="0dp"
-        app:trackColor="@android:color/transparent"
         app:showAnimationBehavior="outward"
         app:hideAnimationBehavior="inward"
         android:theme="@style/Theme.NotiProgressBar" />

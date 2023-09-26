@@ -138,6 +138,12 @@ class CircularBarFragment : PreferenceFragmentCompat(), SharedPreferences.OnShar
         val progressBarLocation = PreferenceManager.getDefaultSharedPreferences(requireContext())
             .getString("progressBarLocation", "center")
 
+        when (progressBarLocation) {
+            "right" -> findPreference<Preference>("progressBarLocation")?.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_right)
+            "left" -> findPreference<Preference>("progressBarLocation")?.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_left)
+            else -> findPreference<Preference>("progressBarLocation")?.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_center)
+        }
+
         findPreference<Preference>("circularProgressBarMarginLeft")?.isVisible = (progressBarLocation == "center" || progressBarLocation == "left")
         findPreference<Preference>("circularProgressBarMarginRight")?.isVisible = (progressBarLocation == "center" || progressBarLocation == "right")
     }

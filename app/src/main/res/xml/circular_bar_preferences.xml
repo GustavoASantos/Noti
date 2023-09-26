@@ -17,7 +17,6 @@
             android:defaultValue="center"
             app:entries="@array/progressBarLocation"
             app:entryValues="@array/progressBarLocationValues"
-            app:icon="@drawable/ic_alignment"
             app:negativeButtonText=""/>
 
         <com.gustavoas.noti.CustomSeekBarPreference

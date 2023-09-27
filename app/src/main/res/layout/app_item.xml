@@ -10,20 +10,16 @@
     android:paddingVertical="10dp"
     android:background="?android:attr/selectableItemBackground">
 
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="7dp"/>
-
     <TextView
         android:id="@+id/app_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="12dp"
+        android:drawablePadding="19dp"
+        android:gravity="center_vertical"
         android:textSize="22sp"
-        android:textColor="@color/text"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_weight="1"/>
 
     <com.google.android.material.checkbox.MaterialCheckBox

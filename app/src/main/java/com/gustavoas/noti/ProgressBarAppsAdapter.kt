@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -24,7 +23,10 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(apps[position]) {
             holder.appName.text = getAppName(packageName)
-            holder.appIcon.setImageDrawable(getAppIcon(packageName))
+            val appIcon = getAppIcon(packageName)
+            val appIconSize = (36 * context.resources.displayMetrics.density).toInt()
+            appIcon.setBounds(0, 0, appIconSize, appIconSize)
+            holder.appName.setCompoundDrawables(appIcon, null, null, null)
             holder.toggle.isChecked = showProgressBar
             holder.toggle.setOnCheckedChangeListener { _, isChecked ->
                 showProgressBar = isChecked
@@ -60,7 +62,6 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val appName: TextView = view.findViewById(R.id.app_name)
-        val appIcon: ImageView = view.findViewById(R.id.app_logo)
         val toggle: CheckBox = view.findViewById(R.id.checkbox)
         val background: LinearLayout = view.findViewById(R.id.item_container)
     }

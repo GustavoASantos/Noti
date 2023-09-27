@@ -31,8 +31,6 @@ class PerAppSettingsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = ProgressBarAppsAdapter(requireContext(), apps)
 
-        recyclerView.setPadding(0, 0, 0, 250)
-
         updateRecyclerViewVisibility()
     }
 

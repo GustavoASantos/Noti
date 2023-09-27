@@ -19,8 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import com.gustavoas.noti.Permissions.hasAccessibilityPermission
 import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import kotlin.math.roundToInt
 
 class AccessibilityService : AccessibilityService() {

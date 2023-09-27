@@ -11,8 +11,9 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.gustavoas.noti.AccessibilityDialogPrefCompat
 import com.gustavoas.noti.AccessibilityPermissionDialog
-import com.gustavoas.noti.Permissions.hasAccessibilityPermission
-import com.gustavoas.noti.Permissions.hasNotificationListenerPermission
+import com.gustavoas.noti.Utils.dpToPx
+import com.gustavoas.noti.Utils.hasAccessibilityPermission
+import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.R
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -39,7 +40,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         super.onViewCreated(view, savedInstanceState)
 
         val preferencesView = listView
-        preferencesView.setPadding(0, 0, 0, 250)
+        preferencesView.setPadding(0, 0, 0, dpToPx(requireContext(), 100))
     }
 
     override fun onDisplayPreferenceDialog(preference: Preference) {
@@ -124,7 +125,7 @@ class CircularBarFragment : PreferenceFragmentCompat(), SharedPreferences.OnShar
         super.onViewCreated(view, savedInstanceState)
 
         val preferencesView = listView
-        preferencesView.setPadding(0, 0, 0, 250)
+        preferencesView.setPadding(0, 0, 0, dpToPx(requireContext(), 100))
     }
 
     override fun onDestroy() {
@@ -158,7 +159,7 @@ class LinearBarFragment : PreferenceFragmentCompat() {
         super.onViewCreated(view, savedInstanceState)
 
         val preferencesView = listView
-        preferencesView.setPadding(0, 0, 0, 250)
+        preferencesView.setPadding(0, 0, 0, dpToPx(requireContext(), 100))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

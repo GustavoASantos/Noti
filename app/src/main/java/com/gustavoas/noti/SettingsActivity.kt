@@ -14,8 +14,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.gustavoas.noti.Permissions.hasAccessibilityPermission
-import com.gustavoas.noti.Permissions.hasNotificationListenerPermission
+import com.gustavoas.noti.Utils.hasAccessibilityPermission
+import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.fragments.CircularBarFragment
 import com.gustavoas.noti.fragments.LinearBarFragment
 import com.gustavoas.noti.fragments.PerAppSettingsFragment

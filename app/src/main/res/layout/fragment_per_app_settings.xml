@@ -10,7 +10,8 @@
         android:id="@+id/apps_recycler_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="100dp"
         android:visibility="gone"
         android:clipToPadding="false"/>
 

@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.gustavoas.noti.Utils.dpToPx
 
 class ProgressBarAppsAdapter(private val context: Context, private val apps: ArrayList<ProgressBarApp>): RecyclerView.Adapter<ProgressBarAppsAdapter.ViewHolder>() {
     private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(context) }
@@ -24,7 +25,7 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
         with(apps[position]) {
             holder.appName.text = getAppName(packageName)
             val appIcon = getAppIcon(packageName)
-            val appIconSize = (36 * context.resources.displayMetrics.density).toInt()
+            val appIconSize = dpToPx(context, 36)
             appIcon.setBounds(0, 0, appIconSize, appIconSize)
             holder.appName.setCompoundDrawables(appIcon, null, null, null)
             holder.toggle.isChecked = showProgressBar

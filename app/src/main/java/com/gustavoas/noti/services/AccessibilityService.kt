@@ -21,6 +21,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
+import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import kotlin.math.roundToInt
 
 class AccessibilityService : AccessibilityService() {
@@ -35,24 +36,23 @@ class AccessibilityService : AccessibilityService() {
     override fun onInterrupt() {}
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (!hasAccessibilityPermission(this) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (!hasAccessibilityPermission(this) && !hasSystemAlertWindowPermission(this)) {
             return super.onStartCommand(intent, flags, startId)
         }
 
-        val progress = intent?.getIntExtra("progress", 0)
-        val progressMax = intent?.getIntExtra("progressMax", 0)
-        val removal = intent?.getBooleanExtra("removal", false)
+        val progress = intent?.getIntExtra("progress", 0) ?: 0
+        val progressMax = intent?.getIntExtra("progressMax", 0) ?: 0
+        val removal = intent?.getBooleanExtra("removal", false) ?: false
 
         val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("showInLockScreen", true)
 
-        if (removal != null && removal) {
+        if (removal || (isLocked() && !showInLockScreen)) {
             if (!this::overlayView.isInitialized || !overlayView.isShown) {
                 return super.onStartCommand(intent, flags, startId)
             }
             toBeRemoved = true
             hideProgressBarIn(1000)
-        } else if (progress != null && progressMax != null
-            && (!isLocked() || showInLockScreen)) {
+        } else if (!isLocked() || showInLockScreen) {
             showOverlayWithProgress(progress, progressMax)
         }
 
@@ -230,8 +230,20 @@ class AccessibilityService : AccessibilityService() {
             overlayView = View.inflate(this, R.layout.progress_bar, null)
         }
 
+        val showInLockscreen = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("showInLockScreen", true) && hasAccessibilityPermission(this)
+
         val params: WindowManager.LayoutParams
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this) && !showInLockscreen) {
+            params = WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                PixelFormat.TRANSLUCENT
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission(this)) {
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -241,7 +253,7 @@ class AccessibilityService : AccessibilityService() {
                         or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
                 PixelFormat.TRANSLUCENT
             )
-        } else {
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this)) {
             @Suppress("DEPRECATION")
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -252,6 +264,8 @@ class AccessibilityService : AccessibilityService() {
                         or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
                 PixelFormat.TRANSLUCENT
             )
+        } else {
+            return
         }
         params.gravity = Gravity.TOP
 

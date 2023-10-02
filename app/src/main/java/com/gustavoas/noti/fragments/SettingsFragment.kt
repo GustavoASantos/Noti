@@ -11,10 +11,11 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.gustavoas.noti.AccessibilityDialogPrefCompat
 import com.gustavoas.noti.AccessibilityPermissionDialog
+import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.dpToPx
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
-import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
@@ -31,6 +32,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         updateSetupVisibility()
 
         updateProgressBarStyleVisibility()
+
+        updateShowInLockscreenVisibility()
 
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(this)
@@ -58,6 +61,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         updateSetupVisibility()
 
         updateColorPreferenceSummary()
+
+        updateShowInLockscreenVisibility()
     }
 
     override fun onDestroy() {
@@ -95,13 +100,19 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         findPreference<Preference>("LinearBarFragment")?.isVisible = (progressBarStyle == "linear" || useOnlyInPortrait)
     }
 
+    private fun updateShowInLockscreenVisibility() {
+        findPreference<Preference>("showInLockScreen")?.isVisible = (hasAccessibilityPermission(requireContext()) || Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+    }
+
     private fun updateSetupVisibility() {
         val hasAccessibilityPermission = hasAccessibilityPermission(requireContext())
         val hasNotificationListenerPermission = hasNotificationListenerPermission(requireContext())
+        val hasSystemAlertWindowPermission = hasSystemAlertWindowPermission(requireContext())
 
-        findPreference<Preference>("accessibilityPermission")?.isVisible = (!hasAccessibilityPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1)
+        findPreference<Preference>("accessibilityPermission")?.isVisible = (!hasAccessibilityPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         findPreference<Preference>("notificationPermission")?.isVisible = !hasNotificationListenerPermission
-        findPreference<PreferenceCategory>("setup")?.isVisible = !((hasAccessibilityPermission || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) && hasNotificationListenerPermission)
+        findPreference<Preference>("systemAlertWindowPermission")?.isVisible = !hasSystemAlertWindowPermission
+        findPreference<PreferenceCategory>("setup")?.isVisible = !((hasAccessibilityPermission || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) && hasNotificationListenerPermission && hasSystemAlertWindowPermission)
     }
 }
 

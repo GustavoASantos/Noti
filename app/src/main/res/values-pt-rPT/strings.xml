@@ -6,8 +6,8 @@
     <string name="prefsCategorySetup">configuração</string>
     <string name="prefsNotificationPermissionTitle">Conceder acesso às notificações</string>
     <string name="prefsNotificationPermissionSummary">Necessário para ler notificações com uma barra de progresso</string>
-    <string name="prefsAccessibilityPermissionTitle">Conceder premissão de acessibilidade</string>
-    <string name="prefsAccessibilityPermissionSummary">Necessário para mostrar o overlay da barra de progresso</string>
+    <string name="prefsAccessibilityPermissionTitle">Conceder permissão de acessibilidade</string>
+    <string name="prefsSAWPermissionSummary">Necessário para mostrar o overlay da barra de progresso</string>
     <string name="prefsCategoryCustomization">personalização</string>
     <string name="prefsProgressBarStyleTitle">Selecionar estilo da barra de progresso</string>
     <string name="prefsProgressBarStyleEntryLinear">Barra de progresso linear</string>
@@ -66,4 +66,6 @@
     <string name="perAppSettingsEmptyView">Nenhuma barra de progresso encontrada ainda. O noti vai descobrir que aplicações têm barras de progresso ao usares o telemóvel</string>
     <string name="prefsBlackBackgroundTitle">Usar fundo preto</string>
     <string name="prefsBlackBackgroundSummary">Mudar para barra de progresso com carril preto</string>
+    <string name="prefsAccessibilityPermissionSummary">Necessário para mostrar no ecrã de bloqueio e aplicações de sistema</string>
+    <string name="prefsSAWPermissionTitle">Permitir sobrepor a outras apps</string>
 </resources>

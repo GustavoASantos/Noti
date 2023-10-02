@@ -19,6 +19,16 @@
                 android:action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"/>
         </Preference>
 
+        <Preference
+            android:key="systemAlertWindowPermission"
+            android:title="@string/prefsSAWPermissionTitle"
+            android:summary="@string/prefsSAWPermissionSummary"
+            app:singleLineTitle="false"
+            app:icon="@drawable/ic_overlay">
+            <intent
+                android:action="android.settings.action.MANAGE_OVERLAY_PERMISSION"/>
+        </Preference>
+
         <!--Dialog required for google to approve the app-->
         <com.gustavoas.noti.AccessibilityPermissionDialog
             android:key="accessibilityPermission"
@@ -26,7 +36,7 @@
             android:summary="@string/prefsAccessibilityPermissionSummary"
             app:dialogMessage="@string/prefsAccessibilityPermissionSummary"
             app:singleLineTitle="false"
-            app:icon="@drawable/ic_overlay"/>
+            app:icon="@drawable/ic_accessibility"/>
 
     </PreferenceCategory>
 

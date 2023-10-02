@@ -2,6 +2,7 @@ package com.gustavoas.noti
 
 import android.content.ComponentName
 import android.content.Context
+import android.os.Build
 import android.provider.Settings
 import com.gustavoas.noti.services.AccessibilityService
 import com.gustavoas.noti.services.NotificationListenerService
@@ -17,6 +18,14 @@ object Utils {
         val notificationListenerComponentName = ComponentName(context, NotificationListenerService::class.java)
         val enabledServices = Settings.Secure.getString(context.contentResolver, "enabled_notification_listeners")
         return enabledServices?.contains(notificationListenerComponentName.flattenToString()) ?: false
+    }
+
+    fun hasSystemAlertWindowPermission(context: Context): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Settings.canDrawOverlays(context)
+        } else {
+            true
+        }
     }
 
     fun dpToPx(context: Context, dp: Int): Int {

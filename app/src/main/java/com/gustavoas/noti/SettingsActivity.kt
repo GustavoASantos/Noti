@@ -16,6 +16,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
+import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import com.gustavoas.noti.fragments.CircularBarFragment
 import com.gustavoas.noti.fragments.LinearBarFragment
 import com.gustavoas.noti.fragments.PerAppSettingsFragment
@@ -51,7 +52,7 @@ class SettingsActivity : AppCompatActivity(),
     override fun onStart() {
         super.onStart()
 
-        if (hasNotificationListenerPermission(this) && (hasAccessibilityPermission(this) || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1)) {
+        if (hasNotificationListenerPermission(this) && (hasAccessibilityPermission(this) || hasSystemAlertWindowPermission(this))) {
             previewFab.visibility = View.VISIBLE
         } else {
             previewFab.visibility = View.GONE

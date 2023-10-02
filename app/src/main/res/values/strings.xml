@@ -10,7 +10,9 @@
     <string name="prefsNotificationPermissionTitle">Grant notification access</string>
     <string name="prefsNotificationPermissionSummary">Required to read notifications with a progress bar</string>
     <string name="prefsAccessibilityPermissionTitle">Grant accessibility permission</string>
-    <string name="prefsAccessibilityPermissionSummary">Required to display the progress bar overlay</string>
+    <string name="prefsAccessibilityPermissionSummary">Required to display in the lockscreen and system apps</string>
+    <string name="prefsSAWPermissionTitle">Allow displaying over other apps</string>
+    <string name="prefsSAWPermissionSummary">Required to display the progress bar overlay</string>
     <string name="prefsCategoryCustomization">customization</string>
     <string name="prefsProgressBarStyleTitle">Select progress bar style</string>
     <string name="prefsProgressBarStyleEntryLinear">Linear progress bar</string>

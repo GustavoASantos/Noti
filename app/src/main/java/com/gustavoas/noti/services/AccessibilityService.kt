@@ -53,7 +53,7 @@ class AccessibilityService : AccessibilityService() {
             }
             toBeRemoved = true
             hideProgressBarIn(1000)
-        } else if (!isLocked() || showInLockScreen) {
+        } else if ((!isLocked() || showInLockScreen) && progress > 0) {
             showOverlayWithProgress(progress, progressMax)
         }
 
@@ -96,10 +96,6 @@ class AccessibilityService : AccessibilityService() {
         val currentProgress = (progress.toDouble()/progressMax.toDouble() * progressBarMax).roundToInt()
 
         when (currentProgress) {
-            0 -> {
-                setProgressToZero()
-                return
-            }
             progressBarMax -> {
                 animateProgressBarTo(progressBarMax, useCircularProgressBar)
             }

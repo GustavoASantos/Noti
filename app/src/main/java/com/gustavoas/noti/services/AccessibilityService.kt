@@ -62,7 +62,7 @@ class AccessibilityService : AccessibilityService() {
     private fun showOverlayWithProgress(progress: Int, progressMax: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", false)
+        val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", true)
         val useCircularProgressBar = (sharedPreferences.getString("progressBarStyle", "linear") == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {

@@ -9,6 +9,14 @@
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
 
+        <SwitchPreferenceCompat
+            android:key="onlyInPortrait"
+            android:title="@string/prefsCircularBarOnlyPortraitTitle"
+            android:summary="@string/prefsCircularBarOnlyPortraitSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_linear_progress_bar"/>
+
         <ListPreference
             android:key="progressBarLocation"
             android:title="@string/prefsProgressBarAlignmentTitle"
@@ -47,13 +55,12 @@
             app:singleLineTitle="false"
             app:icon="@drawable/ic_margin_right"/>
 
-        <SwitchPreferenceCompat
-            android:key="onlyInPortrait"
-            android:title="@string/prefsCircularBarOnlyPortraitTitle"
-            android:summary="@string/prefsCircularBarOnlyPortraitSummary"
+        <Preference
+            android:key="seekbarInfoCard"
+            android:summary="@string/prefsSeekbarInfoCard"
             app:singleLineTitle="false"
-            android:defaultValue="false"
-            app:icon="@drawable/ic_linear_progress_bar"/>
+            android:selectable="false"
+            app:icon="@drawable/ic_info"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

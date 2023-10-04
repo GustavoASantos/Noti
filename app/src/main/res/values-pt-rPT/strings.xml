@@ -64,6 +64,7 @@
     <string name="prefsPerAppSettingsTitle">Definições por app</string>
     <string name="prefsPerAppSettingsSummary">Ativar noti por aplicação</string>
     <string name="perAppSettingsEmptyView">Nenhuma barra de progresso encontrada ainda. O noti vai descobrir que aplicações têm barras de progresso ao usares o telemóvel</string>
+    <string name="prefsSeekbarInfoCard">Pressiona o valor junto a cada controlo deslizante para o ajustar manualmente</string>
     <string name="prefsBlackBackgroundTitle">Usar fundo preto</string>
     <string name="prefsBlackBackgroundSummary">Mudar para barra de progresso com carril preto</string>
     <string name="prefsAccessibilityPermissionSummary">Necessário para mostrar no ecrã de bloqueio e aplicações de sistema</string>

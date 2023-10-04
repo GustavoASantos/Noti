@@ -47,6 +47,10 @@ class SettingsActivity : AppCompatActivity(),
             setupDeviceConfiguration()
         }
 
+        if (!sharedPreferences.contains("progressBarColor")) {
+            setMaterialYouAsDefault()
+        }
+
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
@@ -200,6 +204,22 @@ class SettingsActivity : AppCompatActivity(),
             .putInt("circularProgressBarMarginLeft", deviceConfig.marginLeft?.toIntOrNull()?.minus(10) ?: 70)
             .putInt("circularProgressBarMarginRight",deviceConfig.marginRight?.toIntOrNull()?.minus(10) ?: 70)
             .apply()
+    }
+
+    private fun setMaterialYouAsDefault() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            sharedPreferences.edit()
+                .putInt("progressBarColor", ContextCompat.getColor(this,
+                    R.color.system_accent_color
+                )).apply()
+        } else {
+            sharedPreferences.edit()
+                .putInt("progressBarColor", ContextCompat.getColor(this,
+                    R.color.purple_500
+                )).apply()
+        }
     }
 
     private fun updateUpNavigationVisibility() {

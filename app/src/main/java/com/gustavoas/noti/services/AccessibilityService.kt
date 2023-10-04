@@ -22,6 +22,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import com.gustavoas.noti.Utils.setupDeviceConfiguration
 import kotlin.math.roundToInt
 
 class AccessibilityService : AccessibilityService() {
@@ -120,6 +121,10 @@ class AccessibilityService : AccessibilityService() {
             "left" -> container.gravity = Gravity.LEFT
             "right" -> container.gravity = Gravity.RIGHT
             else -> container.gravity = Gravity.CENTER
+        }
+
+        if (!sharedPreferences.contains("progressBarStyle")) {
+            setupDeviceConfiguration(this)
         }
 
         val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 70)

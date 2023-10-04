@@ -11,8 +11,8 @@ android {
         applicationId "com.gustavoas.noti"
         minSdk 19
         targetSdk 34
-        versionCode 20
-        versionName "1.2"
+        versionCode 25
+        versionName "1.3"
 
         vectorDrawables {
             useSupportLibrary true

@@ -12,11 +12,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import com.gustavoas.noti.Utils.setupDeviceConfiguration
 import com.gustavoas.noti.fragments.CircularBarFragment
 import com.gustavoas.noti.fragments.LinearBarFragment
 import com.gustavoas.noti.fragments.PerAppSettingsFragment
@@ -37,6 +39,11 @@ class SettingsActivity : AppCompatActivity(),
         }
 
         super.onCreate(savedInstanceState)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        if (!sharedPreferences.contains("progressBarStyle")) {
+            setupDeviceConfiguration(this)
+        }
 
         setContentView(R.layout.activity_main)
 
@@ -73,12 +80,7 @@ class SettingsActivity : AppCompatActivity(),
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bug_report -> {
-                    val sendEmail = Intent(Intent.ACTION_SENDTO).apply {
-                        data =
-                            Uri.parse("mailto:gustavoasgas1@gmail.com" + "?subject=" + Uri.encode("Noti"))
-                    }
-                    sendEmail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(sendEmail)
+                    startActivity(composeEmail())
                     true
                 }
 
@@ -113,6 +115,37 @@ class SettingsActivity : AppCompatActivity(),
                 startService(intent)
             }, (i * 40 - 1000).toLong())
         }
+    }
+
+    private fun composeEmail(): Intent {
+        val sendEmail = Intent(Intent.ACTION_SENDTO)
+            .setData(Uri.parse("mailto:"))
+            .putExtra(Intent.EXTRA_EMAIL, arrayOf("gustavoasgas1@gmail.com"))
+            .putExtra(Intent.EXTRA_SUBJECT, "Noti")
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        if (sharedPreferences.getString("progressBarStyle", "linear") == "circular") {
+            val deviceScreenSize =
+                resources.displayMetrics.widthPixels.coerceAtMost(resources.displayMetrics.heightPixels)
+            val location = sharedPreferences.getString("progressBarLocation", "center")
+            val size = sharedPreferences.getInt("circularProgressBarSize", 70).plus(10)
+            val marginTop = sharedPreferences.getInt("circularProgressBarMarginTop", 70).plus(10)
+            val marginLeft = sharedPreferences.getInt("circularProgressBarMarginLeft", 70).plus(10)
+            val marginRight = sharedPreferences.getInt("circularProgressBarMarginRight", 70).plus(10)
+            sendEmail.putExtra(
+                Intent.EXTRA_TEXT,
+                "Circular progress bar configuration:\n" +
+                        "<device brand=${Build.BRAND} device=${Build.DEVICE} resolution=$deviceScreenSize>\n" +
+                        "   <location>$location</location>\n" +
+                        "   <size>$size</size>\n" +
+                        "   <marginTop>$marginTop</marginTop>\n" +
+                        "   <marginLeft>$marginLeft</marginLeft>\n" +
+                        "   <marginRight>$marginRight</marginRight>\n" +
+                        "</device>"
+            )
+        }
+
+        return sendEmail
     }
 
     private fun updateUpNavigationVisibility() {

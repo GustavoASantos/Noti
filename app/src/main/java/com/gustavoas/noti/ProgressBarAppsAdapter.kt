@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gustavoas.noti.Utils.dpToPx
+import com.gustavoas.noti.model.ProgressBarApp
 
 class ProgressBarAppsAdapter(private val context: Context, private val apps: ArrayList<ProgressBarApp>): RecyclerView.Adapter<ProgressBarAppsAdapter.ViewHolder>() {
     private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(context) }

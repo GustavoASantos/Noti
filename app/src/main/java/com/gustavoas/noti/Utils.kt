@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.os.Build
 import android.provider.Settings
 import androidx.preference.PreferenceManager
+import com.gustavoas.noti.model.DeviceConfiguration
 import com.gustavoas.noti.services.AccessibilityService
 import com.gustavoas.noti.services.NotificationListenerService
 import org.xmlpull.v1.XmlPullParser
@@ -55,7 +56,7 @@ object Utils {
                 return
             }
 
-        val deviceConfig = DeviceConfigurationModel()
+        val deviceConfig = DeviceConfiguration()
 
         while (parser.eventType != XmlPullParser.END_DOCUMENT) {
             when (parser.eventType) {

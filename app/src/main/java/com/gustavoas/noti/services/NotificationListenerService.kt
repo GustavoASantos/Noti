@@ -3,7 +3,7 @@ package com.gustavoas.noti.services
 import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import com.gustavoas.noti.ProgressBarApp
+import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.ProgressBarAppsRepository
 
 class NotificationListenerService : NotificationListenerService() {

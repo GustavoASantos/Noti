@@ -3,6 +3,7 @@ package com.gustavoas.noti
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.gustavoas.noti.model.ProgressBarApp
 
 class ProgressBarAppsRepository private constructor(context: Context):
     SQLiteOpenHelper(context, "progressBarApps", null, 1) {

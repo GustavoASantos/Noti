@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gustavoas.noti.ProgressBarApp
+import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.ProgressBarAppsAdapter
 import com.gustavoas.noti.ProgressBarAppsRepository
 import com.gustavoas.noti.R

@@ -1,6 +1,6 @@
-package com.gustavoas.noti
+package com.gustavoas.noti.model
 
-data class DeviceConfigurationModel (
+data class DeviceConfiguration (
     var location: String? = null,
     var size: String? = null,
     var marginTop: String? = null,

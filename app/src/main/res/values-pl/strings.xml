@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">"Zgłoś błąd"</string>
+    <string name="settingsPreviewFab">"Podgląd"</string>
+    <string name="prefsCalentileTitle">"Wypróbuj CalenTile w Google Play"</string>
+    <string name="prefsCalentileSummary">"Wspomóż twórcę"</string>
+    <string name="colorRed">"Czerwony"</string>
+    <string name="colorPink">"Różowy"</string>
+    <string name="colorPurple">"Fioletowy"</string>
+    <string name="colorBlue">"Niebieski"</string>
+    <string name="colorLime">"Limonkowy"</string>
+    <string name="colorYellow">"Żółty"</string>
+    <string name="colorOrange">"Pomarańczowy"</string>
+    <string name="colorBrown">"Brązowy"</string>
+    <string name="colorBlack">"Czarny"</string>
+    <string name="colorGrey">"Szary"</string>
+    <string name="colorWhite">"Biały"</string>
+</resources>

@@ -1,6 +1,7 @@
 package com.gustavoas.noti
 
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,12 +19,13 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
-import com.gustavoas.noti.Utils.setupDeviceConfiguration
 import com.gustavoas.noti.fragments.CircularBarFragment
 import com.gustavoas.noti.fragments.LinearBarFragment
 import com.gustavoas.noti.fragments.PerAppSettingsFragment
 import com.gustavoas.noti.fragments.SettingsFragment
+import com.gustavoas.noti.model.DeviceConfiguration
 import com.gustavoas.noti.services.AccessibilityService
+import org.xmlpull.v1.XmlPullParser
 
 class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -42,7 +44,7 @@ class SettingsActivity : AppCompatActivity(),
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         if (!sharedPreferences.contains("progressBarStyle")) {
-            setupDeviceConfiguration(this)
+            setupDeviceConfiguration()
         }
 
         setContentView(R.layout.activity_main)
@@ -146,6 +148,58 @@ class SettingsActivity : AppCompatActivity(),
         }
 
         return sendEmail
+    }
+
+    private fun setupDeviceConfiguration() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val userScreenSmallSide =
+            resources.displayMetrics.widthPixels.coerceAtMost(resources.displayMetrics.heightPixels)
+        val xmlResourceId = resources.getIdentifier(
+            "device_" + Build.BRAND + "_" + Build.DEVICE + "_" + userScreenSmallSide,
+            "xml", this.packageName
+        )
+        val parser: XmlPullParser =
+            try {
+                resources.getXml(xmlResourceId)
+            } catch (e: Resources.NotFoundException) {
+                sharedPreferences.edit()
+                    .putString("progressBarStyle", "linear")
+                    .apply()
+                return
+            }
+
+        val deviceConfig = DeviceConfiguration()
+
+        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
+            when (parser.eventType) {
+                XmlPullParser.START_TAG -> {
+                    when (parser.name) {
+                        "location" -> deviceConfig.location = parser.nextText()
+                        "size" -> deviceConfig.size = parser.nextText()
+                        "marginTop" -> deviceConfig.marginTop = parser.nextText()
+                        "marginLeft" -> deviceConfig.marginLeft = parser.nextText()
+                        "marginRight" -> deviceConfig.marginRight = parser.nextText()
+                    }
+                }
+
+                XmlPullParser.END_TAG -> {
+                    if (parser.name == "device") {
+                        break
+                    }
+                }
+            }
+            parser.next()
+        }
+
+        sharedPreferences.edit()
+            .putString("progressBarStyle", "circular")
+            .putString("progressBarLocation", deviceConfig.location)
+            .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)
+            .putInt("circularProgressBarMarginTop", deviceConfig.marginTop?.toIntOrNull()?.minus(10) ?: 70)
+            .putInt("circularProgressBarMarginLeft", deviceConfig.marginLeft?.toIntOrNull()?.minus(10) ?: 70)
+            .putInt("circularProgressBarMarginRight",deviceConfig.marginRight?.toIntOrNull()?.minus(10) ?: 70)
+            .apply()
     }
 
     private fun updateUpNavigationVisibility() {

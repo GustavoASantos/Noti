@@ -2,7 +2,6 @@ package com.gustavoas.noti
 
 import android.content.Intent
 import android.content.res.Resources
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +15,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.gustavoas.noti.Utils.composeEmail
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
@@ -86,7 +86,7 @@ class SettingsActivity : AppCompatActivity(),
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bug_report -> {
-                    startActivity(composeEmail())
+                    startActivity(composeEmail(this))
                     true
                 }
 
@@ -121,37 +121,6 @@ class SettingsActivity : AppCompatActivity(),
                 startService(intent)
             }, (i * 40 - 1000).toLong())
         }
-    }
-
-    private fun composeEmail(): Intent {
-        val sendEmail = Intent(Intent.ACTION_SENDTO)
-            .setData(Uri.parse("mailto:"))
-            .putExtra(Intent.EXTRA_EMAIL, arrayOf("gustavoasgas1@gmail.com"))
-            .putExtra(Intent.EXTRA_SUBJECT, "Noti")
-
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if (sharedPreferences.getString("progressBarStyle", "linear") == "circular") {
-            val deviceScreenSize =
-                resources.displayMetrics.widthPixels.coerceAtMost(resources.displayMetrics.heightPixels)
-            val location = sharedPreferences.getString("progressBarLocation", "center")
-            val size = sharedPreferences.getInt("circularProgressBarSize", 70).plus(10)
-            val marginTop = sharedPreferences.getInt("circularProgressBarMarginTop", 70).plus(10)
-            val marginLeft = sharedPreferences.getInt("circularProgressBarMarginLeft", 70).plus(10)
-            val marginRight = sharedPreferences.getInt("circularProgressBarMarginRight", 70).plus(10)
-            sendEmail.putExtra(
-                Intent.EXTRA_TEXT,
-                "Circular progress bar configuration:\n" +
-                        "<device brand=${Build.BRAND} device=${Build.DEVICE} resolution=$deviceScreenSize>\n" +
-                        "   <location>$location</location>\n" +
-                        "   <size>$size</size>\n" +
-                        "   <marginTop>$marginTop</marginTop>\n" +
-                        "   <marginLeft>$marginLeft</marginLeft>\n" +
-                        "   <marginRight>$marginRight</marginRight>\n" +
-                        "</device>"
-            )
-        }
-
-        return sendEmail
     }
 
     private fun setupDeviceConfiguration() {

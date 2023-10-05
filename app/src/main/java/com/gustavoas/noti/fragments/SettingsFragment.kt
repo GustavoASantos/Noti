@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager
 import com.gustavoas.noti.AccessibilityDialogPrefCompat
 import com.gustavoas.noti.AccessibilityPermissionDialog
 import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.composeEmail
 import com.gustavoas.noti.Utils.dpToPx
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
@@ -127,6 +128,11 @@ class CircularBarFragment : PreferenceFragmentCompat(), SharedPreferences.OnShar
         setPreferencesFromResource(R.xml.circular_bar_preferences, rootKey)
 
         updateMarginPreferencesVisibility()
+
+        findPreference<Preference>("shareConfig")?.setOnPreferenceClickListener {
+            startActivity(composeEmail(requireContext()))
+            true
+        }
 
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(this)

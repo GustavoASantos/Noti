@@ -38,6 +38,8 @@
     <string name="prefsProgressBarAlignmentEntryRight">Right aligned</string>
     <string name="prefsCircularBarOnlyPortraitTitle">Use only in portrait mode</string>
     <string name="prefsCircularBarOnlyPortraitSummary">Switch to linear progress bar when in landscape</string>
+    <string name="prefsCircularBarShareConfigTitle">Perfect fit? Share configuration</string>
+    <string name="prefsCircularBarShareConfigSummary">Let others with the same device use your configuration</string>
     <string name="prefsSeekbarInfoCard">Press the value next to each seekbar to adjust it manually</string>
     <string name="prefsBlackBackgroundTitle">Use black background</string>
     <string name="prefsBlackBackgroundSummary">Switch to progress bar with black track</string>

@@ -56,6 +56,13 @@
             app:icon="@drawable/ic_margin_right"/>
 
         <Preference
+            android:key="shareConfig"
+            android:title="@string/prefsCircularBarShareConfigTitle"
+            android:summary="@string/prefsCircularBarShareConfigSummary"
+            app:singleLineTitle="false"
+            app:icon="@drawable/ic_share"/>
+
+        <Preference
             android:key="seekbarInfoCard"
             android:summary="@string/prefsSeekbarInfoCard"
             app:singleLineTitle="false"

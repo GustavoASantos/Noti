@@ -2,17 +2,36 @@
 <resources>
     <string name="menuReportBug">"Zgłoś błąd"</string>
     <string name="settingsPreviewFab">"Podgląd"</string>
+    <string name="prefsCategorySetup">"Ustawienia"</string>
+    <string name="prefsNotificationPermissionTitle">"Udziel dostępu do powiadomień"</string>
+    <string name="prefsNotificationPermissionSummary">"Wymagane do odczytywania powiadomień aplikacji z paskiem postępu"</string>
+    <string name="prefsAccessibilityPermissionTitle">"Udziel uprawnienia w ustawieniach ułatwiania dostępu"</string>
+    <string name="prefsAccessibilityPermissionSummary">"Wymagane do działania na ekranie blokady i aplikacjach systemowych"</string>
+    <string name="prefsCategoryCustomization">"Dostosuj"</string>
+    <string name="prefsProgressBarStyleTitle">"Wybierz wygląd paska"</string>
+    <string name="prefsChangeColorTitle">"Zmień kolor paska postępu"</string>
+    <string name="prefsCategoryMore">"więcej"</string>
     <string name="prefsCalentileTitle">"Wypróbuj CalenTile w Google Play"</string>
     <string name="prefsCalentileSummary">"Wspomóż twórcę"</string>
     <string name="colorRed">"Czerwony"</string>
     <string name="colorPink">"Różowy"</string>
     <string name="colorPurple">"Fioletowy"</string>
+    <string name="colorDeepPurple">"Ciemny fiolet"</string>
     <string name="colorBlue">"Niebieski"</string>
+    <string name="colorLightBlue">"Jasny niebieski"</string>
+    <string name="colorCyan">"Cyjan"</string>
+    <string name="colorTeal">"Morski"</string>
+    <string name="colorGreen">"Zielony"</string>
+    <string name="colorLightGreen">"Jasna zieleń"</string>
     <string name="colorLime">"Limonkowy"</string>
     <string name="colorYellow">"Żółty"</string>
+    <string name="colorAmber">"Bursztynowy"</string>
     <string name="colorOrange">"Pomarańczowy"</string>
+    <string name="colorDeepOrange">"Głęboka pomarańcz"</string>
     <string name="colorBrown">"Brązowy"</string>
     <string name="colorBlack">"Czarny"</string>
     <string name="colorGrey">"Szary"</string>
     <string name="colorWhite">"Biały"</string>
+    <string name="prefsSAWPermissionTitle">"Zezwól na wyświetlanie nad innymi aplikacjami"</string>
+    <string name="prefsSAWPermissionSummary">"Wymagane do wyświetlania na ekranie blokady jak i w aplikacjach systemowych"</string>
 </resources>

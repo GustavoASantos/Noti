@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.app.KeyguardManager
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
@@ -176,7 +177,7 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun isInPortraitMode(): Boolean {
-        return resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT
+        return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
     }
 
     private fun isLocked(): Boolean {
@@ -284,6 +285,20 @@ class AccessibilityService : AccessibilityService() {
         if (this::overlayView.isInitialized && overlayView.isShown) {
             getSystemService(WINDOW_SERVICE)?.let {
                 (it as WindowManager).removeView(overlayView)
+            }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        val useOnlyInPortrait = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("onlyInPortrait", true)
+
+        if (this::overlayView.isInitialized && overlayView.isShown && useOnlyInPortrait) {
+            if (toBeRemoved) {
+                hideProgressBarIn(0)
+            } else {
+                showOverlayWithProgress(maxOf(progressBar.progress, circularProgressBar.progress), progressBar.max)
             }
         }
     }

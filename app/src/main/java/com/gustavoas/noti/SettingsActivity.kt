@@ -126,10 +126,9 @@ class SettingsActivity : AppCompatActivity(),
     private fun setupDeviceConfiguration() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val userScreenSmallSide =
-            resources.displayMetrics.widthPixels.coerceAtMost(resources.displayMetrics.heightPixels)
+        val userScreenSmallSide = minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
         val xmlResourceId = resources.getIdentifier(
-            "device_" + Build.BRAND + "_" + Build.DEVICE + "_" + userScreenSmallSide,
+            "device_" + Build.BRAND.lowercase() + "_" + Build.DEVICE.lowercase() + "_" + userScreenSmallSide,
             "xml", this.packageName
         )
         val parser: XmlPullParser =
@@ -167,7 +166,8 @@ class SettingsActivity : AppCompatActivity(),
 
         sharedPreferences.edit()
             .putString("progressBarStyle", "circular")
-            .putString("progressBarLocation", deviceConfig.location)
+            .putBoolean("onlyInPortrait", true)
+            .putString("progressBarLocation", deviceConfig.location ?: "center")
             .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)
             .putInt("circularProgressBarMarginTop", deviceConfig.marginTop?.toIntOrNull()?.minus(10) ?: 70)
             .putInt("circularProgressBarMarginLeft", deviceConfig.marginLeft?.toIntOrNull()?.minus(10) ?: 70)

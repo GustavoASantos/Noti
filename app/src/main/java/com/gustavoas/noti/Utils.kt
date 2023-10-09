@@ -44,8 +44,7 @@ object Utils {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         if (sharedPreferences.getString("progressBarStyle", "linear") == "circular") {
             val resources = context.resources
-            val deviceScreenSize =
-                resources.displayMetrics.widthPixels.coerceAtMost(resources.displayMetrics.heightPixels)
+            val deviceScreenSize = minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
             val location = sharedPreferences.getString("progressBarLocation", "center")
             val size = sharedPreferences.getInt("circularProgressBarSize", 70).plus(10)
             val marginTop = sharedPreferences.getInt("circularProgressBarMarginTop", 70).plus(10)
@@ -54,7 +53,7 @@ object Utils {
             sendEmail.putExtra(
                 Intent.EXTRA_TEXT,
                 "Circular progress bar configuration:\n" +
-                        "<device brand=${Build.BRAND} device=${Build.DEVICE} resolution=$deviceScreenSize>\n" +
+                        "<device brand=${Build.BRAND.lowercase()} device=${Build.DEVICE.lowercase()} resolution=$deviceScreenSize>\n" +
                         "   <location>$location</location>\n" +
                         "   <size>$size</size>\n" +
                         "   <marginTop>$marginTop</marginTop>\n" +

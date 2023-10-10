@@ -2,6 +2,7 @@
 <resources>
     <string name="menuReportBug">"Zgłoś błąd"</string>
     <string name="settingsPreviewFab">"Podgląd"</string>
+    <string name="notificationListenerDescription">"Odczytuje powiadomienia z paskiem postępu"</string>
     <string name="prefsCategorySetup">"Ustawienia"</string>
     <string name="prefsNotificationPermissionTitle">"Udziel dostępu do powiadomień"</string>
     <string name="prefsNotificationPermissionSummary">"Wymagane do odczytywania powiadomień aplikacji z paskiem postępu"</string>
@@ -9,6 +10,14 @@
     <string name="prefsAccessibilityPermissionSummary">"Wymagane do działania na ekranie blokady i aplikacjach systemowych"</string>
     <string name="prefsCategoryCustomization">"Dostosuj"</string>
     <string name="prefsProgressBarStyleTitle">"Wybierz wygląd paska"</string>
+    <string name="prefsProgressBarStyleEntryLinear">"Linearny pasek postępu"</string>
+    <string name="prefsProgressBarStyleEntryCircular">"Okrągły pasek postępu"</string>
+    <string name="prefsProgressBarSizeTitle">"Rozmiar paska postępu"</string>
+    <string name="prefsProgressBarMarginTopTitle">"Margines od góry"</string>
+    <string name="prefsProgressBarMarginLeftTitle">"Margines od lewej"</string>
+    <string name="prefsProgressBarMarginRightTitle">"Margines od prawej"</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">"Wyśrodkowany"</string>
+    <string name="prefsShowInLockScreenTitle">"Pokazuje pasek postępu na ekranie blokady"</string>
     <string name="prefsChangeColorTitle">"Zmień kolor paska postępu"</string>
     <string name="prefsCategoryMore">"więcej"</string>
     <string name="prefsCalentileTitle">"Wypróbuj CalenTile w Google Play"</string>
@@ -17,6 +26,7 @@
     <string name="colorPink">"Różowy"</string>
     <string name="colorPurple">"Fioletowy"</string>
     <string name="colorDeepPurple">"Ciemny fiolet"</string>
+    <string name="colorIndigo">"Indygo"</string>
     <string name="colorBlue">"Niebieski"</string>
     <string name="colorLightBlue">"Jasny niebieski"</string>
     <string name="colorCyan">"Cyjan"</string>
@@ -27,11 +37,14 @@
     <string name="colorYellow">"Żółty"</string>
     <string name="colorAmber">"Bursztynowy"</string>
     <string name="colorOrange">"Pomarańczowy"</string>
-    <string name="colorDeepOrange">"Głęboka pomarańcz"</string>
+    <string name="colorDeepOrange">"Ciemny pomarańczowy"</string>
     <string name="colorBrown">"Brązowy"</string>
     <string name="colorBlack">"Czarny"</string>
     <string name="colorGrey">"Szary"</string>
     <string name="colorWhite">"Biały"</string>
+    <string name="perAppSettingsEmptyView">"Na ten moment nie wykryto żadnych aplikacji z paskiem postępu w powiadomieniu. Jeśli Noti wykryje takową, to pojawi się tutaj"</string>
     <string name="prefsSAWPermissionTitle">"Zezwól na wyświetlanie nad innymi aplikacjami"</string>
     <string name="prefsSAWPermissionSummary">"Wymagane do wyświetlania na ekranie blokady jak i w aplikacjach systemowych"</string>
+    <string name="prefsCircularBarShareConfigTitle">"Idealnie dopasowane? Podziel się konfiguracją!"</string>
+    <string name="prefsCircularBarShareConfigSummary">"Pozwól innym użytkownikom tego samego urządzenia korzystać z Twojej konfiguracji"</string>
 </resources>

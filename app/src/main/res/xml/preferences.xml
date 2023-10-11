@@ -91,7 +91,7 @@
             android:title="@string/prefsBlackBackgroundTitle"
             android:summary="@string/prefsBlackBackgroundSummary"
             app:singleLineTitle="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             app:icon="@drawable/ic_contrast"/>
 
         <SwitchPreferenceCompat

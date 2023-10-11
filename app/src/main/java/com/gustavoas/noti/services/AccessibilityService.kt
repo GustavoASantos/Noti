@@ -157,7 +157,7 @@ class AccessibilityService : AccessibilityService() {
         progressBar.setIndicatorColor(progressBarColor)
         circularProgressBar.setIndicatorColor(progressBarColor)
 
-        val blackBackground = sharedPreferences.getBoolean("blackBackground", true)
+        val blackBackground = sharedPreferences.getBoolean("blackBackground", false)
         val backgroundColor = if (blackBackground) {
             ContextCompat.getColor(this, android.R.color.black)
         } else {

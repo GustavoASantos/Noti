@@ -106,14 +106,14 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     }
 
     private fun updateSetupVisibility() {
-        val hasAccessibilityPermission = hasAccessibilityPermission(requireContext())
         val hasNotificationListenerPermission = hasNotificationListenerPermission(requireContext())
         val hasSystemAlertWindowPermission = hasSystemAlertWindowPermission(requireContext())
 
-        findPreference<Preference>("accessibilityPermission")?.isVisible = (!hasAccessibilityPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        // xiaomi, samsung, vivo, etc are killing the accessibility service in the background
+        findPreference<Preference>("accessibilityPermission")?.isVisible = false
         findPreference<Preference>("notificationPermission")?.isVisible = !hasNotificationListenerPermission
         findPreference<Preference>("systemAlertWindowPermission")?.isVisible = !hasSystemAlertWindowPermission
-        findPreference<PreferenceCategory>("setup")?.isVisible = !((hasAccessibilityPermission || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) && hasNotificationListenerPermission && hasSystemAlertWindowPermission)
+        findPreference<PreferenceCategory>("setup")?.isVisible = !(hasNotificationListenerPermission && hasSystemAlertWindowPermission)
     }
 }
 

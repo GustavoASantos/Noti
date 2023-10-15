@@ -3,8 +3,8 @@ package com.gustavoas.noti.services
 import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.ProgressBarAppsRepository
+import com.gustavoas.noti.model.ProgressBarApp
 
 class NotificationListenerService : NotificationListenerService() {
     private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(this) }
@@ -50,11 +50,19 @@ class NotificationListenerService : NotificationListenerService() {
 
     private fun getProgressFromPercentage(sbn: StatusBarNotification): Float {
         val extras = sbn.notification.extras
-        val title = extras.getString("android.title")
-        val text = extras.getString("android.text")
+        val title = extras.getCharSequence("android.title").toString()
+        val text = extras.getCharSequence("android.text").toString()
+        val subText = extras.getCharSequence("android.subText").toString()
+        val bigText = extras.getCharSequence("android.bigText").toString()
         val textLines = extras.getCharSequenceArray("android.textLines")
 
-        return title?.substringBefore("%")?.toFloatOrNull() ?: text?.substringBefore("%")?.toFloatOrNull() ?: textLines?.firstOrNull { it.contains("%") }?.toString()?.substringBefore("%")?.toFloatOrNull() ?: 0f
+        return title.substringBefore("%").toFloatOrNull() ?:
+            text.substringBefore("%").toFloatOrNull() ?:
+            subText.substringBefore("%").toFloatOrNull() ?:
+            bigText.split("\n").firstOrNull { it.contains("%") }?.toString()
+            ?.substringBefore("%")?.toFloatOrNull() ?:
+            textLines?.firstOrNull { it.contains("%") }?.toString()
+            ?.substringBefore("%")?.toFloatOrNull() ?: 0f
     }
 
     private fun showForApp(packageName: String): Boolean {

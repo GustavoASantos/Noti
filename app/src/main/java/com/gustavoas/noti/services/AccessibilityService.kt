@@ -45,7 +45,8 @@ class AccessibilityService : AccessibilityService() {
         val progressMax = intent?.getIntExtra("progressMax", 0) ?: 0
         val removal = intent?.getBooleanExtra("removal", false) ?: false
 
-        val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("showInLockScreen", true)
+        val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
+            .getBoolean("showInLockScreen", true)
 
         if (removal || (isLocked() && !showInLockScreen)) {
             if (!this::overlayView.isInitialized || !overlayView.isShown) {
@@ -64,7 +65,8 @@ class AccessibilityService : AccessibilityService() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", true)
-        val useCircularProgressBar = (sharedPreferences.getString("progressBarStyle", "linear") == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
+        val useCircularProgressBar = (sharedPreferences
+            .getString("progressBarStyle", "linear") == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (!useCircularProgressBar) {
@@ -93,12 +95,13 @@ class AccessibilityService : AccessibilityService() {
         applyCommonProgressBarCustomizations(sharedPreferences)
 
         val progressBarMax = progressBar.max
-        val currentProgress = (progress.toDouble()/progressMax.toDouble() * progressBarMax).roundToInt()
+        val currentProgress = (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()
 
         when (currentProgress) {
             progressBarMax -> {
                 animateProgressBarTo(progressBarMax, useCircularProgressBar)
             }
+
             else -> {
                 if (currentProgress < progressBar.progress && progressBar.progress != progressBarMax && !toBeRemoved) {
                     return
@@ -120,13 +123,16 @@ class AccessibilityService : AccessibilityService() {
         }
 
         val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 70)
-        circularProgressBar.indicatorSize = (circularProgressBarSize*0.86).roundToInt() + 18
+        circularProgressBar.indicatorSize = (circularProgressBarSize * 0.86).roundToInt() + 18
 
         circularProgressBar.trackThickness = (circularProgressBarSize * 0.04).roundToInt() + 10
 
-        val paddingTop = (sharedPreferences.getInt("circularProgressBarMarginTop", 70)*0.17).roundToInt() + 13
-        val paddingLeft = (sharedPreferences.getInt("circularProgressBarMarginLeft", 70)*0.5).roundToInt() + 15
-        val paddingRight = (sharedPreferences.getInt("circularProgressBarMarginRight", 70)*0.5).roundToInt() + 15
+        val paddingTop =
+            (sharedPreferences.getInt("circularProgressBarMarginTop", 70) * 0.17).roundToInt() + 13
+        val paddingLeft =
+            (sharedPreferences.getInt("circularProgressBarMarginLeft", 70) * 0.5).roundToInt() + 15
+        val paddingRight =
+            (sharedPreferences.getInt("circularProgressBarMarginRight", 70) * 0.5).roundToInt() + 15
 
         val param = circularProgressBar.layoutParams as LinearLayout.LayoutParams
         param.setMargins(paddingLeft, paddingTop, paddingRight, 0)
@@ -135,18 +141,25 @@ class AccessibilityService : AccessibilityService() {
 
     private fun linearProgressBarCustomizations(sharedPreferences: SharedPreferences) {
         val progressBarHeight = sharedPreferences.getInt("progressBarHeight", 5)
-        progressBar.trackThickness = progressBarHeight + 5
+        val statusBarHeight = resources.getDimensionPixelSize(
+            resources.getIdentifier("status_bar_height", "dimen", "android")
+        )
+        if ((statusBarHeight > 15 && progressBarHeight == 10) || progressBarHeight == statusBarHeight - 5) {
+            progressBar.trackThickness = statusBarHeight
+        } else {
+            progressBar.trackThickness = progressBarHeight + 5
+        }
 
-        val paddingTop = sharedPreferences.getInt("linearProgressBarMarginTop", 0)*3
+        val paddingTop = sharedPreferences.getInt("linearProgressBarMarginTop", 0) * 3
         val param = progressBar.layoutParams as LinearLayout.LayoutParams
         param.setMargins(0, paddingTop, 0, 0)
         progressBar.layoutParams = param
     }
 
     private fun applyCommonProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        var progressBarColor = sharedPreferences.getInt("progressBarColor", ContextCompat.getColor(this,
-            R.color.purple_500
-        ))
+        var progressBarColor = sharedPreferences.getInt(
+            "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val progressBarColorsArray = resources.getIntArray(R.array.colorsArrayValues)
             if (!progressBarColorsArray.contains(progressBarColor)) {
@@ -198,7 +211,7 @@ class AccessibilityService : AccessibilityService() {
                 setProgressToZero()
                 hideOverlay()
                 toBeRemoved = false
-            }, 250)
+            }, 500)
         }, delay)
     }
 
@@ -207,7 +220,8 @@ class AccessibilityService : AccessibilityService() {
 
         if (animateCircularProgressBar) {
             circularProgressBar.show()
-            val circularProgressAnimation = ObjectAnimator.ofInt(circularProgressBar, "progress", progress)
+            val circularProgressAnimation =
+                ObjectAnimator.ofInt(circularProgressBar, "progress", progress)
             circularProgressAnimation.duration = 250
             circularProgressAnimation.interpolator = DecelerateInterpolator()
             circularProgressAnimation.start()
@@ -227,7 +241,8 @@ class AccessibilityService : AccessibilityService() {
             overlayView = View.inflate(this, R.layout.progress_bar, null)
         }
 
-        val showInLockscreen = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("showInLockScreen", true) && hasAccessibilityPermission(this)
+        val showInLockscreen = PreferenceManager.getDefaultSharedPreferences(this)
+            .getBoolean("showInLockScreen", true) && hasAccessibilityPermission(this)
 
         val params: WindowManager.LayoutParams
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this) && !showInLockscreen) {
@@ -268,9 +283,11 @@ class AccessibilityService : AccessibilityService() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (!showBelowNotch) {
-                params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+                params.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             } else {
-                params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
+                params.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             }
         }
 
@@ -292,13 +309,16 @@ class AccessibilityService : AccessibilityService() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        val useOnlyInPortrait = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("onlyInPortrait", true)
+        val useOnlyInPortrait =
+            PreferenceManager.getDefaultSharedPreferences(this).getBoolean("onlyInPortrait", true)
 
         if (this::overlayView.isInitialized && overlayView.isShown && useOnlyInPortrait) {
             if (toBeRemoved) {
                 hideProgressBarIn(0)
             } else {
-                showOverlayWithProgress(maxOf(progressBar.progress, circularProgressBar.progress), progressBar.max)
+                showOverlayWithProgress(
+                    maxOf(progressBar.progress, circularProgressBar.progress), progressBar.max
+                )
             }
         }
     }

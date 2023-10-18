@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">الإبلاغ عن مشكلة</string>
+    <string name="settingsPreviewFab">معاينة</string>
+    <string name="prefsCategorySetup">الإعدادات</string>
+    <string name="prefsCategoryCustomization">التخصيص</string>
+    <string name="prefsProgressBarStyleTitle">حدد نمط شريط التقدم</string>
+    <string name="prefsProgressBarStyleEntryLinear">شريط التقدم الطولي</string>
+    <string name="prefsProgressBarStyleEntryCircular">شريط التقدم الدائري</string>
+</resources>

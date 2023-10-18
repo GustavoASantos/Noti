@@ -16,8 +16,8 @@
     <string name="prefsLinearProgressBarTweaks">Ajustes da barra de progresso linear</string>
     <string name="prefsProgressBarHeightTitle">Espessura da linha da barra de progresso</string>
     <string name="prefsProgressBarHeightSummary">Mudar tamanho da linha da barra de progresso</string>
-    <string name="prefsShowBelowNotchTitle">Mostrar por baixo recortes do ecrã</string>
-    <string name="prefsShowBelowNotchSummary">Mostrar barra de progresso por baixo de qualquer notch ou hole punch</string>
+    <string name="prefsShowBelowNotchTitle">Mostrar por baixo de recortes do ecrã</string>
+    <string name="prefsShowBelowNotchSummary">Exibir barra de progresso por baixo de qualquer notch ou hole punch</string>
     <string name="prefsCircularProgressBarTweaks">Ajustes da barra de progresso circular</string>
     <string name="prefsProgressBarAlignmentTitle">Mudar alinhamento da barra de progresso</string>
     <string name="prefsProgressBarSizeTitle">Tamanho da barra de progresso</string>
@@ -37,6 +37,7 @@
     <string name="prefsRoundedCornersSummary">Mudar para barra de progresso com pontas arredondadas</string>
     <string name="prefsShowInLockScreenTitle">Mostrar barra de progresso no ecrã de bloqueio</string>
     <string name="prefsShowInLockScreenSummary">Irá também aparecer no always on display</string>
+    <string name="prefsDisableInLandscapeTitle">Desativar em modo horizontal</string>
     <string name="prefsChangeColorTitle">Mudar cor da barra de progresso</string>
     <string name="prefsCategoryMore">mais</string>
     <string name="prefsCalentileTitle">Experimentar o CalenTile no Google Play</string>

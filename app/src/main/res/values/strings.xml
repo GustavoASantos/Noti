@@ -49,6 +49,7 @@
     <string name="prefsRoundedCornersSummary">Switch to progress bar with rounded ends</string>
     <string name="prefsShowInLockScreenTitle">Show progress bar in lock screen</string>
     <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
+    <string name="prefsDisableInLandscapeTitle">Disable in landscape mode</string>
     <string name="prefsChangeColorTitle">Change progress bar color</string>
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>

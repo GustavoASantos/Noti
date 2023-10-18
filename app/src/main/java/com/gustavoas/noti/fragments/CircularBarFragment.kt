@@ -26,8 +26,12 @@ class CircularBarFragment : BasePreferenceFragment(),
             true
         }
 
-        PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .registerOnSharedPreferenceChangeListener(this)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        findPreference<Preference>("onlyInPortrait")?.isVisible = !sharedPreferences
+            .getBoolean("disableInLandscape", false)
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onDestroy() {

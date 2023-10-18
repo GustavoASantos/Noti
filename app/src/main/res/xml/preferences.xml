@@ -103,6 +103,14 @@
             app:icon="@drawable/ic_lockscreen"/>
 
         <SwitchPreferenceCompat
+            android:key="disableInLandscape"
+            android:title="@string/prefsDisableInLandscapeTitle"
+            android:summary="@string/prefsCircularBarOnlyPortraitTitle"
+            app:singleLineTitle="false"
+            android:defaultValue="false"
+            app:icon="@drawable/ic_landscape"/>
+
+        <SwitchPreferenceCompat
             android:key="useRoundedCorners"
             android:title="@string/prefsRoundedCornersTitle"
             android:summary="@string/prefsRoundedCornersSummary"

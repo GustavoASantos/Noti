@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">Докладвай за грешка</string>
+    <string name="settingsPreviewFab">Прегледай</string>
+    <string name="notificationListenerDescription">Чете известията с лента за напредъка</string>
+    <string name="prefsCategorySetup">Настройки</string>
+    <string name="prefsNotificationPermissionTitle">Разреши достъп до известията</string>
+    <string name="prefsNotificationPermissionSummary">Изисква се за четене на известия с лента за напредъка</string>
+    <string name="prefsAccessibilityPermissionTitle">Даване на разрешение за достъпност</string>
+    <string name="prefsAccessibilityPermissionSummary">Изисква се за показване на заключен екран и в системните приложения</string>
+    <string name="prefsCategoryCustomization">Персонализиране</string>
+    <string name="prefsProgressBarStyleTitle">Избери стил на лентата за прогрес</string>
+    <string name="prefsProgressBarStyleEntryLinear">Линейна лента за прогрес</string>
+    <string name="prefsProgressBarStyleEntryCircular">Кръгова лента за напредък</string>
+</resources>

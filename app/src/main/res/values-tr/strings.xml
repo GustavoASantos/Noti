@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">Hata Bildir</string>
+    <string name="settingsPreviewFab">Önizleme</string>
+    <string name="prefsCategorySetup">Kurulum</string>
+    <string name="prefsNotificationPermissionTitle">Bildirim erişimi verin</string>
+    <string name="prefsAccessibilityPermissionTitle">Erişilebilirlik izni verin</string>
+    <string name="prefsAccessibilityPermissionSummary">Kilit ekranında ve sistem uygulamalarında görüntülenmesi gerekir</string>
+    <string name="prefsCategoryCustomization">özelleştirme</string>
+    <string name="prefsProgressBarStyleTitle">İlerleme çubuğu stilini seçin</string>
+    <string name="prefsProgressBarStyleEntryLinear">Doğrusal ilerleme çubuğu</string>
+    <string name="prefsProgressBarStyleEntryCircular">Dairesel ilerleme çubuğu</string>
+    <string name="prefsCategoryTweaks">ince ayarlar</string>
+    <string name="prefsLinearProgressBarTweaks">Doğrusal ilerleme çubuğu ince ayarları</string>
+    <string name="prefsProgressBarHeightTitle">İlerleme çubuğu iz kalınlığı</string>
+    <string name="prefsProgressBarHeightSummary">İlerleme çubuğunun boyutunu değiştirme</string>
+    <string name="prefsCircularProgressBarTweaks">Dairesel ilerleme çubuğu ince ayarları</string>
+    <string name="prefsProgressBarSizeTitle">İlerleme çubuğu boyutu</string>
+    <string name="prefsProgressBarSizeSummary">İlerleme çubuğunun boyutunu değiştirme</string>
+    <string name="prefsProgressBarAlignmentEntryLeft">Sola hizalanmış</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">Ortalanmış</string>
+    <string name="prefsProgressBarAlignmentEntryRight">Sağa hizalanmış</string>
+    <string name="prefsCircularBarOnlyPortraitTitle">Yalnızca portre modunda kullan</string>
+    <string name="prefsRoundedCornersTitle">Köşeleri yuvarlatılmış ilerleme çubuğunu kullan</string>
+    <string name="prefsShowInLockScreenTitle">Kilit ekranında ilerlemeyi göster</string>
+    <string name="prefsChangeColorTitle">İlerleme çubuğu rengini değiştirme</string>
+    <string name="prefsCategoryMore">daha fazla</string>
+    <string name="prefsCalentileTitle">CalenTile\'ı Google Play\'de deneyin</string>
+</resources>

@@ -31,6 +31,7 @@ class AccessibilityService : AccessibilityService() {
     private lateinit var circularProgressBar: CircularProgressIndicator
     private val handler = Handler(Looper.getMainLooper())
     private var toBeRemoved = false
+    private var previousWasLowPriority = false
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
 
@@ -56,6 +57,7 @@ class AccessibilityService : AccessibilityService() {
             hideProgressBarIn(1000)
         } else if ((!isLocked() || showInLockScreen) && progress > 0) {
             showOverlayWithProgress(progress, progressMax)
+            previousWasLowPriority = intent?.getBooleanExtra("lowPriority", false) ?: false
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -111,7 +113,7 @@ class AccessibilityService : AccessibilityService() {
             }
 
             else -> {
-                if (currentProgress < progressBar.progress && progressBar.progress != progressBarMax && !toBeRemoved) {
+                if (currentProgress < progressBar.progress && progressBar.progress != progressBarMax && !toBeRemoved && !previousWasLowPriority) {
                     return
                 }
                 toBeRemoved = false

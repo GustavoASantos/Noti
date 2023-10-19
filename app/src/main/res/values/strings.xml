@@ -47,6 +47,8 @@
     <string name="prefsPerAppSettingsSummary">Toggle noti on per app basis</string>
     <string name="prefsRoundedCornersTitle">Use progress bar with rounded corners</string>
     <string name="prefsRoundedCornersSummary">Switch to progress bar with rounded ends</string>
+    <string name="prefsShowForMediaTitle">Show media progress bar</string>
+    <string name="prefsShowForMediaSummary">Display progress bar when playing music</string>
     <string name="prefsShowInLockScreenTitle">Show progress bar in lock screen</string>
     <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
     <string name="prefsDisableInLandscapeTitle">Disable in landscape mode</string>

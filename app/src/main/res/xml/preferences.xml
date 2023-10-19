@@ -95,6 +95,14 @@
             app:icon="@drawable/ic_contrast"/>
 
         <SwitchPreferenceCompat
+            android:key="showForMedia"
+            android:title="Show media progress bar"
+            android:summary="Display progress bar when playing music"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_music"/>
+
+        <SwitchPreferenceCompat
             android:key="showInLockScreen"
             android:title="@string/prefsShowInLockScreenTitle"
             android:summary="@string/prefsShowInLockScreenSummary"

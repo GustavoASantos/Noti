@@ -72,4 +72,6 @@
     <string name="prefsAccessibilityPermissionSummary">Necessário para mostrar no ecrã de bloqueio e aplicações de sistema</string>
     <string name="prefsSAWPermissionTitle">Permitir sobrepor a outras apps</string>
     <string name="prefsCircularBarShareConfigSummary">Permite a outros com o mesmo dispositivo usar a tua configuração</string>
+    <string name="prefsShowForMediaTitle">Mostrar barra de progresso para multimédia</string>
+    <string name="prefsShowForMediaSummary">Exibir barra de progresso ao reproduzir música</string>
 </resources>

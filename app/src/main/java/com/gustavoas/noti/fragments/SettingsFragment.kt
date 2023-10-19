@@ -33,6 +33,9 @@ class SettingsFragment : BasePreferenceFragment(),
 
         updateShowInLockscreenVisibility()
 
+        findPreference<Preference>("showForMedia")?.isVisible =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(this)
     }

@@ -7,4 +7,5 @@
     <string name="prefsProgressBarStyleTitle">حدد نمط شريط التقدم</string>
     <string name="prefsProgressBarStyleEntryLinear">شريط التقدم الطولي</string>
     <string name="prefsProgressBarStyleEntryCircular">شريط التقدم الدائري</string>
+    <string name="prefsProgressBarAlignmentTitle">تغيير محاذاة شريط التقدم</string>
 </resources>

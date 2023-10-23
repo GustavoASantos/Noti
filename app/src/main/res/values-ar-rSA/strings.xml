@@ -36,7 +36,7 @@
     <string name="prefsRoundedCornersTitle">استخدم شريط التقدم بزوايا مستديرة</string>
     <string name="prefsRoundedCornersSummary">التبديل إلى شريط التقدم ذو الأطراف المستديرة</string>
     <string name="prefsShowInLockScreenTitle">إظهار شريط التقدم في شاشة القفل</string>
-    <string name="prefsShowInLockScreenSummary">وسوف تظهر أيضًا في العرض على الشاشة دائمًا</string>
+    <string name="prefsShowInLockScreenSummary">سيظهر أيضًا في العرض دوماً على الشاشة إن كان هاتفك يدعم هذه الخاصية</string>
     <string name="prefsChangeColorTitle">تغيير لون شريط التقدم</string>
     <string name="prefsCategoryMore">المزيد</string>
     <string name="prefsCalentileTitle">جرب CalenTile على Google Play</string>
@@ -71,4 +71,7 @@
     <string name="prefsSeekbarInfoCard">لضبط المحاذاة بدقة أكبر قم بالضغط على الأرقام الموجودة بجانب كل شريط وأدخل القيمة يدوياً</string>
     <string name="prefsCircularBarShareConfigTitle">أصبح مثالياً ؟ مشاركة التكوين</string>
     <string name="prefsCircularBarShareConfigSummary">اسمح للآخرين الذين لديهم نفس الجهاز باستخدام التكوين الخاص بك</string>
+    <string name="prefsShowForMediaTitle">إظهار شريط تقدم الوسائط</string>
+    <string name="prefsShowForMediaSummary">عرض شريط التقدم عند تشغيل الموسيقى</string>
+    <string name="prefsDisableInLandscapeTitle">تعطيل في الوضع الأفقي</string>
 </resources>

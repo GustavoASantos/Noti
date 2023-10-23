@@ -106,6 +106,7 @@ class NotificationListenerService : NotificationListenerService() {
         mediaController?.registerCallback(callback as MediaController.Callback)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun startUpdatingMediaPosition(
         initialProgress: Int,
         duration: Int,
@@ -115,7 +116,9 @@ class NotificationListenerService : NotificationListenerService() {
         var currProgress = initialProgress
         val runnable = object : Runnable {
             override fun run() {
-                if (currProgress <= duration) {
+                if (currProgress <= duration && PreferenceManager.getDefaultSharedPreferences(this@NotificationListenerService)
+                        .getBoolean("showForMedia", true)
+                ) {
                     sendProgressToAccessibilityService(
                         currProgress,
                         duration,
@@ -124,6 +127,8 @@ class NotificationListenerService : NotificationListenerService() {
                     )
                     currProgress += (1000 * speed).toInt()
                     handler.postDelayed(this, 1000)
+                } else {
+                    stopUpdatingMediaPosition()
                 }
             }
         }

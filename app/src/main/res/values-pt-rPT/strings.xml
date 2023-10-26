@@ -4,6 +4,7 @@
     <string name="settingsPreviewFab">Pré-visualizar</string>
     <string name="notificationListenerDescription">Lê notificações com uma barra de progresso</string>
     <string name="prefsCategorySetup">configuração</string>
+    <string name="prefsBatteryOptimization">Podes ter de desativar otimizações da bateria e permitir o arranque automático para o noti funcionar em segundo plano</string>
     <string name="prefsNotificationPermissionTitle">Conceder acesso às notificações</string>
     <string name="prefsNotificationPermissionSummary">Necessário para ler notificações com uma barra de progresso</string>
     <string name="prefsAccessibilityPermissionTitle">Conceder permissão de acessibilidade</string>

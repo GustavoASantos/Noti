@@ -118,7 +118,9 @@ class SettingsFragment : BasePreferenceFragment(),
             !hasNotificationListenerPermission
         findPreference<Preference>("systemAlertWindowPermission")?.isVisible =
             !hasSystemAlertWindowPermission
+        val brand = Build.BRAND.lowercase()
+        findPreference<Preference>("batteryOptimizationsInfoCard")?.isVisible = brand != "google"
         findPreference<PreferenceCategory>("setup")?.isVisible =
-            !(hasNotificationListenerPermission && hasSystemAlertWindowPermission)
+            !(hasNotificationListenerPermission && hasSystemAlertWindowPermission && brand == "google")
     }
 }

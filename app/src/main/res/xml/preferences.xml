@@ -38,6 +38,17 @@
             app:singleLineTitle="false"
             app:icon="@drawable/ic_accessibility"/>
 
+        <Preference
+            android:key="batteryOptimizationsInfoCard"
+            android:summary="@string/prefsBatteryOptimization"
+            app:singleLineTitle="false"
+            android:selectable="true"
+            app:icon="@drawable/ic_info">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://dontkillmyapp.com"/>
+        </Preference>
+
     </PreferenceCategory>
 
     <PreferenceCategory

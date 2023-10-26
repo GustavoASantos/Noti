@@ -7,6 +7,7 @@
     <string name="perAppSettingsEmptyView">No progress bar found yet. Noti will discover which apps have progress bars as you use your phone</string>
 
     <string name="prefsCategorySetup">setup</string>
+    <string name="prefsBatteryOptimization">You may need to disable battery optimizations and allow autostart for noti to work in the background</string>
     <string name="prefsNotificationPermissionTitle">Grant notification access</string>
     <string name="prefsNotificationPermissionSummary">Required to read notifications with a progress bar</string>
     <string name="prefsAccessibilityPermissionTitle">Grant accessibility permission</string>

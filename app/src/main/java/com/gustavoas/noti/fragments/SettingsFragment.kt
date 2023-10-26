@@ -109,18 +109,20 @@ class SettingsFragment : BasePreferenceFragment(),
     }
 
     private fun updateSetupVisibility() {
+        val hasAccessibilityPermission = hasAccessibilityPermission(requireContext())
         val hasNotificationListenerPermission = hasNotificationListenerPermission(requireContext())
         val hasSystemAlertWindowPermission = hasSystemAlertWindowPermission(requireContext())
 
         // xiaomi, samsung, vivo, etc are killing the accessibility service in the background
-        findPreference<Preference>("accessibilityPermission")?.isVisible = false
+        val brand = Build.BRAND.lowercase()
+        findPreference<Preference>("accessibilityPermission")?.isVisible =
+            !(hasAccessibilityPermission || brand != "google")
         findPreference<Preference>("notificationPermission")?.isVisible =
             !hasNotificationListenerPermission
         findPreference<Preference>("systemAlertWindowPermission")?.isVisible =
             !hasSystemAlertWindowPermission
-        val brand = Build.BRAND.lowercase()
         findPreference<Preference>("batteryOptimizationsInfoCard")?.isVisible = brand != "google"
         findPreference<PreferenceCategory>("setup")?.isVisible =
-            !(hasNotificationListenerPermission && hasSystemAlertWindowPermission && brand == "google")
+            !(hasNotificationListenerPermission && hasSystemAlertWindowPermission && hasAccessibilityPermission && brand == "google")
     }
 }

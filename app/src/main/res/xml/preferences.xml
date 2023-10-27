@@ -95,7 +95,8 @@
             android:title="@string/prefsChangeColorTitle"
             android:defaultValue="@color/purple_500"
             app:colorChoices="@array/colorsArrayValues"
-            app:icon="@drawable/ic_colors"/>
+            app:icon="@drawable/ic_colors"
+            app:showDialog="false"/>
 
         <SwitchPreferenceCompat
             android:key="blackBackground"

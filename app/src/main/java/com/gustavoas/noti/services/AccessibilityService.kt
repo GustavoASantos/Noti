@@ -170,7 +170,8 @@ class AccessibilityService : AccessibilityService() {
         var progressBarColor = sharedPreferences.getInt(
             "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
         )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val useMaterialYou = sharedPreferences.getBoolean("usingMaterialYouColor", false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && useMaterialYou) {
             val progressBarColorsArray = resources.getIntArray(R.array.colorsArrayValues)
             if (!progressBarColorsArray.contains(progressBarColor)) {
                 progressBarColor = ContextCompat.getColor(this, R.color.system_accent_color)

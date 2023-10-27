@@ -13,9 +13,14 @@ import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+import eltos.simpledialogfragment.SimpleDialog
+import eltos.simpledialogfragment.SimpleDialog.OnDialogResultListener.BUTTON_POSITIVE
+import eltos.simpledialogfragment.color.SimpleColorDialog
 
 class SettingsFragment : BasePreferenceFragment(),
-    SharedPreferences.OnSharedPreferenceChangeListener {
+    SharedPreferences.OnSharedPreferenceChangeListener,
+    SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "progressBarStyle" || key == "onlyInPortrait") {
             updateProgressBarStyleVisibility()
@@ -38,6 +43,11 @@ class SettingsFragment : BasePreferenceFragment(),
 
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .registerOnSharedPreferenceChangeListener(this)
+
+        findPreference<Preference>("progressBarColor")?.setOnPreferenceClickListener {
+            showColorDialog()
+            true
+        }
     }
 
     override fun onDisplayPreferenceDialog(preference: Preference) {
@@ -66,18 +76,59 @@ class SettingsFragment : BasePreferenceFragment(),
             .unregisterOnSharedPreferenceChangeListener(this)
     }
 
-    private fun updateColorPreferenceSummary() {
+    override fun onResult(dialogTag: String, which: Int, extras: Bundle): Boolean {
+        if (which == BUTTON_POSITIVE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .edit()
+                    .putBoolean(
+                        "usingMaterialYouColor",
+                        extras.getInt(SimpleColorDialog.COLOR) == ContextCompat.getColor(
+                            requireContext(),
+                            R.color.system_accent_color
+                        ) && extras.getInt(SimpleColorDialog.SELECTED_SINGLE_POSITION) != 19
+                    )
+                    .apply()
+            }
+
+            findPreference<ColorPreferenceCompat>("progressBarColor")?.value =
+                extras.getInt(
+                    SimpleColorDialog.COLOR,
+                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                )
+        }
+        return true
+    }
+
+    private fun showColorDialog() {
         val color = PreferenceManager.getDefaultSharedPreferences(requireContext())
             .getInt(
                 "progressBarColor",
                 ContextCompat.getColor(requireContext(), R.color.purple_500)
             )
-        val colorPosition = resources.getIntArray(R.array.colorsArrayValues).indexOf(color)
-        val colorName = resources.getStringArray(R.array.colorsArray).getOrNull(colorPosition)
+        SimpleColorDialog.build()
+            .colorPreset(color)
+            .colors(requireContext(), R.array.colorsArrayValues)
+            .allowCustom(true)
+            .showOutline(0x46000000)
+            .gridNumColumn(5)
+            .choiceMode(SimpleColorDialog.SINGLE_CHOICE)
+            .neg()
+            .show(this)
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && colorName == null) {
-            PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .edit()
+    private fun updateColorPreferenceSummary() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val color = sharedPreferences.getInt(
+            "progressBarColor",
+            ContextCompat.getColor(requireContext(), R.color.purple_500)
+        )
+        val colorPosition = resources.getIntArray(R.array.colorsArrayValues).indexOf(color)
+        var colorName = resources.getStringArray(R.array.colorsArray).getOrNull(colorPosition)
+        val useMaterialYou = sharedPreferences.getBoolean("usingMaterialYouColor", false)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && colorName == null && useMaterialYou) {
+            sharedPreferences.edit()
                 .putInt(
                     "progressBarColor", ContextCompat.getColor(
                         requireContext(),
@@ -85,10 +136,14 @@ class SettingsFragment : BasePreferenceFragment(),
                     )
                 )
                 .apply()
+
+            findPreference<ColorPreferenceCompat>("progressBarColor")?.value =
+                ContextCompat.getColor(requireContext(), R.color.system_accent_color)
+            colorName = resources.getString(R.string.colorMaterialYou)
         }
 
         findPreference<Preference>("progressBarColor")?.summary =
-            colorName ?: getString(R.string.colorMaterialYou)
+            colorName ?: "#${Integer.toHexString(color).drop(2).uppercase()}"
     }
 
     private fun updateProgressBarStyleVisibility() {

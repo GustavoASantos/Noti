@@ -38,7 +38,6 @@
         <item>@string/colorOrange</item>
         <item>@string/colorDeepOrange</item>
         <item>@string/colorBrown</item>
-        <item>@string/colorBlack</item>
         <item>@string/colorGrey</item>
         <item>@string/colorWhite</item>
     </string-array>
@@ -60,7 +59,6 @@
         <item>#FF9800</item>
         <item>#FF5722</item>
         <item>#795548</item>
-        <item>#000000</item>
         <item>#9E9E9E</item>
         <item>#FFFFFF</item>
     </array>

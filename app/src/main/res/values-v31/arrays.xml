@@ -17,7 +17,6 @@
         <item>@string/colorAmber</item>
         <item>@string/colorOrange</item>
         <item>@string/colorDeepOrange</item>
-        <item>@string/colorBlack</item>
         <item>@string/colorGrey</item>
         <item>@string/colorWhite</item>
         <item>@string/colorMaterialYou</item>
@@ -39,7 +38,6 @@
         <item>#FFC107</item>
         <item>#FF9800</item>
         <item>#FF5722</item>
-        <item>#000000</item>
         <item>#9E9E9E</item>
         <item>#FFFFFF</item>
         <item>@color/system_accent_color</item>

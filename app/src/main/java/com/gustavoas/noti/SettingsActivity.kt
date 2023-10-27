@@ -95,7 +95,10 @@ class SettingsActivity : AppCompatActivity(),
         }
     }
 
-    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+    override fun onPreferenceStartFragment(
+        caller: PreferenceFragmentCompat,
+        pref: Preference
+    ): Boolean {
         val fragment = when (pref.key) {
             "CircularBarFragment" -> CircularBarFragment()
             "LinearBarFragment" -> LinearBarFragment()
@@ -111,7 +114,7 @@ class SettingsActivity : AppCompatActivity(),
         return true
     }
 
-    private fun simulateDownload () {
+    private fun simulateDownload() {
         val intent = Intent(this, AccessibilityService::class.java)
         for (i in 25..125 step 25) {
             Handler(Looper.getMainLooper()).postDelayed({
@@ -126,7 +129,8 @@ class SettingsActivity : AppCompatActivity(),
     private fun setupDeviceConfiguration() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val userScreenSmallSide = minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
+        val userScreenSmallSide =
+            minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
         val xmlResourceId = resources.getIdentifier(
             "device_" + Build.BRAND.lowercase() + "_" + Build.DEVICE.lowercase() + "_" + userScreenSmallSide,
             "xml", this.packageName
@@ -181,14 +185,22 @@ class SettingsActivity : AppCompatActivity(),
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             sharedPreferences.edit()
-                .putInt("progressBarColor", ContextCompat.getColor(this,
-                    R.color.system_accent_color
-                )).apply()
+                .putInt(
+                    "progressBarColor", ContextCompat.getColor(
+                        this,
+                        R.color.system_accent_color
+                    )
+                )
+                .putBoolean("usingMaterialYouColor", true)
+                .apply()
         } else {
             sharedPreferences.edit()
-                .putInt("progressBarColor", ContextCompat.getColor(this,
-                    R.color.purple_500
-                )).apply()
+                .putInt(
+                    "progressBarColor", ContextCompat.getColor(
+                        this,
+                        R.color.purple_500
+                    )
+                ).apply()
         }
     }
 

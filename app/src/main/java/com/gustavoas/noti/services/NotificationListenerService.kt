@@ -47,15 +47,11 @@ class NotificationListenerService : NotificationListenerService() {
 
             if (progress > 0 && progressMax > 0) {
                 sendProgressToAccessibilityService(
-                    progress,
-                    progressMax,
-                    packageName = sbn.packageName
+                    progress, progressMax, packageName = sbn.packageName
                 )
             } else if (percentageProgress in 1..100) {
                 sendProgressToAccessibilityService(
-                    percentageProgress,
-                    100,
-                    packageName = sbn.packageName
+                    percentageProgress, 100, packageName = sbn.packageName
                 )
             } else {
                 sendProgressToAccessibilityService(removal = true)
@@ -108,22 +104,18 @@ class NotificationListenerService : NotificationListenerService() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun startUpdatingMediaPosition(
-        initialProgress: Int,
-        duration: Int,
-        speed: Float,
-        packageName: String
+        initialProgress: Int, duration: Int, speed: Float, packageName: String
     ) {
         var currProgress = initialProgress
         val runnable = object : Runnable {
             override fun run() {
                 if (currProgress <= duration && PreferenceManager.getDefaultSharedPreferences(this@NotificationListenerService)
-                        .getBoolean("showForMedia", true)
+                        .getBoolean(
+                            "showForMedia", true
+                        ) && appsRepository.getApp(packageName)?.showProgressBar != false
                 ) {
                     sendProgressToAccessibilityService(
-                        currProgress,
-                        duration,
-                        packageName = packageName,
-                        lowPriority = true
+                        currProgress, duration, packageName = packageName, lowPriority = true
                     )
                     currProgress += (1000 * speed).toInt()
                     handler.postDelayed(this, 1000)
@@ -179,11 +171,9 @@ class NotificationListenerService : NotificationListenerService() {
 
     private fun showForApp(appInDatabase: ProgressBarApp?, packageName: String): Boolean {
         return if (appInDatabase == null) {
-            if (packageName.isNotEmpty())
-                appsRepository.addApp(ProgressBarApp(packageName, true))
+            if (packageName.isNotEmpty()) appsRepository.addApp(ProgressBarApp(packageName, true))
             true
-        } else
-            appInDatabase.showProgressBar
+        } else appInDatabase.showProgressBar
     }
 
     private fun sendProgressToAccessibilityService(

@@ -32,6 +32,8 @@ class AccessibilityService : AccessibilityService() {
     private val handler = Handler(Looper.getMainLooper())
     private var toBeRemoved = false
     private var previousWasLowPriority = false
+    private var lowPriorityTimeout = false
+    private var lowPriorityHandler = Handler(Looper.getMainLooper())
     private var color = 1
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
@@ -46,7 +48,6 @@ class AccessibilityService : AccessibilityService() {
         val progress = intent?.getIntExtra("progress", 0) ?: 0
         val progressMax = intent?.getIntExtra("progressMax", 0) ?: 0
         val removal = intent?.getBooleanExtra("removal", false) ?: false
-        color = intent?.getIntExtra("color", 1) ?: 1
 
         val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
             .getBoolean("showInLockScreen", true)
@@ -55,11 +56,24 @@ class AccessibilityService : AccessibilityService() {
             if (!this::overlayView.isInitialized || !overlayView.isShown) {
                 return super.onStartCommand(intent, flags, startId)
             }
+            lowPriorityTimeout = false
             toBeRemoved = true
             hideProgressBarIn(1000)
         } else if ((!isLocked() || showInLockScreen) && progress > 0) {
+            val lowPriority = intent?.getBooleanExtra("lowPriority", false) ?: false
+            if (lowPriority && lowPriorityTimeout) {
+                return super.onStartCommand(intent, flags, startId)
+            } else if (!lowPriority) {
+                lowPriorityTimeout = true
+                lowPriorityHandler.removeCallbacksAndMessages(null)
+                lowPriorityHandler.postDelayed({
+                    lowPriorityTimeout = false
+                }, 2500)
+            }
+
+            color = intent?.getIntExtra("color", 1) ?: 1
             showOverlayWithProgress(progress, progressMax)
-            previousWasLowPriority = intent?.getBooleanExtra("lowPriority", false) ?: false
+            previousWasLowPriority = lowPriority
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -77,10 +91,8 @@ class AccessibilityService : AccessibilityService() {
         }
 
         val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", true)
-        val useCircularProgressBar = (sharedPreferences
-            .getString(
-                "progressBarStyle",
-                "linear"
+        val useCircularProgressBar = (sharedPreferences.getString(
+                "progressBarStyle", "linear"
             ) == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
@@ -175,8 +187,7 @@ class AccessibilityService : AccessibilityService() {
         val useMaterialYou = sharedPreferences.getBoolean("usingMaterialYouColor", false)
         val progressBarColor = if (color == 1 && !useMaterialYou) {
             sharedPreferences.getInt(
-                "progressBarColor",
-                ContextCompat.getColor(this, R.color.purple_500)
+                "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
             )
         } else if (color == 2 || (useMaterialYou && color == 1)) {
             ContextCompat.getColor(this, R.color.system_accent_color)

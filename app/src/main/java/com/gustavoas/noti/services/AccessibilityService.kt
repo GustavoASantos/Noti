@@ -32,6 +32,7 @@ class AccessibilityService : AccessibilityService() {
     private val handler = Handler(Looper.getMainLooper())
     private var toBeRemoved = false
     private var previousWasLowPriority = false
+    private var color = 1
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
 
@@ -45,6 +46,7 @@ class AccessibilityService : AccessibilityService() {
         val progress = intent?.getIntExtra("progress", 0) ?: 0
         val progressMax = intent?.getIntExtra("progressMax", 0) ?: 0
         val removal = intent?.getBooleanExtra("removal", false) ?: false
+        color = intent?.getIntExtra("color", 1) ?: 1
 
         val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
             .getBoolean("showInLockScreen", true)
@@ -76,7 +78,10 @@ class AccessibilityService : AccessibilityService() {
 
         val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", true)
         val useCircularProgressBar = (sharedPreferences
-            .getString("progressBarStyle", "linear") == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
+            .getString(
+                "progressBarStyle",
+                "linear"
+            ) == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (!useCircularProgressBar) {
@@ -105,9 +110,9 @@ class AccessibilityService : AccessibilityService() {
         applyCommonProgressBarCustomizations(sharedPreferences)
 
         val progressBarMax = progressBar.max
-        val currentProgress = (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()
 
-        when (currentProgress) {
+        when (val currentProgress =
+            (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()) {
             progressBarMax -> {
                 animateProgressBarTo(progressBarMax, useCircularProgressBar)
             }
@@ -167,16 +172,16 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun applyCommonProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        var progressBarColor = sharedPreferences.getInt(
-            "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
-        )
         val useMaterialYou = sharedPreferences.getBoolean("usingMaterialYouColor", false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && useMaterialYou) {
-            val progressBarColorsArray = resources.getIntArray(R.array.colorsArrayValues)
-            if (!progressBarColorsArray.contains(progressBarColor)) {
-                progressBarColor = ContextCompat.getColor(this, R.color.system_accent_color)
-                sharedPreferences.edit().putInt("progressBarColor", progressBarColor).apply()
-            }
+        val progressBarColor = if (color == 1 && !useMaterialYou) {
+            sharedPreferences.getInt(
+                "progressBarColor",
+                ContextCompat.getColor(this, R.color.purple_500)
+            )
+        } else if (color == 2 || (useMaterialYou && color == 1)) {
+            ContextCompat.getColor(this, R.color.system_accent_color)
+        } else {
+            color
         }
         progressBar.setIndicatorColor(progressBarColor)
         circularProgressBar.setIndicatorColor(progressBarColor)

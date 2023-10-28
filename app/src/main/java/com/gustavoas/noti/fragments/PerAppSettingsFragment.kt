@@ -5,15 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.ProgressBarAppsAdapter
 import com.gustavoas.noti.ProgressBarAppsRepository
 import com.gustavoas.noti.R
+import com.gustavoas.noti.model.ProgressBarApp
+import eltos.simpledialogfragment.SimpleDialog
+import eltos.simpledialogfragment.SimpleDialog.OnDialogResultListener.BUTTON_NEUTRAL
+import eltos.simpledialogfragment.SimpleDialog.OnDialogResultListener.BUTTON_POSITIVE
+import eltos.simpledialogfragment.color.SimpleColorDialog
 
-class PerAppSettingsFragment : Fragment() {
+class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
     private val apps = ArrayList<ProgressBarApp>()
     private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(requireContext()) }
     private val recyclerView by lazy { requireView().findViewById<RecyclerView>(R.id.apps_recycler_view) }
@@ -29,9 +35,34 @@ class PerAppSettingsFragment : Fragment() {
         updateAppsFromDatabase()
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ProgressBarAppsAdapter(requireContext(), apps)
+        recyclerView.adapter = ProgressBarAppsAdapter(this, requireContext(), apps)
 
         updateRecyclerViewVisibility()
+    }
+
+    override fun onResult(dialogTag: String, which: Int, extras: Bundle): Boolean {
+        if (which == BUTTON_POSITIVE || which == BUTTON_NEUTRAL) {
+            var color = extras.getInt(SimpleColorDialog.COLOR)
+            if (which == BUTTON_NEUTRAL || color == PreferenceManager.getDefaultSharedPreferences(requireContext())
+                .getInt(
+                    "progressBarColor",
+                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                )
+            ) {
+                color = 1
+            } else if (color == ContextCompat.getColor(
+                    requireContext(), R.color.system_accent_color
+                ) && extras.getInt(SimpleColorDialog.SELECTED_SINGLE_POSITION) != 19
+            ) {
+                color = 2
+            }
+            if (apps[dialogTag.toInt()].color != color) {
+                apps[dialogTag.toInt()].color = color
+                appsRepository.updateApp(apps[dialogTag.toInt()])
+                recyclerView.adapter?.notifyItemChanged(dialogTag.toInt())
+            }
+        }
+        return true
     }
 
     private fun updateAppsFromDatabase() {
@@ -55,7 +86,11 @@ class PerAppSettingsFragment : Fragment() {
     private fun alphabetizeApps() {
         apps.sortBy {
             try {
-                packageManager.getApplicationLabel(packageManager.getApplicationInfo(it.packageName, 0)).toString()
+                packageManager.getApplicationLabel(
+                    packageManager.getApplicationInfo(
+                        it.packageName, 0
+                    )
+                ).toString()
             } catch (e: Exception) {
                 it.packageName
             }

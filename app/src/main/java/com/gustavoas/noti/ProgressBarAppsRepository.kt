@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.gustavoas.noti.model.ProgressBarApp
 
-class ProgressBarAppsRepository private constructor(context: Context):
-    SQLiteOpenHelper(context, "progressBarApps", null, 1) {
+class ProgressBarAppsRepository private constructor(context: Context) :
+    SQLiteOpenHelper(context, "progressBarApps", null, 2) {
     companion object {
         private var instance: ProgressBarAppsRepository? = null
 
@@ -23,28 +23,30 @@ class ProgressBarAppsRepository private constructor(context: Context):
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(
-                "CREATE TABLE IF NOT EXISTS apps (" +
-                        "package_name TEXT PRIMARY KEY," +
-                        "show_progress INTEGER NOT NULL" +
-                        ")"
+            "CREATE TABLE IF NOT EXISTS apps (" +
+                    "package_name TEXT PRIMARY KEY," +
+                    "show_progress INTEGER NOT NULL," +
+                    "color INTEGER NOT NULL" +
+                    ")"
         )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS apps")
-        onCreate(db)
+        if (oldVersion < 2) {
+            db?.execSQL("ALTER TABLE apps ADD COLUMN color INTEGER NOT NULL DEFAULT 1")
+        }
     }
 
     fun addApp(app: ProgressBarApp) {
         val db = writableDatabase
-        db.execSQL("INSERT INTO apps VALUES ('${app.packageName}', ${if (app.showProgressBar) 1 else 0})")
+        db.execSQL("INSERT INTO apps VALUES ('${app.packageName}', ${if (app.showProgressBar) 1 else 0}, ${app.color})")
         db.close()
         apps.add(app)
     }
 
     fun updateApp(app: ProgressBarApp) {
         val db = writableDatabase
-        db.execSQL("UPDATE apps SET show_progress = ${if (app.showProgressBar) 1 else 0} WHERE package_name = '${app.packageName}'")
+        db.execSQL("UPDATE apps SET show_progress = ${if (app.showProgressBar) 1 else 0}, color = ${app.color} WHERE package_name = '${app.packageName}'")
         db.close()
         apps[apps.indexOfFirst { it.packageName == app.packageName }] = app
     }
@@ -54,7 +56,8 @@ class ProgressBarAppsRepository private constructor(context: Context):
         val cursor = db.rawQuery("SELECT * FROM apps WHERE package_name = '$packageName'", null)
         val result = if (cursor.moveToFirst()) {
             val showProgress = cursor.getInt(1)
-            ProgressBarApp(packageName, showProgress == 1)
+            val color = cursor.getInt(2)
+            ProgressBarApp(packageName, showProgress == 1, color)
         } else {
             null
         }
@@ -71,7 +74,8 @@ class ProgressBarAppsRepository private constructor(context: Context):
             do {
                 val packageName = cursor.getString(0)
                 val showProgress = cursor.getInt(1)
-                apps.add(ProgressBarApp(packageName, showProgress == 1))
+                val color = cursor.getInt(2)
+                apps.add(ProgressBarApp(packageName, showProgress == 1, color))
             } while (cursor.moveToNext())
         }
         cursor.close()

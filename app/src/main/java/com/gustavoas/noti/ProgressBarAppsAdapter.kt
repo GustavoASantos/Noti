@@ -5,15 +5,24 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gustavoas.noti.Utils.dpToPx
+import com.gustavoas.noti.Utils.showColorDialog
 import com.gustavoas.noti.model.ProgressBarApp
 
-class ProgressBarAppsAdapter(private val context: Context, private val apps: ArrayList<ProgressBarApp>): RecyclerView.Adapter<ProgressBarAppsAdapter.ViewHolder>() {
+class ProgressBarAppsAdapter(
+    private val fragment: Fragment,
+    private val context: Context,
+    private val apps: ArrayList<ProgressBarApp>
+) : RecyclerView.Adapter<ProgressBarAppsAdapter.ViewHolder>() {
     private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(context) }
     private val packageManager by lazy { context.packageManager }
 
@@ -36,6 +45,17 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
             }
             holder.background.setOnClickListener {
                 holder.toggle.toggle()
+            }
+            val barColor = when (color) {
+                1 -> PreferenceManager.getDefaultSharedPreferences(context)
+                    .getInt("progressBarColor", ContextCompat.getColor(context, R.color.purple_500))
+
+                2 -> ContextCompat.getColor(context, R.color.system_accent_color)
+                else -> color
+            }
+            holder.colorPicker.setBackgroundColor(barColor)
+            holder.colorPicker.setOnClickListener {
+                showColorDialog(fragment, barColor, position.toString(), color != 1)
             }
         }
     }
@@ -62,9 +82,10 @@ class ProgressBarAppsAdapter(private val context: Context, private val apps: Arr
 
     override fun getItemCount(): Int = apps.size
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val appName: TextView = view.findViewById(R.id.app_name)
         val toggle: CheckBox = view.findViewById(R.id.checkbox)
         val background: LinearLayout = view.findViewById(R.id.item_container)
+        val colorPicker: Button = view.findViewById(R.id.color_picker)
     }
 }

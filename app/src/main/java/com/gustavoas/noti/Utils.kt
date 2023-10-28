@@ -6,9 +6,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.gustavoas.noti.services.AccessibilityService
 import com.gustavoas.noti.services.NotificationListenerService
+import eltos.simpledialogfragment.color.SimpleColorDialog
 
 object Utils {
     fun hasAccessibilityPermission(context: Context): Boolean {
@@ -64,5 +66,30 @@ object Utils {
         }
 
         return sendEmail
+    }
+
+    fun showColorDialog(fragment: Fragment, color: Int, tag: String, reset: Boolean = false) {
+        if (reset) {
+            SimpleColorDialog.build()
+                .colorPreset(color)
+                .colors(fragment.context, R.array.colorsArrayValues)
+                .allowCustom(true)
+                .showOutline(0x46000000)
+                .gridNumColumn(5)
+                .choiceMode(SimpleColorDialog.SINGLE_CHOICE)
+                .neg()
+                .neut(R.string.reset)
+                .show(fragment, tag)
+        } else {
+            SimpleColorDialog.build()
+                .colorPreset(color)
+                .colors(fragment.context, R.array.colorsArrayValues)
+                .allowCustom(true)
+                .showOutline(0x46000000)
+                .gridNumColumn(5)
+                .choiceMode(SimpleColorDialog.SINGLE_CHOICE)
+                .neg()
+                .show(fragment, tag)
+        }
     }
 }

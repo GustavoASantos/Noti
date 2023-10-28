@@ -177,8 +177,7 @@ class NotificationListenerService : NotificationListenerService() {
             ?.substringBefore("%")?.toFloatOrNull() ?: 0f
     }
 
-    private fun showForApp(packageName: String): Boolean {
-        val appInDatabase = appsRepository.getApp(packageName)
+    private fun showForApp(appInDatabase: ProgressBarApp?, packageName: String): Boolean {
         return if (appInDatabase == null) {
             if (packageName.isNotEmpty())
                 appsRepository.addApp(ProgressBarApp(packageName, true))
@@ -194,13 +193,15 @@ class NotificationListenerService : NotificationListenerService() {
         packageName: String = "",
         lowPriority: Boolean = false
     ) {
-        if (!showForApp(packageName)) {
+        val appInDatabase = appsRepository.getApp(packageName)
+        if (!showForApp(appInDatabase, packageName)) {
             return
         }
 
         val intent = Intent(this, AccessibilityService::class.java)
         intent.putExtra("progress", progress)
         intent.putExtra("progressMax", progressMax)
+        intent.putExtra("color", appInDatabase?.color ?: 1)
         intent.putExtra("removal", removal)
         intent.putExtra("lowPriority", lowPriority)
         startService(intent)

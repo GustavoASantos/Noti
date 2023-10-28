@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_container"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -21,6 +22,19 @@
         android:textSize="22sp"
         android:textColor="?android:attr/textColorPrimary"
         android:layout_weight="1"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/color_picker"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:insetTop="5dp"
+        android:insetBottom="5dp"
+        android:insetLeft="5dp"
+        android:insetRight="5dp"
+        android:scrollbars="none"
+        android:foreground="?actionBarItemBackground"
+        app:strokeColor="#46000000"
+        app:strokeWidth="2dp"/>
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkbox"

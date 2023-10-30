@@ -125,13 +125,9 @@ class SettingsFragment : BasePreferenceFragment(),
     private fun updateProgressBarStyleVisibility() {
         val progressBarStyle = PreferenceManager.getDefaultSharedPreferences(requireContext())
             .getString("progressBarStyle", "linear")
-        val useOnlyInPortrait = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getBoolean("onlyInPortrait", false)
 
         findPreference<Preference>("CircularBarFragment")?.isVisible =
             progressBarStyle == "circular"
-        findPreference<Preference>("LinearBarFragment")?.isVisible =
-            (progressBarStyle == "linear" || useOnlyInPortrait)
     }
 
     private fun updateShowInLockscreenVisibility() {

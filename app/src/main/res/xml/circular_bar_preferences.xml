@@ -9,14 +9,6 @@
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
 
-        <SwitchPreferenceCompat
-            android:key="onlyInPortrait"
-            android:title="@string/prefsCircularBarOnlyPortraitTitle"
-            android:summary="@string/prefsCircularBarOnlyPortraitSummary"
-            app:singleLineTitle="false"
-            android:defaultValue="true"
-            app:icon="@drawable/ic_linear_progress_bar"/>
-
         <ListPreference
             android:key="progressBarLocation"
             android:title="@string/prefsProgressBarAlignmentTitle"

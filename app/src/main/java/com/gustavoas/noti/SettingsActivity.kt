@@ -170,7 +170,6 @@ class SettingsActivity : AppCompatActivity(),
 
         sharedPreferences.edit()
             .putString("progressBarStyle", "circular")
-            .putBoolean("onlyInPortrait", true)
             .putBoolean("blackBackground", true)
             .putString("progressBarLocation", deviceConfig.location ?: "center")
             .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)

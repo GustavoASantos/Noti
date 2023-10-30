@@ -90,10 +90,9 @@ class AccessibilityService : AccessibilityService() {
             return
         }
 
-        val useOnlyInPortrait = sharedPreferences.getBoolean("onlyInPortrait", true)
         val useCircularProgressBar = (sharedPreferences.getString(
                 "progressBarStyle", "linear"
-            ) == "circular" && (!useOnlyInPortrait || isInPortraitMode()))
+            ) == "circular" && isInPortraitMode())
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (!useCircularProgressBar) {
@@ -332,10 +331,7 @@ class AccessibilityService : AccessibilityService() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        val useOnlyInPortrait =
-            PreferenceManager.getDefaultSharedPreferences(this).getBoolean("onlyInPortrait", true)
-
-        if (this::overlayView.isInitialized && overlayView.isShown && useOnlyInPortrait) {
+        if (this::overlayView.isInitialized && overlayView.isShown) {
             if (toBeRemoved) {
                 hideProgressBarIn(0)
             } else {

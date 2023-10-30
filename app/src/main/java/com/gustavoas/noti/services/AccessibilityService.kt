@@ -107,6 +107,15 @@ class AccessibilityService : AccessibilityService() {
         progressBar = overlayView.findViewById(R.id.progressBar)
         circularProgressBar = overlayView.findViewById(R.id.circularProgressBar)
 
+        val progressBarMax = progressBar.max
+
+        val currentProgress =
+            (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()
+
+        if (currentProgress < progressBar.progress && !toBeRemoved && !previousWasLowPriority) {
+            return
+        }
+
         if (useCircularProgressBar) {
             progressBar.visibility = View.GONE
             circularProgressBar.visibility = View.VISIBLE
@@ -121,22 +130,9 @@ class AccessibilityService : AccessibilityService() {
 
         applyCommonProgressBarCustomizations(sharedPreferences)
 
-        val progressBarMax = progressBar.max
+        animateProgressBarTo(currentProgress, useCircularProgressBar)
 
-        when (val currentProgress =
-            (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()) {
-            progressBarMax -> {
-                animateProgressBarTo(progressBarMax, useCircularProgressBar)
-            }
-
-            else -> {
-                if (currentProgress < progressBar.progress && progressBar.progress != progressBarMax && !toBeRemoved && !previousWasLowPriority) {
-                    return
-                }
-                toBeRemoved = false
-                animateProgressBarTo(currentProgress, useCircularProgressBar)
-            }
-        }
+        toBeRemoved = currentProgress == progressBarMax
 
         hideProgressBarIn(10000)
     }

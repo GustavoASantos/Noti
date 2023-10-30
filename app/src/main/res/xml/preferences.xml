@@ -52,7 +52,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/prefsCategoryCustomization"
+        android:title="@string/prefsCategoryGeneral"
         app:iconSpaceReserved="true"
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
@@ -82,6 +82,46 @@
             app:fragment="LinearBarFragment"
             app:icon="@drawable/ic_linear_progress_bar"/>
 
+        <SwitchPreferenceCompat
+            android:key="showForDownloads"
+            android:title="@string/prefsShowForDownloadsTitle"
+            android:summary="@string/prefsShowForDownloadsSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_download"/>
+
+        <SwitchPreferenceCompat
+            android:key="showForMedia"
+            android:title="@string/prefsShowForMediaTitle"
+            android:summary="@string/prefsShowForMediaSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_music"/>
+
+        <SwitchPreferenceCompat
+            android:key="showInLockScreen"
+            android:title="@string/prefsShowInLockScreenTitle"
+            android:summary="@string/prefsShowInLockScreenSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_lockscreen"/>
+
+        <SwitchPreferenceCompat
+            android:key="disableInLandscape"
+            android:title="@string/prefsDisableInLandscapeTitle"
+            android:summary="@string/prefsCircularBarOnlyPortraitTitle"
+            app:singleLineTitle="false"
+            android:defaultValue="false"
+            app:icon="@drawable/ic_landscape"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/prefsCategoryCustomization"
+        app:iconSpaceReserved="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false">
+
         <Preference
             android:key="PerAppSettingsFragment"
             android:title="@string/prefsPerAppSettingsTitle"
@@ -105,30 +145,6 @@
             app:singleLineTitle="false"
             android:defaultValue="false"
             app:icon="@drawable/ic_contrast"/>
-
-        <SwitchPreferenceCompat
-            android:key="showForMedia"
-            android:title="Show media progress bar"
-            android:summary="Display progress bar when playing music"
-            app:singleLineTitle="false"
-            android:defaultValue="true"
-            app:icon="@drawable/ic_music"/>
-
-        <SwitchPreferenceCompat
-            android:key="showInLockScreen"
-            android:title="@string/prefsShowInLockScreenTitle"
-            android:summary="@string/prefsShowInLockScreenSummary"
-            app:singleLineTitle="false"
-            android:defaultValue="true"
-            app:icon="@drawable/ic_lockscreen"/>
-
-        <SwitchPreferenceCompat
-            android:key="disableInLandscape"
-            android:title="@string/prefsDisableInLandscapeTitle"
-            android:summary="@string/prefsCircularBarOnlyPortraitTitle"
-            app:singleLineTitle="false"
-            android:defaultValue="false"
-            app:icon="@drawable/ic_landscape"/>
 
         <SwitchPreferenceCompat
             android:key="useRoundedCorners"

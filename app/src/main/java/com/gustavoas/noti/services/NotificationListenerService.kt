@@ -44,12 +44,14 @@ class NotificationListenerService : NotificationListenerService() {
         if (hasProgressBarNotIndeterminate(sbn)) {
             val (progress, progressMax) = getProgressBarValues(sbn)
             val percentageProgress = getProgressFromPercentage(sbn).toInt()
+            val showForDownloads = PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("showForDownloads", true)
 
-            if (progress > 0 && progressMax > 0) {
+            if (progress > 0 && progressMax > 0 && showForDownloads) {
                 sendProgressToAccessibilityService(
                     progress, progressMax, packageName = sbn.packageName
                 )
-            } else if (percentageProgress in 1..100) {
+            } else if (percentageProgress in 1..100 && showForDownloads) {
                 sendProgressToAccessibilityService(
                     percentageProgress, 100, packageName = sbn.packageName
                 )
@@ -61,12 +63,13 @@ class NotificationListenerService : NotificationListenerService() {
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         super.onNotificationRemoved(sbn)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val showForMedia = PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean("showForMedia", true)
+        val showForMedia = sharedPreferences.getBoolean("showForMedia", true)
+        val showForDownloads = sharedPreferences.getBoolean("showForDownloads", true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && showForMedia && mediaController?.packageName == sbn.packageName) {
             stopUpdatingMediaPosition()
-        } else if (hasProgressBarNotIndeterminate(sbn) || activeNotifications.isEmpty()) {
+        } else if ((hasProgressBarNotIndeterminate(sbn) && showForDownloads) || activeNotifications.isEmpty()) {
             sendProgressToAccessibilityService(removal = true)
         }
     }

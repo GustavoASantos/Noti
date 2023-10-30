@@ -5,6 +5,8 @@
     <string name="notificationListenerDescription">Lê notificações com uma barra de progresso</string>
     <string name="reset">Restaurar</string>
     <string name="prefsCategorySetup">configuração</string>
+    <string name="prefsShowForDownloadsTitle">Mostrar barra de progresso para downloads</string>
+    <string name="prefsShowForDownloadsSummary">Exibir barra de progresso ao transferir conteúdo</string>
     <string name="prefsBatteryOptimization">Podes ter de desativar otimizações da bateria e permitir o arranque automático para o noti funcionar em segundo plano</string>
     <string name="prefsNotificationPermissionTitle">Conceder acesso às notificações</string>
     <string name="prefsNotificationPermissionSummary">Necessário para ler notificações com uma barra de progresso</string>
@@ -76,4 +78,5 @@
     <string name="prefsCircularBarShareConfigSummary">Permite a outros com o mesmo dispositivo usar a tua configuração</string>
     <string name="prefsShowForMediaTitle">Mostrar barra de progresso para multimédia</string>
     <string name="prefsShowForMediaSummary">Exibir barra de progresso ao reproduzir música</string>
+    <string name="prefsCategoryGeneral">geral</string>
 </resources>

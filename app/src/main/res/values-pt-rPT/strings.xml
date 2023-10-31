@@ -79,4 +79,5 @@
     <string name="prefsShowForMediaTitle">Mostrar barra de progresso para multimédia</string>
     <string name="prefsShowForMediaSummary">Exibir barra de progresso ao reproduzir música</string>
     <string name="prefsCategoryGeneral">geral</string>
+    <string name="holePunchInstruction">Mudar alinhamento em ajustes da barra de progresso circular</string>
 </resources>

@@ -3,6 +3,7 @@ package com.gustavoas.noti.fragments
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
@@ -22,7 +23,16 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarStyle" || key == "onlyInPortrait") {
+        if (key == "progressBarStyle") {
+            if (sharedPreferences?.getString(
+                    key, "linear"
+                ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
+            ) {
+                Toast.makeText(
+                    requireContext(), getString(R.string.holePunchInstruction), Toast.LENGTH_LONG
+                ).show()
+                sharedPreferences.edit().putBoolean("showHolePunchInstruction", false).apply()
+            }
             updateProgressBarStyleVisibility()
         } else if (key == "progressBarColor") {
             updateColorPreferenceSummary()

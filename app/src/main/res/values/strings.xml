@@ -6,6 +6,7 @@
     <string name="notificationListenerDescription">Reads notifications with a progress bar</string>
     <string name="perAppSettingsEmptyView">No progress bar found yet. Noti will discover which apps have progress bars as you use your phone</string>
     <string name="reset">Reset</string>
+    <string name="holePunchInstruction">Change alignment in circular progress bar tweaks</string>
 
     <string name="prefsCategorySetup">setup</string>
     <string name="prefsCategoryGeneral">general</string>

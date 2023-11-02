@@ -121,6 +121,9 @@ class NotificationListenerService : NotificationListenerService() {
                         currProgress, duration, packageName = packageName, lowPriority = true
                     )
                     currProgress += (1000 * speed).toInt()
+                    if (duration - currProgress in 0 .. (1000 * speed).toInt()) {
+                        currProgress = duration
+                    }
                     handler.postDelayed(this, 1000)
                 } else {
                     stopUpdatingMediaPosition()

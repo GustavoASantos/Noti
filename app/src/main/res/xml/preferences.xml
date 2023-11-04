@@ -14,10 +14,7 @@
             android:title="@string/prefsNotificationPermissionTitle"
             android:summary="@string/prefsNotificationPermissionSummary"
             app:singleLineTitle="false"
-            app:icon="@drawable/ic_notification">
-            <intent
-                android:action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"/>
-        </Preference>
+            app:icon="@drawable/ic_notification"/>
 
         <Preference
             android:key="systemAlertWindowPermission"

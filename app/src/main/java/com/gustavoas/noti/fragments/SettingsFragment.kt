@@ -1,8 +1,11 @@
 package com.gustavoas.noti.fragments
 
+import android.content.ComponentName
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
@@ -15,6 +18,7 @@ import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import com.gustavoas.noti.Utils.showColorDialog
+import com.gustavoas.noti.services.NotificationListenerService
 import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
 import eltos.simpledialogfragment.SimpleDialog
 import eltos.simpledialogfragment.SimpleDialog.OnDialogResultListener.BUTTON_POSITIVE
@@ -59,6 +63,11 @@ class SettingsFragment : BasePreferenceFragment(),
                     "progressBarColor", ContextCompat.getColor(requireContext(), R.color.purple_500)
                 )
             showColorDialog(this, color, "colorPicker")
+            true
+        }
+
+        findPreference<Preference>("notificationPermission")?.setOnPreferenceClickListener {
+            requestNotificationAccess()
             true
         }
     }
@@ -161,5 +170,23 @@ class SettingsFragment : BasePreferenceFragment(),
         findPreference<Preference>("batteryOptimizationsInfoCard")?.isVisible = brand != "google"
         findPreference<PreferenceCategory>("setup")?.isVisible =
             !(hasNotificationListenerPermission && hasSystemAlertWindowPermission && hasAccessibilityPermission && brand == "google")
+    }
+
+    private fun requestNotificationAccess() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS)
+            intent.putExtra(
+                Settings.EXTRA_NOTIFICATION_LISTENER_COMPONENT_NAME, ComponentName(
+                requireContext(), NotificationListenerService::class.java
+            ).flattenToString()
+            )
+            try {
+                startActivity(intent)
+            } catch (e: Exception) {
+                startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+            }
+        } else {
+            startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+        }
     }
 }

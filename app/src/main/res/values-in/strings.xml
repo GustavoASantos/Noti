@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">Pelaporan Bug</string>
+    <string name="settingsPreviewFab">Lihat Tampilan</string>
+    <string name="notificationListenerDescription">Membaca notifikasi lewat bar</string>
+    <string name="prefsCategorySetup">Pengaturan</string>
+    <string name="prefsNotificationPermissionTitle">Berikan izin notifikasi</string>
+    <string name="prefsNotificationPermissionSummary">Diperlukan oleh progress bar untuk membaca notifikasi</string>
+    <string name="prefsAccessibilityPermissionTitle">Berikan izin aksesibilitas</string>
+    <string name="prefsAccessibilityPermissionSummary">Diperlukan untuk menampilkan di layar kunci dan aplikasi sistem</string>
+    <string name="prefsCategoryCustomization">Kustomisasi</string>
+    <string name="prefsProgressBarStyleTitle">Pilih gaya progress bar</string>
+    <string name="prefsProgressBarStyleEntryLinear">Progress bar batang</string>
+    <string name="prefsProgressBarStyleEntryCircular">Progress bar lingkaran</string>
+    <string name="prefsCategoryTweaks">Atur</string>
+    <string name="prefsLinearProgressBarTweaks">Pengaturan progress bar batang</string>
+    <string name="prefsProgressBarHeightTitle">Ketebalan bar</string>
+    <string name="prefsProgressBarHeightSummary">Ubah ukuran progress bar</string>
+    <string name="prefsShowBelowNotchTitle">Tampilkan dibawah notch</string>
+    <string name="prefsShowBelowNotchSummary">Tampilkan progress bar dibawah notch atau lobang kamera</string>
+    <string name="prefsCircularProgressBarTweaks">Pengaturan untuk bar lingkaran</string>
+    <string name="prefsProgressBarAlignmentTitle">Ubah penempatan bar</string>
+</resources>

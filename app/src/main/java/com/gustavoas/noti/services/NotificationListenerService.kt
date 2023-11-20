@@ -112,21 +112,22 @@ class NotificationListenerService : NotificationListenerService() {
         var currProgress = initialProgress
         val runnable = object : Runnable {
             override fun run() {
-                if (currProgress <= duration && PreferenceManager.getDefaultSharedPreferences(this@NotificationListenerService)
+                if (!PreferenceManager.getDefaultSharedPreferences(this@NotificationListenerService)
                         .getBoolean(
                             "showForMedia", true
-                        ) && appsRepository.getApp(packageName)?.showProgressBar != false
+                        ) || appsRepository.getApp(packageName)?.showProgressBar == false
                 ) {
+                    stopUpdatingMediaPosition()
+                } else if (currProgress <= duration) {
                     sendProgressToAccessibilityService(
                         currProgress, duration, packageName = packageName, lowPriority = true
                     )
-                    currProgress += (1000 * speed).toInt()
-                    if (duration - currProgress in 0 .. (1000 * speed).toInt()) {
+                    val updateInterval = 1000
+                    currProgress += (updateInterval * speed).toInt()
+                    if (duration - currProgress in 0..(updateInterval * speed).toInt()) {
                         currProgress = duration
                     }
-                    handler.postDelayed(this, 1000)
-                } else {
-                    stopUpdatingMediaPosition()
+                    handler.postDelayed(this, updateInterval.toLong())
                 }
             }
         }

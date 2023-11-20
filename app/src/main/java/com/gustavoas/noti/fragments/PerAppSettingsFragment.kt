@@ -1,5 +1,7 @@
 package com.gustavoas.noti.fragments
 
+import android.os.Build
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,7 +52,7 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
                 )
             ) {
                 color = 1
-            } else if (color == ContextCompat.getColor(
+            } else if (Build.VERSION.SDK_INT >= VERSION_CODES.S && color == ContextCompat.getColor(
                     requireContext(), R.color.system_accent_color
                 ) && extras.getInt(SimpleColorDialog.SELECTED_SINGLE_POSITION) != 19
             ) {

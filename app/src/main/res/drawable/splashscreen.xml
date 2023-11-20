@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="30dp"
+    android:viewportWidth="30"
+    android:viewportHeight="30"
+    android:tint="@color/deep_purple_800">
+  <group
+      android:name="splashscreen_group"
+      android:translateX="3"
+      android:translateY="3">
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M3.4,10.5h1v0.7h0c0.2,-0.3 0.4,-0.5 0.7,-0.7c0.3,-0.2 0.7,-0.3 1,-0.3c0.7,0 1.2,0.2 1.5,0.6c0.4,0.4 0.5,0.9 0.5,1.6v3.4h-1v-3.3c0,-0.9 -0.5,-1.3 -1.3,-1.3c-0.4,0 -0.7,0.2 -1,0.5c-0.3,0.3 -0.4,0.7 -0.4,1.2v3h-1V10.5z"/>
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M11.8,10.3c-1.6,0 -2.9,1.3 -2.9,2.9c0,1.6 1.3,2.9 2.9,2.9c1.6,0 2.9,-1.3 2.9,-2.9C14.7,11.6 13.4,10.3 11.8,10.3zM11.8,15.2c-1.1,0 -2,-0.9 -2,-2c0,-1.1 0.9,-2 2,-2c1.1,0 2,0.9 2,2C13.8,14.3 12.9,15.2 11.8,15.2z"/>
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M17.5,16c-0.4,0 -0.8,-0.1 -1.1,-0.4s-0.4,-0.6 -0.4,-1.1v-3H15v-0.9h0.9V8.9h1v1.6h1.3v0.9H17v2.7c0,0.4 0.1,0.6 0.2,0.7c0.1,0.1 0.3,0.2 0.5,0.2c0.1,0 0.2,0 0.2,0s0.1,0 0.2,-0.1l0.3,0.9C18.1,15.9 17.8,16 17.5,16z"/>
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M20.6,8.6c0,0.2 -0.1,0.4 -0.2,0.5c-0.1,0.1 -0.3,0.2 -0.5,0.2s-0.4,-0.1 -0.5,-0.2c-0.1,-0.1 -0.2,-0.3 -0.2,-0.5c0,-0.2 0.1,-0.4 0.2,-0.5c0.1,-0.1 0.3,-0.2 0.5,-0.2s0.4,0.1 0.5,0.2S20.6,8.4 20.6,8.6zM20.4,10.5v5.4h-1v-5.4H20.4z"/>
+  </group>
+</vector>

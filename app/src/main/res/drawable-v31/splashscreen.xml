@@ -1,0 +1,61 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="noti_splashscreen"
+            android:width="30dp"
+            android:height="30dp"
+            android:viewportWidth="30"
+            android:viewportHeight="30"
+            android:tint="@color/deep_purple_800">
+            <group
+                android:name="pb_group"
+                android:translateX="14.85"
+                android:translateY="22.2"
+                android:scaleX="0.45"
+                android:scaleY="0.45"
+                android:rotation="-135">
+                <path
+                    android:name="progress_bar"
+                    android:pathData="M 13.4 13.4 C 15.5 11.2 15.5 7.8 13.4 5.6 C 11.2 3.5 7.8 3.5 5.6 5.6 C 3.5 7.8 3.5 11.2 5.6 13.4 C 7.8 15.5 11.2 15.5 13.4 13.4 Z"
+                    android:strokeColor="@android:color/black"
+                    android:strokeWidth="2.1"/>
+            </group>
+            <group
+                android:name="letters_group"
+                android:translateX="3"
+                android:translateY="3">
+                <path
+                    android:name="letters"
+                    android:pathData="M 3.4 10.5 L 4.4 10.5 L 4.4 11.2 C 4.6 10.9 4.8 10.7 5.1 10.5 C 5.4 10.3 5.8 10.2 6.1 10.2 C 6.8 10.2 7.3 10.4 7.6 10.8 C 8 11.2 8.1 11.7 8.1 12.4 L 8.1 15.8 L 7.1 15.8 L 7.1 12.5 C 7.1 11.6 6.6 11.2 5.8 11.2 C 5.4 11.2 5.1 11.4 4.8 11.7 C 4.5 12 4.4 12.4 4.4 12.9 L 4.4 15.9 L 3.4 15.9 L 3.4 10.5 Z M 17.5 16 C 17.1 16 16.7 15.9 16.4 15.6 C 16.1 15.3 16 15 16 14.5 L 16 11.5 L 15 11.5 L 15 10.6 L 15.9 10.6 L 15.9 8.9 L 16.9 8.9 L 16.9 10.5 L 18.2 10.5 L 18.2 11.4 L 17 11.4 L 17 14.1 C 17 14.5 17.1 14.7 17.2 14.8 C 17.3 14.9 17.5 15 17.7 15 L 17.9 15 C 17.9 15 18 15 18.1 14.9 L 18.4 15.8 C 18.1 15.9 17.8 16 17.5 16 Z M 20.6 8.6 C 20.6 8.8 20.5 9 20.4 9.1 C 20.3 9.2 20.1 9.3 19.9 9.3 C 19.7 9.3 19.5 9.2 19.4 9.1 C 19.3 9 19.2 8.8 19.2 8.6 C 19.2 8.4 19.3 8.2 19.4 8.1 C 19.5 8 19.7 7.9 19.9 7.9 C 20.1 7.9 20.3 8 20.4 8.1 C 20.5 8.2 20.6 8.4 20.6 8.6 Z M 20.4 10.5 L 20.4 15.9 L 19.4 15.9 L 19.4 10.5 L 20.4 10.5 Z"
+                    android:fillColor="@android:color/black"
+                    android:fillAlpha="0"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="progress_bar">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathStart"
+                android:startOffset="25"
+                android:duration="400"
+                android:valueFrom="1"
+                android:valueTo="0"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/accelerate_decelerate_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="letters">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillAlpha"
+                android:startOffset="225"
+                android:duration="200"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/decelerate_interpolator"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

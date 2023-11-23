@@ -88,8 +88,8 @@ class NotificationListenerService : NotificationListenerService() {
         callback = object : MediaController.Callback() {
             override fun onPlaybackStateChanged(state: PlaybackState?) {
                 super.onPlaybackStateChanged(state)
+                handler.removeCallbacksAndMessages(null)
                 if (state?.state == PlaybackState.STATE_PLAYING) {
-                    handler.removeCallbacksAndMessages(null)
                     startUpdatingMediaPosition(
                         state.position.toInt(),
                         mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION)?.toInt() ?: 0,
@@ -97,7 +97,7 @@ class NotificationListenerService : NotificationListenerService() {
                         mediaController?.packageName ?: ""
                     )
                 } else {
-                    stopUpdatingMediaPosition()
+                    sendProgressToAccessibilityService(removal = true)
                 }
             }
         }

@@ -60,6 +60,11 @@ class ProgressBarAppsAdapter(
         }
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        holder.toggle.setOnCheckedChangeListener(null)
+    }
+
     private fun getAppIcon(packageName: String): Drawable {
         return try {
             packageManager.getApplicationIcon(packageName)

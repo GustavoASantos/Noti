@@ -3,7 +3,7 @@
     <string name="menuReportBug">Zgłoś błąd</string>
     <string name="settingsPreviewFab">Podgląd</string>
     <string name="notificationListenerDescription">Odczytuje powiadomienia z paskiem postępu</string>
-    <string name="prefsCategorySetup">Ustawienia</string>
+    <string name="prefsCategorySetup">Konfiguracja</string>
     <string name="prefsNotificationPermissionTitle">Udziel dostępu do powiadomień</string>
     <string name="prefsNotificationPermissionSummary">Wymagane do odczytywania powiadomień aplikacji z paskiem postępu</string>
     <string name="prefsAccessibilityPermissionTitle">Udziel uprawnienia w ustawieniach ułatwiania dostępu</string>
@@ -74,4 +74,8 @@
     <string name="prefsShowForMediaTitle">Pokaż pasek postępu dla multimediów</string>
     <string name="prefsShowForMediaSummary">Wyświetla pasek postępu gdy odtwarzasz muzykę</string>
     <string name="prefsDisableInLandscapeTitle">Wyłącz w orientacji poziomej</string>
+    <string name="prefsBatteryOptimization">Do prawidłowego działania aplikacji może być wymagane dodanie Noti do wyjątków w ustawieniach wykorzystywania baterii oraz zezwolenie na automatyczne uruchamianie aplikacji.</string>
+    <string name="prefsCategoryGeneral">Ogólne</string>
+    <string name="prefsShowForDownloadsTitle">Wyświetl pasek postępu dla pobierania</string>
+    <string name="prefsShowForDownloadsSummary">Wyświetla pasek postępu gdy pobierasz jakąś zawartość</string>
 </resources>

@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="colorWhite">Blanc</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="prefsShowForDownloadsSummary">Afficher la barre de progression lors du transfert de contenu</string>
+    <string name="perAppSettingsEmptyView">Aucune barre de progression n\'a encore été trouvée. Noti découvrira quelles applications ont des barres de progression lorsque vous utilisez votre téléphone</string>
+    <string name="prefsCategoryGeneral">général</string>
+    <string name="notificationListenerDescription">Lire les notifications avec une barre de progression</string>
+    <string name="prefsShowForDownloadsTitle">Afficher les téléchargements barre de progression</string>
+    <string name="prefsCalentileSummary">Soutenir le développeur</string>
+    <string name="prefsChangeColorTitle">Changement de couleur de la barre</string>
+    <string name="settingsPreviewFab">Aperçu</string>
+    <string name="prefsCategorySetup">configurer</string>
+    <string name="menuReportBug">Signaler une erreur</string>
+</resources>

@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="reset">Resetează</string>
+    <string name="perAppSettingsEmptyView">Deocamdată nu a fost găsită nicio aplicație ce utilizează bară de progres. Noti va descoperi ce aplicații utilizează bare de progres pe măsură ce folosești telefonul</string>
+    <string name="notificationListenerDescription">Citește notificările cu o bară de progres</string>
+    <string name="settingsPreviewFab">Previzualizează</string>
+    <string name="menuReportBug">Raportează erori</string>
+</resources>

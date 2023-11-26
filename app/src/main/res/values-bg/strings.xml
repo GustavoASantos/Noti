@@ -74,4 +74,5 @@
     <string name="prefsShowForMediaTitle">Показване на лентата за прогрес на медията</string>
     <string name="prefsShowForMediaSummary">Покажи лентата за прогрес при слушане на музика</string>
     <string name="prefsDisableInLandscapeTitle">Изключи в хоризонтален режим</string>
+    <string name="reset">Рестартирай</string>
 </resources>

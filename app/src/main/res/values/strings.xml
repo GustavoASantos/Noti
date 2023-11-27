@@ -1,13 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Noti Progress Bar</string>
     <string name="app_name_short" translatable="false">noti</string>
     <string name="menuReportBug">Report Bug</string>
     <string name="settingsPreviewFab">Preview</string>
     <string name="notificationListenerDescription">Reads notifications with a progress bar</string>
-    <string name="perAppSettingsEmptyView">No progress bar found yet. Noti will discover which apps have progress bars as you use your phone</string>
+    <string name="perAppSettingsEmptyView">No progress bars found. Apps with progress bars are discovered as you use your device.</string>
     <string name="reset">Reset</string>
     <string name="holePunchInstruction">Change alignment in circular progress bar tweaks</string>
-
     <string name="prefsCategorySetup">setup</string>
     <string name="prefsCategoryGeneral">general</string>
     <string name="prefsShowForDownloadsTitle">Show downloads progress bar</string>
@@ -62,7 +62,6 @@
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>
     <string name="prefsCalentileSummary">Support the developer</string>
-
     <string name="colorRed">Red</string>
     <string name="colorPink">Pink</string>
     <string name="colorPurple">Purple</string>

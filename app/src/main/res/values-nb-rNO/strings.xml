@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="colorOrange">Oransje</string>
+    <string name="colorWhite">Hvit</string>
+    <string name="colorAmber">Ravgul</string>
+    <string name="colorDeepOrange">Mørkeoransje</string>
+    <string name="reset">Tilbakestill</string>
+    <string name="colorLightGreen">Lysegrønn</string>
+    <string name="colorBlue">Blå</string>
+    <string name="colorGreen">Grønn</string>
+    <string name="colorGrey">Grå</string>
+    <string name="prefsCalentileTitle">Prøv CalenTile på Google Play</string>
+    <string name="colorBlack">Svart</string>
+    <string name="prefsAccessibilityPermissionTitle">Innvilg tilgjengelighetstilgang</string>
+    <string name="colorRed">Rød</string>
+    <string name="perAppSettingsEmptyView">Fant ikke noe framdriftsfelt. Noti oppdager hvilke programmer som har framdriftsfelt når du bruker enheten.</string>
+    <string name="prefsCategoryGeneral">generelt</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">Sentrert</string>
+    <string name="prefsBlackBackgroundTitle">Bruk svart bakgrunn</string>
+    <string name="colorLime">Limegrønn</string>
+    <string name="notificationListenerDescription">Leser merknader med et framdriftsfelt</string>
+    <string name="colorDeepPurple">Mørkelilla</string>
+    <string name="prefsCalentileSummary">Støtt utvikleren</string>
+    <string name="prefsCircularBarOnlyPortraitTitle">Kun bruk i stående modus</string>
+    <string name="colorYellow">Gul</string>
+    <string name="settingsPreviewFab">Forhåndvisning</string>
+    <string name="prefsCategorySetup">oppsett</string>
+    <string name="colorCyan">Cyanblå</string>
+    <string name="menuReportBug">Rapporter feil</string>
+    <string name="prefsCircularBarShareConfigTitle">Perfekt tilpasning? Del oppsettet.</string>
+    <string name="prefsProgressBarAlignmentEntryRight">Høyrejustert</string>
+    <string name="colorIndigo">Indigo</string>
+    <string name="colorBrown">Brun</string>
+    <string name="colorPink">Rosa</string>
+    <string name="colorLightBlue">Lyseblå</string>
+    <string name="colorPurple">Lilla</string>
+</resources>

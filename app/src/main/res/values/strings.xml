@@ -1,13 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Noti Progress Bar</string>
     <string name="app_name_short" translatable="false">noti</string>
     <string name="menuReportBug">Report Bug</string>
     <string name="settingsPreviewFab">Preview</string>
     <string name="notificationListenerDescription">Reads notifications with a progress bar</string>
-    <string name="perAppSettingsEmptyView">No progress bar found yet. Noti will discover which apps have progress bars as you use your phone</string>
+    <string name="perAppSettingsEmptyView">No progress bars found. Apps with progress bars are discovered as you use your device.</string>
     <string name="reset">Reset</string>
     <string name="holePunchInstruction">Change alignment in circular progress bar tweaks</string>
-
     <string name="prefsCategorySetup">setup</string>
     <string name="prefsCategoryGeneral">general</string>
     <string name="prefsShowForDownloadsTitle">Show downloads progress bar</string>
@@ -16,7 +16,7 @@
     <string name="prefsNotificationPermissionTitle">Grant notification access</string>
     <string name="prefsNotificationPermissionSummary">Required to read notifications with a progress bar</string>
     <string name="prefsAccessibilityPermissionTitle">Grant accessibility permission</string>
-    <string name="prefsAccessibilityPermissionSummary">Required to display in the lockscreen and system apps</string>
+    <string name="prefsAccessibilityPermissionSummary">Required to display in the lock screen and system apps</string>
     <string name="prefsSAWPermissionTitle">Allow displaying over other apps</string>
     <string name="prefsSAWPermissionSummary">Required to display the progress bar overlay</string>
     <string name="prefsCategoryCustomization">customization</string>
@@ -39,9 +39,9 @@
     <string name="prefsProgressBarMarginLeftSummary">Change spacing from left of the screen</string>
     <string name="prefsProgressBarMarginRightTitle">Margin from the right</string>
     <string name="prefsProgressBarMarginRightSummary">Change spacing from right of the screen</string>
-    <string name="prefsProgressBarAlignmentEntryLeft">Left aligned</string>
+    <string name="prefsProgressBarAlignmentEntryLeft">Left-aligned</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Centered</string>
-    <string name="prefsProgressBarAlignmentEntryRight">Right aligned</string>
+    <string name="prefsProgressBarAlignmentEntryRight">Right-aligned</string>
     <string name="prefsCircularBarOnlyPortraitTitle">Use only in portrait mode</string>
     <string name="prefsCircularBarOnlyPortraitSummary">Switch to linear progress bar when in landscape</string>
     <string name="prefsCircularBarShareConfigTitle">Perfect fit? Share configuration</string>
@@ -49,8 +49,8 @@
     <string name="prefsSeekbarInfoCard">Press the value next to each seekbar to adjust it manually</string>
     <string name="prefsBlackBackgroundTitle">Use black background</string>
     <string name="prefsBlackBackgroundSummary">Switch to progress bar with black track</string>
-    <string name="prefsPerAppSettingsTitle">Per app settings</string>
-    <string name="prefsPerAppSettingsSummary">Toggle noti on per app basis</string>
+    <string name="prefsPerAppSettingsTitle">Per-app settings</string>
+    <string name="prefsPerAppSettingsSummary">Toggle Noti on per-app basis</string>
     <string name="prefsRoundedCornersTitle">Use progress bar with rounded corners</string>
     <string name="prefsRoundedCornersSummary">Switch to progress bar with rounded ends</string>
     <string name="prefsShowForMediaTitle">Show media progress bar</string>
@@ -62,7 +62,6 @@
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>
     <string name="prefsCalentileSummary">Support the developer</string>
-
     <string name="colorRed">Red</string>
     <string name="colorPink">Pink</string>
     <string name="colorPurple">Purple</string>

@@ -32,7 +32,7 @@
     <string name="prefsProgressBarAlignmentEntryCenter">Wyśrodkowany</string>
     <string name="prefsProgressBarAlignmentEntryRight">Wyrównane do prawej strony</string>
     <string name="prefsCircularBarOnlyPortraitTitle">Używaj tylko w pionowej orientacji ekranu</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Przełącz na linearny pasek postępu gdy urządzenie jest w orientacji poziomej.</string>
+    <string name="prefsCircularBarOnlyPortraitSummary">Przełącz na liniowy pasek postępu gdy urządzenie jest w orientacji poziomej</string>
     <string name="prefsRoundedCornersTitle">Używaj zaokrąglonego paska postępu</string>
     <string name="prefsRoundedCornersSummary">Sprawia że pasek postępu ma zaokrąglone krawędzie</string>
     <string name="prefsShowInLockScreenTitle">Pokazuje pasek postępu na ekranie blokady</string>
@@ -69,13 +69,15 @@
     <string name="prefsSAWPermissionTitle">Zezwól na wyświetlanie nad innymi aplikacjami</string>
     <string name="prefsSAWPermissionSummary">Wymagane do wyświetlania paska postępu nad innymi aplikacjami</string>
     <string name="prefsSeekbarInfoCard">Wciśnij na wartość liczbową obok każdego paska, aby dostosować ręcznie dla większej dokładności</string>
-    <string name="prefsCircularBarShareConfigTitle">Idealnie dopasowane? Podziel się konfiguracją!</string>
+    <string name="prefsCircularBarShareConfigTitle">Idealnie dopasowane? Podziel się konfiguracją</string>
     <string name="prefsCircularBarShareConfigSummary">Pozwól innym użytkownikom tego samego urządzenia korzystać z Twojej konfiguracji</string>
     <string name="prefsShowForMediaTitle">Pokaż pasek postępu dla multimediów</string>
     <string name="prefsShowForMediaSummary">Wyświetla pasek postępu gdy odtwarzasz muzykę</string>
     <string name="prefsDisableInLandscapeTitle">Wyłącz w orientacji poziomej</string>
-    <string name="prefsBatteryOptimization">Do prawidłowego działania aplikacji może być wymagane dodanie Noti do wyjątków w ustawieniach wykorzystywania baterii oraz zezwolenie na automatyczne uruchamianie aplikacji.</string>
+    <string name="prefsBatteryOptimization">Do prawidłowego działania aplikacji może być wymagane dodanie Noti do wyjątków w ustawieniach wykorzystywania baterii oraz zezwolenie na automatyczne uruchamianie aplikacji</string>
     <string name="prefsCategoryGeneral">Ogólne</string>
     <string name="prefsShowForDownloadsTitle">Wyświetl pasek postępu dla pobierania</string>
     <string name="prefsShowForDownloadsSummary">Wyświetla pasek postępu gdy pobierasz jakąś zawartość</string>
+    <string name="reset">Resetuj</string>
+    <string name="holePunchInstruction">Zmień wyrównanie w ustawieniach okrągłego paska postępu</string>
 </resources>

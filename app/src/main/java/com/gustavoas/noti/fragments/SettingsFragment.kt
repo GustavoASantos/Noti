@@ -27,8 +27,8 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarStyle") {
-            if (sharedPreferences?.getString(
+        if (key == "progressBarStyle" || key == "disableInLandscape") {
+            if (key == "progressBarStyle" && sharedPreferences?.getString(
                     key, "linear"
                 ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
             ) {
@@ -144,9 +144,13 @@ class SettingsFragment : BasePreferenceFragment(),
     private fun updateProgressBarStyleVisibility() {
         val progressBarStyle = PreferenceManager.getDefaultSharedPreferences(requireContext())
             .getString("progressBarStyle", "linear")
+        val disableInLandscape = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .getBoolean("disableInLandscape", false)
 
         findPreference<Preference>("CircularBarFragment")?.isVisible =
             progressBarStyle == "circular"
+        findPreference<Preference>("LinearBarFragment")?.isVisible =
+            progressBarStyle == "linear" || !disableInLandscape
     }
 
     private fun updateShowInLockscreenVisibility() {

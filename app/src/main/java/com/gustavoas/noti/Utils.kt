@@ -55,7 +55,7 @@ object Utils {
             sendEmail.putExtra(
                 Intent.EXTRA_TEXT,
                 "Circular progress bar configuration:\n" +
-                        "<device brand=${Build.BRAND.lowercase()} device=${Build.DEVICE.lowercase()} resolution=$deviceScreenSize>\n" +
+                        "<device brand=${Build.BRAND.lowercase()} device=${Build.DEVICE.lowercase().replace("\\W".toRegex(), "")} resolution=$deviceScreenSize>\n" +
                         "   <location>$location</location>\n" +
                         "   <size>$size</size>\n" +
                         "   <marginTop>$marginTop</marginTop>\n" +

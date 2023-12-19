@@ -132,7 +132,7 @@ class SettingsActivity : AppCompatActivity(),
         val userScreenSmallSide =
             minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
         val xmlResourceId = resources.getIdentifier(
-            "device_" + Build.BRAND.lowercase() + "_" + Build.DEVICE.lowercase() + "_" + userScreenSmallSide,
+            "device_" + Build.BRAND.lowercase() + "_" + Build.DEVICE.lowercase().replace("\\W".toRegex(), "") + "_" + userScreenSmallSide,
             "xml", this.packageName
         )
         val parser: XmlPullParser =

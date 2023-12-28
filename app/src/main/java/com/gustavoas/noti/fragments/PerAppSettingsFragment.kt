@@ -92,7 +92,7 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
                     packageManager.getApplicationInfo(
                         it.packageName, 0
                     )
-                ).toString()
+                ).toString().lowercase()
             } catch (e: Exception) {
                 it.packageName
             }

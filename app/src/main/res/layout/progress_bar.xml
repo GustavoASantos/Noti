@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        android:max="10000"
+        android:max="@integer/progress_bar_max"
         app:hideAnimationBehavior="outward"
         android:theme="@style/Theme.NotiProgressBar" />
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:progress="0"
-        android:max="10000"
+        android:max="@integer/progress_bar_max"
         app:indicatorInset="0dp"
         app:showAnimationBehavior="outward"
         app:hideAnimationBehavior="inward"

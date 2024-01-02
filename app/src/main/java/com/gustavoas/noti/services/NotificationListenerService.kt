@@ -171,8 +171,11 @@ class NotificationListenerService : NotificationListenerService() {
             override fun run() {
                 if (currProgress in 0..duration) {
                     val progressBarMax = resources.getInteger(R.integer.progress_bar_max)
-                    val progressNormalized =
+                    val progressNormalized = if (currProgress in 1 .. duration) {
                         (currProgress.toFloat() / duration.toFloat() * progressBarMax).roundToInt()
+                    } else {
+                        0
+                    }
                     sendProgressToAccessibilityService(
                         packageName,
                         progressNormalized,

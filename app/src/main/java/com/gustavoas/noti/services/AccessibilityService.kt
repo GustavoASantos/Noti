@@ -31,9 +31,9 @@ class AccessibilityService : AccessibilityService() {
     private lateinit var circularProgressBar: CircularProgressIndicator
     private val handler = Handler(Looper.getMainLooper())
     private var toBeRemoved = false
-    private var previousWasLowPriority = false
-    private var lowPriorityTimeout = false
-    private var lowPriorityHandler = Handler(Looper.getMainLooper())
+    private var currentPriority = 0
+    private var currentProgress = 0
+    private var currentPackageName = ""
     private var color = 1
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
@@ -45,41 +45,44 @@ class AccessibilityService : AccessibilityService() {
             return super.onStartCommand(intent, flags, startId)
         }
 
-        val progress = intent?.getIntExtra("progress", 0) ?: 0
-        val progressMax = intent?.getIntExtra("progressMax", 0) ?: 0
         val removal = intent?.getBooleanExtra("removal", false) ?: false
+        val newPackageName = intent?.getStringExtra("packageName") ?: ""
 
         val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
             .getBoolean("showInLockScreen", true)
 
-        if (removal || (isLocked() && !showInLockScreen)) {
+        if ((removal && newPackageName == currentPackageName) || (isLocked() && !showInLockScreen)) {
             if (!this::overlayView.isInitialized || !overlayView.isShown) {
                 return super.onStartCommand(intent, flags, startId)
             }
-            lowPriorityTimeout = false
+            currentPriority = 0
             toBeRemoved = true
             hideProgressBarIn(1000)
-        } else if ((!isLocked() || showInLockScreen) && progress > 0) {
-            val lowPriority = intent?.getBooleanExtra("lowPriority", false) ?: false
-            if (lowPriority && lowPriorityTimeout) {
+        } else if ((!isLocked() || showInLockScreen) && !removal) {
+            val newProgress = intent?.getIntExtra("progress", 0) ?: 0
+            val newPriority = intent?.getIntExtra("priority", 0) ?: 0
+
+            if (newPriority < currentPriority || newProgress <= 0) {
                 return super.onStartCommand(intent, flags, startId)
-            } else if (!lowPriority) {
-                lowPriorityTimeout = true
-                lowPriorityHandler.removeCallbacksAndMessages(null)
-                lowPriorityHandler.postDelayed({
-                    lowPriorityTimeout = false
-                }, 2500)
             }
 
+            if (currentPackageName.isNotEmpty() && newPackageName != currentPackageName &&
+                newProgress < currentProgress && !toBeRemoved && newPriority == currentPriority) {
+                return super.onStartCommand(intent, flags, startId)
+            }
+
+            currentPackageName = newPackageName
+            currentPriority = newPriority
             color = intent?.getIntExtra("color", 1) ?: 1
-            showOverlayWithProgress(progress, progressMax)
-            previousWasLowPriority = lowPriority
+
+            handler.removeCallbacksAndMessages(null)
+            showOverlayWithProgress(newProgress)
         }
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    private fun showOverlayWithProgress(progress: Int, progressMax: Int) {
+    private fun showOverlayWithProgress(progress: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val disableInLandscape = sharedPreferences.getBoolean("disableInLandscape", false)
@@ -106,15 +109,6 @@ class AccessibilityService : AccessibilityService() {
         progressBar = overlayView.findViewById(R.id.progressBar)
         circularProgressBar = overlayView.findViewById(R.id.circularProgressBar)
 
-        val progressBarMax = progressBar.max
-
-        val currentProgress =
-            (progress.toDouble() / progressMax.toDouble() * progressBarMax).roundToInt()
-
-        if (currentProgress < progressBar.progress && !toBeRemoved && !previousWasLowPriority) {
-            return
-        }
-
         if (useCircularProgressBar) {
             progressBar.visibility = View.GONE
             circularProgressBar.visibility = View.VISIBLE
@@ -129,10 +123,15 @@ class AccessibilityService : AccessibilityService() {
 
         applyCommonProgressBarCustomizations(sharedPreferences)
 
-        animateProgressBarTo(currentProgress, useCircularProgressBar)
+        animateProgressBarTo(progress, useCircularProgressBar)
+        currentProgress = progress
 
-        toBeRemoved = currentProgress == progressBarMax
+        toBeRemoved = progress == resources.getInteger(R.integer.progress_bar_max)
 
+        handler.postDelayed({
+            currentPriority = 0
+            toBeRemoved = true
+        }, 2000)
         hideProgressBarIn(10000)
     }
 
@@ -231,6 +230,8 @@ class AccessibilityService : AccessibilityService() {
             circularProgressBar.hide()
             handler.postDelayed({
                 setProgressToZero()
+                currentPriority = 0
+                currentPackageName = ""
                 hideOverlay()
                 toBeRemoved = false
             }, 500)
@@ -238,8 +239,6 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun animateProgressBarTo(progress: Int, animateCircularProgressBar: Boolean = false) {
-        handler.removeCallbacksAndMessages(null)
-
         if (animateCircularProgressBar) {
             circularProgressBar.show()
             val circularProgressAnimation =
@@ -335,9 +334,7 @@ class AccessibilityService : AccessibilityService() {
             if (toBeRemoved) {
                 hideProgressBarIn(0)
             } else {
-                showOverlayWithProgress(
-                    maxOf(progressBar.progress, circularProgressBar.progress), progressBar.max
-                )
+                showOverlayWithProgress(currentProgress)
             }
         }
     }

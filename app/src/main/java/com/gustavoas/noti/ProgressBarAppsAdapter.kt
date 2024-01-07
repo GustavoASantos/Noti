@@ -1,6 +1,7 @@
 package com.gustavoas.noti
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gustavoas.noti.Utils.dpToPx
 import com.gustavoas.noti.Utils.showColorDialog
 import com.gustavoas.noti.model.ProgressBarApp
+import com.gustavoas.noti.services.AccessibilityService
 
 class ProgressBarAppsAdapter(
     private val fragment: Fragment,
@@ -42,6 +44,12 @@ class ProgressBarAppsAdapter(
             holder.toggle.setOnCheckedChangeListener { _, isChecked ->
                 showProgressBar = isChecked
                 appsRepository.updateApp(this)
+                if (!isChecked) {
+                    val intent = Intent(context, AccessibilityService::class.java)
+                    intent.putExtra("packageName", packageName)
+                    intent.putExtra("removal", true)
+                    context.startService(intent)
+                }
             }
             holder.background.setOnClickListener {
                 holder.toggle.toggle()

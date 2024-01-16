@@ -291,6 +291,15 @@ class AccessibilityService : AccessibilityService() {
         val param = progressBar.layoutParams as FrameLayout.LayoutParams
         param.setMargins(0, paddingTop, 0, 0)
         progressBar.layoutParams = param
+
+        val container = overlayView.findViewById<FrameLayout>(R.id.container)
+        val containerParams = container.layoutParams as ConstraintLayout.LayoutParams
+
+        // set container constraints
+        containerParams.topToTop = R.id.container_parent
+        containerParams.bottomToBottom = -1
+        containerParams.leftToLeft = -1
+        containerParams.rightToRight = -1
     }
 
     private fun applyCommonProgressBarCustomizations(sharedPreferences: SharedPreferences) {

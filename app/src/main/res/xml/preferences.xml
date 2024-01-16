@@ -62,7 +62,7 @@
             android:defaultValue="linear"
             app:entries="@array/progressBarStyle"
             app:entryValues="@array/progressBarStyleValues"
-            app:icon="@drawable/ic_progress_bar_style"
+            app:icon="@drawable/ic_progress_bar_style_portrait"
             app:negativeButtonText=""/>
 
         <ListPreference
@@ -73,7 +73,7 @@
             android:defaultValue="linear"
             app:entries="@array/progressBarStyle"
             app:entryValues="@array/progressBarStyleValues"
-            app:icon="@drawable/ic_progress_bar_style"
+            app:icon="@drawable/ic_progress_bar_style_landscape"
             app:negativeButtonText=""/>
 
         <Preference

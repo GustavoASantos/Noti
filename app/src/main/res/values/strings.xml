@@ -22,6 +22,7 @@
     <string name="prefsCategoryCustomization">customization</string>
     <string name="prefsProgressBarStylePortraitTitle">Select progress bar style (Portrait)</string>
     <string name="prefsProgressBarStyleLandscapeTitle">Select progress bar style (Landscape)</string>
+    <string name="prefsProgressBarStyleEntryNone">No progress bar</string>
     <string name="prefsProgressBarStyleEntryLinear">Linear progress bar</string>
     <string name="prefsProgressBarStyleEntryCircular">Circular progress bar</string>
     <string name="prefsCategoryTweaks">tweaks</string>
@@ -58,7 +59,6 @@
     <string name="prefsShowForMediaSummary">Display progress bar when playing music</string>
     <string name="prefsShowInLockScreenTitle">Show progress bar in lock screen</string>
     <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
-    <string name="prefsDisableInLandscapeTitle">Disable in landscape mode</string>
     <string name="prefsChangeColorTitle">Change progress bar color</string>
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>

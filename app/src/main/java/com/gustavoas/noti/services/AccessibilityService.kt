@@ -92,21 +92,20 @@ class AccessibilityService : AccessibilityService() {
     private fun showOverlayWithProgress(progress: Int, progressMax: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val disableInLandscape = sharedPreferences.getBoolean("disableInLandscape", false)
-        if (disableInLandscape && !isInPortraitMode()) {
+        val progressBarStyle = sharedPreferences.getString(
+            if (isInPortraitMode()) { "progressBarStylePortrait" } else { "progressBarStyleLandscape" }, "linear"
+        )
+
+        if(progressBarStyle == "none") {
             if (this::overlayView.isInitialized && overlayView.isShown) {
                 hideProgressBarIn(0)
             }
             return
         }
 
-        val useCircularProgressBar = (sharedPreferences.getString(
-                if (isInPortraitMode()) { "progressBarStylePortrait" } else { "progressBarStyleLandscape" }, "linear"
-            ) == "circular")
-
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
-            if (!useCircularProgressBar) {
+            if (progressBarStyle == "linear") {
                 val showBelowNotch = sharedPreferences.getBoolean("showBelowNotch", false)
                 inflateOverlay(showBelowNotch)
             } else {
@@ -126,7 +125,7 @@ class AccessibilityService : AccessibilityService() {
             return
         }
 
-        if (useCircularProgressBar) {
+        if (progressBarStyle == "circular") {
             progressBar.visibility = View.GONE
             circularProgressBar.visibility = View.VISIBLE
 
@@ -140,7 +139,7 @@ class AccessibilityService : AccessibilityService() {
 
         applyCommonProgressBarCustomizations(sharedPreferences)
 
-        animateProgressBarTo(currentProgress, useCircularProgressBar)
+        animateProgressBarTo(currentProgress, progressBarStyle == "circular")
 
         toBeRemoved = currentProgress == progressBarMax
 

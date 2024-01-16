@@ -16,17 +16,16 @@
                     android:id="@+id/progressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="10000"
+                    android:max="@integer/progress_bar_max"
                     android:progress="0"
                     android:theme="@style/Theme.NotiProgressBar"
                     android:visibility="gone"
                     app:hideAnimationBehavior="outward" />
-
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/circularProgressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:max="10000"
+                    android:max="@integer/progress_bar_max"
                     android:progress="0"
                     android:theme="@style/Theme.NotiProgressBar"
                     android:visibility="visible"

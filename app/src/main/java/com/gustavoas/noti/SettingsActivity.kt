@@ -31,6 +31,7 @@ class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     private val previewFab by lazy { findViewById<ExtendedFloatingActionButton>(R.id.previewFab) }
     private val topAppBar by lazy { findViewById<MaterialToolbar>(R.id.topAppBar) }
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -116,13 +117,15 @@ class SettingsActivity : AppCompatActivity(),
 
     private fun simulateDownload() {
         val intent = Intent(this, AccessibilityService::class.java)
-        for (i in 25..125 step 25) {
-            Handler(Looper.getMainLooper()).postDelayed({
+        handler.removeCallbacksAndMessages(null)
+        for (i in 2500..12500 step 2500) {
+            handler.postDelayed({
                 intent.putExtra("progress", i)
-                intent.putExtra("progressMax", 100)
-                intent.putExtra("removal", i > 100)
+                intent.putExtra("priority", 10)
+                intent.putExtra("removal", i > 10000)
+                intent.putExtra("packageName", packageName)
                 startService(intent)
-            }, (i * 40 - 1000).toLong())
+            }, (i * 0.4 - 1000).toLong())
         }
     }
 

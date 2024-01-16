@@ -198,6 +198,30 @@ class AccessibilityService : AccessibilityService() {
                 // set margins normally
                 progressParams.setMargins(paddingLeft, paddingTop, paddingRight, 0)
             }
+            Surface.ROTATION_180 -> {
+                // inverted portrait
+                // TODO: not tested, as most devices do not support this
+                // align to bottom
+                containerParams.bottomToBottom = R.id.container_parent
+                when (progressBarLocation) {
+                    "left" -> {
+                        // align to right
+                        containerParams.rightToRight = R.id.container_parent
+                    }
+                    "right" -> {
+                        // align to left
+                        containerParams.leftToLeft = R.id.container_parent
+                    }
+                    else -> {
+                        // align to center
+                        containerParams.rightToRight = R.id.container_parent
+                        containerParams.leftToLeft = R.id.container_parent
+                    }
+                }
+
+                // set margins rotated by 180°
+                progressParams.setMargins(paddingRight, 0, paddingLeft, paddingTop)
+            }
             Surface.ROTATION_90 -> {
                 // landscape, device top is on the left
                 // align to left

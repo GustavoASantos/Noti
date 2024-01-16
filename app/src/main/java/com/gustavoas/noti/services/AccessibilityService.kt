@@ -3,6 +3,7 @@ package com.gustavoas.noti.services
 import android.accessibilityservice.AccessibilityService
 import android.animation.ObjectAnimator
 import android.app.KeyguardManager
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
@@ -90,9 +92,11 @@ class AccessibilityService : AccessibilityService() {
             return
         }
 
-        val useCircularProgressBar = (sharedPreferences.getString(
+        var useCircularProgressBar = (sharedPreferences.getString(
                 "progressBarStyle", "linear"
             ) == "circular" && isInPortraitMode())
+
+        useCircularProgressBar = true; // TODO: always use circular for testing
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (!useCircularProgressBar) {
@@ -137,12 +141,7 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun circularProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        val container = overlayView.findViewById<LinearLayout>(R.id.container)
-        when (sharedPreferences.getString("progressBarLocation", "center")) {
-            "left" -> container.gravity = Gravity.LEFT
-            "right" -> container.gravity = Gravity.RIGHT
-            else -> container.gravity = Gravity.CENTER
-        }
+        val container = overlayView.findViewById<FrameLayout>(R.id.container)
 
         val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 70)
         circularProgressBar.indicatorSize = (circularProgressBarSize * 0.86).roundToInt() + 18
@@ -156,9 +155,102 @@ class AccessibilityService : AccessibilityService() {
         val paddingRight =
             (sharedPreferences.getInt("circularProgressBarMarginRight", 70) * 0.5).roundToInt() + 15
 
-        val param = circularProgressBar.layoutParams as LinearLayout.LayoutParams
-        param.setMargins(paddingLeft, paddingTop, paddingRight, 0)
-        circularProgressBar.layoutParams = param
+        // get layout params
+        val containerParams = container.layoutParams as ConstraintLayout.LayoutParams
+        val progressParams = circularProgressBar.layoutParams as FrameLayout.LayoutParams
+
+        // reset container constraints
+        containerParams.topToTop = -1
+        containerParams.bottomToBottom = -1
+        containerParams.leftToLeft = -1
+        containerParams.rightToRight = -1
+
+        // add navbar height to container margins
+        val navBarHeight = resources.getDimensionPixelSize(
+            resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        )
+        containerParams.setMargins(0, 0, 0, -navBarHeight)
+
+        // apply layout depending on absolute screen rotation and location
+        val progressBarLocation = sharedPreferences.getString("progressBarLocation", "center")
+        val displayManager = DisplayManagerCompat.getInstance(this)
+        when(displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!.rotation) {
+            Surface.ROTATION_0 -> {
+                // portrait
+                // align to top
+                containerParams.topToTop = R.id.container_parent
+                when (progressBarLocation) {
+                    "left" -> {
+                        // align to left
+                        containerParams.leftToLeft = R.id.container_parent
+                    }
+                    "right" -> {
+                        // align to right
+                        containerParams.rightToRight = R.id.container_parent
+                    }
+                    else -> {
+                        // align to center
+                        containerParams.leftToLeft = R.id.container_parent
+                        containerParams.rightToRight = R.id.container_parent
+                    }
+                }
+
+                // set margins normally
+                progressParams.setMargins(paddingLeft, paddingTop, paddingRight, 0)
+            }
+            Surface.ROTATION_90 -> {
+                // landscape, device top is on the left
+                // align to left
+                containerParams.leftToLeft = R.id.container_parent
+                when (progressBarLocation) {
+                    "left" -> {
+                        // align to bottom
+                        containerParams.bottomToBottom = R.id.container_parent
+                    }
+                    "right" -> {
+                        // align to top
+                        containerParams.topToTop = R.id.container_parent
+                    }
+                    else -> {
+                        // align to center
+                        containerParams.bottomToBottom = R.id.container_parent
+                        containerParams.topToTop = R.id.container_parent
+                    }
+                }
+
+                // set margins rotated by 90°
+                progressParams.setMargins(paddingTop, paddingRight, 0, paddingLeft)
+            }
+            Surface.ROTATION_270 -> {
+                // landscape, device top is on the right
+                // align to right
+                containerParams.rightToRight = R.id.container_parent
+                when (progressBarLocation) {
+                    "left" -> {
+                        // align to top
+                        containerParams.topToTop = R.id.container_parent
+                    }
+
+                    "right" -> {
+                        // align to bottom
+                        containerParams.bottomToBottom = R.id.container_parent
+                    }
+
+                    else -> {
+                        // align to center
+                        containerParams.topToTop = R.id.container_parent
+                        containerParams.bottomToBottom = R.id.container_parent
+                    }
+                }
+
+                // set margins rotated by -90°
+                progressParams.setMargins(0, paddingRight, paddingTop, paddingLeft)
+            }
+        }
+
+        // apply layout
+        container.layoutParams = containerParams
+        circularProgressBar.layoutParams = progressParams
     }
 
     private fun linearProgressBarCustomizations(sharedPreferences: SharedPreferences) {
@@ -270,7 +362,7 @@ class AccessibilityService : AccessibilityService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this) && !showInLockscreen) {
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
@@ -280,7 +372,7 @@ class AccessibilityService : AccessibilityService() {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission(this)) {
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
@@ -291,7 +383,7 @@ class AccessibilityService : AccessibilityService() {
             @Suppress("DEPRECATION")
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE

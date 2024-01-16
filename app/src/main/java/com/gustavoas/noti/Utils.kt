@@ -44,7 +44,8 @@ object Utils {
             .putExtra(Intent.EXTRA_SUBJECT, "Noti")
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        if (sharedPreferences.getString("progressBarStyle", "linear") == "circular") {
+        if (sharedPreferences.getString("progressBarStylePortrait", "linear") == "circular" 
+            || sharedPreferences.getString("progressBarStyleLandscape", "linear") == "circular") {
             val resources = context.resources
             val deviceScreenSize = minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
             val location = sharedPreferences.getString("progressBarLocation", "center")

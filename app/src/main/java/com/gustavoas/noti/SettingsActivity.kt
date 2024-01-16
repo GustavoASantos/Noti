@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if (!sharedPreferences.contains("progressBarStyle")) {
+        if (!sharedPreferences.contains("progressBarStylePortrait") || !sharedPreferences.contains("progressBarStyleLandscape")) {
             setupDeviceConfiguration()
         }
 
@@ -140,7 +140,8 @@ class SettingsActivity : AppCompatActivity(),
                 resources.getXml(xmlResourceId)
             } catch (e: Resources.NotFoundException) {
                 sharedPreferences.edit()
-                    .putString("progressBarStyle", "linear")
+                    .putString("progressBarStylePortrait", "linear")
+                    .putString("progressBarStyleLandscape", "linear")
                     .apply()
                 return
             }
@@ -169,7 +170,8 @@ class SettingsActivity : AppCompatActivity(),
         }
 
         sharedPreferences.edit()
-            .putString("progressBarStyle", "circular")
+            .putString("progressBarStylePortrait", "circular")
+            .putString("progressBarStyleLandscape", "circular")
             .putBoolean("blackBackground", true)
             .putString("progressBarLocation", deviceConfig.location ?: "center")
             .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)

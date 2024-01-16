@@ -98,11 +98,10 @@ class AccessibilityService : AccessibilityService() {
             return
         }
 
-        var useCircularProgressBar = (sharedPreferences.getString(
-                "progressBarStyle", "linear"
-            ) == "circular" && isInPortraitMode())
+        val useCircularProgressBar = (sharedPreferences.getString(
+                if (isInPortraitMode()) { "progressBarStylePortrait" } else { "progressBarStyleLandscape" }, "linear"
+            ) == "circular")
 
-        useCircularProgressBar = true; // TODO: always use circular for testing
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (!useCircularProgressBar) {

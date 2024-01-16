@@ -55,8 +55,19 @@
         app:allowDividerBelow="false">
 
         <ListPreference
-            android:key="progressBarStyle"
-            android:title="@string/prefsProgressBarStyleTitle"
+            android:key="progressBarStylePortrait"
+            android:title="@string/prefsProgressBarStylePortraitTitle"
+            app:useSimpleSummaryProvider="true"
+            app:singleLineTitle="false"
+            android:defaultValue="linear"
+            app:entries="@array/progressBarStyle"
+            app:entryValues="@array/progressBarStyleValues"
+            app:icon="@drawable/ic_progress_bar_style"
+            app:negativeButtonText=""/>
+
+        <ListPreference
+            android:key="progressBarStyleLandscape"
+            android:title="@string/prefsProgressBarStyleLandscapeTitle"
             app:useSimpleSummaryProvider="true"
             app:singleLineTitle="false"
             android:defaultValue="linear"

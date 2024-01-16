@@ -350,9 +350,15 @@ class AccessibilityService : AccessibilityService() {
 
     private val navigationBarHeight: Int
         get() {
-            return resources.getDimensionPixelSize(
-                resources.getIdentifier("navigation_bar_height", "dimen", "android")
-            )
+            // note: ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.navigationBars()) does not work for this
+            val navBarVisible = ViewCompat.getRootWindowInsets(overlayView)?.isVisible(WindowInsetsCompat.Type.navigationBars()) == true
+            return if (navBarVisible) {
+                resources.getDimensionPixelSize(
+                    resources.getIdentifier("navigation_bar_height", "dimen", "android")
+                )
+            } else {
+                0
+            }
         }
 
     private fun setProgressToZero() {

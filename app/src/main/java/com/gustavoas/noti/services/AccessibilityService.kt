@@ -10,7 +10,9 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.view.Display
 import android.view.Gravity
+import android.view.Surface
 import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
@@ -287,7 +289,7 @@ class AccessibilityService : AccessibilityService() {
         }
 
         val paddingTop = sharedPreferences.getInt("linearProgressBarMarginTop", 0) * 3
-        val param = progressBar.layoutParams as LinearLayout.LayoutParams
+        val param = progressBar.layoutParams as FrameLayout.LayoutParams
         param.setMargins(0, paddingTop, 0, 0)
         progressBar.layoutParams = param
     }

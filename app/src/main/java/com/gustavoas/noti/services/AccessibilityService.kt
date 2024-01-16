@@ -3,7 +3,6 @@ package com.gustavoas.noti.services
 import android.accessibilityservice.AccessibilityService
 import android.animation.ObjectAnimator
 import android.app.KeyguardManager
-import android.content.ContextWrapper
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -17,8 +16,11 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.hardware.display.DisplayManagerCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
@@ -28,6 +30,10 @@ import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import kotlin.math.roundToInt
 
 class AccessibilityService : AccessibilityService() {
+    private val windowManager by lazy { getSystemService(WINDOW_SERVICE) as WindowManager }
+    private val displayManager by lazy { DisplayManagerCompat.getInstance(this) }
+    private val keyguardManager by lazy { getSystemService(KEYGUARD_SERVICE) as KeyguardManager }
+
     private lateinit var overlayView: View
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var circularProgressBar: CircularProgressIndicator
@@ -166,14 +172,10 @@ class AccessibilityService : AccessibilityService() {
         containerParams.rightToRight = -1
 
         // add navbar height to container margins
-        val navBarHeight = resources.getDimensionPixelSize(
-            resources.getIdentifier("navigation_bar_height", "dimen", "android")
-        )
-        containerParams.setMargins(0, 0, 0, -navBarHeight)
+        containerParams.setMargins(0, 0, 0, -navigationBarHeight)
 
         // apply layout depending on absolute screen rotation and location
         val progressBarLocation = sharedPreferences.getString("progressBarLocation", "center")
-        val displayManager = DisplayManagerCompat.getInstance(this)
         when(displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!.rotation) {
             Surface.ROTATION_0 -> {
                 // portrait
@@ -279,9 +281,6 @@ class AccessibilityService : AccessibilityService() {
 
     private fun linearProgressBarCustomizations(sharedPreferences: SharedPreferences) {
         val progressBarHeight = sharedPreferences.getInt("progressBarHeight", 5)
-        val statusBarHeight = resources.getDimensionPixelSize(
-            resources.getIdentifier("status_bar_height", "dimen", "android")
-        )
         if ((statusBarHeight > 15 && progressBarHeight == 10) || progressBarHeight == statusBarHeight - 5) {
             progressBar.trackThickness = statusBarHeight
         } else {
@@ -332,9 +331,20 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun isLocked(): Boolean {
-        val keyguardManager = getSystemService(KEYGUARD_SERVICE) as KeyguardManager
         return keyguardManager.isKeyguardLocked
     }
+
+    private val statusBarHeight: Int
+        get() {
+            return ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.statusBars())?.top ?: 0
+        }
+
+    private val navigationBarHeight: Int
+        get() {
+            return resources.getDimensionPixelSize(
+                resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            )
+        }
 
     private fun setProgressToZero() {
         progressBar.progress = 0
@@ -430,17 +440,14 @@ class AccessibilityService : AccessibilityService() {
         }
 
         if (!overlayView.isShown) {
-            getSystemService(WINDOW_SERVICE)?.let {
-                (it as WindowManager).addView(overlayView, params)
-            }
+            windowManager.addView(overlayView, params)
         }
     }
 
     private fun hideOverlay() {
         if (this::overlayView.isInitialized && overlayView.isShown) {
-            getSystemService(WINDOW_SERVICE)?.let {
-                (it as WindowManager).removeView(overlayView)
-            }
+            windowManager.removeView(overlayView)
+
         }
     }
 

@@ -212,10 +212,10 @@ class NotificationListenerService : NotificationListenerService() {
 
     private fun getProgressFromPercentage(sbn: StatusBarNotification): Int {
         val extras = sbn.notification.extras
-        val title = extras.getCharSequence("android.title").toString()
-        val text = extras.getCharSequence("android.text").toString()
-        val subText = extras.getCharSequence("android.subText").toString()
-        val bigText = extras.getCharSequence("android.bigText").toString()
+        val title   = extras.getCharSequence("android.title"  )?.toString() ?: ""
+        val text    = extras.getCharSequence("android.text"   )?.toString() ?: ""
+        val subText = extras.getCharSequence("android.subText")?.toString() ?: ""
+        val bigText = extras.getCharSequence("android.bigText")?.toString() ?: ""
         val textLines = extras.getCharSequenceArray("android.textLines")
 
         val percentageProgress = title.substringBefore("%").toFloatOrNull() ?:

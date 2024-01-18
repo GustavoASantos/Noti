@@ -350,7 +350,9 @@ class AccessibilityService : AccessibilityService() {
 
     private val statusBarHeight: Int
         get() {
-            return ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.statusBars())?.top ?: 0
+            return resources.getDimensionPixelSize(
+                resources.getIdentifier("status_bar_height", "dimen", "android")
+            )
         }
 
     private val bottomNavigationBarHeight: Int

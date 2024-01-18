@@ -71,7 +71,6 @@
     <string name="colorPink">Rose</string>
     <string name="prefsRoundedCornersSummary">Passer à une barre de progression avec les extrémités arrondies</string>
     <string name="prefsShowForMediaTitle">Montrer la barre de progression des médias</string>
-    <string name="prefsProgressBarStyleTitle">Sélectionnez le style de la barre de progression</string>
     <string name="prefsCategoryMore">Plus</string>
     <string name="colorLightBlue">Bleu clair</string>
     <string name="prefsShowBelowNotchSummary">Afficher la barre de progression sous n\'importe quel encoche</string>

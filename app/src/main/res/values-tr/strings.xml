@@ -7,7 +7,6 @@
     <string name="prefsAccessibilityPermissionTitle">Erişilebilirlik izni verin</string>
     <string name="prefsAccessibilityPermissionSummary">Kilit ekranında ve sistem uygulamalarında görüntülenmesi için gereklidir</string>
     <string name="prefsCategoryCustomization">özelleştirme</string>
-    <string name="prefsProgressBarStyleTitle">İlerleme çubuğu stilini seçin</string>
     <string name="prefsProgressBarStyleEntryLinear">Doğrusal ilerleme çubuğu</string>
     <string name="prefsProgressBarStyleEntryCircular">Dairesel ilerleme çubuğu</string>
     <string name="prefsCategoryTweaks">ayarlar</string>

@@ -73,7 +73,6 @@
     <string name="prefsCategoryTweaks">justeringer</string>
     <string name="prefsRoundedCornersSummary">Endre til framdriftsfelt med avrundede hjørner</string>
     <string name="prefsShowForMediaTitle">Vis mediaframdriftsfelt</string>
-    <string name="prefsProgressBarStyleTitle">Velg framdriftfeltsstil</string>
     <string name="prefsCategoryMore">mer</string>
     <string name="prefsShowBelowNotchSummary">Vis framdriftsfelt under busslomme eller spionhull</string>
     <string name="prefsRoundedCornersTitle">Bruk framdriftsfelt med avrundede hjørner</string>

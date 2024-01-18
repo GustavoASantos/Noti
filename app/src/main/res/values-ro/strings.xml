@@ -71,7 +71,6 @@
     <string name="colorPink">Roz</string>
     <string name="prefsRoundedCornersSummary">Comutați la bara de progres cu capete rotunjite</string>
     <string name="prefsShowForMediaTitle">Arată bara de progres media</string>
-    <string name="prefsProgressBarStyleTitle">Alegeți stilul barei de progres</string>
     <string name="prefsCategoryMore">mai mult</string>
     <string name="colorLightBlue">Albastru deschis</string>
     <string name="prefsShowBelowNotchSummary">Pentru tipurile de ecran ce au crestătură (notch) sau gaură pentru cameră (hole punch), afișează bara de progres dedesubt</string>

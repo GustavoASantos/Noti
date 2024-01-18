@@ -10,10 +10,12 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.util.DisplayMetrics
 import android.view.Display
 import android.view.Gravity
 import android.view.Surface
 import android.view.View
+import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
@@ -23,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.hardware.display.DisplayManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnAttach
 import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
@@ -173,7 +176,7 @@ class AccessibilityService : AccessibilityService() {
 
         // add navbar height to container margins
         overlayView.doOnAttach {
-                containerParams.setMargins(0, 0, 0, -navigationBarHeight)
+            containerParams.setMargins(0, 0, 0, -bottomNavigationBarHeight)
         }
 
         // apply layout depending on absolute screen rotation and location
@@ -350,14 +353,35 @@ class AccessibilityService : AccessibilityService() {
             return ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.statusBars())?.top ?: 0
         }
 
-    private val navigationBarHeight: Int
+    private val bottomNavigationBarHeight: Int
         get() {
-            // note: ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.navigationBars()) does not work for this
             val navBarVisible = ViewCompat.getRootWindowInsets(overlayView)?.isVisible(WindowInsetsCompat.Type.navigationBars()) == true
             return if (navBarVisible) {
-                resources.getDimensionPixelSize(
-                    resources.getIdentifier("navigation_bar_height", "dimen", "android")
-                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    val metrics = windowManager.currentWindowMetrics
+                    metrics.windowInsets.getInsets(WindowInsets.Type.systemBars()).bottom
+                } else {
+                    // note: ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.navigationBars()) does not work for this
+                    val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!
+                    val metrics = DisplayMetrics()
+
+                    // get physical display height
+                    display.getRealMetrics(metrics)
+                    val realHeight = metrics.heightPixels
+
+                    // get display height minus system bars
+                    display.getMetrics(metrics)
+                    val heightDelta = realHeight - metrics.heightPixels
+
+                    // if the navbar is at the bottom of the screen, return the height
+                    if (heightDelta > 0) {
+                        resources.getDimensionPixelSize(
+                            resources.getIdentifier("navigation_bar_height", "dimen", "android")
+                        )
+                    } else {
+                        0
+                    }
+                }
             } else {
                 0
             }

@@ -28,7 +28,6 @@
     <string name="prefsProgressBarSizeSummary">Changer a taille de la barre de progression</string>
     <string name="prefsAccessibilityPermissionSummary">Obligatoire pour afficher sur l\'écran de verrouillage et sur les applications du système</string>
     <string name="colorRed">Rouge</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Passer à une barre de progression linéaire en mode paysage</string>
     <string name="prefsShowBelowNotchTitle">Afficher sous la coupure de l\'écran</string>
     <string name="prefsShowInLockScreenTitle">Affiche la barre de progression dans l\'écran de verrouillage</string>
     <string name="prefsShowInLockScreenSummary">Cela sera aussi affiché dans l\'always on display</string>
@@ -39,7 +38,7 @@
     <string name="prefsSAWPermissionTitle">Autoriser l\'affichage par dessus d\'autres applications</string>
     <string name="prefsProgressBarAlignmentTitle">Changer l\'alignement de la barre de progression</string>
     <string name="prefsBlackBackgroundTitle">Utiliser un fond noir</string>
-    <string name="prefsPerAppSettingsSummary">Activer Noti selon les applications</string>
+    <string name="prefsPerAppSettingsSummary">Activer noti selon les applications</string>
     <string name="prefsNotificationPermissionSummary">Obligatoire pour lire les notifications avec une barre de progression</string>
     <string name="colorLime">Vert fluo</string>
     <string name="prefsBlackBackgroundSummary">Passez à une barre de progression avec un fond noir</string>
@@ -54,7 +53,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">Aligné à gauche</string>
     <string name="prefsNotificationPermissionTitle">Accorder l\'accès aux notifications</string>
     <string name="prefsProgressBarHeightSummary">Changer la taille de la barre de progression</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Utiliser seulement en mode portrait</string>
     <string name="colorYellow">Jaune</string>
     <string name="prefsProgressBarMarginTopSummary">Changer l\'espacement du haut de l\'écran</string>
     <string name="prefsPerAppSettingsTitle">Paramètres par application</string>

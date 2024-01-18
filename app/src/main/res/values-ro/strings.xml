@@ -23,7 +23,6 @@
     <string name="prefsShowForDownloadsSummary">Arată bara de progres se transferă conținut</string>
     <string name="prefsAccessibilityPermissionSummary">Necesar pentru a fi afișat în ecranul de blocare și în aplicațiile de sistem</string>
     <string name="colorRed">Roșu</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Comutați la bara liniară de progres când telefonul se află în modul orizontal</string>
     <string name="prefsShowBelowNotchTitle">Arată sub decupajul afișajului</string>
     <string name="prefsShowInLockScreenTitle">Arată bara de progres în ecranul de blocare</string>
     <string name="prefsCategoryGeneral">Setări generale</string>
@@ -35,7 +34,7 @@
     <string name="prefsSAWPermissionTitle">Permiteți afișarea peste alte aplicații</string>
     <string name="prefsProgressBarAlignmentTitle">Schimbă aliniamentul barei de progres</string>
     <string name="prefsBlackBackgroundTitle">Utilizează fundal negru</string>
-    <string name="prefsPerAppSettingsSummary">Comutați Noti în funcție de aplicație</string>
+    <string name="prefsPerAppSettingsSummary">Comutați noti în funcție de aplicație</string>
     <string name="prefsNotificationPermissionSummary">Necesar pentru a citi notificările cu o bară de progres</string>
     <string name="colorLime">Verde lămâie</string>
     <string name="prefsBlackBackgroundSummary">Comutați la bara de progres cu pistă neagră</string>
@@ -52,7 +51,6 @@
     <string name="prefsNotificationPermissionTitle">Acordați acces la notificări</string>
     <string name="prefsCalentileSummary">Susține dezvoltatorul</string>
     <string name="prefsProgressBarHeightSummary">Schimbă dimensiunea pistei barei de progres</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Utilizează doar în modul portret</string>
     <string name="colorYellow">Galben</string>
     <string name="prefsProgressBarMarginTopSummary">Schimbă spațierea față de partea de sus a ecranului</string>
     <string name="prefsChangeColorTitle">Schimbă culoarea barei de progres</string>

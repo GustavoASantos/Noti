@@ -30,8 +30,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">צד שמאל</string>
     <string name="prefsProgressBarAlignmentEntryCenter">אמצע</string>
     <string name="prefsProgressBarAlignmentEntryRight">צד שמאל</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">השתמש רק במצב דיוקן</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">עבור לפס התקדמות ליניארי בתצוגה לרוחב</string>
     <string name="prefsRoundedCornersTitle">השתמש בפס התקדמות עם פינות מעוגלות</string>
     <string name="prefsRoundedCornersSummary">עבור לפס התקדמות עם קצוות מעוגלים</string>
     <string name="prefsShowInLockScreenTitle">הצג את פס ההתקדמות במסך הנעילה</string>

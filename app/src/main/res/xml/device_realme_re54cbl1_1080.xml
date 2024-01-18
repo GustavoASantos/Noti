@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device>
     <location>left</location>
-    <size>94</size>
-    <marginTop>95</marginTop>
-    <marginLeft>100</marginLeft>
+    <size>110</size>
+    <marginTop>30</marginTop>
 </device>

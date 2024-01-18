@@ -30,8 +30,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">Подравнен вляво</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Центроран</string>
     <string name="prefsProgressBarAlignmentEntryRight">Подравнен вдясно</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Използвайте само в вертикален режим</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Превключване към линейна лента за прогрес при хоризонтален режим</string>
     <string name="prefsRoundedCornersTitle">Използване на лента за прогрес със заоблени ъгли</string>
     <string name="prefsRoundedCornersSummary">Превключване към лента за прогрес със заоблени ъгли</string>
     <string name="prefsShowInLockScreenTitle">Показвй лентата за прогрес на заключен екран</string>
@@ -62,7 +60,7 @@
     <string name="colorWhite">Бяло</string>
     <string name="perAppSettingsEmptyView">Все още не е намерена лента за прогрес. Noti ще открие кои приложения имат ленти за прогрес, докато използвате телефона си</string>
     <string name="prefsPerAppSettingsTitle">Настройки за всяко приложение</string>
-    <string name="prefsPerAppSettingsSummary">Превключване на Noti за всяко приложение</string>
+    <string name="prefsPerAppSettingsSummary">Превключване на noti за всяко приложение</string>
     <string name="prefsBlackBackgroundTitle">Използвай черен фон</string>
     <string name="prefsBlackBackgroundSummary">Превключване към лента за прогрес с черен  фон</string>
     <string name="prefsSAWPermissionTitle">Разреши показване над други приложения</string>

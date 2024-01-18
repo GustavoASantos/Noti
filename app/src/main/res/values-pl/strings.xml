@@ -30,8 +30,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">Wyrównane do lewej strony</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Wyśrodkowany</string>
     <string name="prefsProgressBarAlignmentEntryRight">Wyrównane do prawej strony</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Używaj tylko w pionowej orientacji ekranu</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Przełącz na liniowy pasek postępu gdy urządzenie jest w orientacji poziomej</string>
     <string name="prefsRoundedCornersTitle">Używaj zaokrąglonego paska postępu</string>
     <string name="prefsRoundedCornersSummary">Sprawia że pasek postępu ma zaokrąglone krawędzie</string>
     <string name="prefsShowInLockScreenTitle">Pokazuje pasek postępu na ekranie blokady</string>

@@ -37,8 +37,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">Alinhado à esquerda</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Centrado</string>
     <string name="prefsProgressBarAlignmentEntryRight">Alinhado à direita</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Usar apenas em modo vertical</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Mudar para barra de progresso linear quando na horizontal</string>
     <string name="prefsRoundedCornersTitle">Usar barra de progresso com cantos arredondados</string>
     <string name="prefsRoundedCornersSummary">Mudar para barra de progresso com pontas arredondadas</string>
     <string name="prefsShowInLockScreenTitle">Mostrar barra de progresso no ecrã de bloqueio</string>

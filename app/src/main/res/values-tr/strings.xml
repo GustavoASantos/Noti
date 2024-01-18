@@ -19,7 +19,6 @@
     <string name="prefsProgressBarAlignmentEntryLeft">Sola hizalı</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Ortalanmış</string>
     <string name="prefsProgressBarAlignmentEntryRight">Sağa hizalı</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Yalnızca dikey modda kullan</string>
     <string name="prefsRoundedCornersTitle">İlerleme çubuğunun uçlarını yuvarla</string>
     <string name="prefsShowInLockScreenTitle">Kilit ekranında ilerleme çubuğunu göster</string>
     <string name="prefsChangeColorTitle">İlerleme çubuğunun rengini değiştir</string>
@@ -39,7 +38,6 @@
     <string name="prefsProgressBarMarginRightSummary">Ekranın sağ kısmı ile olan aralığı değiştir</string>
     <string name="prefsShowForDownloadsSummary">İçerik transfer ederken ilerleme çubuğunu görüntüleme</string>
     <string name="colorRed">Kırmızı</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Yatay modda doğrusal ilerleme çubuğunu kullan</string>
     <string name="perAppSettingsEmptyView">İlerleme çubuğu bulunamadı. İlerleme çubuğu olan uygulamalar siz cihazınızı kullandıkça keşfedilir.</string>
     <string name="prefsShowBelowNotchTitle">Ekranın altında göster</string>
     <string name="prefsCategoryGeneral">genel</string>

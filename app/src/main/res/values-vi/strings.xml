@@ -48,12 +48,9 @@
     <string name="prefsProgressBarAlignmentEntryRight">Căn phải</string>
     <string name="prefsCircularProgressBarTweaks">Tinh chỉnh thanh tiến trình tròn</string>
     <string name="prefsProgressBarAlignmentTitle">Thay đổi căn chỉnh thanh tiến trình</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Chỉ sử dụng ở chế độ dọc</string>
-    <string name="prefsProgressBarStyleTitle">Chọn kiểu thanh tiến trình</string>
     <string name="prefsPerAppSettingsTitle">Cài đặt cho mỗi ứng dụng</string>
     <string name="prefsCategoryMore">thêm</string>
     <string name="prefsLinearProgressBarTweaks">Tinh chỉnh thanh tiến trình tuyến tính</string>
-    <string name="prefsDisableInLandscapeTitle">Tắt ở chế độ ngang</string>
     <string name="prefsCalentileSummary">Hỗ trợ nhà phát triển</string>
     <string name="colorBlue">Xanh biển</string>
     <string name="colorGreen">Xanh lá</string>
@@ -72,10 +69,9 @@
     <string name="prefsProgressBarMarginTopSummary">Thay đổi khoảng cách từ đầu màn hình</string>
     <string name="prefsProgressBarMarginLeftSummary">Thay đổi khoảng cách từ bên trái màn hình</string>
     <string name="prefsProgressBarMarginRightSummary">Thay đổi khoảng cách từ bên phải màn hình</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Chuyển sang thanh tiến trình tuyến tính khi ở chế độ ngang</string>
     <string name="prefsCircularBarShareConfigTitle">Hoàn toàn phù hợp? Hãy chia sẻ cấu hình</string>
     <string name="prefsSeekbarInfoCard">Nhấn giá trị cạnh mỗi thanh tìm kiếm để điều chỉnh thủ công</string>
-    <string name="prefsPerAppSettingsSummary">Bật tắt Noti trong từng ứng dụng</string>
+    <string name="prefsPerAppSettingsSummary">Bật tắt noti trong từng ứng dụng</string>
     <string name="prefsRoundedCornersSummary">Chuyển sang thanh tiến trình với các đầu tròn</string>
     <string name="prefsShowForMediaSummary">Hiển thị thanh tiến trình khi đang phát nhạc</string>
     <string name="prefsShowInLockScreenTitle">Hiển thị thanh tiến trình ở màn hình khóa</string>

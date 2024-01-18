@@ -21,7 +21,6 @@
     <string name="notificationListenerDescription">Leser merknader med et framdriftsfelt</string>
     <string name="colorDeepPurple">Mørkelilla</string>
     <string name="prefsCalentileSummary">Støtt utvikleren</string>
-    <string name="prefsCircularBarOnlyPortraitTitle">Kun bruk i stående modus</string>
     <string name="colorYellow">Gul</string>
     <string name="settingsPreviewFab">Forhåndvisning</string>
     <string name="prefsCategorySetup">oppsett</string>
@@ -40,7 +39,6 @@
     <string name="prefsProgressBarSizeSummary">Endre framdriftsfeltets størrelse</string>
     <string name="prefsShowForDownloadsSummary">Vis framdriftsfelt ved overføring av innhold</string>
     <string name="prefsAccessibilityPermissionSummary">Påkrevd for visning på låseskjermen og i systemprogrammer</string>
-    <string name="prefsCircularBarOnlyPortraitSummary">Bytt til lineært framdriftsfelt i liggende modus</string>
     <string name="prefsShowBelowNotchTitle">Vis under skjermbusslomme</string>
     <string name="prefsShowInLockScreenTitle">Vis framdriftsfelt på låseskjermen</string>
     <string name="prefsShowInLockScreenSummary">Vil også vises når skjerm ikke skrur seg av</string>
@@ -49,7 +47,7 @@
     <string name="prefsProgressBarHeightTitle">Tykkelse for framdriftsfeltspor</string>
     <string name="prefsSAWPermissionTitle">Tillat visning over andre programmer</string>
     <string name="prefsProgressBarAlignmentTitle">Endre framdriftfeltsjustering</string>
-    <string name="prefsPerAppSettingsSummary">Veksle visning av Noti per program</string>
+    <string name="prefsPerAppSettingsSummary">Veksle visning av noti per program</string>
     <string name="prefsNotificationPermissionSummary">Påkrevd for lesing av merknader med framdriftsfelt</string>
     <string name="prefsBlackBackgroundSummary">Endre til framdriftsfelt med svart spor</string>
     <string name="prefsProgressBarMarginLeftTitle">Margin til venstre</string>

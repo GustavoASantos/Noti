@@ -172,7 +172,9 @@ class AccessibilityService : AccessibilityService() {
         containerParams.rightToRight = -1
 
         // add navbar height to container margins
-        containerParams.setMargins(0, 0, 0, -navigationBarHeight)
+        overlayView.doOnAttach {
+                containerParams.setMargins(0, 0, 0, -navigationBarHeight)
+        }
 
         // apply layout depending on absolute screen rotation and location
         val progressBarLocation = sharedPreferences.getString("progressBarLocation", "center")

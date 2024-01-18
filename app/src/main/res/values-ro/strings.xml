@@ -33,7 +33,6 @@
     <string name="prefsProgressBarStyleEntryLinear">Bară liniară de progres</string>
     <string name="prefsProgressBarHeightTitle">Grosimea pistei barei de progres</string>
     <string name="prefsSAWPermissionTitle">Permiteți afișarea peste alte aplicații</string>
-    <string name="prefsDisableInLandscapeTitle">Dezactivează în modul orizontal</string>
     <string name="prefsProgressBarAlignmentTitle">Schimbă aliniamentul barei de progres</string>
     <string name="prefsBlackBackgroundTitle">Utilizează fundal negru</string>
     <string name="prefsPerAppSettingsSummary">Comutați Noti în funcție de aplicație</string>

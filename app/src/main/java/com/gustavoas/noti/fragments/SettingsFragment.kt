@@ -27,8 +27,8 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarStyle" || key == "disableInLandscape") {
-            if (key == "progressBarStyle" && sharedPreferences?.getString(
+        if (key == "progressBarStylePortrait" || key == "progressBarStyleLandscape") {
+            if ((key == "progressBarStylePortrait" || key == "progressBarStyleLandscape") && sharedPreferences?.getString(
                     key, "linear"
                 ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
             ) {
@@ -142,15 +142,18 @@ class SettingsFragment : BasePreferenceFragment(),
     }
 
     private fun updateProgressBarStyleVisibility() {
-        val progressBarStyle = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString("progressBarStyle", "linear")
-        val disableInLandscape = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getBoolean("disableInLandscape", false)
+        val progressBarStylePortrait = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .getString("progressBarStylePortrait", "linear")
+        val progressBarStyleLandscape = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .getString("progressBarStyleLandscape", "linear")
+
+        val anyLinear = progressBarStylePortrait == "linear" || progressBarStyleLandscape == "linear"
+        val anyCircular = progressBarStylePortrait == "circular" || progressBarStyleLandscape == "circular"
 
         findPreference<Preference>("CircularBarFragment")?.isVisible =
-            progressBarStyle == "circular"
+            anyCircular
         findPreference<Preference>("LinearBarFragment")?.isVisible =
-            progressBarStyle == "linear" || !disableInLandscape
+            anyLinear
     }
 
     private fun updateShowInLockscreenVisibility() {

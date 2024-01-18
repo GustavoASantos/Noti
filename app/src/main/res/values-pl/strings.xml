@@ -73,7 +73,6 @@
     <string name="prefsCircularBarShareConfigSummary">Pozwól innym użytkownikom tego samego urządzenia korzystać z Twojej konfiguracji</string>
     <string name="prefsShowForMediaTitle">Pokaż pasek postępu dla multimediów</string>
     <string name="prefsShowForMediaSummary">Wyświetla pasek postępu gdy odtwarzasz muzykę</string>
-    <string name="prefsDisableInLandscapeTitle">Wyłącz w orientacji poziomej</string>
     <string name="prefsBatteryOptimization">Do prawidłowego działania aplikacji może być wymagane dodanie Noti do wyjątków w ustawieniach wykorzystywania baterii oraz zezwolenie na automatyczne uruchamianie aplikacji</string>
     <string name="prefsCategoryGeneral">Ogólne</string>
     <string name="prefsShowForDownloadsTitle">Wyświetl pasek postępu dla pobierania</string>

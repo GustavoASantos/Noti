@@ -48,7 +48,6 @@
     <string name="prefsProgressBarStyleEntryLinear">Lineært framdriftsfelt</string>
     <string name="prefsProgressBarHeightTitle">Tykkelse for framdriftsfeltspor</string>
     <string name="prefsSAWPermissionTitle">Tillat visning over andre programmer</string>
-    <string name="prefsDisableInLandscapeTitle">Skru av i liggende modus</string>
     <string name="prefsProgressBarAlignmentTitle">Endre framdriftfeltsjustering</string>
     <string name="prefsPerAppSettingsSummary">Veksle visning av Noti per program</string>
     <string name="prefsNotificationPermissionSummary">Påkrevd for lesing av merknader med framdriftsfelt</string>

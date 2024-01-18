@@ -47,7 +47,6 @@
     <string name="prefsShowInLockScreenSummary">Aynı zamanda AOD\'(Always On Display)de de gösterilecek</string>
     <string name="prefsProgressBarMarginTopTitle">Üstten kenar boşluğu</string>
     <string name="prefsSAWPermissionTitle">Diğer uygulamaların üzerinde göstermeye izin ver</string>
-    <string name="prefsDisableInLandscapeTitle">Yatay modu devredışı bırak</string>
     <string name="prefsProgressBarAlignmentTitle">İlerleme çubuğunun hizalamasını değiştir</string>
     <string name="prefsBlackBackgroundTitle">Siyah arkaplan kullan</string>
     <string name="prefsPerAppSettingsSummary">Uygulamaların bu özelliği kullanıp kullanmayacağını seçin</string>

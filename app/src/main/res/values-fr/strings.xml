@@ -37,7 +37,6 @@
     <string name="prefsProgressBarStyleEntryLinear">Barre de progression linéaire</string>
     <string name="prefsProgressBarHeightTitle">Épaisseur de la barre de progression</string>
     <string name="prefsSAWPermissionTitle">Autoriser l\'affichage par dessus d\'autres applications</string>
-    <string name="prefsDisableInLandscapeTitle">Désactiver en mode paysage</string>
     <string name="prefsProgressBarAlignmentTitle">Changer l\'alignement de la barre de progression</string>
     <string name="prefsBlackBackgroundTitle">Utiliser un fond noir</string>
     <string name="prefsPerAppSettingsSummary">Activer Noti selon les applications</string>

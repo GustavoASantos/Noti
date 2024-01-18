@@ -55,14 +55,25 @@
         app:allowDividerBelow="false">
 
         <ListPreference
-            android:key="progressBarStyle"
-            android:title="@string/prefsProgressBarStyleTitle"
+            android:key="progressBarStylePortrait"
+            android:title="@string/prefsProgressBarStylePortraitTitle"
             app:useSimpleSummaryProvider="true"
             app:singleLineTitle="false"
             android:defaultValue="linear"
             app:entries="@array/progressBarStyle"
             app:entryValues="@array/progressBarStyleValues"
-            app:icon="@drawable/ic_progress_bar_style"
+            app:icon="@drawable/ic_progress_bar_style_portrait"
+            app:negativeButtonText=""/>
+
+        <ListPreference
+            android:key="progressBarStyleLandscape"
+            android:title="@string/prefsProgressBarStyleLandscapeTitle"
+            app:useSimpleSummaryProvider="true"
+            app:singleLineTitle="false"
+            android:defaultValue="linear"
+            app:entries="@array/progressBarStyle"
+            app:entryValues="@array/progressBarStyleValues"
+            app:icon="@drawable/ic_progress_bar_style_landscape"
             app:negativeButtonText=""/>
 
         <Preference
@@ -102,14 +113,6 @@
             app:singleLineTitle="false"
             android:defaultValue="true"
             app:icon="@drawable/ic_lockscreen"/>
-
-        <SwitchPreferenceCompat
-            android:key="disableInLandscape"
-            android:title="@string/prefsDisableInLandscapeTitle"
-            android:summary="@string/prefsCircularBarOnlyPortraitTitle"
-            app:singleLineTitle="false"
-            android:defaultValue="false"
-            app:icon="@drawable/ic_landscape"/>
 
     </PreferenceCategory>
 

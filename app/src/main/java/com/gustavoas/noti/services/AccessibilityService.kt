@@ -446,6 +446,10 @@ class AccessibilityService : AccessibilityService() {
                         or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
                 PixelFormat.TRANSLUCENT
             )
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                params.alpha = 0.8f
+            }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission(this)) {
             params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,

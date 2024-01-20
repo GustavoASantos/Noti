@@ -10,12 +10,10 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.util.DisplayMetrics
 import android.view.Display
 import android.view.Gravity
 import android.view.Surface
 import android.view.View
-import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
@@ -23,9 +21,6 @@ import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.hardware.display.DisplayManagerCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.doOnAttach
 import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
@@ -174,16 +169,12 @@ class AccessibilityService : AccessibilityService() {
         containerParams.leftToLeft = -1
         containerParams.rightToRight = -1
 
-        // add navbar height to container margins
-        overlayView.doOnAttach {
-            containerParams.setMargins(0, 0, 0, -bottomNavigationBarHeight)
-        }
-
         // apply layout depending on absolute screen rotation and location
         val progressBarLocation = sharedPreferences.getString("progressBarLocation", "center")
         when(displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!.rotation) {
             Surface.ROTATION_0 -> {
                 // portrait
+                circularProgressBar.rotation = 0f
                 // align to top
                 containerParams.topToTop = R.id.container_parent
                 when (progressBarLocation) {
@@ -207,7 +198,7 @@ class AccessibilityService : AccessibilityService() {
             }
             Surface.ROTATION_180 -> {
                 // inverted portrait
-                // TODO: not tested, as most devices do not support this
+                circularProgressBar.rotation = 180f
                 // align to bottom
                 containerParams.bottomToBottom = R.id.container_parent
                 when (progressBarLocation) {
@@ -231,6 +222,7 @@ class AccessibilityService : AccessibilityService() {
             }
             Surface.ROTATION_90 -> {
                 // landscape, device top is on the left
+                circularProgressBar.rotation = 270f
                 // align to left
                 containerParams.leftToLeft = R.id.container_parent
                 when (progressBarLocation) {
@@ -254,6 +246,7 @@ class AccessibilityService : AccessibilityService() {
             }
             Surface.ROTATION_270 -> {
                 // landscape, device top is on the right
+                circularProgressBar.rotation = 90f
                 // align to right
                 containerParams.rightToRight = R.id.container_parent
                 when (progressBarLocation) {
@@ -275,7 +268,7 @@ class AccessibilityService : AccessibilityService() {
                 }
 
                 // set margins rotated by -90°
-                progressParams.setMargins(0, paddingRight, paddingTop, paddingLeft)
+                progressParams.setMargins(0, paddingLeft, paddingTop, paddingRight)
             }
         }
 
@@ -355,40 +348,6 @@ class AccessibilityService : AccessibilityService() {
             )
         }
 
-    private val bottomNavigationBarHeight: Int
-        get() {
-            val navBarVisible = ViewCompat.getRootWindowInsets(overlayView)?.isVisible(WindowInsetsCompat.Type.navigationBars()) == true
-            return if (navBarVisible) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    val metrics = windowManager.currentWindowMetrics
-                    metrics.windowInsets.getInsets(WindowInsets.Type.systemBars()).bottom
-                } else {
-                    // note: ViewCompat.getRootWindowInsets(overlayView)?.getInsets(WindowInsetsCompat.Type.navigationBars()) does not work for this
-                    val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!
-                    val metrics = DisplayMetrics()
-
-                    // get physical display height
-                    display.getRealMetrics(metrics)
-                    val realHeight = metrics.heightPixels
-
-                    // get display height minus system bars
-                    display.getMetrics(metrics)
-                    val heightDelta = realHeight - metrics.heightPixels
-
-                    // if the navbar is at the bottom of the screen, return the height
-                    if (heightDelta > 0) {
-                        resources.getDimensionPixelSize(
-                            resources.getIdentifier("navigation_bar_height", "dimen", "android")
-                        )
-                    } else {
-                        0
-                    }
-                }
-            } else {
-                0
-            }
-        }
-
     private fun setProgressToZero() {
         progressBar.progress = 0
         circularProgressBar.progress = 0
@@ -443,7 +402,9 @@ class AccessibilityService : AccessibilityService() {
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                 PixelFormat.TRANSLUCENT
             )
 
@@ -457,7 +418,9 @@ class AccessibilityService : AccessibilityService() {
                 WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                 PixelFormat.TRANSLUCENT
             )
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this)) {
@@ -468,7 +431,9 @@ class AccessibilityService : AccessibilityService() {
                 WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                 PixelFormat.TRANSLUCENT
             )
         } else {

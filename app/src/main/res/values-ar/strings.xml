@@ -58,8 +58,8 @@
     <string name="colorBlack">أسود</string>
     <string name="colorGrey">رمادي</string>
     <string name="colorWhite">أبيض</string>
-    <string name="perAppSettingsEmptyView">لم يتم العثور على شريط التقدم حتى الآن، سوف يكتشف Noti التطبيقات التي تحتوي على أشرطة تقدم أثناء استخدامك لهاتفك</string>
-    <string name="prefsPerAppSettingsTitle">إعداد لكل تطبيق</string>
+    <string name="perAppSettingsEmptyView">لم يتم العثور على شريط تقدم، سوف يكتشف Noti التطبيقات التي تحتوي على أشرطة تقدم أثناء استخدامك لهاتفك</string>
+    <string name="prefsPerAppSettingsTitle">إعدادات لكل تطبيق</string>
     <string name="prefsPerAppSettingsSummary">خصص التطبيقات التي تريد أن تظهر في شريط التقدم</string>
     <string name="prefsBlackBackgroundTitle">استخدم خلفية سوداء</string>
     <string name="prefsBlackBackgroundSummary">وضع خلفية سوداء لشريط التقدم</string>
@@ -76,4 +76,7 @@
     <string name="prefsShowForDownloadsTitle">إظهار شريط تقدم التنزيلات</string>
     <string name="prefsShowForDownloadsSummary">عرض شريط التقدم عند نقل المحتوى</string>
     <string name="holePunchInstruction">تغيير المحاذاة في تعديلات شريط التقدم الدائري</string>
+    <string name="prefsProgressBarStyleEntryNone">لا يوجد شريط تقدم</string>
+    <string name="prefsProgressBarStylePortraitTitle">نمط شريط التقدم العمودي</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">نمط شريط التقدم الأفقي</string>
 </resources>

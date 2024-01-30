@@ -19,4 +19,18 @@
     <string name="prefsShowBelowNotchSummary">Tampilkan progress bar dibawah notch atau lobang kamera</string>
     <string name="prefsCircularProgressBarTweaks">Pengaturan untuk bar lingkaran</string>
     <string name="prefsProgressBarAlignmentTitle">Ubah penempatan bar</string>
+    <string name="prefsProgressBarStyleEntryNone">Tidak ada bar progres</string>
+    <string name="prefsProgressBarStylePortraitTitle">Tampilan bar progres di portrait</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Tampilan bar progres di landskap</string>
+    <string name="prefsBlackBackgroundTitle">Gunakan latar belakang hitam</string>
+    <string name="prefsPerAppSettingsTitle">Pengaturan per aplikasi</string>
+    <string name="prefsProgressBarSizeTitle">Ukuran bar progres</string>
+    <string name="holePunchInstruction">Atur posisi untuk bar progres bundar</string>
+    <string name="prefsCategoryGeneral">Umum</string>
+    <string name="prefsShowForDownloadsTitle">Tunjukkan bar progres download</string>
+    <string name="prefsShowForDownloadsSummary">Tunjukkan bar progres saat memindahkan konten</string>
+    <string name="prefsBatteryOptimization">Anda mungkin perlu menonaktifkan pengoptimalan baterai dan mengizinkan mulai otomatis agar noti berfungsi di latar belakang</string>
+    <string name="prefsSAWPermissionTitle">Izinkan untuk menampilkan di atas aplikasi lain</string>
+    <string name="perAppSettingsEmptyView">Bar progres tidak ditemukan. Aplikasi dengan bar progres akan muncul saat kamu menggunakan perangkatmu</string>
+    <string name="prefsSAWPermissionSummary">Diperlukan untuk menampilkan bar progres</string>
 </resources>

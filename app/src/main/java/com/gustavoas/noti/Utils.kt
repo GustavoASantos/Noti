@@ -15,7 +15,7 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 object Utils {
     fun hasAccessibilityPermission(context: Context): Boolean {
         val accessibilityServiceComponentName = ComponentName(context, AccessibilityService::class.java)
-        val enabledServices = Settings.Secure.getString(context.contentResolver, "enabled_accessibility_services")
+        val enabledServices = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
         return enabledServices?.contains(accessibilityServiceComponentName.flattenToString()) ?: false
     }
 

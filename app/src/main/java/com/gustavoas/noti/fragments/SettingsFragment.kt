@@ -28,7 +28,7 @@ class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "progressBarStylePortrait" || key == "progressBarStyleLandscape") {
-            if ((key == "progressBarStylePortrait" || key == "progressBarStyleLandscape") && sharedPreferences?.getString(
+            if (sharedPreferences?.getString(
                     key, "linear"
                 ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
             ) {

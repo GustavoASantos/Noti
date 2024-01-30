@@ -14,5 +14,6 @@ open class BasePreferenceFragment : PreferenceFragmentCompat() {
 
         val preferencesView = listView
         preferencesView.setPadding(0, 0, 0, Utils.dpToPx(requireContext(), 100))
+        preferencesView.isVerticalScrollBarEnabled = false
     }
 }

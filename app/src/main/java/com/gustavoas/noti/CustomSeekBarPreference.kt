@@ -59,7 +59,7 @@ class CustomSeekBarPreference(context: Context, attrs: AttributeSet): Preference
 
         preferenceHolder?.setOnClickListener {
             editText?.requestFocus()
-            imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
+            imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED)
         }
 
         editText?.setOnEditorActionListener { _, action, _ ->

@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="36dp"
                 android:inputType="numberSigned"
+                android:textDirection="ltr"
                 android:singleLine="true"
                 android:textAppearance="?android:attr/textAppearanceListItem"
                 android:fadingEdge="horizontal"

@@ -9,6 +9,7 @@
     <string name="prefsAccessibilityPermissionTitle">Udziel uprawnienia w ustawieniach ułatwiania dostępu</string>
     <string name="prefsAccessibilityPermissionSummary">Wymagane do działania na ekranie blokady, jak i w aplikacjach systemowych</string>
     <string name="prefsCategoryCustomization">Dostosuj</string>
+    <string name="prefsProgressBarStyleTitle">Wybierz wygląd paska</string>
     <string name="prefsProgressBarStyleEntryLinear">Linearny pasek postępu</string>
     <string name="prefsProgressBarStyleEntryCircular">Okrągły pasek postępu</string>
     <string name="prefsCategoryTweaks">opcje</string>

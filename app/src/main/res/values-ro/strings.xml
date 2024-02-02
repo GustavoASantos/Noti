@@ -29,6 +29,7 @@
     <string name="prefsShowInLockScreenSummary">Va fi afișat și în modul ecran mereu pornit (always on display)</string>
     <string name="prefsProgressBarMarginTopTitle">Marginea din partea de sus</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Centrată</string>
+    <string name="prefsProgressBarStyleTitle">Alegeți stilul barei de progres</string>
     <string name="prefsProgressBarStyleEntryLinear">Bară liniară de progres</string>
     <string name="prefsProgressBarHeightTitle">Grosimea pistei barei de progres</string>
     <string name="prefsSAWPermissionTitle">Permiteți afișarea peste alte aplicații</string>

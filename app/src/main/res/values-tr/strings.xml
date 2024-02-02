@@ -7,6 +7,7 @@
     <string name="prefsAccessibilityPermissionTitle">Erişilebilirlik izni verin</string>
     <string name="prefsAccessibilityPermissionSummary">Kilit ekranında ve sistem uygulamalarında görüntülenmesi için gereklidir</string>
     <string name="prefsCategoryCustomization">özelleştirme</string>
+    <string name="prefsProgressBarStyleTitle">İlerleme çubuğu stilini seçin</string>
     <string name="prefsProgressBarStyleEntryLinear">Doğrusal ilerleme çubuğu</string>
     <string name="prefsProgressBarStyleEntryCircular">Dairesel ilerleme çubuğu</string>
     <string name="prefsCategoryTweaks">ayarlar</string>
@@ -76,7 +77,5 @@
     <string name="prefsSAWPermissionSummary">İlerleme çubuğunu göstermek için gerekli</string>
     <string name="colorTeal">Teal</string>
     <string name="colorPurple">Mor</string>
-    <string name="prefsProgressBarStylePortraitTitle">Dikey ilerleme çubuğu görünümü</string>
     <string name="prefsProgressBarStyleEntryNone">İlerleme çubuğu yok</string>
-    <string name="prefsProgressBarStyleLandscapeTitle">Yatay ilerleme çubuğu görünümü</string>
 </resources>

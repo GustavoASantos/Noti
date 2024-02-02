@@ -6,6 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.util.DisplayMetrics
+import android.view.Display
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.gustavoas.noti.services.AccessibilityService
@@ -44,10 +46,8 @@ object Utils {
             .putExtra(Intent.EXTRA_SUBJECT, "Noti")
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        if (sharedPreferences.getString("progressBarStylePortrait", "linear") == "circular" 
-            || sharedPreferences.getString("progressBarStyleLandscape", "linear") == "circular") {
-            val resources = context.resources
-            val deviceScreenSize = minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
+        if (sharedPreferences.getString("progressBarStyle", "linear") == "circular") {
+            val deviceScreenSize = minOf(getRealDisplayHeight(context), getRealDisplayWidth(context))
             val location = sharedPreferences.getString("progressBarLocation", "center")
             val size = sharedPreferences.getInt("circularProgressBarSize", 70).plus(10)
             val marginTop = sharedPreferences.getInt("circularProgressBarMarginTop", 70).plus(10)
@@ -91,6 +91,32 @@ object Utils {
                 .choiceMode(SimpleColorDialog.SINGLE_CHOICE)
                 .neg()
                 .show(fragment, tag)
+        }
+    }
+
+    fun getRealDisplayHeight(context: Context): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as android.view.WindowManager
+            windowManager.currentWindowMetrics.bounds.height()
+        } else {
+            val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as android.hardware.display.DisplayManager
+            val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!
+            val metrics = DisplayMetrics()
+            display.getRealMetrics(metrics)
+            metrics.heightPixels
+        }
+    }
+
+    private fun getRealDisplayWidth(context: Context): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as android.view.WindowManager
+            windowManager.currentWindowMetrics.bounds.width()
+        } else {
+            val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as android.hardware.display.DisplayManager
+            val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!
+            val metrics = DisplayMetrics()
+            display.getRealMetrics(metrics)
+            metrics.widthPixels
         }
     }
 }

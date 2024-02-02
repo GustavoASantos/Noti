@@ -15,7 +15,6 @@
     <string name="prefsSAWPermissionSummary">需要以顯示覆蓋的進度條</string>
     <string name="prefsCategoryCustomization">自定義</string>
     <string name="prefsBatteryOptimization">為了讓 noti 可以在背景運作，你可能需要停止電池最佳化並允許自啟動</string>
-    <string name="prefsProgressBarStyleLandscapeTitle">橫向進度條樣式</string>
     <string name="prefsProgressBarStyleEntryNone">無進度條</string>
     <string name="prefsProgressBarStyleEntryLinear">直線進度條</string>
     <string name="prefsProgressBarStyleEntryCircular">圓形進度條</string>
@@ -59,7 +58,6 @@
     <string name="colorGrey">灰色</string>
     <string name="colorWhite">白色</string>
     <string name="prefsSAWPermissionTitle">允許顯示在其他應用程式上方</string>
-    <string name="prefsProgressBarStylePortraitTitle">直向進度條樣式</string>
     <string name="prefsNotificationPermissionSummary">需要以讀取有進度條的通知</string>
     <string name="prefsShowBelowNotchTitle">顯示於缺口下方</string>
     <string name="prefsProgressBarMarginTopSummary">更改距離螢幕上方的間距</string>

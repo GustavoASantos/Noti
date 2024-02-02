@@ -3,7 +3,9 @@ package com.gustavoas.noti.services
 import android.accessibilityservice.AccessibilityService
 import android.animation.ObjectAnimator
 import android.app.KeyguardManager
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.PixelFormat
@@ -11,7 +13,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.view.Display
-import android.view.Gravity
 import android.view.Surface
 import android.view.View
 import android.view.WindowManager
@@ -21,6 +22,7 @@ import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.hardware.display.DisplayManagerCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
@@ -93,9 +95,7 @@ class AccessibilityService : AccessibilityService() {
     private fun showOverlayWithProgress(progress: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val progressBarStyle = sharedPreferences.getString(
-            if (isInPortraitMode()) { "progressBarStylePortrait" } else { "progressBarStyleLandscape" }, "linear"
-        )
+        val progressBarStyle = sharedPreferences.getString("progressBarStyle", "linear")
 
         if(progressBarStyle == "none") {
             if (this::overlayView.isInitialized && overlayView.isShown) {
@@ -391,55 +391,38 @@ class AccessibilityService : AccessibilityService() {
             overlayView = View.inflate(this, R.layout.progress_bar, null)
         }
 
+        val hasSAWPermission = hasSystemAlertWindowPermission(this)
+        val hasAccessibilityPermission = hasAccessibilityPermission(this)
+
         val showInLockscreen = PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean("showInLockScreen", true) && hasAccessibilityPermission(this)
+            .getBoolean("showInLockScreen", true) && hasAccessibilityPermission
 
-        val params: WindowManager.LayoutParams
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this) && !showInLockscreen) {
-            params = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                        or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                PixelFormat.TRANSLUCENT
-            )
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                params.alpha = 0.8f
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission(this)) {
-            params = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                        or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                PixelFormat.TRANSLUCENT
-            )
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && hasSystemAlertWindowPermission(this)) {
+        val windowType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSAWPermission && !showInLockscreen) {
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission) {
+            WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && hasSAWPermission) {
             @Suppress("DEPRECATION")
-            params = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                        or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                        or WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                PixelFormat.TRANSLUCENT
-            )
+            WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY
         } else {
             return
         }
-        params.gravity = Gravity.TOP
+
+        val params = WindowManager.LayoutParams (
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            windowType,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION or
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+            PixelFormat.TRANSLUCENT
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && hasSAWPermission && !showInLockscreen) {
+            params.alpha = 0.8f
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (!showBelowNotch) {
@@ -453,14 +436,42 @@ class AccessibilityService : AccessibilityService() {
 
         if (!overlayView.isShown) {
             windowManager.addView(overlayView, params)
+
+            if (hasSAWPermission) {
+                overlayView.alpha = 0f
+                LocalBroadcastManager.getInstance(this).registerReceiver(
+                    fullscreenDetectionReceiver,
+                    IntentFilter("fullscreenDetectionService")
+                )
+                startService(Intent(this, FullscreenDetectionService::class.java))
+            }
+
+        }
+    }
+
+    private val fullscreenDetectionReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: android.content.Context?, intent: Intent?) {
+            val disableInFullscreen = PreferenceManager.getDefaultSharedPreferences(this@AccessibilityService)
+                .getBoolean("disableInFullScreen", true)
+            val alpha = if (disableInFullscreen) {
+                intent?.getFloatExtra("alpha", 1f) ?: 1f
+            } else {
+                1f
+            }
+
+            overlayView.animate()
+                .alpha(alpha)
+                .setDuration(300)
+                .start()
         }
     }
 
     private fun hideOverlay() {
         if (this::overlayView.isInitialized && overlayView.isShown) {
             windowManager.removeView(overlayView)
-
         }
+        stopService(Intent(this, FullscreenDetectionService::class.java))
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(fullscreenDetectionReceiver)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

@@ -27,7 +27,7 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarStylePortrait" || key == "progressBarStyleLandscape") {
+        if (key == "progressBarStyle") {
             if (sharedPreferences?.getString(
                     key, "linear"
                 ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
@@ -50,7 +50,7 @@ class SettingsFragment : BasePreferenceFragment(),
 
         updateProgressBarStyleVisibility()
 
-        updateShowInLockscreenVisibility()
+        updatePermissionDependentPreferences()
 
         findPreference<Preference>("showForMedia")?.isVisible =
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
@@ -87,7 +87,7 @@ class SettingsFragment : BasePreferenceFragment(),
 
         updateColorPreferenceSummary()
 
-        updateShowInLockscreenVisibility()
+        updatePermissionDependentPreferences()
     }
 
     override fun onDestroy() {
@@ -142,23 +142,20 @@ class SettingsFragment : BasePreferenceFragment(),
     }
 
     private fun updateProgressBarStyleVisibility() {
-        val progressBarStylePortrait = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString("progressBarStylePortrait", "linear")
-        val progressBarStyleLandscape = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString("progressBarStyleLandscape", "linear")
-
-        val anyLinear = progressBarStylePortrait == "linear" || progressBarStyleLandscape == "linear"
-        val anyCircular = progressBarStylePortrait == "circular" || progressBarStyleLandscape == "circular"
+        val progressBarStyle = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .getString("progressBarStyle", "linear")
 
         findPreference<Preference>("CircularBarFragment")?.isVisible =
-            anyCircular
+            progressBarStyle == "circular"
         findPreference<Preference>("LinearBarFragment")?.isVisible =
-            anyLinear
+            progressBarStyle == "linear"
     }
 
-    private fun updateShowInLockscreenVisibility() {
+    private fun updatePermissionDependentPreferences() {
         findPreference<Preference>("showInLockScreen")?.isVisible =
             (hasAccessibilityPermission(requireContext()) || Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+        findPreference<Preference>("disableInFullScreen")?.isVisible =
+            hasSystemAlertWindowPermission(requireContext())
     }
 
     private fun updateSetupVisibility() {

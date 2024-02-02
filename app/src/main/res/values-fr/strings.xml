@@ -33,6 +33,7 @@
     <string name="prefsShowInLockScreenSummary">Cela sera aussi affiché dans l\'always on display</string>
     <string name="prefsProgressBarMarginTopTitle">Marge du haut</string>
     <string name="prefsProgressBarAlignmentEntryCenter">Centré</string>
+    <string name="prefsProgressBarStyleTitle">Sélectionnez le style de la barre de progression</string>
     <string name="prefsProgressBarStyleEntryLinear">Barre de progression linéaire</string>
     <string name="prefsProgressBarHeightTitle">Épaisseur de la barre de progression</string>
     <string name="prefsSAWPermissionTitle">Autoriser l\'affichage par dessus d\'autres applications</string>

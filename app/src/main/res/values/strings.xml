@@ -20,8 +20,7 @@
     <string name="prefsSAWPermissionTitle">Allow displaying over other apps</string>
     <string name="prefsSAWPermissionSummary">Required to display the progress bar overlay</string>
     <string name="prefsCategoryCustomization">customization</string>
-    <string name="prefsProgressBarStylePortraitTitle">Portrait progress bar style</string>
-    <string name="prefsProgressBarStyleLandscapeTitle">Landscape progress bar style</string>
+    <string name="prefsProgressBarStyleTitle">Select progress bar style</string>
     <string name="prefsProgressBarStyleEntryNone">No progress bar</string>
     <string name="prefsProgressBarStyleEntryLinear">Linear progress bar</string>
     <string name="prefsProgressBarStyleEntryCircular">Circular progress bar</string>
@@ -57,6 +56,8 @@
     <string name="prefsShowForMediaSummary">Display progress bar when playing music</string>
     <string name="prefsShowInLockScreenTitle">Show progress bar in lock screen</string>
     <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
+    <string name="prefsDisableInFullScreenTitle">Disable in fullscreen mode</string>
+    <string name="prefsDisableInFullScreenSummary">Hide progress bar in fullscreen apps</string>
     <string name="prefsChangeColorTitle">Change progress bar color</string>
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>

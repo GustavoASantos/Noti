@@ -249,6 +249,13 @@ class NotificationListenerService : NotificationListenerService() {
             return
         }
 
+        val activeNotifications = try {
+            activeNotifications
+        } catch (e: Exception) {
+            // TODO
+            return
+        }
+
         var highestProgress = 0
         for (notification in activeNotifications) {
             if (notification.packageName == packageName) {

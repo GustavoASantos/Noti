@@ -104,7 +104,6 @@ class AccessibilityService : AccessibilityService() {
             return
         }
 
-
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             if (progressBarStyle == "linear") {
                 val showBelowNotch = sharedPreferences.getBoolean("showBelowNotch", false)
@@ -333,10 +332,6 @@ class AccessibilityService : AccessibilityService() {
         }
     }
 
-    private fun isInPortraitMode(): Boolean {
-        return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
-    }
-
     private fun isLocked(): Boolean {
         return keyguardManager.isKeyguardLocked
     }
@@ -435,7 +430,12 @@ class AccessibilityService : AccessibilityService() {
         }
 
         if (!overlayView.isShown) {
-            windowManager.addView(overlayView, params)
+            try {
+                windowManager.addView(overlayView, params)
+            } catch (e: WindowManager.BadTokenException) {
+                // TODO
+                return
+            }
 
             if (hasSAWPermission) {
                 overlayView.alpha = 0f

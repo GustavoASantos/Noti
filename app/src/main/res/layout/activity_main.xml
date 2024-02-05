@@ -21,7 +21,7 @@
             android:background="?android:attr/colorBackground"
             app:contentScrim="?android:attr/colorBackground"
             app:expandedTitleMarginStart="30dp"
-            app:expandedTitleMarginBottom="30dp"
+            app:expandedTitleMarginBottom="28dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.MaterialToolbar

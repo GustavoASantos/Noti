@@ -82,7 +82,7 @@ class FullscreenDetectionService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (this::fullscreenDetectionView.isInitialized  && fullscreenDetectionView.isShown) {
+        if (this::fullscreenDetectionView.isInitialized && fullscreenDetectionView.isShown) {
             windowManager.removeView(fullscreenDetectionView)
             if (fullscreenDetectionView.viewTreeObserver.isAlive) {
                 fullscreenDetectionView.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)

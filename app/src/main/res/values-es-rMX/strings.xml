@@ -9,6 +9,7 @@
     <string name="prefsAccessibilityPermissionTitle">Conceder permisos de accesibilidad</string>
     <string name="prefsAccessibilityPermissionSummary">Necesario para mostrar en la pantalla de bloqueo y las aplicaciones del sistema</string>
     <string name="prefsCategoryCustomization">personalización</string>
+    <string name="prefsProgressBarStyleTitle">Seleccionar el estilo de la barra de progreso</string>
     <string name="prefsProgressBarStyleEntryLinear">Barra de progreso linear</string>
     <string name="prefsProgressBarStyleEntryCircular">Barra de progreso circular</string>
     <string name="prefsCategoryTweaks">ajustes</string>

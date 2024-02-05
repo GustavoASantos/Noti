@@ -10,12 +10,18 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.gustavoas.noti.Utils.composeEmail
+import com.gustavoas.noti.Utils.dpToPx
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
@@ -31,6 +37,8 @@ class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     private val previewFab by lazy { findViewById<ExtendedFloatingActionButton>(R.id.previewFab) }
     private val topAppBar by lazy { findViewById<MaterialToolbar>(R.id.topAppBar) }
+    private val appBarLayout by lazy { findViewById<AppBarLayout>(R.id.appBarLayout) }
+    private var offsetChangeListener: OnOffsetChangedListener? = null
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +52,7 @@ class SettingsActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        if (!sharedPreferences.contains("progressBarStylePortrait") || !sharedPreferences.contains("progressBarStyleLandscape")) {
+        if (!sharedPreferences.contains("progressBarStyle")) {
             setupDeviceConfiguration()
         }
 
@@ -61,10 +69,38 @@ class SettingsActivity : AppCompatActivity(),
         }
 
         updateUpNavigationVisibility()
+
+        ViewCompat.setOnApplyWindowInsetsListener(window.decorView.rootView) { _, insets ->
+            val keyboardInset = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+            if (keyboardInset > 0) {
+                appBarLayout.setExpanded(false, true)
+            }
+            insets
+        }
     }
 
     override fun onStart() {
         super.onStart()
+
+        val collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar)
+        var isVisible = true
+        var scrollRange = -1
+
+        offsetChangeListener =
+            OnOffsetChangedListener { barLayout, verticalOffset ->
+                if (scrollRange == -1) {
+                    scrollRange = barLayout?.totalScrollRange!!
+                }
+                if (scrollRange + verticalOffset < dpToPx(this, 25)) {
+                    collapsingToolbarLayout.title = resources.getString(R.string.app_name_short)
+                    isVisible = true
+                } else if (isVisible) {
+                    collapsingToolbarLayout.title = resources.getString(R.string.app_name)
+                    isVisible = false
+                }
+            }
+
+        appBarLayout.addOnOffsetChangedListener(offsetChangeListener)
 
         if (hasNotificationListenerPermission(this) && (hasAccessibilityPermission(this) || hasSystemAlertWindowPermission(this))) {
             previewFab.visibility = View.VISIBLE
@@ -93,6 +129,14 @@ class SettingsActivity : AppCompatActivity(),
 
                 else -> false
             }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        if (offsetChangeListener != null) {
+            appBarLayout.removeOnOffsetChangedListener(offsetChangeListener!!)
         }
     }
 
@@ -143,8 +187,7 @@ class SettingsActivity : AppCompatActivity(),
                 resources.getXml(xmlResourceId)
             } catch (e: Resources.NotFoundException) {
                 sharedPreferences.edit()
-                    .putString("progressBarStylePortrait", "linear")
-                    .putString("progressBarStyleLandscape", "linear")
+                    .putString("progressBarStyle", "linear")
                     .apply()
                 return
             }
@@ -173,8 +216,7 @@ class SettingsActivity : AppCompatActivity(),
         }
 
         sharedPreferences.edit()
-            .putString("progressBarStylePortrait", "circular")
-            .putString("progressBarStyleLandscape", "circular")
+            .putString("progressBarStyle", "circular")
             .putBoolean("blackBackground", true)
             .putString("progressBarLocation", deviceConfig.location ?: "center")
             .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)
@@ -212,8 +254,10 @@ class SettingsActivity : AppCompatActivity(),
         if (supportFragmentManager.backStackEntryCount > 0) {
             topAppBar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
             topAppBar.setNavigationIconTint(ContextCompat.getColor(this, R.color.text))
+            topAppBar.setTitleMargin(0, 0, dpToPx(this, 40), 0)
         } else {
             topAppBar.navigationIcon = null
+            topAppBar.setTitleMargin(0, 0, 0, 0)
         }
     }
 }

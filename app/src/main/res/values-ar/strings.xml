@@ -9,6 +9,7 @@
     <string name="prefsAccessibilityPermissionTitle">منح إذن إمكانية الوصول</string>
     <string name="prefsAccessibilityPermissionSummary">مطلوب للعرض في شاشة القفل وتطبيقات النظام</string>
     <string name="prefsCategoryCustomization">التخصيص</string>
+    <string name="prefsProgressBarStyleTitle">حدد نمط شريط التقدم</string>
     <string name="prefsProgressBarStyleEntryLinear">شريط تقدم خطي</string>
     <string name="prefsProgressBarStyleEntryCircular">شريط تقدم دائري</string>
     <string name="prefsCategoryTweaks">التعديلات</string>
@@ -77,6 +78,4 @@
     <string name="prefsShowForDownloadsSummary">عرض شريط التقدم عند نقل المحتوى</string>
     <string name="holePunchInstruction">تغيير المحاذاة في تعديلات شريط التقدم الدائري</string>
     <string name="prefsProgressBarStyleEntryNone">لا يوجد شريط تقدم</string>
-    <string name="prefsProgressBarStylePortraitTitle">نمط شريط التقدم العمودي</string>
-    <string name="prefsProgressBarStyleLandscapeTitle">نمط شريط التقدم الأفقي</string>
 </resources>

@@ -82,6 +82,8 @@ class NotificationListenerService : NotificationListenerService() {
                 sendProgressToAccessibilityService(
                     sbn.packageName, percentageProgress, 100, downloadPriority
                 )
+            } else {
+                sendRemovalRequestToAccessibilityService(sbn.packageName)
             }
         }
     }

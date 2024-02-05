@@ -9,6 +9,7 @@
     <string name="prefsAccessibilityPermissionTitle">Даване на разрешение за достъпност</string>
     <string name="prefsAccessibilityPermissionSummary">Изисква се за показване на заключен екран и в системните приложения</string>
     <string name="prefsCategoryCustomization">Персонализиране</string>
+    <string name="prefsProgressBarStyleTitle">Избери стил на лентата за прогрес</string>
     <string name="prefsProgressBarStyleEntryLinear">Линейна лента за прогрес</string>
     <string name="prefsProgressBarStyleEntryCircular">Кръгова лента за прогрес</string>
     <string name="prefsCategoryTweaks">Настройки</string>

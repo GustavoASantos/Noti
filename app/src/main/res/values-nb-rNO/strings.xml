@@ -43,6 +43,7 @@
     <string name="prefsShowInLockScreenTitle">Vis framdriftsfelt på låseskjermen</string>
     <string name="prefsShowInLockScreenSummary">Vil også vises når skjerm ikke skrur seg av</string>
     <string name="prefsProgressBarMarginTopTitle">Margin til toppen</string>
+    <string name="prefsProgressBarStyleTitle">Velg framdriftfeltsstil</string>
     <string name="prefsProgressBarStyleEntryLinear">Lineært framdriftsfelt</string>
     <string name="prefsProgressBarHeightTitle">Tykkelse for framdriftsfeltspor</string>
     <string name="prefsSAWPermissionTitle">Tillat visning over andre programmer</string>

@@ -9,6 +9,7 @@
     <string name="prefsAccessibilityPermissionTitle">אפשר הגדרות נגישות</string>
     <string name="prefsAccessibilityPermissionSummary">נדרש להציג במסך הנעילה ויישומי מערכת</string>
     <string name="prefsCategoryCustomization">התאמה אישית</string>
+    <string name="prefsProgressBarStyleTitle">בחר תצוגה של פס ההתקדמות</string>
     <string name="prefsProgressBarStyleEntryLinear">פס התקדמות ליניארי</string>
     <string name="prefsProgressBarStyleEntryCircular">סרגל התקדמות מעגלי</string>
     <string name="prefsCategoryTweaks">שינויים</string>

@@ -13,8 +13,7 @@
     <string name="prefsAccessibilityPermissionTitle">Conceder permissão de acessibilidade</string>
     <string name="prefsSAWPermissionSummary">Necessário para mostrar o overlay da barra de progresso</string>
     <string name="prefsCategoryCustomization">personalização</string>
-    <string name="prefsProgressBarStylePortraitTitle">Estilo da barra de progresso em modo vertical</string>
-    <string name="prefsProgressBarStyleLandscapeTitle">Estilo da barra de progresso em modo horizontal</string>
+    <string name="prefsProgressBarStyleTitle">Selecionar estilo da barra de progresso</string>
     <string name="prefsProgressBarStyleEntryNone">Nenhuma barra de progresso</string>
     <string name="prefsProgressBarStyleEntryLinear">Barra de progresso linear</string>
     <string name="prefsProgressBarStyleEntryCircular">Barra de progresso circular</string>
@@ -79,4 +78,6 @@
     <string name="prefsShowForMediaSummary">Exibir barra de progresso ao reproduzir música</string>
     <string name="prefsCategoryGeneral">geral</string>
     <string name="holePunchInstruction">Mudar alinhamento em ajustes da barra de progresso circular</string>
+    <string name="prefsDisableInFullScreenTitle">Desativar em ecrã inteiro</string>
+    <string name="prefsDisableInFullScreenSummary">Esconder barra de progresso em aplicações em ecrã inteiro</string>
 </resources>

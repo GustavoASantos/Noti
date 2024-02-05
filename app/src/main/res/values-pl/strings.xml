@@ -9,8 +9,8 @@
     <string name="prefsAccessibilityPermissionTitle">Udziel uprawnienia w ustawieniach ułatwiania dostępu</string>
     <string name="prefsAccessibilityPermissionSummary">Wymagane do działania na ekranie blokady, jak i w aplikacjach systemowych</string>
     <string name="prefsCategoryCustomization">Dostosuj</string>
+    <string name="prefsProgressBarStyleEntryLinear">Liniowy pasek postępu</string>
     <string name="prefsProgressBarStyleTitle">Wybierz wygląd paska</string>
-    <string name="prefsProgressBarStyleEntryLinear">Linearny pasek postępu</string>
     <string name="prefsProgressBarStyleEntryCircular">Okrągły pasek postępu</string>
     <string name="prefsCategoryTweaks">opcje</string>
     <string name="prefsLinearProgressBarTweaks">Ustawienia linearnego paska postępu</string>
@@ -77,4 +77,5 @@
     <string name="prefsShowForDownloadsSummary">Wyświetla pasek postępu gdy pobierasz jakąś zawartość</string>
     <string name="reset">Resetuj</string>
     <string name="holePunchInstruction">Zmień wyrównanie w ustawieniach okrągłego paska postępu</string>
+    <string name="prefsProgressBarStyleEntryNone">Brak paska postępu</string>
 </resources>

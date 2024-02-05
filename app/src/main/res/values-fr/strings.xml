@@ -77,4 +77,7 @@
     <string name="prefsSAWPermissionSummary">Obligatoire pour afficher la barre de progression au premier plan</string>
     <string name="colorTeal">Sarcelle</string>
     <string name="colorPurple">Violet</string>
+    <string name="prefsProgressBarStylePortraitTitle">Style de la barre de progression en mode portrait</string>
+    <string name="prefsProgressBarStyleEntryNone">Pas de barre de progression</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Style de la barre de progression en mode paysage</string>
 </resources>

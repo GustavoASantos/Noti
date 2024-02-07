@@ -5,4 +5,22 @@
     <string name="notificationListenerDescription">Értesítések mutatása előrehaladási sávval</string>
     <string name="reset">Visszaállítása</string>
     <string name="perAppSettingsEmptyView">Nem találtunk előrehaladási sávokat. Az előrehaladási sávokkal rendelkező alkalmazások a készülék használata során kerülnek felfedezésre.</string>
+    <string name="prefsProgressBarStyleTitle">Haladási sáv stílusának kiválasztása</string>
+    <string name="prefsAccessibilityPermissionTitle">Akadálymentesítési engedély megadása</string>
+    <string name="holePunchInstruction">A körkörös előrehaladási sáv beállításának megváltoztatása</string>
+    <string name="prefsCategorySetup">beállítás</string>
+    <string name="prefsCategoryGeneral">általános</string>
+    <string name="prefsShowForDownloadsTitle">Letöltések előrehaladási sávjának megjelenítése</string>
+    <string name="prefsShowForDownloadsSummary">Előrehaladási sáv megjelenítése a tartalom átvitelekor</string>
+    <string name="prefsBatteryOptimization">Lehet, hogy ki kell kapcsolni az akkumulátor optimalizálását és engedélyeznie kell az automatikus indítást, hogy a noti a háttérben működhessen</string>
+    <string name="prefsNotificationPermissionTitle">Értesítésekhez való hozzáférés engedélyezése</string>
+    <string name="prefsNotificationPermissionSummary">Szükséges az értesítések olvasásához előrehaladási sávval</string>
+    <string name="prefsAccessibilityPermissionSummary">A zárolási képernyőn és a rendszeralkalmazásokban való megjelenítéshez szükséges</string>
+    <string name="prefsSAWPermissionTitle">Más alkalmazások feletti megjelenítés engedélyezése</string>
+    <string name="prefsSAWPermissionSummary">Az előrehaladási sáv megjelenítése szükséges</string>
+    <string name="prefsCategoryCustomization">testreszabás</string>
+    <string name="prefsProgressBarStyleEntryNone">Nincs előrehaladási sáv</string>
+    <string name="prefsProgressBarStyleEntryLinear">Lineáris előrehaladási sáv</string>
+    <string name="prefsProgressBarStyleEntryCircular">Kör alakú előrehaladási sáv</string>
+    <string name="prefsCategoryTweaks">finomhangolások</string>
 </resources>

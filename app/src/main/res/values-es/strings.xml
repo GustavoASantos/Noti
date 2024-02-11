@@ -38,4 +38,10 @@
     <string name="prefsProgressBarAlignmentTitle">Cambiar la alineación de la barra de progreso</string>
     <string name="notificationListenerDescription">Lea notificaciones con una barra de progreso</string>
     <string name="prefsProgressBarMarginLeftSummary">Cambia el margen desde la izquierda de la pantalla</string>
+    <string name="colorOrange">Naranja</string>
+    <string name="colorDeepOrange">Naranja Oscuro</string>
+    <string name="colorBrown">Marrón</string>
+    <string name="colorBlack">Negro</string>
+    <string name="colorWhite">Blanco</string>
+    <string name="colorGrey">Gris</string>
 </resources>

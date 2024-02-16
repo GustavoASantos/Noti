@@ -1,4 +1,4 @@
-package com.gustavoas.noti
+package com.gustavoas.noti.preferences
 
 import android.content.Context
 import android.content.Intent

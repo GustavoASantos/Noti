@@ -27,7 +27,7 @@
         </Preference>
 
         <!--Dialog required for google to approve the app-->
-        <com.gustavoas.noti.AccessibilityPermissionDialog
+        <com.gustavoas.noti.preferences.AccessibilityPermissionDialog
             android:key="accessibilityPermission"
             android:title="@string/prefsAccessibilityPermissionTitle"
             android:summary="@string/prefsAccessibilityPermissionSummary"
@@ -54,16 +54,14 @@
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
 
-        <ListPreference
+        <com.gustavoas.noti.preferences.BarStylesListPreference
             android:key="progressBarStyle"
             android:title="@string/prefsProgressBarStyleTitle"
-            app:useSimpleSummaryProvider="true"
             app:singleLineTitle="false"
             android:defaultValue="linear"
             app:entries="@array/progressBarStyle"
             app:entryValues="@array/progressBarStyleValues"
-            app:icon="@drawable/ic_progress_bar_style"
-            app:negativeButtonText=""/>
+            app:icon="@drawable/ic_progress_bar_style" />
 
         <Preference
             android:key="CircularBarFragment"

@@ -42,6 +42,8 @@
     <string name="prefsSAWPermissionTitle">Concedi per mostrare Noti sopra le app</string>
     <string name="prefsSAWPermissionSummary">Richiesto per mostrare l\'overlay della barra di avanzamento</string>
     <string name="prefsCategoryCustomization">personalizzazione</string>
+    <string name="prefsProgressBarStylePortraitTitle">Barra di avanzamento in modalità verticale</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Barra di avanzamento in modalità orizzontale</string>
     <string name="prefsProgressBarStyleEntryNone">Nessuna barra di avanzamento</string>
     <string name="prefsProgressBarStyleEntryLinear">Barra di avanzamento lineare</string>
     <string name="prefsProgressBarStyleEntryCircular">Barra di avanzamento circolare</string>

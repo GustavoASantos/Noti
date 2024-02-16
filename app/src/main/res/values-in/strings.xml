@@ -10,6 +10,8 @@
     <string name="prefsAccessibilityPermissionSummary">Diperlukan untuk menampilkan di layar kunci dan aplikasi sistem</string>
     <string name="prefsCategoryCustomization">Kustomisasi</string>
     <string name="prefsProgressBarStyleTitle">Pilih gaya progress bar</string>
+    <string name="prefsProgressBarStylePortraitTitle">Tampilan bar progres di portrait</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Tampilan bar progres di landskap</string>
     <string name="prefsProgressBarStyleEntryLinear">Progress bar batang</string>
     <string name="prefsProgressBarStyleEntryCircular">Progress bar lingkaran</string>
     <string name="prefsCategoryTweaks">Atur</string>

@@ -95,7 +95,18 @@ class AccessibilityService : AccessibilityService() {
     private fun showOverlayWithProgress(progress: Int) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val progressBarStyle = sharedPreferences.getString("progressBarStyle", "linear")
+        val progressBarStyle =
+            if (sharedPreferences.getBoolean("advancedProgressBarStyle", false)) {
+                sharedPreferences.getString(
+                    if (isInPortraitMode()) {
+                        "progressBarStylePortrait"
+                    } else {
+                        "progressBarStyleLandscape"
+                    }, "linear"
+                )
+            } else {
+                sharedPreferences.getString("progressBarStyle", "linear")
+            }
 
         if(progressBarStyle == "none") {
             if (this::overlayView.isInitialized && overlayView.isShown) {
@@ -330,6 +341,10 @@ class AccessibilityService : AccessibilityService() {
             progressBar.trackCornerRadius = 0
             circularProgressBar.trackCornerRadius = 0
         }
+    }
+
+    private fun isInPortraitMode(): Boolean {
+        return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
     }
 
     private fun isLocked(): Boolean {

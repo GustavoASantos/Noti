@@ -14,6 +14,9 @@
     <string name="prefsSAWPermissionSummary">Necessário para mostrar o overlay da barra de progresso</string>
     <string name="prefsCategoryCustomization">personalização</string>
     <string name="prefsProgressBarStyleTitle">Selecionar estilo da barra de progresso</string>
+    <string name="prefsProgressBarStylePortraitTitle">Estilo da barra de progresso em modo vertical</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Estilo da barra de progresso em modo horizontal</string>
+    <string name="advancedOptions">Opções Avançadas</string>
     <string name="prefsProgressBarStyleEntryNone">Nenhuma barra de progresso</string>
     <string name="prefsProgressBarStyleEntryLinear">Barra de progresso linear</string>
     <string name="prefsProgressBarStyleEntryCircular">Barra de progresso circular</string>

@@ -1,4 +1,4 @@
-package com.gustavoas.noti
+package com.gustavoas.noti.preferences
 
 import android.content.Context
 import android.text.Editable
@@ -11,8 +11,9 @@ import android.widget.EditText
 import android.widget.SeekBar
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
+import com.gustavoas.noti.R
 
-class CustomSeekBarPreference(context: Context, attrs: AttributeSet): Preference(context, attrs) {
+class SeekBarPreference(context: Context, attrs: AttributeSet): Preference(context, attrs) {
     private var preferenceHolder: View? = null
     private var seekBar: SeekBar? = null
     private var editText: EditText? = null

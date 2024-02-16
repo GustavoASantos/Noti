@@ -21,6 +21,9 @@
     <string name="prefsSAWPermissionSummary">Required to display the progress bar overlay</string>
     <string name="prefsCategoryCustomization">customization</string>
     <string name="prefsProgressBarStyleTitle">Select progress bar style</string>
+    <string name="prefsProgressBarStylePortraitTitle">Portrait progress bar style</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Landscape progress bar style</string>
+    <string name="advancedOptions">Advanced Options</string>
     <string name="prefsProgressBarStyleEntryNone">No progress bar</string>
     <string name="prefsProgressBarStyleEntryLinear">Linear progress bar</string>
     <string name="prefsProgressBarStyleEntryCircular">Circular progress bar</string>

@@ -19,28 +19,28 @@
             app:entryValues="@array/progressBarLocationValues"
             app:negativeButtonText=""/>
 
-        <com.gustavoas.noti.CustomSeekBarPreference
+        <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarSize"
             android:title="@string/prefsProgressBarSizeTitle"
             android:summary="@string/prefsProgressBarSizeSummary"
             app:singleLineTitle="false"
             app:icon="@drawable/ic_size"/>
 
-        <com.gustavoas.noti.CustomSeekBarPreference
+        <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarMarginTop"
             android:title="@string/prefsProgressBarMarginTopTitle"
             android:summary="@string/prefsProgressBarMarginTopSummary"
             app:singleLineTitle="false"
             app:icon="@drawable/ic_margin_top"/>
 
-        <com.gustavoas.noti.CustomSeekBarPreference
+        <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarMarginLeft"
             android:title="@string/prefsProgressBarMarginLeftTitle"
             android:summary="@string/prefsProgressBarMarginLeftSummary"
             app:singleLineTitle="false"
             app:icon="@drawable/ic_margin_left"/>
 
-        <com.gustavoas.noti.CustomSeekBarPreference
+        <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarMarginRight"
             android:title="@string/prefsProgressBarMarginRightTitle"
             android:summary="@string/prefsProgressBarMarginRightSummary"

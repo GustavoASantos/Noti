@@ -3,6 +3,7 @@ package com.gustavoas.noti.fragments
 import android.content.ComponentName
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,13 +12,13 @@ import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
-import com.gustavoas.noti.AccessibilityDialogPrefCompat
-import com.gustavoas.noti.AccessibilityPermissionDialog
 import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import com.gustavoas.noti.Utils.showColorDialog
+import com.gustavoas.noti.preferences.AccessibilityDialogPrefCompat
+import com.gustavoas.noti.preferences.AccessibilityPermissionDialog
 import com.gustavoas.noti.services.NotificationListenerService
 import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
 import eltos.simpledialogfragment.SimpleDialog
@@ -27,8 +28,8 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 class SettingsFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener, SimpleDialog.OnDialogResultListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarStyle") {
-            if (sharedPreferences?.getString(
+        if (key == "progressBarStyle" || key == "progressBarStylePortrait" || key == "progressBarStyleLandscape" || key == "advancedProgressBarStyle") {
+            if (key != "advancedProgressBarStyle" && sharedPreferences?.getString(
                     key, "linear"
                 ) == "circular" && sharedPreferences.getBoolean("showHolePunchInstruction", true)
             ) {
@@ -37,7 +38,7 @@ class SettingsFragment : BasePreferenceFragment(),
                 ).show()
                 sharedPreferences.edit().putBoolean("showHolePunchInstruction", false).apply()
             }
-            updateProgressBarStyleVisibility()
+            updateProgressBarStyle()
         } else if (key == "progressBarColor") {
             updateColorPreferenceSummary()
         }
@@ -48,7 +49,7 @@ class SettingsFragment : BasePreferenceFragment(),
 
         updateSetupVisibility()
 
-        updateProgressBarStyleVisibility()
+        updateProgressBarStyle()
 
         updatePermissionDependentPreferences()
 
@@ -141,14 +142,40 @@ class SettingsFragment : BasePreferenceFragment(),
             colorName ?: "#${Integer.toHexString(color).drop(2).uppercase()}"
     }
 
-    private fun updateProgressBarStyleVisibility() {
-        val progressBarStyle = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString("progressBarStyle", "linear")
+    private fun updateProgressBarStyle() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val advancedStyleOptions = sharedPreferences.getBoolean("advancedProgressBarStyle", false)
+        val progressBarStyle = sharedPreferences.getString("progressBarStyle", "linear")
+        val progressBarStylePortrait =
+            sharedPreferences.getString("progressBarStylePortrait", "linear")
+        val progressBarStyleLandscape =
+            sharedPreferences.getString("progressBarStyleLandscape", "linear")
 
-        findPreference<Preference>("CircularBarFragment")?.isVisible =
-            progressBarStyle == "circular"
-        findPreference<Preference>("LinearBarFragment")?.isVisible =
-            progressBarStyle == "linear"
+        val anyLinear =
+            (!advancedStyleOptions && progressBarStyle == "linear") || (advancedStyleOptions && (progressBarStylePortrait == "linear" || progressBarStyleLandscape == "linear"))
+        val anyCircular =
+            (!advancedStyleOptions && progressBarStyle == "circular") || (advancedStyleOptions && (progressBarStylePortrait == "circular" || progressBarStyleLandscape == "circular"))
+
+        findPreference<Preference>("CircularBarFragment")?.isVisible = anyCircular
+        findPreference<Preference>("LinearBarFragment")?.isVisible = anyLinear
+
+        findPreference<Preference>("progressBarStyle")?.summary = if (advancedStyleOptions) {
+            if (resources.configuration.orientation == ORIENTATION_LANDSCAPE) {
+                resources.getStringArray(R.array.progressBarStyle).getOrNull(
+                    resources.getStringArray(R.array.progressBarStyleValues)
+                        .indexOf(progressBarStyleLandscape)
+                )
+            } else {
+                resources.getStringArray(R.array.progressBarStyle).getOrNull(
+                    resources.getStringArray(R.array.progressBarStyleValues)
+                        .indexOf(progressBarStylePortrait)
+                )
+            }
+        } else {
+            resources.getStringArray(R.array.progressBarStyle).getOrNull(
+                resources.getStringArray(R.array.progressBarStyleValues).indexOf(progressBarStyle)
+            )
+        }
     }
 
     private fun updatePermissionDependentPreferences() {

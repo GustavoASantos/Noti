@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="perAppSettingsEmptyView">No se encontraron barras de progreso. Noti descubrirá barras de progreso conforme uses tu teléfono.</string>
+    <string name="reset">Reset</string>
+    <string name="holePunchInstruction">Cambiar la alineación en barras de progreso circulares</string>
+    <string name="prefsCategorySetup">Primeros Pasos</string>
+    <string name="prefsCategoryGeneral">General</string>
+    <string name="prefsShowForDownloadsTitle">Mostrar barras de progreso para descargas</string>
+    <string name="prefsShowForDownloadsSummary">Mostrar barras de progreso para la transferencia de contenido</string>
+    <string name="prefsNotificationPermissionTitle">Permite el acceso a las notificaciones</string>
+    <string name="prefsAccessibilityPermissionTitle">Permite los servicios de accesibilidad</string>
+    <string name="prefsAccessibilityPermissionSummary">Necesarios para mostrar noti en la pantalla de bloqueo y sobre aplicaciones del sistema</string>
+    <string name="prefsSAWPermissionTitle">Permite mostrar a noti sobre otras apps</string>
+    <string name="prefsSAWPermissionSummary">Necesario para mostrar la superposición de las barras de progreso</string>
+    <string name="prefsCategoryCustomization">Personalización</string>
+    <string name="prefsProgressBarStyleTitle">Selecciona estilos para la barra de progreso</string>
+    <string name="prefsProgressBarStyleEntryNone">Ninguno</string>
+    <string name="prefsProgressBarStyleEntryLinear">Barra lineal</string>
+    <string name="prefsCategoryTweaks">Ajustes</string>
+    <string name="prefsLinearProgressBarTweaks">Ajustes de la barra de progreso lineal</string>
+    <string name="prefsProgressBarHeightSummary">Cambiar el tamaño de la barra de progreso</string>
+    <string name="prefsProgressBarHeightTitle">Grosor de la barra de progreso</string>
+    <string name="prefsShowBelowNotchTitle">Mostrar bajo la muesca de la pantalla</string>
+    <string name="prefsShowBelowNotchSummary">Mostrar noti debajo de cualquier muesca o perforación</string>
+    <string name="prefsCircularProgressBarTweaks">Ajustes de la barra circular</string>
+    <string name="prefsProgressBarSizeTitle">Tamaño de la barra</string>
+    <string name="prefsProgressBarSizeSummary">Cambia la escala de la barra</string>
+    <string name="prefsProgressBarMarginTopTitle">Margen superior</string>
+    <string name="prefsProgressBarMarginTopSummary">Cambia el margen desde el tope de la pantalla</string>
+    <string name="prefsProgressBarMarginLeftTitle">Margen izquierdo</string>
+    <string name="prefsProgressBarMarginRightTitle">Margen derecho</string>
+    <string name="prefsProgressBarMarginRightSummary">Cambia el margen desde la derecha de la pantalla</string>
+    <string name="menuReportBug">Reportar un error</string>
+    <string name="settingsPreviewFab">Vista previa</string>
+    <string name="prefsBatteryOptimization">Puede que necesites desactivar las optimizaciones de batería para noti, así como permitir el inicio automático, para que funcione de fondo</string>
+    <string name="prefsNotificationPermissionSummary">Necesario para leer las notificaciones que contengan barras de progreso</string>
+    <string name="prefsProgressBarStyleEntryCircular">Barra circular</string>
+    <string name="prefsProgressBarAlignmentTitle">Cambiar la alineación de la barra de progreso</string>
+    <string name="notificationListenerDescription">Lea notificaciones con una barra de progreso</string>
+    <string name="prefsProgressBarMarginLeftSummary">Cambia el margen desde la izquierda de la pantalla</string>
+    <string name="colorOrange">Naranja</string>
+    <string name="colorDeepOrange">Naranja Oscuro</string>
+    <string name="colorBrown">Marrón</string>
+    <string name="colorBlack">Negro</string>
+    <string name="colorWhite">Blanco</string>
+    <string name="colorGrey">Gris</string>
+</resources>

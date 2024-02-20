@@ -82,4 +82,5 @@
     <string name="prefsProgressBarStyleEntryNone">İlerleme çubuğu yok</string>
     <string name="prefsDisableInFullScreenTitle">Tam ekran modunda devre dışı bırak</string>
     <string name="prefsDisableInFullScreenSummary">Tam ekran uygulamalarda ilerleme çubuğunu gizle</string>
+    <string name="advancedOptions">Gelişmiş Seçenekler</string>
 </resources>

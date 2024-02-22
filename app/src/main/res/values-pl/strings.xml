@@ -80,4 +80,7 @@
     <string name="reset">Resetuj</string>
     <string name="holePunchInstruction">Zmień wyrównanie w ustawieniach okrągłego paska postępu</string>
     <string name="prefsProgressBarStyleEntryNone">Brak paska postępu</string>
+    <string name="advancedOptions">Zaawansowane opcje</string>
+    <string name="prefsDisableInFullScreenSummary">Wyłącz pasek postępu w aplikacjach pełnoekranowych</string>
+    <string name="prefsDisableInFullScreenTitle">Wyłącz w trybie pełnoekranowym</string>
 </resources>

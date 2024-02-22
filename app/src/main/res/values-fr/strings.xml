@@ -78,4 +78,9 @@
     <string name="colorTeal">Sarcelle</string>
     <string name="colorPurple">Violet</string>
     <string name="prefsProgressBarStyleEntryNone">Pas de barre de progression</string>
+    <string name="prefsProgressBarStylePortraitTitle">Style de la barre de progression en mode portrait</string>
+    <string name="advancedOptions">Options avancés</string>
+    <string name="prefsDisableInFullScreenSummary">Cacher la barre de progression dans les applications en plein écran</string>
+    <string name="prefsDisableInFullScreenTitle">Désactiver en mode plein écran</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Style de la barre de progression en mode paysage</string>
 </resources>

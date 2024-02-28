@@ -116,12 +116,19 @@ class AccessibilityService : AccessibilityService() {
         }
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
-            if (progressBarStyle == "linear") {
-                val showBelowNotch = sharedPreferences.getBoolean("showBelowNotch", false)
-                inflateOverlay(showBelowNotch)
+            inflateOverlay()
+        }
+
+        val showBelowNotch =
+            sharedPreferences.getBoolean("showBelowNotch", false) && progressBarStyle == "linear"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val params = overlayView.layoutParams as WindowManager.LayoutParams
+            params.layoutInDisplayCutoutMode = if (showBelowNotch) {
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             } else {
-                inflateOverlay()
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             }
+            windowManager.updateViewLayout(overlayView, params)
         }
 
         progressBar = overlayView.findViewById(R.id.progressBar)
@@ -396,7 +403,7 @@ class AccessibilityService : AccessibilityService() {
         }
     }
 
-    private fun inflateOverlay(showBelowNotch: Boolean = false) {
+    private fun inflateOverlay() {
         if (!this::overlayView.isInitialized) {
             overlayView = View.inflate(this, R.layout.progress_bar, null)
         }
@@ -434,20 +441,10 @@ class AccessibilityService : AccessibilityService() {
             params.alpha = 0.8f
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            if (!showBelowNotch) {
-                params.layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            } else {
-                params.layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
-            }
-        }
-
         if (!overlayView.isShown) {
             try {
                 windowManager.addView(overlayView, params)
-            } catch (e: WindowManager.BadTokenException) {
+            } catch (e: Exception) {
                 // TODO
                 return
             }

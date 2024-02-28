@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        style="?android:attr/windowTitleStyle"
-        android:id="@+id/portraitStyleTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prefsProgressBarStylePortraitTitle"
-        android:paddingStart="?dialogPreferredPadding"
-        android:paddingEnd="?dialogPreferredPadding"
-        android:paddingTop="18dp"
-        android:paddingBottom="8dp" />
-
-    <ListView
-        android:id="@+id/portraitStyleOptions"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@null"
-        android:choiceMode="singleChoice"
-        android:paddingBottom="8dp"/>
+        android:orientation="vertical">
 
-    <TextView
-        style="?android:attr/windowTitleStyle"
-        android:id="@+id/landscapeStyleTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prefsProgressBarStyleLandscapeTitle"
-        android:paddingStart="?dialogPreferredPadding"
-        android:paddingEnd="?dialogPreferredPadding"
-        android:paddingBottom="8dp"/>
+        <TextView
+            style="?android:attr/windowTitleStyle"
+            android:id="@+id/portraitStyleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prefsProgressBarStylePortraitTitle"
+            android:singleLine="false"
+            android:paddingStart="?dialogPreferredPadding"
+            android:paddingEnd="?dialogPreferredPadding"
+            android:paddingTop="18dp"
+            android:paddingBottom="8dp" />
 
-    <ListView
-        android:id="@+id/landscapeStyleOptions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:choiceMode="singleChoice"/>
+        <ListView
+            android:id="@+id/portraitStyleOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:choiceMode="singleChoice"
+            android:paddingBottom="8dp"/>
 
-</LinearLayout>
+        <TextView
+            style="?android:attr/windowTitleStyle"
+            android:id="@+id/landscapeStyleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prefsProgressBarStyleLandscapeTitle"
+            android:singleLine="false"
+            android:paddingStart="?dialogPreferredPadding"
+            android:paddingEnd="?dialogPreferredPadding"
+            android:paddingBottom="8dp"/>
+
+        <ListView
+            android:id="@+id/landscapeStyleOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:choiceMode="singleChoice"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

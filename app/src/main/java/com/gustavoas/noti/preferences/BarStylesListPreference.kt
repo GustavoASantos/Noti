@@ -3,6 +3,7 @@ package com.gustavoas.noti.preferences
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
@@ -40,6 +41,11 @@ class BarStylesListPreference(context: Context, attrs: AttributeSet?) : ListPref
         val adapter = ArrayAdapter(context, androidx.appcompat.R.layout.select_dialog_singlechoice_material, options)
         portraitStyleListview.adapter = adapter
         landscapeStyleListview.adapter = adapter
+
+        val view = adapter.getView(0, null, portraitStyleListview)
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+        portraitStyleListview.layoutParams.height = view.measuredHeight * adapter.count
+        landscapeStyleListview.layoutParams.height = view.measuredHeight * adapter.count
 
         val sharedPreferences = preferenceManager.sharedPreferences ?: return
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notificationListenerDescription">Liest Benachrichtigungen mit einem Fortschrittsbalken</string>
+    <string name="perAppSettingsEmptyView">Keine Fortschrittsbalken gefunden. Apps mit Fortschrittsbalken werden bei der Verwendung Ihres Geräts erkannt.</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="prefsCategorySetup">Aufbau</string>
+    <string name="prefsCategoryGeneral">Allgemein</string>
+    <string name="prefsShowForDownloadsTitle">Downloads in Fortschrittsbalken anzeigen</string>
+    <string name="prefsShowForDownloadsSummary">Fortschrittsbalken bei Inhaltsübertragung anzeigen</string>
+    <string name="prefsNotificationPermissionTitle">Erlaube Benachrichtigungen</string>
+    <string name="prefsNotificationPermissionSummary">Erforderlich, um Benachrichtigungen mit einem Fortschrittsbalken zu lesen</string>
+    <string name="prefsAccessibilityPermissionTitle">Zugriffsberechtigung erteilen</string>
+    <string name="prefsAccessibilityPermissionSummary">Erforderlich für die Anzeige im Sperrbildschirm und System-Apps</string>
+    <string name="prefsSAWPermissionTitle">Anzeigen über andere Apps erlauben</string>
+    <string name="prefsSAWPermissionSummary">Erforderlich für die Anzeige des Fortschrittsbalken-Overlays</string>
+    <string name="prefsCategoryCustomization">Anpassung</string>
+    <string name="prefsProgressBarStyleTitle">Fortschrittsbalkenstil auswählen</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Fortschrittsbalken im Querformat</string>
+    <string name="advancedOptions">Erweiterte Optionen</string>
+    <string name="prefsProgressBarStyleEntryNone">Keinen Fortschrittsbalken</string>
+    <string name="prefsProgressBarStyleEntryLinear">Linearer Fortschrittsbalken</string>
+    <string name="prefsProgressBarStyleEntryCircular">Kreisförmiger Fortschrittsbalken</string>
+    <string name="prefsLinearProgressBarTweaks">Lineare Fortschrittsanzeige optimiert</string>
+    <string name="prefsProgressBarHeightTitle">Dicke des Fortschrittsbalken</string>
+    <string name="prefsProgressBarHeightSummary">Größe der Spur des Fortschrittsbalkens ändern</string>
+    <string name="prefsShowBelowNotchSummary">Fortschrittsbalken unter jeder Kerbe oder Lochung anzeigen</string>
+    <string name="menuReportBug">Fehler melden</string>
+    <string name="settingsPreviewFab">Vorschau</string>
+    <string name="holePunchInstruction">Ändern Sie die Ausrichtung in kreisförmigen Fortschrittsleisten-Tweaks</string>
+    <string name="prefsBatteryOptimization">Möglicherweise müssen Sie die Batterieoptimierung deaktivieren und Autostart für NOTI im Hintergrund ermöglichen</string>
+    <string name="prefsProgressBarStylePortraitTitle">Fortschrittsbalken im Hochformat</string>
+    <string name="prefsCategoryTweaks">Anpassungen</string>
+    <string name="prefsShowBelowNotchTitle">Unterhalb des Displayausschnitts anzeigen</string>
+</resources>

@@ -52,13 +52,13 @@ class NotificationListenerService : NotificationListenerService() {
             if (sortKey != null) {
                 if (sortKey.contains("RUNNING")) {
                     val splitKey = sortKey.split("|")
-                    val elapsedTime = splitKey.firstOrNull { it.contains("⏳") } ?: return
+                    val timeLeft = splitKey.firstOrNull { it.contains("⏳") } ?: return
                     val totalTime = splitKey.firstOrNull { it.contains("Σ") } ?: return
-                    val elapsedTimeMillis = parseTimeStringToMillis(elapsedTime.substringAfter("⏳"))
+                    val timeLeftMillis = parseTimeStringToMillis(timeLeft.substringAfter("⏳"))
                     val totalTimeMillis = parseTimeStringToMillis(totalTime.substringAfter("Σ"))
 
                     timerHandler.removeCallbacksAndMessages(null)
-                    startUpdatingTimedPosition(sbn.packageName, elapsedTimeMillis, totalTimeMillis, -1f, timerPriority, timerHandler)
+                    startUpdatingTimedPosition(sbn.packageName, timeLeftMillis, totalTimeMillis, -1f, timerPriority, timerHandler)
                 } else if (sortKey.contains("PAUSED")) {
                     timerHandler.removeCallbacksAndMessages(null)
                     sendRemovalRequestToAccessibilityService(sbn.packageName)
@@ -123,17 +123,16 @@ class NotificationListenerService : NotificationListenerService() {
                 if (state?.state == PlaybackState.STATE_PLAYING && showForMedia) {
                     startUpdatingTimedPosition(
                         mediaController?.packageName ?: "",
-                        state.position,
+                        mediaController?.playbackState?.position ?: 0,
                         mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
-                        state.playbackSpeed,
+                        mediaController?.playbackState?.playbackSpeed ?: 1f,
                         mediaPriority,
                         mediaHandler
                     )
-                } else {
-                    sendRemovalRequestToAccessibilityService(mediaController?.packageName ?: "")
-                    mediaHandler.postDelayed({
-                        stopUpdatingMediaPosition()
-                    }, 1000)
+                } else if (state?.state == PlaybackState.STATE_NONE || state?.state == PlaybackState.STATE_STOPPED ||
+                    state?.state == PlaybackState.STATE_PAUSED || state?.state == PlaybackState.STATE_ERROR
+                ) {
+                    stopUpdatingMediaPosition()
                 }
             }
         }
@@ -168,29 +167,28 @@ class NotificationListenerService : NotificationListenerService() {
         priorityLevel: Int,
         handler: Handler
     ) {
+        val updateInterval = 1000
         var currProgress = initialPosition
+        val initialTime = System.currentTimeMillis()
         val runnable = object : Runnable {
             override fun run() {
                 if (currProgress in 0..duration) {
-                    val progressBarMax = resources.getInteger(R.integer.progress_bar_max)
-                    val progressNormalized = if (currProgress in 1 .. duration) {
-                        (currProgress.toFloat() / duration.toFloat() * progressBarMax).roundToInt()
-                    } else {
-                        0
-                    }
-                    sendProgressToAccessibilityService(
-                        packageName,
-                        progressNormalized,
-                        progressBarMax,
-                        priorityLevel
-                    )
-                    val updateInterval = 1000
-                    currProgress += (updateInterval * speed).toInt()
-                    if (speed > 0 && duration - currProgress in 0..(updateInterval * speed).toInt()) {
+                    val currTime = System.currentTimeMillis()
+
+                    currProgress = (initialPosition + (currTime - initialTime) * speed).toLong()
+                    if (speed > 0 && duration - currProgress in 1 until (updateInterval * speed).toInt()) {
                         currProgress = duration
-                    } else if (speed < 0 && currProgress in 1 until updateInterval) {
+                    } else if (speed < 0 && currProgress in 2..updateInterval) {
                         currProgress = 1
                     }
+
+                    sendProgressToAccessibilityService(
+                        packageName,
+                        currProgress.toInt(),
+                        duration.toInt(),
+                        priorityLevel
+                    )
+
                     handler.postDelayed(this, updateInterval.toLong())
                 }
             }

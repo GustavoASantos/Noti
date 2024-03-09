@@ -487,6 +487,7 @@ class AccessibilityService : AccessibilityService() {
         }
         stopService(Intent(this, FullscreenDetectionService::class.java))
         LocalBroadcastManager.getInstance(this).unregisterReceiver(fullscreenDetectionReceiver)
+        stopSelf()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

@@ -27,8 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@null"
-            android:choiceMode="singleChoice"
-            android:paddingBottom="8dp"/>
+            android:choiceMode="singleChoice" />
 
         <TextView
             style="?android:attr/windowTitleStyle"
@@ -39,6 +38,7 @@
             android:singleLine="false"
             android:paddingStart="?dialogPreferredPadding"
             android:paddingEnd="?dialogPreferredPadding"
+            android:paddingTop="8dp"
             android:paddingBottom="8dp"/>
 
         <ListView

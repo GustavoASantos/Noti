@@ -42,10 +42,16 @@ class BarStylesListPreference(context: Context, attrs: AttributeSet?) : ListPref
         portraitStyleListview.adapter = adapter
         landscapeStyleListview.adapter = adapter
 
-        val view = adapter.getView(0, null, portraitStyleListview)
-        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-        portraitStyleListview.layoutParams.height = view.measuredHeight * adapter.count
-        landscapeStyleListview.layoutParams.height = view.measuredHeight * adapter.count
+        var viewHeight = 0
+
+        for (i in 0 until adapter.count) {
+            val view = adapter.getView(i, null, portraitStyleListview)
+            view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+            viewHeight += view.measuredHeight
+        }
+
+        portraitStyleListview.layoutParams.height = viewHeight
+        landscapeStyleListview.layoutParams.height = viewHeight
 
         val sharedPreferences = preferenceManager.sharedPreferences ?: return
 

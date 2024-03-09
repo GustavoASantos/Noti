@@ -2,7 +2,7 @@
 <resources>
     <string name="perAppSettingsEmptyView">No se encontraron barras de progreso. Noti descubrirá barras de progreso conforme uses tu teléfono.</string>
     <string name="reset">Reset</string>
-    <string name="holePunchInstruction">Cambiar la alineación en barras de progreso circulares</string>
+    <string name="holePunchInstruction">Cambiar la alineación en los ajustes de la barra de progreso circular</string>
     <string name="prefsCategorySetup">Primeros Pasos</string>
     <string name="prefsCategoryGeneral">General</string>
     <string name="prefsShowForDownloadsTitle">Mostrar barras de progreso para descargas</string>

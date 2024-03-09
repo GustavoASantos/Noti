@@ -123,12 +123,15 @@ class AccessibilityService : AccessibilityService() {
             sharedPreferences.getBoolean("showBelowNotch", false) && progressBarStyle == "linear"
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val params = overlayView.layoutParams as WindowManager.LayoutParams
-            params.layoutInDisplayCutoutMode = if (showBelowNotch) {
+            val displayCutoutMode = if (showBelowNotch) {
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             } else {
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             }
-            windowManager.updateViewLayout(overlayView, params)
+            if (params.layoutInDisplayCutoutMode != displayCutoutMode) {
+                params.layoutInDisplayCutoutMode = displayCutoutMode
+                windowManager.updateViewLayout(overlayView, params)
+            }
         }
 
         progressBar = overlayView.findViewById(R.id.progressBar)

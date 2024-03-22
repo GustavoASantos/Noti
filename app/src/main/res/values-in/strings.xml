@@ -34,4 +34,21 @@
     <string name="prefsSAWPermissionTitle">Izinkan untuk menampilkan di atas aplikasi lain</string>
     <string name="perAppSettingsEmptyView">Bar progres tidak ditemukan. Aplikasi dengan bar progres akan muncul saat kamu menggunakan perangkatmu</string>
     <string name="prefsSAWPermissionSummary">Diperlukan untuk menampilkan bar progres</string>
+    <string name="advancedOptions">Opsi lanjutan</string>
+    <string name="prefsProgressBarSizeSummary">Ubah ukuran bar progres</string>
+    <string name="prefsProgressBarMarginTopTitle">Tepi dari atas</string>
+    <string name="prefsProgressBarMarginTopSummary">Atur jarak dari atas layar</string>
+    <string name="prefsProgressBarMarginRightSummary">Atur jarak dari kanan layar</string>
+    <string name="prefsProgressBarAlignmentEntryLeft">Rata kiri</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">Tengah</string>
+    <string name="prefsProgressBarAlignmentEntryRight">Rata kanan</string>
+    <string name="prefsCircularBarShareConfigTitle">Ketemu ukuran yang pas? Bagikan setelanmu</string>
+    <string name="prefsBlackBackgroundSummary">Ganti ke bar progres dengan lintasan hitam</string>
+    <string name="prefsSeekbarInfoCard">Tekan angka di dekat bilah geser untuk mengaturnya secara manual</string>
+    <string name="prefsCircularBarShareConfigSummary">Izinkan orang lain dengan perangkat yang sama menggunakan setelanmu</string>
+    <string name="prefsProgressBarMarginRightTitle">Tepi dari kanan</string>
+    <string name="reset">Reset</string>
+    <string name="prefsProgressBarMarginLeftTitle">Tepi dari kiri</string>
+    <string name="prefsProgressBarMarginLeftSummary">Atur jarak dari kiri layar</string>
+    <string name="prefsPerAppSettingsSummary">Atur noti dalam setiap aplikasi</string>
 </resources>

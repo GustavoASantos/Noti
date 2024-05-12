@@ -24,7 +24,7 @@
     <string name="prefsLinearProgressBarTweaks">直線進度條調整</string>
     <string name="prefsProgressBarHeightTitle">進度條厚度</string>
     <string name="prefsProgressBarHeightSummary">更改進度條的厚度</string>
-    <string name="prefsShowBelowNotchSummary">顯示進度條在缺口或打孔下方</string>
+    <string name="prefsShowBelowNotchSummary">在缺口或挖孔下方顯示進度條</string>
     <string name="prefsCircularProgressBarTweaks">圓形進度條調整</string>
     <string name="prefsProgressBarAlignmentTitle">更改進度條對齊方式</string>
     <string name="prefsProgressBarSizeTitle">進度條大小</string>
@@ -60,8 +60,8 @@
     <string name="colorGrey">灰色</string>
     <string name="colorWhite">白色</string>
     <string name="prefsSAWPermissionTitle">允許顯示在其他應用程式上方</string>
-    <string name="prefsNotificationPermissionSummary">需要以讀取有進度條的通知</string>
-    <string name="prefsShowBelowNotchTitle">顯示於缺口下方</string>
+    <string name="prefsNotificationPermissionSummary">需要以讀取帶有進度條的通知</string>
+    <string name="prefsShowBelowNotchTitle">顯示於螢幕缺口下方</string>
     <string name="prefsProgressBarMarginTopSummary">更改距離螢幕上方的間距</string>
     <string name="prefsProgressBarMarginRightTitle">右方間距</string>
     <string name="prefsProgressBarMarginRightSummary">更改距離螢幕右方的間距</string>
@@ -79,4 +79,8 @@
     <string name="colorBlack">黑色</string>
     <string name="colorAmber">琥珀色</string>
     <string name="perAppSettingsEmptyView">未找到進度條。當你使用裝置時，會發現具有進度條的應用程式。</string>
+    <string name="advancedOptions">進階設定</string>
+    <string name="prefsDisableInFullScreenTitle">在全螢幕時禁用</string>
+    <string name="prefsDisableInFullScreenSummary">在全螢幕應用程式中隱藏進度條</string>
+    <string name="prefsProgressBarStyleTitle">選擇進度條樣式</string>
 </resources>

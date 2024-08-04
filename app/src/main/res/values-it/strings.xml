@@ -69,4 +69,14 @@
     <string name="prefsBlackBackgroundTitle">Usa sfondo nero</string>
     <string name="prefsPerAppSettingsTitle">Impostazioni singole app</string>
     <string name="prefsBlackBackgroundSummary">Passa a una barra di avanzamento con contorno nero</string>
+    <string name="advancedOptions">Opzioni avanzate</string>
+    <string name="prefsDisableInFullScreenSummary">Nascondi la barra di avanzamento nelle app a schermo intero</string>
+    <string name="prefsProgressBarStyleTitle">Seleziona lo stile della barra di avanzamento</string>
+    <string name="prefsDisableInFullScreenTitle">Disattiva in modalità a schermo intero</string>
+    <string name="reset">Resetta</string>
+    <string name="perAppSettingsEmptyView">Nessuna barra di avanzamento trovata. Usa le app per farle apparire</string>
+    <string name="colorLime">Lime</string>
+    <string name="prefsProgressBarMarginTopSummary">Cambia la spaziatura dalla parte superiore dello schermo</string>
+    <string name="prefsProgressBarMarginLeftSummary">Cambia la spaziatura da sinistra dello schermo</string>
+    <string name="prefsProgressBarMarginRightSummary">Cambia la spaziatura da destra dello schermo</string>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">റിപ്പോർട്ട് ബഗ്ഗ്‌</string>
+    <string name="holePunchInstruction">വൃത്താകൃതിയിലുള്ള പ്രോഗ്രസ്സ് ബാർ ട്വീക്കുകളിൽ അലൈൻമെന്റ് മാറ്റുക</string>
+    <string name="prefsCategorySetup">സെറ്റപ്പ്</string>
+    <string name="prefsShowForDownloadsSummary">കണ്ടെന്റ് കൈമാറുമ്പോൾ പ്രോഗ്രസ്സ് ബാർ പ്രദർശിപ്പിക്കുക</string>
+    <string name="perAppSettingsEmptyView">പ്രോഗ്രസ്സ് ബാറുകളൊന്നും കണ്ടെത്തിയില്ല. നിങ്ങളുടെ ഉപകരണം ഉപയോഗിക്കുമ്പോൾ പ്രോഗ്രസ് ബാറുകളുള്ള ആപ്പുകൾ കണ്ടെത്തും.</string>
+    <string name="reset">റീസെറ്റ്</string>
+    <string name="prefsCategoryGeneral">ജനറൽ</string>
+    <string name="prefsNotificationPermissionTitle">നോട്ടിഫിക്കേഷൻ ആക്സസ് അനുവദിക്കുക</string>
+    <string name="prefsBatteryOptimization">നിങ്ങൾ ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കുകയും ബാക്ക്ഗ്രൗണ്ടിൽ നോട്ടി പ്രവർത്തിക്കാൻ ഓട്ടോസ്റ്റാർട്ട് അനുവദിക്കുകയും ചെയ്യേണ്ടതുമാണ്</string>
+    <string name="notificationListenerDescription">പ്രോഗ്രസ്സ് ബാർ ഉപയോഗിച്ച് നോട്ടിഫിക്കേഷൻ വായിക്കു</string>
+    <string name="prefsShowForDownloadsTitle">ഡൗൺലോഡുകളുടെ പ്രോഗ്രസ്സ് ബാർ കാണിക്കുക</string>
+    <string name="prefsNotificationPermissionSummary">പ്രോഗ്രസ്സ് ബാർ ഉപയോഗിച്ച് നോട്ടിഫിക്കേഷനുകൾ വായിക്കേണ്ടതുണ്ട്</string>
+</resources>

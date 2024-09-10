@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuReportBug">Prijavi napako</string>
+    <string name="settingsPreviewFab">Predogled</string>
+    <string name="reset">Ponastavi</string>
+    <string name="prefsCategorySetup">začetna nastavitev</string>
+    <string name="prefsCategoryGeneral">splošno</string>
+    <string name="prefsShowForDownloadsTitle">Pokaži vrstico napredka za prenose</string>
+    <string name="prefsShowForDownloadsSummary">Prikaz vrstice napredka pri prenosu vsebine</string>
+    <string name="prefsNotificationPermissionSummary">Potrebno za branje obvestil z vrstico napredka</string>
+    <string name="prefsAccessibilityPermissionTitle">Podeli dovoljenje za dostopnost</string>
+    <string name="notificationListenerDescription">Prebere obvestila z vrstico napredka</string>
+    <string name="perAppSettingsEmptyView">Ni najdenih vrstic napredka. Aplikacije z vrsticami napredka so odkrite med uporabo vaše naprave.</string>
+    <string name="holePunchInstruction">Spremenite poravnavo v nastavitvah krožne vrstice napredka</string>
+    <string name="prefsNotificationPermissionTitle">Dovolite dostop do obvestil</string>
+    <string name="prefsBatteryOptimization">Morda boste morali onemogočiti optimizacijo baterije in omogočiti samodejni zagon, da bo noti deloval v ozadju</string>
+</resources>

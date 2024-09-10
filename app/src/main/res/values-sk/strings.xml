@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settingsPreviewFab">Náhľad</string>
+    <string name="reset">Reštart</string>
+    <string name="prefsCategorySetup">nastaviť</string>
+    <string name="prefsCategoryGeneral">všeobecné</string>
+    <string name="prefsShowForDownloadsTitle">Zobraziť ukazovateľ priebehu sťahovania</string>
+    <string name="prefsBatteryOptimization">Možno budete musieť vypnúť optimalizáciu batérie a povoliť automatické spustenie, aby noti fungovalo na pozadí</string>
+    <string name="prefsNotificationPermissionTitle">Udeliť prístup k upozorneniam</string>
+    <string name="prefsAccessibilityPermissionTitle">Udeliť povolenie na prístupnosť</string>
+    <string name="prefsSAWPermissionTitle">Povoliť zobrazovanie cez iné aplikácie</string>
+    <string name="prefsSAWPermissionSummary">Vyžadované na zobrazenie prekryvu ukazovateľa priebehu</string>
+    <string name="prefsCategoryCustomization">prispôsobenie</string>
+    <string name="prefsProgressBarStyleTitle">Vyberte štýl ukazovateľa priebehu</string>
+    <string name="prefsProgressBarStylePortraitTitle">Štýl ukazovateľa priebehu na výšk</string>
+    <string name="advancedOptions">Pokročilé nastavenia</string>
+    <string name="prefsProgressBarStyleEntryLinear">Lineárny ukazovateľ priebehu</string>
+    <string name="prefsProgressBarStyleEntryCircular">Kruhový ukazovateľ priebehu</string>
+    <string name="prefsCategoryTweaks">úpravy</string>
+    <string name="prefsLinearProgressBarTweaks">Úpravy lineárneho ukazovateľa priebehu</string>
+    <string name="prefsProgressBarHeightTitle">Hrúbka dráhy ukazovateľa priebehu</string>
+    <string name="menuReportBug">Nahlásiť chybu</string>
+    <string name="perAppSettingsEmptyView">Nenašli sa žiadne ukazovatele priebehu. Aplikácie s ukazovateľmi priebehu sú objavované, keď používate svoje zariadenie.</string>
+    <string name="holePunchInstruction">Zmeňte zarovnanie pri úpravách kruhového ukazovateľa priebehu.</string>
+    <string name="prefsShowForDownloadsSummary">Zobrazenie ukazovateľa priebehu pri prenose obsahu</string>
+    <string name="prefsNotificationPermissionSummary">Vyžaduje sa na čítanie upozornení s ukazovateľom priebehu</string>
+    <string name="prefsAccessibilityPermissionSummary">Vyžaduje sa na zobrazenie na uzamknutej obrazovke a v systémových aplikáciách</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Štýl ukazovateľa priebehu na šírku</string>
+    <string name="prefsProgressBarStyleEntryNone">Žiadny ukazovateľ priebehu</string>
+    <string name="prefsProgressBarHeightSummary">Zmeniť hrúbku dráhy ukazovateľa priebehu</string>
+</resources>

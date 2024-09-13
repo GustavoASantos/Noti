@@ -18,7 +18,8 @@ object Utils {
     fun hasAccessibilityPermission(context: Context): Boolean {
         val accessibilityServiceComponentName = ComponentName(context, AccessibilityService::class.java)
         val enabledServices = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        return enabledServices?.contains(accessibilityServiceComponentName.flattenToString()) ?: false
+        return enabledServices?.contains(accessibilityServiceComponentName.flattenToString())
+            ?: enabledServices?.contains(accessibilityServiceComponentName.flattenToShortString()) ?: false
     }
 
     fun hasNotificationListenerPermission(context: Context): Boolean {

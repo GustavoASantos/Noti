@@ -38,17 +38,17 @@
     <string name="prefsProgressBarSizeSummary">Ubah ukuran bilah kemajuan</string>
     <string name="prefsProgressBarMarginTopTitle">Margin dari atas</string>
     <string name="prefsProgressBarMarginTopSummary">Ubah spasi dari atas layar</string>
-    <string name="prefsProgressBarMarginRightSummary">Atur jarak dari kanan layar</string>
+    <string name="prefsProgressBarMarginRightSummary">Ubah spasi dari kanan layar</string>
     <string name="prefsProgressBarAlignmentEntryLeft">Rata kiri</string>
-    <string name="prefsProgressBarAlignmentEntryCenter">Tengah</string>
+    <string name="prefsProgressBarAlignmentEntryCenter">Rata Tengah</string>
     <string name="prefsProgressBarAlignmentEntryRight">Rata kanan</string>
-    <string name="prefsCircularBarShareConfigTitle">Ketemu ukuran yang pas? Bagikan setelanmu</string>
+    <string name="prefsCircularBarShareConfigTitle">Sangat cocok? Konfigurasi berbagi</string>
     <string name="prefsBlackBackgroundSummary">Ganti ke bar progres dengan lintasan hitam</string>
-    <string name="prefsSeekbarInfoCard">Tekan angka di dekat bilah geser untuk mengaturnya secara manual</string>
-    <string name="prefsCircularBarShareConfigSummary">Izinkan orang lain dengan perangkat yang sama menggunakan setelanmu</string>
-    <string name="prefsProgressBarMarginRightTitle">Tepi dari kanan</string>
+    <string name="prefsSeekbarInfoCard">Tekan nilai di samping setiap bilah pencarian untuk menyesuaikannya secara manual</string>
+    <string name="prefsCircularBarShareConfigSummary">Izinkan orang lain dengan perangkat yang sama menggunakan konfigurasi Anda</string>
+    <string name="prefsProgressBarMarginRightTitle">Margin dari kanan</string>
     <string name="reset">Setel ulang</string>
-    <string name="prefsProgressBarMarginLeftTitle">Tepi dari kiri</string>
-    <string name="prefsProgressBarMarginLeftSummary">Atur jarak dari kiri layar</string>
+    <string name="prefsProgressBarMarginLeftTitle">Margin dari kiri</string>
+    <string name="prefsProgressBarMarginLeftSummary">Ubah spasi dari kiri layar</string>
     <string name="prefsPerAppSettingsSummary">Atur noti dalam setiap aplikasi</string>
 </resources>

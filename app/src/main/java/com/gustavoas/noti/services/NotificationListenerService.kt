@@ -224,7 +224,11 @@ class NotificationListenerService : NotificationListenerService() {
             bigText.split("\n").firstOrNull { it.contains("%") }?.toString()
             ?.substringBefore("%")?.toFloatOrNull() ?:
             textLines?.firstOrNull { it.contains("%") }?.toString()
-            ?.substringBefore("%")?.toFloatOrNull() ?: 0f
+            ?.substringBefore("%")?.toFloatOrNull()
+
+        if (percentageProgress == null || percentageProgress.isNaN()) {
+            return 0
+        }
 
         return percentageProgress.roundToInt()
     }

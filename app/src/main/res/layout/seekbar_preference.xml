@@ -19,15 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
         android:layout_marginStart="12dp"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-        android:layout_weight="1"
-        android:clipChildren="false"
-        android:clipToPadding="false">
+        android:layout_marginBottom="4dp">
 
         <TextView
             android:id="@android:id/title"
@@ -42,52 +41,19 @@
             android:id="@android:id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@android:id/title"
-            android:layout_alignStart="@android:id/title"
+            android:layout_marginStart="16dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorSecondary"
             android:maxLines="4"/>
 
-        <androidx.preference.UnPressableLinearLayout
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@android:id/summary"
-            android:clipChildren="false"
-            android:gravity="center_vertical"
-            android:clipToPadding="false">
+            app:labelBehavior="gone"
+            android:paddingTop="4dp"
+            android:stepSize="1"/>
 
-            <SeekBar
-                android:id="@+id/seekbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:max="14"
-                android:paddingVertical="15dp"
-                android:focusable="false"
-                android:clickable="false"
-                android:background="@null" />
-
-            <EditText
-                android:id="@+id/edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="36dp"
-                android:inputType="numberSigned"
-                android:textDirection="ltr"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                android:fadingEdge="horizontal"
-                android:scrollbars="none"
-                android:paddingStart="0dp"
-                android:paddingEnd="16dp"
-                android:gravity="end"
-                app:backgroundTint="@android:color/transparent"
-                android:textIsSelectable="false"
-                android:maxLength="4"
-                android:imeOptions="actionDone"/>
-
-        </androidx.preference.UnPressableLinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

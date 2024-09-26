@@ -1,11 +1,13 @@
 package com.gustavoas.noti
 
 import android.content.Intent
-import android.content.res.Resources
+import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Xml
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,8 +22,11 @@ import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.gustavoas.noti.Utils.composeEmail
+import com.google.firebase.storage.StorageException
 import com.gustavoas.noti.Utils.dpToPx
+import com.gustavoas.noti.Utils.getFirebaseConfigStorageReference
+import com.gustavoas.noti.Utils.getScreenLargeSide
+import com.gustavoas.noti.Utils.getScreenSmallSide
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
@@ -31,15 +36,47 @@ import com.gustavoas.noti.fragments.PerAppSettingsFragment
 import com.gustavoas.noti.fragments.SettingsFragment
 import com.gustavoas.noti.model.DeviceConfiguration
 import com.gustavoas.noti.services.AccessibilityService
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import org.xmlpull.v1.XmlPullParser
+import java.io.InputStream
+import kotlin.math.abs
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 class SettingsActivity : AppCompatActivity(),
-    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
+    SharedPreferences.OnSharedPreferenceChangeListener {
     private val previewFab by lazy { findViewById<ExtendedFloatingActionButton>(R.id.previewFab) }
     private val topAppBar by lazy { findViewById<MaterialToolbar>(R.id.topAppBar) }
     private val appBarLayout by lazy { findViewById<AppBarLayout>(R.id.appBarLayout) }
     private var offsetChangeListener: OnOffsetChangedListener? = null
     private val handler = Handler(Looper.getMainLooper())
+
+    private val sizeDependentPrefs = arrayOf(
+        Pair("advancedProgressBarStyle", false),
+        Pair("progressBarStyle", "linear"),
+        Pair("progressBarStylePortrait", "linear"),
+        Pair("progressBarStyleLandscape", "linear"),
+        Pair("circularProgressBarThickness", 15),
+        Pair("circularProgressBarSize", 65),
+        Pair("circularProgressBarMarginTop", 30),
+        Pair("circularProgressBarHorizontalOffset", 0),
+        Pair("linearProgressBarSize", 15),
+        Pair("matchStatusBarHeight", false),
+        Pair("linearProgressBarMarginTop", 0),
+        Pair("showBelowNotch", false),
+    )
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (sizeDependentPrefs.any { it.first == key }) {
+            val defaultValue = sizeDependentPrefs.first { it.first == key }.second
+            val width = getScreenSmallSide(this)
+            val height = getScreenLargeSide(this)
+
+            moveSharedPreferenceValue(key + height + "x" + width, key!!, defaultValue)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -52,13 +89,21 @@ class SettingsActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
         if (!sharedPreferences.contains("progressBarStyle")) {
-            setupDeviceConfiguration()
+            runBlocking {
+                setupDeviceConfiguration()
+            }
         }
 
         if (!sharedPreferences.contains("progressBarColor")) {
             setMaterialYouAsDefault()
         }
+
+        setupSizeDependentPrefs()
+
+        sharedPreferences
+            .registerOnSharedPreferenceChangeListener(this)
 
         setContentView(R.layout.activity_main)
 
@@ -77,6 +122,45 @@ class SettingsActivity : AppCompatActivity(),
             }
             insets
         }
+    }
+
+    private fun setupSizeDependentPrefs() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val width = getScreenSmallSide(this)
+        val height = getScreenLargeSide(this)
+
+        for (pref in sizeDependentPrefs) {
+            val relatedPrefs = sharedPreferences.all.filterKeys { it.startsWith(pref.first) }
+
+            val sameRatio = relatedPrefs.filterKeys { it.length > pref.first.length && it[pref.first.length].isDigit() && it.drop(pref.first.length).split("x")[0].toInt() / it.drop(pref.first.length).split("x")[1].toInt() == height / width }
+
+            if (sameRatio.isEmpty()) {
+                continue
+            }
+
+            val closest = sameRatio.keys.minByOrNull { abs(it.drop(pref.first.length).split("x")[0].toInt() * it.drop(pref.first.length).split("x")[1].toInt() - height * width) }
+
+            var reductionRatio = 1f
+
+            if (pref.second is Int) {
+                reductionRatio = sqrt((height * width).div(closest!!.drop(pref.first.length).split("x")[0].toFloat() * closest.drop(pref.first.length).split("x")[1].toFloat()))
+            }
+
+            moveSharedPreferenceValue(pref.first, closest!!, pref.second, reductionRatio)
+        }
+    }
+
+    private fun moveSharedPreferenceValue(key: String, oldKey: String, defaultValue: Any, reductionRatio: Float = 1f) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = sharedPreferences.edit()
+
+        when (defaultValue) {
+            is Boolean -> editor.putBoolean(key, sharedPreferences.getBoolean(oldKey, defaultValue))
+            is Int -> editor.putInt(key, sharedPreferences.getInt(oldKey, defaultValue).times(reductionRatio).roundToInt())
+            is String -> editor.putString(key, sharedPreferences.getString(oldKey, defaultValue))
+        }
+
+        editor.apply()
     }
 
     override fun onStart() {
@@ -123,7 +207,12 @@ class SettingsActivity : AppCompatActivity(),
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.bug_report -> {
-                    startActivity(composeEmail(this))
+                    val sendEmail = Intent(Intent.ACTION_SENDTO).apply {
+                        data =
+                            Uri.parse("mailto:gustavoasgas1@gmail.com" + "?subject=" + Uri.encode("Noti"))
+                    }
+                    sendEmail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(sendEmail)
                     true
                 }
 
@@ -138,6 +227,13 @@ class SettingsActivity : AppCompatActivity(),
         if (offsetChangeListener != null) {
             appBarLayout.removeOnOffsetChangedListener(offsetChangeListener!!)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun onPreferenceStartFragment(
@@ -173,41 +269,66 @@ class SettingsActivity : AppCompatActivity(),
         }
     }
 
-    private fun setupDeviceConfiguration() {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+    private suspend fun setupDeviceConfiguration() {
+        if (!Utils.isInternetAvailable(this)) {
+            return
+        }
 
-        val userScreenSmallSide =
-            minOf(resources.displayMetrics.widthPixels, resources.displayMetrics.heightPixels)
-        val xmlResourceId = resources.getIdentifier(
-            "device_" + Build.BRAND.lowercase() + "_" + Build.DEVICE.lowercase().replace("\\W".toRegex(), "") + "_" + userScreenSmallSide,
-            "xml", this.packageName
-        )
-        val parser: XmlPullParser =
-            try {
-                resources.getXml(xmlResourceId)
-            } catch (e: Resources.NotFoundException) {
-                sharedPreferences.edit()
-                    .putString("progressBarStyle", "linear")
-                    .apply()
-                return
-            }
+        val configRef = getFirebaseConfigStorageReference()
 
-        val deviceConfig = DeviceConfiguration()
+        try {
+            val taskSnapshot = configRef.stream.await()
+
+            val inputStream: InputStream = taskSnapshot.stream
+
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            sharedPreferences.edit()
+                .putString("progressBarStyle", "circular")
+                .apply()
+
+            parseDeviceConfiguration(inputStream)
+
+        } catch (e: StorageException) {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            sharedPreferences.edit()
+                .putString("progressBarStyle", "linear")
+                .apply()
+        }
+    }
+
+    private fun parseDeviceConfiguration(input: InputStream) {
+        val parser: XmlPullParser = Xml.newPullParser()
+        parser.setInput(input, null)
 
         while (parser.eventType != XmlPullParser.END_DOCUMENT) {
             when (parser.eventType) {
                 XmlPullParser.START_TAG -> {
+                    if (parser.name == "display") {
+                        val displayConfig = DeviceConfiguration()
+                        displayConfig.deviceWidth = parser.getAttributeValue(null, "width")
+                        displayConfig.deviceHeight = parser.getAttributeValue(null, "height")
+                        displayConfig.configuration = parser.getAttributeValue(null, "configuration")
+                        parseDisplay(displayConfig, parser)
+                    }
+                }
+            }
+            parser.next()
+        }
+    }
+
+    private fun parseDisplay(config: DeviceConfiguration, parser: XmlPullParser) {
+        while (parser.eventType != XmlPullParser.END_DOCUMENT) {
+            when (parser.eventType) {
+                XmlPullParser.START_TAG -> {
                     when (parser.name) {
-                        "location" -> deviceConfig.location = parser.nextText()
-                        "size" -> deviceConfig.size = parser.nextText()
-                        "marginTop" -> deviceConfig.marginTop = parser.nextText()
-                        "marginLeft" -> deviceConfig.marginLeft = parser.nextText()
-                        "marginRight" -> deviceConfig.marginRight = parser.nextText()
+                        "size" -> config.size = parser.nextText()
+                        "marginTop" -> config.marginTop = parser.nextText()
+                        "offset" -> config.horizontalOffset = parser.nextText()
                     }
                 }
 
                 XmlPullParser.END_TAG -> {
-                    if (parser.name == "device") {
+                    if (parser.name == "display") {
                         break
                     }
                 }
@@ -215,15 +336,45 @@ class SettingsActivity : AppCompatActivity(),
             parser.next()
         }
 
-        sharedPreferences.edit()
-            .putString("progressBarStyle", "circular")
-            .putBoolean("blackBackground", true)
-            .putString("progressBarLocation", deviceConfig.location ?: "center")
-            .putInt("circularProgressBarSize", deviceConfig.size?.toIntOrNull()?.minus(10) ?: 70)
-            .putInt("circularProgressBarMarginTop", deviceConfig.marginTop?.toIntOrNull()?.minus(10) ?: 70)
-            .putInt("circularProgressBarMarginLeft", deviceConfig.marginLeft?.toIntOrNull()?.minus(10) ?: 70)
-            .putInt("circularProgressBarMarginRight",deviceConfig.marginRight?.toIntOrNull()?.minus(10) ?: 70)
-            .apply()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val currentWidth = getScreenSmallSide(this)
+        val currentHeight = getScreenLargeSide(this)
+
+        if (config.deviceWidth == "" || config.deviceHeight == "") {
+            if ((config.deviceWidth != "" && currentWidth == config.deviceWidth?.toInt()) ||
+                (config.deviceHeight != "" && currentHeight == config.deviceHeight?.toInt())) {
+                config.deviceWidth = currentWidth.toString()
+                config.deviceHeight = currentHeight.toString()
+            }
+
+            if (config.deviceWidth == "" && config.deviceHeight != "") {
+                config.deviceWidth = (currentWidth * config.deviceHeight!!.toInt() / currentHeight).toString()
+            } else if (config.deviceHeight == "" && config.deviceWidth != "") {
+                config.deviceHeight = (currentHeight * config.deviceWidth!!.toInt() / currentWidth).toString()
+            }
+
+            if (config.deviceWidth == "" || config.deviceHeight == "") {
+                config.deviceWidth = currentWidth.toString()
+                config.deviceHeight = currentHeight.toString()
+            }
+        }
+
+        val appendix = config.deviceHeight + "x" + config.deviceWidth
+
+        if (config.configuration == "circular") {
+            sharedPreferences.edit()
+                .putString("progressBarStyle$appendix", "circular")
+                .putBoolean("blackBackground", true)
+                .putInt("circularProgressBarSize$appendix", config.size?.toIntOrNull() ?: 65)
+                .putInt("circularProgressBarMarginTop$appendix", config.marginTop?.toIntOrNull() ?: 30)
+                .putInt("circularProgressBarHorizontalOffset$appendix", config.horizontalOffset?.toIntOrNull() ?: 0)
+                .apply()
+        } else {
+            sharedPreferences.edit()
+                .putString("progressBarStyle$appendix", "linear")
+                .apply()
+        }
     }
 
     private fun setMaterialYouAsDefault() {

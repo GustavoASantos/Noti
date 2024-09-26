@@ -12,7 +12,6 @@
     <string name="prefsCategoryGeneral">általános</string>
     <string name="prefsShowForDownloadsTitle">Letöltések előrehaladási sávjának megjelenítése</string>
     <string name="prefsShowForDownloadsSummary">Előrehaladási sáv megjelenítése a tartalom átvitelekor</string>
-    <string name="prefsBatteryOptimization">Lehet, hogy ki kell kapcsolni az akkumulátor optimalizálását és engedélyeznie kell az automatikus indítást, hogy a noti a háttérben működhessen</string>
     <string name="prefsNotificationPermissionTitle">Értesítésekhez való hozzáférés engedélyezése</string>
     <string name="prefsNotificationPermissionSummary">Szükséges az értesítések olvasásához előrehaladási sávval</string>
     <string name="prefsAccessibilityPermissionSummary">A zárolási képernyőn és a rendszeralkalmazásokban való megjelenítéshez szükséges</string>

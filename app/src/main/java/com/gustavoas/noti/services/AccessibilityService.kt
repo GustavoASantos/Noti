@@ -13,13 +13,16 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.view.Display
+import android.view.Gravity
 import android.view.Surface
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
+import android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.hardware.display.DisplayManagerCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -27,9 +30,14 @@ import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.getScreenLargeSide
+import com.gustavoas.noti.Utils.getScreenSmallSide
+import com.gustavoas.noti.Utils.getStatusBarHeight
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import kotlin.math.abs
 import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 class AccessibilityService : AccessibilityService() {
     private val windowManager by lazy { getSystemService(WINDOW_SERVICE) as WindowManager }
@@ -96,16 +104,16 @@ class AccessibilityService : AccessibilityService() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val progressBarStyle =
-            if (sharedPreferences.getBoolean("advancedProgressBarStyle", false)) {
+            if (sharedPreferences.getBoolean(getSizeDependentPreferenceKey("advancedProgressBarStyle").first, false)) {
                 sharedPreferences.getString(
                     if (isInPortraitMode()) {
-                        "progressBarStylePortrait"
+                        getSizeDependentPreferenceKey("progressBarStylePortrait").first
                     } else {
-                        "progressBarStyleLandscape"
+                        getSizeDependentPreferenceKey("progressBarStyleLandscape").first
                     }, "linear"
                 )
             } else {
-                sharedPreferences.getString("progressBarStyle", "linear")
+                sharedPreferences.getString(getSizeDependentPreferenceKey("progressBarStyle").first, "linear")
             }
 
         if(progressBarStyle == "none") {
@@ -117,21 +125,6 @@ class AccessibilityService : AccessibilityService() {
 
         if (!this::overlayView.isInitialized || !overlayView.isShown) {
             inflateOverlay()
-        }
-
-        val showBelowNotch =
-            sharedPreferences.getBoolean("showBelowNotch", false) && progressBarStyle == "linear"
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val params = overlayView.layoutParams as WindowManager.LayoutParams
-            val displayCutoutMode = if (showBelowNotch) {
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
-            } else {
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            }
-            if (params.layoutInDisplayCutoutMode != displayCutoutMode) {
-                params.layoutInDisplayCutoutMode = displayCutoutMode
-                windowManager.updateViewLayout(overlayView, params)
-            }
         }
 
         progressBar = overlayView.findViewById(R.id.progressBar)
@@ -165,159 +158,116 @@ class AccessibilityService : AccessibilityService() {
     }
 
     private fun circularProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        val container = overlayView.findViewById<FrameLayout>(R.id.container)
+        val trackThickness = sharedPreferences.getSizeDependentInt("circularProgressBarThickness", 15)
 
-        val circularProgressBarSize = sharedPreferences.getInt("circularProgressBarSize", 70)
-        circularProgressBar.indicatorSize = (circularProgressBarSize * 0.86).roundToInt() + 18
+        circularProgressBar.indicatorSize = sharedPreferences.getSizeDependentInt("circularProgressBarSize", 65) + 2 * trackThickness
 
-        circularProgressBar.trackThickness = (circularProgressBarSize * 0.04).roundToInt() + 10
+        circularProgressBar.trackThickness = trackThickness
 
-        val paddingTop =
-            (sharedPreferences.getInt("circularProgressBarMarginTop", 70) * 0.17).roundToInt() + 13
-        val paddingLeft =
-            (sharedPreferences.getInt("circularProgressBarMarginLeft", 70) * 0.5).roundToInt() + 15
-        val paddingRight =
-            (sharedPreferences.getInt("circularProgressBarMarginRight", 70) * 0.5).roundToInt() + 15
+        val marginTop = sharedPreferences.getSizeDependentInt("circularProgressBarMarginTop", 30) - trackThickness
+        val horizontalOffset = sharedPreferences.getSizeDependentInt("circularProgressBarHorizontalOffset", 0)
 
-        // get layout params
-        val containerParams = container.layoutParams as ConstraintLayout.LayoutParams
+        val overlayParams = overlayView.layoutParams as WindowManager.LayoutParams
+
+        overlayParams.width = circularProgressBar.indicatorSize
+        overlayParams.height = circularProgressBar.indicatorSize
+
+        val displayRotation = displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!.rotation
+
+        circularProgressBar.rotation = (360 - displayRotation.toFloat() * 90) % 360
+
         val progressParams = circularProgressBar.layoutParams as FrameLayout.LayoutParams
 
-        // reset container constraints
-        containerParams.topToTop = -1
-        containerParams.bottomToBottom = -1
-        containerParams.leftToLeft = -1
-        containerParams.rightToRight = -1
+        var paddingTop = 0
+        var paddingRight = 0
+        var paddingLeft = 0
 
-        // apply layout depending on absolute screen rotation and location
-        val progressBarLocation = sharedPreferences.getString("progressBarLocation", "center")
-        when(displayManager.getDisplay(Display.DEFAULT_DISPLAY)!!.rotation) {
+        if (marginTop < 0) {
+            paddingTop = marginTop
+        } else if (marginTop + circularProgressBar.indicatorSize > getScreenLargeSide(this))  {
+            paddingTop = marginTop + circularProgressBar.indicatorSize - getScreenLargeSide(this)
+        }
+
+        val halfWidth = getScreenSmallSide(this) / 2
+        val halfIndicatorSize = circularProgressBar.indicatorSize / 2
+
+        if (abs(horizontalOffset) + halfIndicatorSize > halfWidth) {
+            if (horizontalOffset - halfIndicatorSize < -halfWidth) {
+                paddingLeft = halfWidth + horizontalOffset - halfIndicatorSize
+            } else {
+                paddingLeft = -halfWidth + horizontalOffset + halfIndicatorSize
+            }
+
+            if (horizontalOffset + halfIndicatorSize > halfWidth) {
+                paddingRight = halfWidth - horizontalOffset - halfIndicatorSize
+            } else {
+                paddingRight = -halfWidth - horizontalOffset + halfIndicatorSize
+            }
+        }
+
+        when(displayRotation) {
             Surface.ROTATION_0 -> {
-                // portrait
-                circularProgressBar.rotation = 0f
-                // align to top
-                containerParams.topToTop = R.id.container_parent
-                when (progressBarLocation) {
-                    "left" -> {
-                        // align to left
-                        containerParams.leftToLeft = R.id.container_parent
-                    }
-                    "right" -> {
-                        // align to right
-                        containerParams.rightToRight = R.id.container_parent
-                    }
-                    else -> {
-                        // align to center
-                        containerParams.leftToLeft = R.id.container_parent
-                        containerParams.rightToRight = R.id.container_parent
-                    }
-                }
-
-                // set margins normally
-                progressParams.setMargins(paddingLeft, paddingTop, paddingRight, 0)
+                overlayParams.gravity = Gravity.CENTER_HORIZONTAL or Gravity.TOP
+                overlayParams.x = horizontalOffset
+                overlayParams.y = marginTop
+                progressParams.setMargins(paddingLeft, paddingTop, -paddingLeft, -paddingTop)
             }
             Surface.ROTATION_180 -> {
-                // inverted portrait
-                circularProgressBar.rotation = 180f
-                // align to bottom
-                containerParams.bottomToBottom = R.id.container_parent
-                when (progressBarLocation) {
-                    "left" -> {
-                        // align to right
-                        containerParams.rightToRight = R.id.container_parent
-                    }
-                    "right" -> {
-                        // align to left
-                        containerParams.leftToLeft = R.id.container_parent
-                    }
-                    else -> {
-                        // align to center
-                        containerParams.rightToRight = R.id.container_parent
-                        containerParams.leftToLeft = R.id.container_parent
-                    }
-                }
-
-                // set margins rotated by 180°
-                progressParams.setMargins(paddingRight, 0, paddingLeft, paddingTop)
+                overlayParams.gravity = Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM
+                overlayParams.x = -horizontalOffset
+                overlayParams.y = marginTop
+                progressParams.setMargins(paddingRight, -paddingTop, -paddingRight, paddingTop)
             }
             Surface.ROTATION_90 -> {
                 // landscape, device top is on the left
-                circularProgressBar.rotation = 270f
-                // align to left
-                containerParams.leftToLeft = R.id.container_parent
-                when (progressBarLocation) {
-                    "left" -> {
-                        // align to bottom
-                        containerParams.bottomToBottom = R.id.container_parent
-                    }
-                    "right" -> {
-                        // align to top
-                        containerParams.topToTop = R.id.container_parent
-                    }
-                    else -> {
-                        // align to center
-                        containerParams.bottomToBottom = R.id.container_parent
-                        containerParams.topToTop = R.id.container_parent
-                    }
-                }
-
-                // set margins rotated by 90°
-                progressParams.setMargins(paddingTop, paddingRight, 0, paddingLeft)
+                overlayParams.gravity = Gravity.CENTER_VERTICAL or Gravity.LEFT
+                overlayParams.x = marginTop
+                overlayParams.y = -horizontalOffset
+                progressParams.setMargins(paddingTop, paddingRight, -paddingTop, -paddingRight)
             }
             Surface.ROTATION_270 -> {
                 // landscape, device top is on the right
-                circularProgressBar.rotation = 90f
-                // align to right
-                containerParams.rightToRight = R.id.container_parent
-                when (progressBarLocation) {
-                    "left" -> {
-                        // align to top
-                        containerParams.topToTop = R.id.container_parent
-                    }
-
-                    "right" -> {
-                        // align to bottom
-                        containerParams.bottomToBottom = R.id.container_parent
-                    }
-
-                    else -> {
-                        // align to center
-                        containerParams.topToTop = R.id.container_parent
-                        containerParams.bottomToBottom = R.id.container_parent
-                    }
-                }
-
-                // set margins rotated by -90°
-                progressParams.setMargins(0, paddingLeft, paddingTop, paddingRight)
+                overlayParams.gravity = Gravity.CENTER_VERTICAL or Gravity.RIGHT
+                overlayParams.x = marginTop
+                overlayParams.y = horizontalOffset
+                progressParams.setMargins(-paddingTop, paddingLeft, paddingTop, -paddingLeft)
             }
         }
 
-        // apply layout
-        container.layoutParams = containerParams
         circularProgressBar.layoutParams = progressParams
+
+        try {
+            windowManager.updateViewLayout(overlayView, overlayParams)
+        } catch (_: Exception) {}
     }
 
     private fun linearProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        val progressBarHeight = sharedPreferences.getInt("progressBarHeight", 5)
-        if ((statusBarHeight > 15 && progressBarHeight == 10) || progressBarHeight == statusBarHeight - 5) {
-            progressBar.trackThickness = statusBarHeight
+        if (sharedPreferences.getBoolean(getSizeDependentPreferenceKey("matchStatusBarHeight").first, false)) {
+            progressBar.trackThickness = getStatusBarHeight(this)
         } else {
-            progressBar.trackThickness = progressBarHeight + 5
+            progressBar.trackThickness = sharedPreferences.getSizeDependentInt("linearProgressBarSize", 15)
         }
 
-        val paddingTop = sharedPreferences.getInt("linearProgressBarMarginTop", 0) * 3
-        val param = progressBar.layoutParams as FrameLayout.LayoutParams
-        param.setMargins(0, paddingTop, 0, 0)
-        progressBar.layoutParams = param
+        val paddingTop = sharedPreferences.getSizeDependentInt("linearProgressBarMarginTop", 0)
 
-        val container = overlayView.findViewById<FrameLayout>(R.id.container)
-        val containerParams = container.layoutParams as ConstraintLayout.LayoutParams
+        val overlayParams = overlayView.layoutParams as WindowManager.LayoutParams
 
-        // set container constraints
-        containerParams.topToTop = R.id.container_parent
-        containerParams.bottomToBottom = -1
-        containerParams.leftToLeft = -1
-        containerParams.rightToRight = -1
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (sharedPreferences.getBoolean(getSizeDependentPreferenceKey("showBelowNotch").first, false)) {
+                overlayParams.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
+            } else {
+                overlayParams.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            }
+        }
+
+        overlayParams.gravity = Gravity.TOP
+        overlayParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+        overlayParams.height = progressBar.trackThickness + paddingTop
+        overlayParams.y = paddingTop
+
+        try {
+            windowManager.updateViewLayout(overlayView, overlayParams)
+        } catch (_: Exception) {}
     }
 
     private fun applyCommonProgressBarCustomizations(sharedPreferences: SharedPreferences) {
@@ -353,6 +303,32 @@ class AccessibilityService : AccessibilityService() {
         }
     }
 
+    private fun SharedPreferences.getSizeDependentInt(key: String, defaultValue: Int): Int {
+        val sizeDependentPreference = getSizeDependentPreferenceKey(key)
+        return this.getInt(sizeDependentPreference.first, defaultValue).times(sizeDependentPreference.second).roundToInt()
+    }
+
+    private fun getSizeDependentPreferenceKey(key: String): Pair<String, Float> {
+        val width = getScreenSmallSide(this)
+        val height = getScreenLargeSide(this)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val relatedPrefs = sharedPreferences.all.filterKeys { it.startsWith(key) }
+
+        val sameRatio = relatedPrefs.filterKeys { it.length > key.length && it[key.length].isDigit() && it.drop(key.length).split("x")[0].toInt() / it.drop(key.length).split("x")[1].toInt() == height / width }
+
+        if (sameRatio.isEmpty()) {
+            return Pair(key, 1f)
+        }
+
+        val closest = sameRatio.keys.minByOrNull { abs(it.drop(key.length).split("x")[0].toInt() * it.drop(key.length).split("x")[1].toInt() - height * width) }
+
+        val reductionRatio = sqrt((height * width).div(closest!!.drop(key.length).split("x")[0].toFloat() * closest.drop(key.length).split("x")[1].toFloat()))
+
+        return Pair(closest, reductionRatio)
+    }
+
     private fun isInPortraitMode(): Boolean {
         return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
     }
@@ -360,13 +336,6 @@ class AccessibilityService : AccessibilityService() {
     private fun isLocked(): Boolean {
         return keyguardManager.isKeyguardLocked
     }
-
-    private val statusBarHeight: Int
-        get() {
-            return resources.getDimensionPixelSize(
-                resources.getIdentifier("status_bar_height", "dimen", "android")
-            )
-        }
 
     private fun setProgressToZero() {
         progressBar.progress = 0
@@ -444,10 +413,14 @@ class AccessibilityService : AccessibilityService() {
             params.alpha = 0.8f
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            params.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+
         if (!overlayView.isShown) {
             try {
                 windowManager.addView(overlayView, params)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 // TODO
                 return
             }
@@ -468,11 +441,8 @@ class AccessibilityService : AccessibilityService() {
         override fun onReceive(context: android.content.Context?, intent: Intent?) {
             val disableInFullscreen = PreferenceManager.getDefaultSharedPreferences(this@AccessibilityService)
                 .getBoolean("disableInFullScreen", true)
-            val alpha = if (disableInFullscreen) {
-                intent?.getFloatExtra("alpha", 1f) ?: 1f
-            } else {
-                1f
-            }
+            val isFullscreen = intent?.getBooleanExtra("isFullscreen", false) ?: false
+            val alpha = if (disableInFullscreen && isFullscreen) 0f else 1f
 
             overlayView.animate()
                 .alpha(alpha)

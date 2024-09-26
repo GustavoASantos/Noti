@@ -5,10 +5,7 @@ import android.view.View
 import androidx.preference.PreferenceFragmentCompat
 import com.gustavoas.noti.Utils
 
-open class BasePreferenceFragment : PreferenceFragmentCompat() {
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-    }
-
+abstract class BasePreferenceFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

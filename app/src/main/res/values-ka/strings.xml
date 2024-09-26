@@ -17,7 +17,6 @@
     <string name="notificationListenerDescription">კითხულობს შეტყობინებებს პროგრესის ზოლით</string>
     <string name="perAppSettingsEmptyView">პროგრესის ზოლი ვერ იქნა ნაპოვნი. აპლიკაციები პროგრესის ზოლებით გამოვლინდებიან ტელეფონის გამოყენებისას.</string>
     <string name="prefsShowForDownloadsSummary">აჩვენე პროგრესის ზოლი მედიის გადაგზავნისას</string>
-    <string name="prefsBatteryOptimization">შესაძლოა საჭირო იყოს ელემენტის ოპტიმიზაციების გათიშვა და ავტომატური ჩართვის უფლების მიცემა noti-სთვის, რომ უკანა ფონზე იმუშაოს</string>
     <string name="prefsAccessibilityPermissionTitle">მიეცი ხელმისაწვდომობის (accessibility) უფლება</string>
     <string name="prefsSAWPermissionTitle">მიეცი უფლება, რომ სხვა აპლიკაციებზე გამოჩნდეს</string>
     <string name="prefsSAWPermissionSummary">საჭიროა, რომ პროგრესული ზოლი გამოჩნდეს</string>
@@ -27,5 +26,5 @@
     <string name="prefsProgressBarStyleEntryCircular">წრიული პროგრესული ზოლი</string>
     <string name="prefsCategoryTweaks">პარამეტრები</string>
     <string name="prefsLinearProgressBarTweaks">სწორი პროგრესული ზოლის პარამეტრები</string>
-    <string name="prefsProgressBarHeightTitle">პროგრესული ზოლის სისქე</string>
+    <string name="prefsProgressBarThicknessTitle">პროგრესული ზოლის სისქე</string>
 </resources>

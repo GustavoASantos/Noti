@@ -5,4 +5,5 @@
     <color name="deep_purple_800">#4527A0</color>
     <color name="text">#000000</color>
     <color name="system_accent_color">@color/material_dynamic_primary40</color>
+    <color name="app_accent_color">#EADDFF</color>
 </resources>

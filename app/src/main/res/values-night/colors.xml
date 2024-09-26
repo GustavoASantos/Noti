@@ -2,4 +2,5 @@
 <resources>
     <color name="text">#FFFFFF</color>
     <color name="system_accent_color">@color/material_dynamic_primary90</color>
+    <color name="app_accent_color">#4F378B</color>
 </resources>

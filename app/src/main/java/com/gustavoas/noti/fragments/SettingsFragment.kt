@@ -4,21 +4,23 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
+import androidx.preference.children
 import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasNotificationListenerPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
 import com.gustavoas.noti.Utils.showColorDialog
-import com.gustavoas.noti.preferences.AccessibilityDialogPrefCompat
-import com.gustavoas.noti.preferences.AccessibilityPermissionDialog
+import com.gustavoas.noti.preferences.BannerPreference
 import com.gustavoas.noti.services.NotificationListenerService
 import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
 import eltos.simpledialogfragment.SimpleDialog
@@ -53,11 +55,32 @@ class SettingsFragment : BasePreferenceFragment(),
 
         updatePermissionDependentPreferences()
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
         findPreference<Preference>("showForMedia")?.isVisible =
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 
-        PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .registerOnSharedPreferenceChangeListener(this)
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+
+        if (!sharedPreferences.contains("batteryOptimizations")) {
+            sharedPreferences.edit().putBoolean("batteryOptimizations", Build.BRAND.lowercase() != "google").apply()
+        }
+
+        val batterOptimizationsBanner = findPreference<BannerPreference>("batteryOptimizations")
+        if (!sharedPreferences.getBoolean("batteryOptimizations", true)) {
+            batterOptimizationsBanner?.isVisible = false
+        } else {
+            batterOptimizationsBanner?.onBtnClick = {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://dontkillmyapp.com"))
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+        }
+
+        findPreference<Preference>("accessibilityPermission")?.setOnPreferenceClickListener {
+            showAccessibilityDialog()
+            true
+        }
 
         findPreference<Preference>("progressBarColor")?.setOnPreferenceClickListener {
             val color = PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(
@@ -71,14 +94,6 @@ class SettingsFragment : BasePreferenceFragment(),
             requestNotificationAccess()
             true
         }
-    }
-
-    override fun onDisplayPreferenceDialog(preference: Preference) {
-        if (preference is AccessibilityPermissionDialog) {
-            val dialogFragment = AccessibilityDialogPrefCompat.newInstance(preference.key)
-            dialogFragment.setTargetFragment(this, 0)
-            dialogFragment.show(parentFragmentManager, null)
-        } else super.onDisplayPreferenceDialog(preference)
     }
 
     override fun onStart() {
@@ -190,17 +205,25 @@ class SettingsFragment : BasePreferenceFragment(),
         val hasNotificationListenerPermission = hasNotificationListenerPermission(requireContext())
         val hasSystemAlertWindowPermission = hasSystemAlertWindowPermission(requireContext())
 
-        // xiaomi, samsung, vivo, etc are killing the accessibility service in the background
-        val brand = Build.BRAND.lowercase()
         findPreference<Preference>("accessibilityPermission")?.isVisible =
-            !(hasAccessibilityPermission || brand != "google")
+            !hasAccessibilityPermission
         findPreference<Preference>("notificationPermission")?.isVisible =
             !hasNotificationListenerPermission
         findPreference<Preference>("systemAlertWindowPermission")?.isVisible =
             !hasSystemAlertWindowPermission
-        findPreference<Preference>("batteryOptimizationsInfoCard")?.isVisible = brand != "google"
-        findPreference<PreferenceCategory>("setup")?.isVisible =
-            !(hasNotificationListenerPermission && hasSystemAlertWindowPermission && hasAccessibilityPermission && brand == "google")
+        findPreference<PreferenceCategory>("setup")?.isVisible = findPreference<PreferenceCategory>("setup")?.children?.any { it.isVisible } == true
+    }
+
+    private fun showAccessibilityDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.prefsAccessibilityPermissionTitle)
+            .setMessage(R.string.prefsAccessibilityPermissionSummary)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+                startActivity(intent)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     private fun requestNotificationAccess() {

@@ -2,7 +2,6 @@
 <resources>
     <string name="settingsPreviewFab">预览</string>
     <string name="prefsShowForDownloadsSummary">当传输内容时显示进度条</string>
-    <string name="prefsBatteryOptimization">为了让 noti 在后台运行，请禁用电池优化并允许自启动</string>
     <string name="prefsNotificationPermissionSummary">用于获取带有进度条的通知</string>
     <string name="prefsAccessibilityPermissionTitle">授予无障碍权限</string>
     <string name="prefsAccessibilityPermissionSummary">用于在锁屏界面显示以及在系统英语中显示</string>
@@ -11,18 +10,10 @@
     <string name="prefsProgressBarStylePortraitTitle">纵向进度条样式</string>
     <string name="prefsProgressBarStyleEntryLinear">直线进度条</string>
     <string name="prefsProgressBarStyleEntryNone">不显示进度条</string>
-    <string name="prefsProgressBarHeightTitle">进度条厚度</string>
-    <string name="prefsProgressBarHeightSummary">更改进度条轨迹厚度</string>
+    <string name="prefsProgressBarThicknessTitle">进度条厚度</string>
+    <string name="prefsProgressBarThicknessSummary">更改进度条轨迹厚度</string>
     <string name="prefsShowBelowNotchTitle">显示在屏幕挖孔下方</string>
-    <string name="prefsProgressBarSizeTitle">进度条大小</string>
-    <string name="prefsProgressBarSizeSummary">更改进度条大小</string>
     <string name="prefsProgressBarMarginTopSummary">更改距离屏幕顶部的间距</string>
-    <string name="prefsProgressBarMarginLeftSummary">更改距离屏幕左侧的边距</string>
-    <string name="prefsProgressBarMarginRightSummary">更改距离屏幕右侧的间距</string>
-    <string name="prefsProgressBarAlignmentEntryLeft">左对齐</string>
-    <string name="prefsProgressBarAlignmentEntryCenter">居中</string>
-    <string name="prefsProgressBarAlignmentEntryRight">右对齐</string>
-    <string name="prefsSeekbarInfoCard">按拖动条旁的数值以手动调整</string>
     <string name="prefsBlackBackgroundTitle">使用黑色背景</string>
     <string name="prefsRoundedCornersTitle">使用圆角进度条</string>
     <string name="prefsRoundedCornersSummary">切换成末端为圆角的进度条</string>
@@ -54,14 +45,12 @@
     <string name="prefsPerAppSettingsTitle">分应用设置</string>
     <string name="prefsCircularBarShareConfigTitle">完美贴合？分享配置吧</string>
     <string name="prefsProgressBarMarginTopTitle">顶部边距</string>
-    <string name="prefsProgressBarMarginLeftTitle">左侧边距</string>
-    <string name="prefsProgressBarMarginRightTitle">右侧边距</string>
     <string name="perAppSettingsEmptyView">未找到进度条。带有进度条的应用会随你使用设备时被发现。</string>
     <string name="prefsProgressBarStyleLandscapeTitle">横向进度条样式</string>
     <string name="prefsLinearProgressBarTweaks">调整直线进度条</string>
     <string name="prefsCircularProgressBarTweaks">调整环形进度条</string>
     <string name="holePunchInstruction">在环形进度条微调中更改对齐方式</string>
-    <string name="prefsProgressBarAlignmentTitle">更改进度条对齐方式</string>
+    <string name="prefsProgressBarOffsetSummary">更改进度条对齐方式</string>
     <string name="prefsShowForMediaSummary">当播放音乐时显示进度条</string>
     <string name="colorPink">粉红色</string>
     <string name="colorPurple">紫色</string>

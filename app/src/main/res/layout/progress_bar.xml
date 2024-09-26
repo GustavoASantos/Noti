@@ -20,6 +20,8 @@
                     android:progress="0"
                     android:theme="@style/Theme.NotiProgressBar"
                     android:visibility="gone"
+                    app:trackStopIndicatorSize="0dp"
+                    app:indicatorTrackGapSize="0dp"
                     app:hideAnimationBehavior="outward" />
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/circularProgressBar"
@@ -31,6 +33,7 @@
                     android:visibility="visible"
                     app:hideAnimationBehavior="inward"
                     app:indicatorInset="0dp"
+                    app:indicatorTrackGapSize="0dp"
                     app:showAnimationBehavior="outward"/>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

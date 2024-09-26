@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         android:minSdkVersion="30"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-sdk tools:overrideLibrary="androidx.core.splashscreen"/>
 

@@ -9,43 +9,45 @@
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
 
-        <ListPreference
-            android:key="progressBarLocation"
-            android:title="@string/prefsProgressBarAlignmentTitle"
-            app:useSimpleSummaryProvider="true"
+        <com.gustavoas.noti.preferences.SeekBarPreference
+            android:key="circularProgressBarThickness"
+            android:title="@string/prefsProgressBarThicknessTitle"
+            android:summary="@string/prefsProgressBarThicknessSummary"
             app:singleLineTitle="false"
-            android:defaultValue="center"
-            app:entries="@array/progressBarLocation"
-            app:entryValues="@array/progressBarLocationValues"
-            app:negativeButtonText=""/>
+            app:icon="@drawable/ic_height"
+            app:default_value="15"
+            app:max_number="50"
+            app:min_number="5"/>
 
         <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarSize"
-            android:title="@string/prefsProgressBarSizeTitle"
-            android:summary="@string/prefsProgressBarSizeSummary"
+            android:title="@string/prefsCutoutSizeTitle"
+            android:summary="@string/prefsCutoutSizeSummary"
             app:singleLineTitle="false"
-            app:icon="@drawable/ic_size"/>
+            app:icon="@drawable/ic_size"
+            app:default_value="65"
+            app:max_number="150"
+            app:min_number="1"/>
 
         <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="circularProgressBarMarginTop"
             android:title="@string/prefsProgressBarMarginTopTitle"
             android:summary="@string/prefsProgressBarMarginTopSummary"
             app:singleLineTitle="false"
-            app:icon="@drawable/ic_margin_top"/>
+            app:icon="@drawable/ic_margin_top"
+            app:default_value="30"
+            app:max_number="150"
+            app:min_number="1"/>
 
         <com.gustavoas.noti.preferences.SeekBarPreference
-            android:key="circularProgressBarMarginLeft"
-            android:title="@string/prefsProgressBarMarginLeftTitle"
-            android:summary="@string/prefsProgressBarMarginLeftSummary"
+            android:key="circularProgressBarHorizontalOffset"
+            android:title="@string/prefsProgressBarOffsetTitle"
+            android:summary="@string/prefsProgressBarOffsetSummary"
             app:singleLineTitle="false"
-            app:icon="@drawable/ic_margin_left"/>
-
-        <com.gustavoas.noti.preferences.SeekBarPreference
-            android:key="circularProgressBarMarginRight"
-            android:title="@string/prefsProgressBarMarginRightTitle"
-            android:summary="@string/prefsProgressBarMarginRightSummary"
-            app:singleLineTitle="false"
-            app:icon="@drawable/ic_margin_right"/>
+            app:icon="@drawable/ic_horizontal"
+            app:default_value="0"
+            app:max_number="75"
+            app:min_number="-75" />
 
         <Preference
             android:key="shareConfig"
@@ -55,8 +57,8 @@
             app:icon="@drawable/ic_share"/>
 
         <Preference
-            android:key="seekbarInfoCard"
-            android:summary="@string/prefsSeekbarInfoCard"
+            android:key="multipleScreensInfoCard"
+            android:summary="@string/prefsMultiScreenInfoCard"
             app:singleLineTitle="false"
             android:selectable="false"
             app:icon="@drawable/ic_info"/>

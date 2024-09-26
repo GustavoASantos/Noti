@@ -1,74 +1,50 @@
 package com.gustavoas.noti.preferences
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.SeekBar
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
+import com.google.android.material.slider.Slider
 import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.vibrate
 
 class SeekBarPreference(context: Context, attrs: AttributeSet): Preference(context, attrs) {
     private var preferenceHolder: View? = null
-    private var seekBar: SeekBar? = null
-    private var editText: EditText? = null
+
+    private var minNumber: Int = -50
+    private var maxNumber: Int = 50
+    private var defaultValue: Int = 0
+
+    private var currentValue: Int = defaultValue
+
     init {
         layoutResource = R.layout.seekbar_preference
+
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.HorizontalNumberPicker)
+        minNumber = attributes.getInteger(R.styleable.HorizontalNumberPicker_min_number, minNumber)
+        maxNumber = attributes.getInteger(R.styleable.HorizontalNumberPicker_max_number, maxNumber)
+        defaultValue = attributes.getInteger(R.styleable.HorizontalNumberPicker_default_value, defaultValue)
+        attributes.recycle()
     }
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
 
         preferenceHolder = holder.itemView
-        seekBar = preferenceHolder?.findViewById(R.id.seekbar)
-        editText = preferenceHolder?.findViewById(R.id.edittext)
+        val seekBar = preferenceHolder?.findViewById<Slider>(R.id.slider)
 
-        val currentValue = getPersistedInt(70)
-        seekBar?.progress = currentValue.div(10)
-        editText?.setText((currentValue.plus(10)).toString())
-        editText?.setSelection(editText?.text?.length ?: 0)
+        currentValue = getPersistedInt(defaultValue)
+        seekBar?.value = currentValue.toFloat()
+        seekBar?.valueFrom = minNumber.toFloat()
+        seekBar?.valueTo = maxNumber.toFloat()
 
-        seekBar?.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    editText?.setText((progress.plus(1).times(10)).toString())
-                    editText?.setSelection(editText?.text?.length ?: 0)
-                }
+        seekBar?.addOnChangeListener { _, value, _ ->
+            if (value.toInt() != currentValue) {
+                currentValue = value.toInt()
+                persistInt(currentValue)
+                vibrate(context)
             }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-        })
-
-        editText?.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                val value = s.toString().toIntOrNull()?.minus(10) ?: 0
-                seekBar?.progress = value.div(10)
-                persistInt(value)
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        preferenceHolder?.setOnClickListener {
-            editText?.requestFocus()
-            imm.showSoftInput(editText, InputMethodManager.SHOW_FORCED)
-        }
-
-        editText?.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_DONE) {
-                editText?.clearFocus()
-                imm.hideSoftInputFromWindow(editText?.windowToken, 0)
-            }
-            false
         }
     }
 }

@@ -2,6 +2,13 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.gustavoas.noti.preferences.BannerPreference
+        android:key="batteryOptimizations"
+        android:title="@string/prefsBatteryBannerSummary"
+        android:summary="@string/prefsBatteryBannerButton">
+    </com.gustavoas.noti.preferences.BannerPreference>
+
     <PreferenceCategory
         android:key="setup"
         android:title="@string/prefsCategorySetup"
@@ -27,24 +34,12 @@
         </Preference>
 
         <!--Dialog required for google to approve the app-->
-        <com.gustavoas.noti.preferences.AccessibilityPermissionDialog
+        <Preference
             android:key="accessibilityPermission"
             android:title="@string/prefsAccessibilityPermissionTitle"
             android:summary="@string/prefsAccessibilityPermissionSummary"
-            app:dialogMessage="@string/prefsAccessibilityPermissionSummary"
             app:singleLineTitle="false"
             app:icon="@drawable/ic_accessibility"/>
-
-        <Preference
-            android:key="batteryOptimizationsInfoCard"
-            android:summary="@string/prefsBatteryOptimization"
-            app:singleLineTitle="false"
-            android:selectable="true"
-            app:icon="@drawable/ic_info">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://dontkillmyapp.com"/>
-        </Preference>
 
     </PreferenceCategory>
 

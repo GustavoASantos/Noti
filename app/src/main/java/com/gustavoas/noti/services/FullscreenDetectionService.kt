@@ -63,14 +63,10 @@ class FullscreenDetectionService : Service() {
         globalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
             val displayHeight = getRealDisplayHeight(this)
 
-            val alpha = if (fullscreenDetectionView.height == displayHeight) {
-                0f
-            } else {
-                1f
-            }
+            val isFullscreen = fullscreenDetectionView.height == displayHeight
 
             val intent = Intent("fullscreenDetectionService")
-            intent.putExtra("alpha", alpha)
+            intent.putExtra("isFullscreen", isFullscreen)
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
         }

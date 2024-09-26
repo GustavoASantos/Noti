@@ -2,7 +2,6 @@ package com.gustavoas.noti.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.gustavoas.noti.R
@@ -11,18 +10,14 @@ import com.gustavoas.noti.Utils
 class CircularBarFragment : BasePreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener {
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "progressBarLocation") {
-            updateMarginPreferencesVisibility()
-        }
+        // TODO: If offset is not zero and hole punch size changes toast suggesting a 0.5x change
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.circular_bar_preferences, rootKey)
 
-        updateMarginPreferencesVisibility()
-
         findPreference<Preference>("shareConfig")?.setOnPreferenceClickListener {
-            startActivity(Utils.composeEmail(requireContext()))
+            Utils.shareConfigToFirebase(requireContext())
             true
         }
 
@@ -36,26 +31,5 @@ class CircularBarFragment : BasePreferenceFragment(),
 
         PreferenceManager.getDefaultSharedPreferences(requireContext())
             .unregisterOnSharedPreferenceChangeListener(this)
-    }
-
-    private fun updateMarginPreferencesVisibility() {
-        val progressBarLocation = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            .getString("progressBarLocation", "center")
-
-        when (progressBarLocation) {
-            "right" -> findPreference<Preference>("progressBarLocation")?.icon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_right)
-
-            "left" -> findPreference<Preference>("progressBarLocation")?.icon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_left)
-
-            else -> findPreference<Preference>("progressBarLocation")?.icon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.ic_alignment_center)
-        }
-
-        findPreference<Preference>("circularProgressBarMarginLeft")?.isVisible =
-            (progressBarLocation == "center" || progressBarLocation == "left")
-        findPreference<Preference>("circularProgressBarMarginRight")?.isVisible =
-            (progressBarLocation == "center" || progressBarLocation == "right")
     }
 }

@@ -14,23 +14,14 @@
     <string name="prefsProgressBarStyleEntryCircular">סרגל התקדמות מעגלי</string>
     <string name="prefsCategoryTweaks">שינויים</string>
     <string name="prefsLinearProgressBarTweaks">הגדרת פס התקדמות ליניארי</string>
-    <string name="prefsProgressBarHeightTitle">עובי פס התקדמות</string>
-    <string name="prefsProgressBarHeightSummary">שנה את העובי של פס התקדמות</string>
+    <string name="prefsProgressBarThicknessTitle">עובי פס התקדמות</string>
+    <string name="prefsProgressBarThicknessSummary">שנה את העובי של פס התקדמות</string>
     <string name="prefsShowBelowNotchTitle">הצג מתחת לנקב המצלמה</string>
     <string name="prefsShowBelowNotchSummary">הצג סרגל התקדמות מתחת למגרעת או חור המצלמה</string>
     <string name="prefsCircularProgressBarTweaks">הגדרת פס התקדמות מעגלי</string>
-    <string name="prefsProgressBarAlignmentTitle">שנה את</string>
-    <string name="prefsProgressBarSizeTitle">גודל פס ההתקדמות</string>
-    <string name="prefsProgressBarSizeSummary">שנה את הגודל של פס ההתקדמות</string>
+    <string name="prefsProgressBarOffsetSummary">שנה את</string>
     <string name="prefsProgressBarMarginTopTitle">מרחק מהחלק העליון</string>
     <string name="prefsProgressBarMarginTopSummary">שנה את המרחק מהחלק העליון של המסך</string>
-    <string name="prefsProgressBarMarginLeftTitle">מרחק מצד שמאל</string>
-    <string name="prefsProgressBarMarginLeftSummary">שנה את המרחק מצד שמאל של המסך</string>
-    <string name="prefsProgressBarMarginRightTitle">מרחק מצד ימין</string>
-    <string name="prefsProgressBarMarginRightSummary">שנה את המרחק מצד ימין של המסך</string>
-    <string name="prefsProgressBarAlignmentEntryLeft">צד שמאל</string>
-    <string name="prefsProgressBarAlignmentEntryCenter">אמצע</string>
-    <string name="prefsProgressBarAlignmentEntryRight">צד שמאל</string>
     <string name="prefsRoundedCornersTitle">השתמש בפס התקדמות עם פינות מעוגלות</string>
     <string name="prefsRoundedCornersSummary">עבור לפס התקדמות עם קצוות מעוגלים</string>
     <string name="prefsShowInLockScreenTitle">הצג את פס ההתקדמות במסך הנעילה</string>
@@ -66,7 +57,6 @@
     <string name="prefsBlackBackgroundSummary">החלף לפס התקדמות עם רקע שחור</string>
     <string name="prefsSAWPermissionTitle">אפשר הצגה מעל אפליקציות אחרות</string>
     <string name="prefsSAWPermissionSummary">נדרש כדי להציג את פס ההתקדמות</string>
-    <string name="prefsSeekbarInfoCard">הקש על הערך שליד כל אופציה כדי לכוונן אותו באופן ידני</string>
     <string name="prefsCircularBarShareConfigTitle">התאמה מושלמת? שתף את הבחירה שלך</string>
     <string name="prefsCircularBarShareConfigSummary">אפשר לאחרים עם אותו מכשיר להשתמש הבחירה שלך</string>
     <string name="prefsShowForMediaTitle">הצג את פס התקדמות למידה </string>
@@ -76,5 +66,4 @@
     <string name="holePunchInstruction">שנה יישור בטוויקים מעגליים של פס התקדמות</string>
     <string name="prefsCategoryGeneral">כללי</string>
     <string name="prefsShowForDownloadsTitle">הצג סרגל התקדמות של הורדות</string>
-    <string name="prefsBatteryOptimization">ייתכן שיהיה עליך להשבית את אופטימיזציות הסוללה ולאפשר הפעלה אוטומטית כדי שנוטי יעבוד ברקע</string>
 </resources>

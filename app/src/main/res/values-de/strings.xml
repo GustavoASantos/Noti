@@ -21,13 +21,12 @@
     <string name="prefsProgressBarStyleEntryLinear">Linearer Fortschrittsbalken</string>
     <string name="prefsProgressBarStyleEntryCircular">Kreisförmiger Fortschrittsbalken</string>
     <string name="prefsLinearProgressBarTweaks">Lineare Fortschrittsanzeige optimiert</string>
-    <string name="prefsProgressBarHeightTitle">Dicke des Fortschrittsbalken</string>
-    <string name="prefsProgressBarHeightSummary">Größe der Spur des Fortschrittsbalkens ändern</string>
+    <string name="prefsProgressBarThicknessTitle">Dicke des Fortschrittsbalken</string>
+    <string name="prefsProgressBarThicknessSummary">Größe der Spur des Fortschrittsbalkens ändern</string>
     <string name="prefsShowBelowNotchSummary">Fortschrittsbalken unter jeder Kerbe oder Lochung anzeigen</string>
     <string name="menuReportBug">Fehler melden</string>
     <string name="settingsPreviewFab">Vorschau</string>
     <string name="holePunchInstruction">Ändern Sie die Ausrichtung in kreisförmigen Fortschrittsleisten-Tweaks</string>
-    <string name="prefsBatteryOptimization">Möglicherweise müssen Sie die Batterieoptimierung deaktivieren und Autostart für NOTI im Hintergrund ermöglichen</string>
     <string name="prefsProgressBarStylePortraitTitle">Fortschrittsbalken im Hochformat</string>
     <string name="prefsCategoryTweaks">Anpassungen</string>
     <string name="prefsShowBelowNotchTitle">Unterhalb des Displayausschnitts anzeigen</string>

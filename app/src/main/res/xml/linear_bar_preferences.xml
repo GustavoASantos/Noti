@@ -9,22 +9,22 @@
         app:allowDividerAbove="false"
         app:allowDividerBelow="false">
 
-        <SeekBarPreference
+        <com.gustavoas.noti.preferences.SeekBarPreference
             android:key="linearProgressBarMarginTop"
             android:title="@string/prefsProgressBarMarginTopTitle"
             android:summary="@string/prefsProgressBarMarginTopSummary"
             app:singleLineTitle="false"
-            android:defaultValue="0"
-            android:max="10"
+            app:max_number="150"
             app:icon="@drawable/ic_margin_top"/>
 
-        <SeekBarPreference
-            android:key="progressBarHeight"
-            android:title="@string/prefsProgressBarHeightTitle"
-            android:summary="@string/prefsProgressBarHeightSummary"
+        <com.gustavoas.noti.preferences.SeekBarPreference
+            android:key="linearProgressBarSize"
+            android:title="@string/prefsProgressBarThicknessTitle"
+            android:summary="@string/prefsProgressBarThicknessSummary"
             app:singleLineTitle="false"
-            android:defaultValue="5"
-            android:max="10"
+            app:default_value="15"
+            app:max_number="150"
+            app:min_number="1"
             app:icon="@drawable/ic_height"/>
 
         <SwitchPreferenceCompat
@@ -34,6 +34,13 @@
             app:singleLineTitle="false"
             android:defaultValue="false"
             app:icon="@drawable/ic_notification_bar"/>
+
+        <Preference
+            android:key="statusBarHeightCard"
+            android:summary="@string/prefsStatusBarHeightInfo"
+            app:singleLineTitle="false"
+            android:selectable="false"
+            app:icon="@drawable/ic_info" />
 
     </PreferenceCategory>
 </PreferenceScreen>

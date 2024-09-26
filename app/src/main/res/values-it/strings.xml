@@ -35,7 +35,6 @@
     <string name="prefsCategoryGeneral">Generali</string>
     <string name="prefsShowForDownloadsTitle">Mostra barre di avanzamento per i downloads</string>
     <string name="prefsShowForDownloadsSummary">Mostra la barra di avanzamento per i trasferimenti</string>
-    <string name="prefsBatteryOptimization">Disabilita l\'ottimizzazione batteria e consenti l\'avvio automatico a Noti per consentire l\'utilizzo in background</string>
     <string name="prefsNotificationPermissionTitle">Concedi acessso alle notifiche</string>
     <string name="prefsAccessibilityPermissionTitle">Concedi autorizzazione accessibilità</string>
     <string name="prefsAccessibilityPermissionSummary">Richiesto per mostrare Noti nella schermata di blocco e nelle app di sistema</string>
@@ -49,23 +48,15 @@
     <string name="prefsProgressBarStyleEntryCircular">Barra di avanzamento circolare</string>
     <string name="prefsCategoryTweaks">modifiche</string>
     <string name="prefsLinearProgressBarTweaks">Modifiche barra di avanzamento lineare</string>
-    <string name="prefsProgressBarHeightTitle">Larghezza barra di avanzamento</string>
-    <string name="prefsProgressBarHeightSummary">Modifica la dimensione della barra di avanzamento</string>
+    <string name="prefsProgressBarThicknessTitle">Larghezza barra di avanzamento</string>
+    <string name="prefsProgressBarThicknessSummary">Modifica la dimensione della barra di avanzamento</string>
     <string name="prefsShowBelowNotchTitle">Mostra dietro al ritaglio del display</string>
     <string name="prefsShowBelowNotchSummary">Mostra la barra di avanzamento dietro al notch o alla fotocamera</string>
     <string name="prefsCircularProgressBarTweaks">Modifiche barra di avanzamento circolare</string>
-    <string name="prefsProgressBarAlignmentTitle">Cambia l\'allineamento della barra di avanzamento</string>
-    <string name="prefsProgressBarSizeTitle">Dimensione barra di avanzamento</string>
-    <string name="prefsProgressBarSizeSummary">Cambia la dimensione della barra di avanzamento</string>
+    <string name="prefsProgressBarOffsetSummary">Cambia l\'allineamento della barra di avanzamento</string>
     <string name="prefsProgressBarMarginTopTitle">Margine partendo dall\'alto</string>
-    <string name="prefsProgressBarMarginLeftTitle">Margine dal lato sinistro</string>
-    <string name="prefsProgressBarMarginRightTitle">Margine dal lato destro</string>
-    <string name="prefsProgressBarAlignmentEntryLeft">Allineamento a sinistra</string>
-    <string name="prefsProgressBarAlignmentEntryCenter">Centrato</string>
-    <string name="prefsProgressBarAlignmentEntryRight">Allineamento a destra</string>
     <string name="prefsCircularBarShareConfigTitle">Dimensione corretta? Condividi la tua configurazione</string>
     <string name="prefsCircularBarShareConfigSummary">Permetti ad altre persone con lo stesso dispositivo di usare la tua configurazione</string>
-    <string name="prefsSeekbarInfoCard">Tocca il valore vicino ad ogni barra per impostare un valore manualmente</string>
     <string name="prefsBlackBackgroundTitle">Usa sfondo nero</string>
     <string name="prefsPerAppSettingsTitle">Impostazioni singole app</string>
     <string name="prefsBlackBackgroundSummary">Passa a una barra di avanzamento con contorno nero</string>
@@ -77,6 +68,4 @@
     <string name="perAppSettingsEmptyView">Nessuna barra di avanzamento trovata. Usa le app per farle apparire</string>
     <string name="colorLime">Lime</string>
     <string name="prefsProgressBarMarginTopSummary">Cambia la spaziatura dalla parte superiore dello schermo</string>
-    <string name="prefsProgressBarMarginLeftSummary">Cambia la spaziatura da sinistra dello schermo</string>
-    <string name="prefsProgressBarMarginRightSummary">Cambia la spaziatura da destra dello schermo</string>
 </resources>

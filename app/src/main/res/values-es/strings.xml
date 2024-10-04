@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="perAppSettingsEmptyView">No se encontraron barras de progreso. Noti descubrirá barras de progreso conforme uses tu teléfono.</string>
+    <string name="perAppSettingsEmptyView">Aún no se han encontrado barras de progreso. Las aplicaciones compatibles se descubren a medida que usas el dispositivo.</string>
     <string name="reset">Reset</string>
     <string name="holePunchInstruction">Cambiar la alineación en los ajustes de la barra de progreso circular</string>
     <string name="prefsCategorySetup">Primeros Pasos</string>
@@ -72,4 +72,13 @@
     <string name="prefsCircularBarShareConfigTitle">¿Ajuste perfecto? Compartir configuración</string>
     <string name="prefsCircularBarShareConfigSummary">Permita que otras personas con el mismo dispositivo utilicen su configuración</string>
     <string name="prefsBlackBackgroundTitle">Utilice un fondo negro</string>
+    <string name="prefsBatteryBannerButton">Más información</string>
+    <string name="prefsStatusBarHeightInfo">Tu barra de estado mide %d píxeles de alto</string>
+    <string name="prefsProgressBarOffsetTitle">Desplazamiento horizontal</string>
+    <string name="prefsCutoutSizeTitle">Tamaño del recorte</string>
+    <string name="prefsCutoutSizeSummary">Cambiar el tamaño del diámetro interior</string>
+    <string name="prefsMultiScreenInfoCard">Para múltiples pantallas, acceda a la configuración a través de cada pantalla para ajustar la barra para esa configuración</string>
+    <string name="shareConfigPositiveMessage">¡Gracias por compartir tu configuración!</string>
+    <string name="prefsBatteryBannerSummary">Es posible que tengas que desactivar las optimizaciones de la batería y permitir el inicio automático para que Noti funcione en segundo plano. Puede ser necesario reiniciar el sistema después de hacer esto</string>
+    <string name="shareConfigNoInternetMessage">Activar internet para cargar la configuración</string>
 </resources>

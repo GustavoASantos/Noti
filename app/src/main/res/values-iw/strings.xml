@@ -50,7 +50,7 @@
     <string name="colorBlack">שחור</string>
     <string name="colorGrey">אפור</string>
     <string name="colorWhite">לבן</string>
-    <string name="perAppSettingsEmptyView">עדיין לא נמצא פס התקדמות.  Noti תגלה לאילו אפליקציות יש פסי התקדמות בזמן השימוש בטלפון</string>
+    <string name="perAppSettingsEmptyView">עדיין לא נמצא פס התקדמות. Noti תגלה לאילו אפליקציות יש פסי התקדמות בזמן השימוש בטלפון</string>
     <string name="prefsPerAppSettingsTitle">הגדרת לפי כול אפליקציה</string>
     <string name="prefsPerAppSettingsSummary">הפעל כול אפליקציה בנפרד</string>
     <string name="prefsBlackBackgroundTitle">השתמש ברקע שחור</string>

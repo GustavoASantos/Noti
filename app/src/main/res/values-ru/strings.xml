@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settingsPreviewFab">Предпросмотр</string>
+    <string name="menuReportBug">Сообщить о сбое</string>
+</resources>

@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="notificationListenerDescription">Читає сповіщення з індикатора прогресу</string>
+    <string name="settingsPreviewFab">Передперегляд</string>
+    <string name="reset">Скинути</string>
+    <string name="holePunchInstruction">Змінити вирівнювання можна в налаштуваннях кругового індикатора прогресу</string>
+    <string name="prefsBatteryBannerButton">Дізнатися більше</string>
+    <string name="prefsCategorySetup">налаштування</string>
+    <string name="prefsCategoryGeneral">загальні</string>
+    <string name="menuReportBug">Повідомити про ваду</string>
+    <string name="perAppSettingsEmptyView">Індикатори прогресу ще не знайдено. Сумісні застосунки виявляються під час використання пристрою.</string>
+    <string name="prefsBatteryBannerSummary">Можливо, вам доведеться вимкнути оптимізацію заряду батареї і дозволити автозапуск для роботи Noti у фоновому режимі. Після цього може знадобитися перезавантаження</string>
+</resources>

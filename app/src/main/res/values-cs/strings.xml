@@ -34,7 +34,7 @@
     <string name="colorBlack">Černá</string>
     <string name="colorGrey">Šedá</string>
     <string name="settingsPreviewFab">Náhled</string>
-    <string name="perAppSettingsEmptyView">Nebyly nalezeny žádné ukazatele průběhu. Aplikace s ukazateli průběhu se objevují při používání zařízení.</string>
+    <string name="perAppSettingsEmptyView">Zatím nebyly nalezeny žádné ukazatele průběhu. Kompatibilní aplikace se objevují v průběhu používání zařízení.</string>
     <string name="prefsCategorySetup">nastavení</string>
     <string name="prefsCategoryGeneral">obecné</string>
     <string name="prefsCircularProgressBarTweaks">Úpravy kruhového ukazatele průběhu</string>
@@ -69,4 +69,16 @@
     <string name="colorIndigo">Indigo</string>
     <string name="colorBlue">Modrá</string>
     <string name="colorLightBlue">Světle modrá</string>
+    <string name="prefsProgressBarStylePortraitTitle">Styl ukazatele průběhu</string>
+    <string name="advancedOptions">Rozšířené nastavení</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">Styl panelu průběhu na šířku</string>
+    <string name="prefsProgressBarOffsetTitle">Horizontální posun</string>
+    <string name="prefsCutoutSizeTitle">Velikost výřezu</string>
+    <string name="prefsCutoutSizeSummary">Změna velikosti vnitřního průměru</string>
+    <string name="shareConfigPositiveMessage">Děkujeme za sdílení konfigurace!</string>
+    <string name="shareConfigNoInternetMessage">Povolení internetu pro odesílání konfigurace</string>
+    <string name="prefsBatteryBannerButton">Číst více</string>
+    <string name="prefsBatteryBannerSummary">Možná bude nutné vypnout optimalizaci baterie a povolit automatické spouštění, aby aplikace Noti pracovala na pozadí. Po provedení těchto úkonů může být nutné restartovat zařízení</string>
+    <string name="prefsStatusBarHeightInfo">Váš stavový řádek je vysoký %d pixelů</string>
+    <string name="prefsMultiScreenInfoCard">V případě více obrazovek přistupujte k nastavení přes každý displej a upravte proužek pro dané nastavení</string>
 </resources>

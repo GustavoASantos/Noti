@@ -67,7 +67,7 @@
     <string name="colorGreen">綠色</string>
     <string name="colorBlack">黑色</string>
     <string name="colorAmber">琥珀色</string>
-    <string name="perAppSettingsEmptyView">未找到進度條。當你使用裝置時，會發現具有進度條的應用程式。</string>
+    <string name="perAppSettingsEmptyView">未找到進度條。相容的應用程式會隨你使用裝置時被發現。</string>
     <string name="advancedOptions">進階設定</string>
     <string name="prefsDisableInFullScreenTitle">在全螢幕時禁用</string>
     <string name="prefsDisableInFullScreenSummary">在全螢幕應用程式中隱藏進度條</string>

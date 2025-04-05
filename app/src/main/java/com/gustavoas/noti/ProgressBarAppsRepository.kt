@@ -37,11 +37,13 @@ class ProgressBarAppsRepository private constructor(context: Context) :
         }
     }
 
-    fun addApp(app: ProgressBarApp) {
+    fun addApp(app: ProgressBarApp): ProgressBarApp {
         val db = writableDatabase
         db.execSQL("INSERT INTO apps VALUES ('${app.packageName}', ${if (app.showProgressBar) 1 else 0}, ${app.color})")
         db.close()
         apps.add(app)
+
+        return app
     }
 
     fun updateApp(app: ProgressBarApp) {

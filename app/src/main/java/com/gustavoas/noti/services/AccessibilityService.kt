@@ -10,6 +10,7 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import android.os.Handler
 import android.os.Looper
 import android.view.Display
@@ -35,7 +36,9 @@ import com.gustavoas.noti.Utils.getScreenSmallSide
 import com.gustavoas.noti.Utils.getStatusBarHeight
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import com.gustavoas.noti.model.ProgressNotification
 import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
@@ -48,11 +51,8 @@ class AccessibilityService : AccessibilityService() {
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var circularProgressBar: CircularProgressIndicator
     private val handler = Handler(Looper.getMainLooper())
-    private var toBeRemoved = false
-    private var currentPriority = 0
-    private var currentProgress = 0
-    private var currentPackageName = ""
-    private var color = 1
+
+    private val activeProgressBars = mutableMapOf<String, ProgressNotification>()
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
 
@@ -63,44 +63,54 @@ class AccessibilityService : AccessibilityService() {
             return super.onStartCommand(intent, flags, startId)
         }
 
+        val id = intent?.getStringExtra("id") ?: ""
         val removal = intent?.getBooleanExtra("removal", false) ?: false
-        val newPackageName = intent?.getStringExtra("packageName") ?: ""
 
-        val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean("showInLockScreen", true)
-
-        if ((removal && newPackageName == currentPackageName) || (isLocked() && !showInLockScreen)) {
-            if (!this::overlayView.isInitialized || !overlayView.isShown) {
-                return super.onStartCommand(intent, flags, startId)
-            }
-            currentPriority = 0
-            toBeRemoved = true
-            hideProgressBarIn(1000)
-        } else if ((!isLocked() || showInLockScreen) && !removal) {
-            val newProgress = intent?.getIntExtra("progress", 0) ?: 0
-            val newPriority = intent?.getIntExtra("priority", 0) ?: 0
-
-            if (newPriority < currentPriority || newProgress <= 0) {
-                return super.onStartCommand(intent, flags, startId)
+        if (removal) {
+            activeProgressBars.remove(id)
+        } else {
+            val newProgressNotification = if (SDK_INT > Build.VERSION_CODES.TIRAMISU) {
+                intent?.getParcelableExtra("progressNotification", ProgressNotification::class.java)
+            } else {
+                intent?.getParcelableExtra("progressNotification")
             }
 
-            if (currentPackageName.isNotEmpty() && newPackageName != currentPackageName &&
-                newProgress < currentProgress && !toBeRemoved && newPriority == currentPriority) {
-                return super.onStartCommand(intent, flags, startId)
+            newProgressNotification?.let {
+                activeProgressBars[id] = it
             }
-
-            currentPackageName = newPackageName
-            currentPriority = newPriority
-            color = intent?.getIntExtra("color", 1) ?: 1
-
-            handler.removeCallbacksAndMessages(null)
-            showOverlayWithProgress(newProgress)
         }
+
+        updateProgressOverlay(1000)
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    private fun showOverlayWithProgress(progress: Int) {
+    private fun updateProgressOverlay(hideDelay: Long = 0) {
+        val showInLockScreen = PreferenceManager.getDefaultSharedPreferences(this)
+            .getBoolean("showInLockScreen", true)
+
+        if (activeProgressBars.isEmpty() || (isLocked() && !showInLockScreen)) {
+            if (!this::overlayView.isInitialized || !overlayView.isShown) {
+                return
+            }
+            hideProgressBarIn(hideDelay)
+        } else {
+            getActiveNotification()?.let {
+                showOverlayWithProgress(it)
+            }
+        }
+    }
+
+    private fun getActiveNotification(): ProgressNotification? {
+        val highestPriority = activeProgressBars.values.maxOfOrNull { it.priority } ?: 0
+        return activeProgressBars.values
+            .filter { it.priority >= highestPriority }
+            .maxByOrNull { it.progress }
+    }
+
+    private fun showOverlayWithProgress(notification: ProgressNotification) {
+        handler.removeCallbacksAndMessages(null)
+
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val progressBarStyle =
@@ -143,29 +153,26 @@ class AccessibilityService : AccessibilityService() {
             linearProgressBarCustomizations(sharedPreferences)
         }
 
-        applyCommonProgressBarCustomizations(sharedPreferences)
+        applyCommonProgressBarCustomizations(sharedPreferences, notification.progressBarApp.color)
 
-        animateProgressBarTo(progress, progressBarStyle == "circular")
-        currentProgress = progress
+        animateProgressBarTo(notification.progress, progressBarStyle == "circular")
 
-        toBeRemoved = progress == resources.getInteger(R.integer.progress_bar_max)
-
-        handler.postDelayed({
-            currentPriority = 0
-            toBeRemoved = true
-        }, 2000)
-        hideProgressBarIn(10000)
+        // TODO: record timestamp and deprioritize after a while
+//        handler.postDelayed({
+//            updateProgressOverlay()
+//        }, 3000)
     }
 
-    private fun circularProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        val trackThickness = sharedPreferences.getSizeDependentInt("circularProgressBarThickness", 15)
+    private fun circularProgressBarCustomizations(sharedPrefs: SharedPreferences) {
+        val trackThickness = max(sharedPrefs.getSizeDependentInt("circularProgressBarThickness", 15), 0)
+        val cutoutSize = max(sharedPrefs.getSizeDependentInt("circularProgressBarSize", 65), 0)
 
-        circularProgressBar.indicatorSize = sharedPreferences.getSizeDependentInt("circularProgressBarSize", 65) + 2 * trackThickness
+        circularProgressBar.indicatorSize = cutoutSize + 2 * trackThickness
 
         circularProgressBar.trackThickness = trackThickness
 
-        val marginTop = sharedPreferences.getSizeDependentInt("circularProgressBarMarginTop", 30) - trackThickness
-        val horizontalOffset = sharedPreferences.getSizeDependentInt("circularProgressBarHorizontalOffset", 0)
+        val marginTop = sharedPrefs.getSizeDependentInt("circularProgressBarMarginTop", 30) - trackThickness
+        val horizontalOffset = sharedPrefs.getSizeDependentInt("circularProgressBarHorizontalOffset", 0)
 
         val overlayParams = overlayView.layoutParams as WindowManager.LayoutParams
 
@@ -241,19 +248,19 @@ class AccessibilityService : AccessibilityService() {
         } catch (_: Exception) {}
     }
 
-    private fun linearProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        if (sharedPreferences.getBoolean(getSizeDependentPreferenceKey("matchStatusBarHeight").first, false)) {
+    private fun linearProgressBarCustomizations(sharedPrefs: SharedPreferences) {
+        if (sharedPrefs.getBoolean(getSizeDependentPreferenceKey("matchStatusBarHeight").first, false)) {
             progressBar.trackThickness = getStatusBarHeight(this)
         } else {
-            progressBar.trackThickness = sharedPreferences.getSizeDependentInt("linearProgressBarSize", 15)
+            progressBar.trackThickness = sharedPrefs.getSizeDependentInt("linearProgressBarSize", 15)
         }
 
-        val paddingTop = sharedPreferences.getSizeDependentInt("linearProgressBarMarginTop", 0)
+        val paddingTop = sharedPrefs.getSizeDependentInt("linearProgressBarMarginTop", 0)
 
         val overlayParams = overlayView.layoutParams as WindowManager.LayoutParams
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            if (sharedPreferences.getBoolean(getSizeDependentPreferenceKey("showBelowNotch").first, false)) {
+        if (SDK_INT >= Build.VERSION_CODES.P) {
+            if (sharedPrefs.getBoolean(getSizeDependentPreferenceKey("showBelowNotch").first, false)) {
                 overlayParams.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             } else {
                 overlayParams.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
@@ -270,10 +277,10 @@ class AccessibilityService : AccessibilityService() {
         } catch (_: Exception) {}
     }
 
-    private fun applyCommonProgressBarCustomizations(sharedPreferences: SharedPreferences) {
-        val useMaterialYou = sharedPreferences.getBoolean("usingMaterialYouColor", false)
+    private fun applyCommonProgressBarCustomizations(sharedPrefs: SharedPreferences, color: Int) {
+        val useMaterialYou = sharedPrefs.getBoolean("usingMaterialYouColor", false)
         val progressBarColor = if (color == 1 && !useMaterialYou) {
-            sharedPreferences.getInt(
+            sharedPrefs.getInt(
                 "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
             )
         } else if (color == 2 || (useMaterialYou && color == 1)) {
@@ -284,7 +291,7 @@ class AccessibilityService : AccessibilityService() {
         progressBar.setIndicatorColor(progressBarColor)
         circularProgressBar.setIndicatorColor(progressBarColor)
 
-        val blackBackground = sharedPreferences.getBoolean("blackBackground", false)
+        val blackBackground = sharedPrefs.getBoolean("blackBackground", false)
         val backgroundColor = if (blackBackground) {
             ContextCompat.getColor(this, android.R.color.black)
         } else {
@@ -293,7 +300,7 @@ class AccessibilityService : AccessibilityService() {
         progressBar.trackColor = backgroundColor
         circularProgressBar.trackColor = backgroundColor
 
-        val useRoundedCorners = sharedPreferences.getBoolean("useRoundedCorners", false)
+        val useRoundedCorners = sharedPrefs.getBoolean("useRoundedCorners", false)
         if (useRoundedCorners) {
             progressBar.trackCornerRadius = 100
             circularProgressBar.trackCornerRadius = 100
@@ -348,10 +355,7 @@ class AccessibilityService : AccessibilityService() {
             circularProgressBar.hide()
             handler.postDelayed({
                 setProgressToZero()
-                currentPriority = 0
-                currentPackageName = ""
                 hideOverlay()
-                toBeRemoved = false
             }, 500)
         }, delay)
     }
@@ -386,11 +390,11 @@ class AccessibilityService : AccessibilityService() {
         val showInLockscreen = PreferenceManager.getDefaultSharedPreferences(this)
             .getBoolean("showInLockScreen", true) && hasAccessibilityPermission
 
-        val windowType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && hasSAWPermission && !showInLockscreen) {
+        val windowType = if (SDK_INT >= Build.VERSION_CODES.O && hasSAWPermission && !showInLockscreen) {
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission) {
+        } else if (SDK_INT >= Build.VERSION_CODES.M && hasAccessibilityPermission) {
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && hasSAWPermission) {
+        } else if (SDK_INT < Build.VERSION_CODES.O && hasSAWPermission) {
             @Suppress("DEPRECATION")
             WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY
         } else {
@@ -409,11 +413,11 @@ class AccessibilityService : AccessibilityService() {
             PixelFormat.TRANSLUCENT
         )
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && hasSAWPermission && !showInLockscreen) {
+        if (SDK_INT >= Build.VERSION_CODES.S && hasSAWPermission && !showInLockscreen) {
             params.alpha = 0.8f
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        if (SDK_INT >= Build.VERSION_CODES.P) {
             params.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
@@ -433,7 +437,6 @@ class AccessibilityService : AccessibilityService() {
                 )
                 startService(Intent(this, FullscreenDetectionService::class.java))
             }
-
         }
     }
 
@@ -463,12 +466,6 @@ class AccessibilityService : AccessibilityService() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        if (this::overlayView.isInitialized && overlayView.isShown) {
-            if (toBeRemoved) {
-                hideProgressBarIn(0)
-            } else {
-                showOverlayWithProgress(currentProgress)
-            }
-        }
+        updateProgressOverlay(0)
     }
 }

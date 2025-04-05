@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ProgressBarApp(
-    val packageName: String,
-    var showProgressBar: Boolean,
-    var color: Int = 1
+data class ProgressNotification (
+    val progressBarApp: ProgressBarApp,
+    val progress: Int,
+    val priority: Int
 ) : Parcelable

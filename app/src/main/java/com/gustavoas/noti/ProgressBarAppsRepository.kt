@@ -29,6 +29,23 @@ class ProgressBarAppsRepository private constructor(context: Context) :
                     "color INTEGER NOT NULL" +
                     ")"
         )
+
+        val knownApps = listOf(
+            "com.google.android.deskclock",
+            "com.android.chrome",
+            "com.duckduckgo.mobile.android",
+            "com.android.vending",
+            "com.epicgames.portal",
+            "code.name.monkey.retromusic",
+            "com.google.android.apps.youtube.music",
+            "com.spotify.music",
+        )
+
+        knownApps.forEach { packageName ->
+            db?.execSQL(
+                "INSERT INTO apps VALUES ('$packageName', 1, 1)"
+            )
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

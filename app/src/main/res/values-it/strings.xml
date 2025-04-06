@@ -3,8 +3,6 @@
     <string name="prefsPerAppSettingsSummary">Attiva noti in base alle impostazioni per singole app</string>
     <string name="prefsRoundedCornersTitle">Usa una barra di avanzamento con gli angoli smussati</string>
     <string name="prefsRoundedCornersSummary">Passa a una barra di avanzamento con le terminazioni smussate</string>
-    <string name="prefsShowForMediaTitle">Mostra la barra di avanzamento per i media</string>
-    <string name="prefsShowForMediaSummary">Mostra la barra di avanzamento durante la riproduzione di media</string>
     <string name="prefsShowInLockScreenTitle">Mostra la barra di avanzamento nella schermata di blocco</string>
     <string name="prefsShowInLockScreenSummary">Sarà mostrata anche nella schermata Always On</string>
     <string name="prefsChangeColorTitle">Cambia il colore della barra di avanzamento</string>
@@ -33,8 +31,6 @@
     <string name="colorPurple">Viola</string>
     <string name="colorDeepPurple">Viola scuro</string>
     <string name="prefsCategoryGeneral">Generali</string>
-    <string name="prefsShowForDownloadsTitle">Mostra barre di avanzamento per i downloads</string>
-    <string name="prefsShowForDownloadsSummary">Mostra la barra di avanzamento per i trasferimenti</string>
     <string name="prefsNotificationPermissionTitle">Concedi acessso alle notifiche</string>
     <string name="prefsAccessibilityPermissionTitle">Concedi autorizzazione accessibilità</string>
     <string name="prefsAccessibilityPermissionSummary">Richiesto per mostrare Noti nella schermata di blocco e nelle app di sistema</string>

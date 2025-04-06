@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settingsPreviewFab">预览</string>
-    <string name="prefsShowForDownloadsSummary">当传输内容时显示进度条</string>
     <string name="prefsNotificationPermissionSummary">用于获取带有进度条的通知</string>
     <string name="prefsAccessibilityPermissionTitle">授予无障碍权限</string>
     <string name="prefsAccessibilityPermissionSummary">用于在锁屏界面显示以及在系统英语中显示</string>
@@ -30,7 +29,6 @@
     <string name="menuReportBug">反馈错误</string>
     <string name="notificationListenerDescription">通过进度条阅读通知</string>
     <string name="reset">重置</string>
-    <string name="prefsShowForDownloadsTitle">显示下载进度条</string>
     <string name="prefsNotificationPermissionTitle">授予通知使用权</string>
     <string name="prefsProgressBarStyleTitle">选择进度条样式</string>
     <string name="advancedOptions">高级选项</string>
@@ -39,7 +37,6 @@
     <string name="prefsCategorySetup">设置</string>
     <string name="prefsCategoryGeneral">常规</string>
     <string name="prefsCategoryMore">更多</string>
-    <string name="prefsShowForMediaTitle">显示媒体进度条</string>
     <string name="prefsCalentileTitle">试试 Google Play 上的 CalenTile</string>
     <string name="prefsCalentileSummary">支持开发者</string>
     <string name="prefsPerAppSettingsTitle">分应用设置</string>
@@ -51,7 +48,6 @@
     <string name="prefsCircularProgressBarTweaks">调整环形进度条</string>
     <string name="holePunchInstruction">在环形进度条微调中更改对齐方式</string>
     <string name="prefsProgressBarOffsetSummary">更改进度条对齐方式</string>
-    <string name="prefsShowForMediaSummary">当播放音乐时显示进度条</string>
     <string name="colorPink">粉红色</string>
     <string name="colorPurple">紫色</string>
     <string name="prefsDisableInFullScreenSummary">在全屏应用中隐藏进度条</string>

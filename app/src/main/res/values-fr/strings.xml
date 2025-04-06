@@ -2,11 +2,9 @@
 <resources>
     <string name="colorWhite">Blanc</string>
     <string name="reset">Réinitialiser</string>
-    <string name="prefsShowForDownloadsSummary">Afficher la barre de progression lors de transfert de contenu</string>
     <string name="perAppSettingsEmptyView">Aucune barre de progression n\'a encore été trouvée. Noti découvrira quelles applications ont des barres de progression lorsque vous utiliserez votre téléphone.</string>
     <string name="prefsCategoryGeneral">Général</string>
     <string name="notificationListenerDescription">Lire les notifications avec une barre de progression</string>
-    <string name="prefsShowForDownloadsTitle">Afficher les téléchargements barre de progression</string>
     <string name="prefsCalentileSummary">Soutenir le développeur</string>
     <string name="prefsChangeColorTitle">Changement de couleur de la barre</string>
     <string name="settingsPreviewFab">Aperçu</string>
@@ -42,7 +40,6 @@
     <string name="prefsBlackBackgroundSummary">Passez à une barre de progression avec un fond noir</string>
     <string name="colorDeepPurple">Violet foncé</string>
     <string name="prefsCircularProgressBarTweaks">Ajustements de la barre de progression circulaire</string>
-    <string name="prefsShowForMediaSummary">Affiche la barre de progression quand une musique est jouée</string>
     <string name="prefsProgressBarStyleEntryCircular">Barre de progression circulaire</string>
     <string name="prefsNotificationPermissionTitle">Accorder l\'accès aux notifications</string>
     <string name="prefsProgressBarThicknessSummary">Changer la taille de la barre de progression</string>
@@ -58,7 +55,6 @@
     <string name="prefsCategoryTweaks">Ajustements</string>
     <string name="colorPink">Rose</string>
     <string name="prefsRoundedCornersSummary">Passer à une barre de progression avec les extrémités arrondies</string>
-    <string name="prefsShowForMediaTitle">Montrer la barre de progression des médias</string>
     <string name="prefsCategoryMore">Plus</string>
     <string name="colorLightBlue">Bleu clair</string>
     <string name="prefsShowBelowNotchSummary">Afficher la barre de progression sous n\'importe quel encoche</string>

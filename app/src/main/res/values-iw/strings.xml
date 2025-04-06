@@ -59,11 +59,8 @@
     <string name="prefsSAWPermissionSummary">נדרש כדי להציג את פס ההתקדמות</string>
     <string name="prefsCircularBarShareConfigTitle">התאמה מושלמת? שתף את הבחירה שלך</string>
     <string name="prefsCircularBarShareConfigSummary">אפשר לאחרים עם אותו מכשיר להשתמש הבחירה שלך</string>
-    <string name="prefsShowForMediaTitle">הצג את פס התקדמות למידה </string>
-    <string name="prefsShowForMediaSummary">הצג את פס ההתקדמות בעת השמעת מוזיקה</string>
     <string name="prefsProgressBarStyleEntryNone">אל תציג סרגל התקדמות</string>
     <string name="reset">איפוס</string>
     <string name="holePunchInstruction">שנה יישור בטוויקים מעגליים של פס התקדמות</string>
     <string name="prefsCategoryGeneral">כללי</string>
-    <string name="prefsShowForDownloadsTitle">הצג סרגל התקדמות של הורדות</string>
 </resources>

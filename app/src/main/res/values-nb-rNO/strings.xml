@@ -33,7 +33,6 @@
     <string name="colorPurple">Lilla</string>
     <string name="prefsCircularBarShareConfigSummary">La andre med samme enhet bruke ditt oppsett</string>
     <string name="prefsCategoryCustomization">tilpasning</string>
-    <string name="prefsShowForDownloadsSummary">Vis framdriftsfelt ved overføring av innhold</string>
     <string name="prefsAccessibilityPermissionSummary">Påkrevd for visning på låseskjermen og i systemprogrammer</string>
     <string name="prefsShowBelowNotchTitle">Vis under skjermbusslomme</string>
     <string name="prefsShowInLockScreenTitle">Vis framdriftsfelt på låseskjermen</string>
@@ -47,9 +46,7 @@
     <string name="prefsPerAppSettingsSummary">Veksle visning av noti per program</string>
     <string name="prefsNotificationPermissionSummary">Påkrevd for lesing av merknader med framdriftsfelt</string>
     <string name="prefsBlackBackgroundSummary">Endre til framdriftsfelt med svart spor</string>
-    <string name="prefsShowForDownloadsTitle">Vis nedlastningsframdriftsfelt</string>
     <string name="prefsCircularProgressBarTweaks">Justering av sirkulære framdriftsfelt</string>
-    <string name="prefsShowForMediaSummary">Vis framdriftsfelt under spilling av musikk</string>
     <string name="prefsProgressBarStyleEntryCircular">Sirkulært framdriftsfelt</string>
     <string name="prefsNotificationPermissionTitle">Innvilg merknadstilgang</string>
     <string name="prefsProgressBarThicknessSummary">Endre størrelsen på framdriftsfeltets spor</string>
@@ -60,7 +57,6 @@
     <string name="holePunchInstruction">Endre justering av sirkulære framdriftsfelt</string>
     <string name="prefsCategoryTweaks">justeringer</string>
     <string name="prefsRoundedCornersSummary">Endre til framdriftsfelt med avrundede hjørner</string>
-    <string name="prefsShowForMediaTitle">Vis mediaframdriftsfelt</string>
     <string name="prefsCategoryMore">mer</string>
     <string name="prefsShowBelowNotchSummary">Vis framdriftsfelt under busslomme eller spionhull</string>
     <string name="prefsRoundedCornersTitle">Bruk framdriftsfelt med avrundede hjørner</string>

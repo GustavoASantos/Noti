@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="28dp"
+    android:layout_marginVertical="?android:attr/listPreferredItemPaddingStart">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:background="@drawable/layout_bg"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activateToggle"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="14dp"/>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/toggleDownloads"
+                style="@style/ToggleGroupButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="48dp"
+                app:icon="@drawable/selector_download"
+                app:iconSize="28dp"
+                app:iconPadding="10dp"
+                android:text="@string/downloads"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/toggleMedia"
+                style="@style/ToggleGroupButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="48dp"
+                app:icon="@drawable/selector_music"
+                app:iconSize="28dp"
+                app:iconPadding="10dp"
+                android:text="@string/media"/>
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

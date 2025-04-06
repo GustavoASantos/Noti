@@ -61,11 +61,7 @@
     <string name="prefsSAWPermissionSummary">Wymagane do wyświetlania paska postępu nad innymi aplikacjami</string>
     <string name="prefsCircularBarShareConfigTitle">Idealnie dopasowane? Podziel się konfiguracją</string>
     <string name="prefsCircularBarShareConfigSummary">Pozwól innym użytkownikom tego samego urządzenia korzystać z Twojej konfiguracji</string>
-    <string name="prefsShowForMediaTitle">Pokaż pasek postępu dla multimediów</string>
-    <string name="prefsShowForMediaSummary">Wyświetla pasek postępu gdy odtwarzasz muzykę</string>
     <string name="prefsCategoryGeneral">Ogólne</string>
-    <string name="prefsShowForDownloadsTitle">Wyświetl pasek postępu dla pobierania</string>
-    <string name="prefsShowForDownloadsSummary">Wyświetla pasek postępu gdy pobierasz jakąś zawartość</string>
     <string name="reset">Resetuj</string>
     <string name="holePunchInstruction">Zmień wyrównanie w ustawieniach okrągłego paska postępu</string>
     <string name="prefsProgressBarStyleEntryNone">Brak paska postępu</string>

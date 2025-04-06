@@ -2,7 +2,8 @@ package com.gustavoas.noti
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,13 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.gustavoas.noti.Utils.dpToPx
+import com.gustavoas.noti.Utils.getApplicationIcon
+import com.gustavoas.noti.Utils.getApplicationName
 import com.gustavoas.noti.Utils.showColorDialog
 import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.services.AccessibilityService
@@ -24,19 +27,44 @@ class ProgressBarAppsAdapter(
     private val fragment: Fragment,
     private val context: Context,
     private val apps: ArrayList<ProgressBarApp>
-) : RecyclerView.Adapter<ProgressBarAppsAdapter.ViewHolder>() {
-    private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(context) }
-    private val packageManager by lazy { context.packageManager }
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val VIEW_TYPE_HEADER = 0
+    private val VIEW_TYPE_ITEM = 1
+    private val VIEW_TYPE_FOOTER = 2
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.app_item, parent, false)
-        return ViewHolder(view)
+    private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(context) }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> VIEW_TYPE_HEADER
+            itemCount - 1 -> VIEW_TYPE_FOOTER
+            else -> VIEW_TYPE_ITEM
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(apps[position]) {
-            holder.appName.text = getAppName(packageName)
-            val appIcon = getAppIcon(packageName)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_HEADER -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.button_toggle_group, parent, false)
+                HeaderViewHolder(view)
+            }
+            VIEW_TYPE_FOOTER -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.per_app_settings_footer, parent, false)
+                FooterViewHolder(view)
+            }
+            else -> {
+                val view = LayoutInflater.from(context).inflate(R.layout.app_item, parent, false)
+                ItemViewHolder(view)
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder !is ItemViewHolder) return
+
+        with(apps[position - 1]) {
+            holder.appName.text = getApplicationName(context, packageName) ?: packageName
+            val appIcon = getApplicationIcon(context, packageName) ?: ColorDrawable(Color.TRANSPARENT)
             val appIconSize = dpToPx(context, 36)
             appIcon.setBounds(0, 0, appIconSize, appIconSize)
             holder.appName.setCompoundDrawables(appIcon, null, null, null)
@@ -63,42 +91,60 @@ class ProgressBarAppsAdapter(
             }
             holder.colorPicker.setBackgroundColor(barColor)
             holder.colorPicker.setOnClickListener {
-                showColorDialog(fragment, barColor, position.toString(), color != 1)
+                showColorDialog(
+                    fragment,
+                    barColor,
+                    (position - 1).toString(),
+                    color != 1
+                )
             }
         }
     }
 
-    override fun onViewRecycled(holder: ViewHolder) {
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
         super.onViewRecycled(holder)
+
+        if (holder !is ItemViewHolder) return
         holder.toggle.setOnCheckedChangeListener(null)
     }
 
-    private fun getAppIcon(packageName: String): Drawable {
-        return try {
-            packageManager.getApplicationIcon(packageName)
-        } catch (e: Exception) {
-            ResourcesCompat.getDrawable(
-                context.resources,
-                R.drawable.ic_apps,
-                null
-            )!!
+    override fun getItemCount(): Int = apps.size + 2
+
+    class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val toggleGroup: MaterialButtonToggleGroup = itemView.findViewById(R.id.toggleGroup)
+
+        init {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.itemView.context)
+            val enableDownloads = sharedPreferences.getBoolean("showForDownloads", true)
+            val enableMedia = sharedPreferences.getBoolean("showForMedia", true)
+
+            if (enableDownloads) {
+                toggleGroup.check(R.id.toggleDownloads)
+            }
+
+            if (enableMedia) {
+                toggleGroup.check(R.id.toggleMedia)
+            }
+
+            toggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
+                when (checkedId) {
+                    R.id.toggleDownloads -> {
+                        sharedPreferences.edit().putBoolean("showForDownloads", isChecked).apply()
+                    }
+                    R.id.toggleMedia -> {
+                        sharedPreferences.edit().putBoolean("showForMedia", isChecked).apply()
+                    }
+                }
+            }
         }
     }
 
-    private fun getAppName(packageName: String): String {
-        return try {
-            packageManager.getApplicationLabel(packageManager.getApplicationInfo(packageName, 0)).toString()
-        } catch (e: Exception) {
-            packageName
-        }
-    }
-
-    override fun getItemCount(): Int = apps.size
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val appName: TextView = view.findViewById(R.id.app_name)
         val toggle: CheckBox = view.findViewById(R.id.checkbox)
         val background: LinearLayout = view.findViewById(R.id.item_container)
         val colorPicker: Button = view.findViewById(R.id.color_picker)
     }
+
+    class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

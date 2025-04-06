@@ -12,8 +12,6 @@
     <string name="prefsBatteryBannerSummary">Можливо, вам доведеться вимкнути оптимізацію заряду батареї і дозволити автозапуск для роботи Noti у фоновому режимі. Після цього може знадобитися перезавантаження</string>
     <string name="prefsMultiScreenInfoCard">Для кількох екранів перейдіть до налаштувань на кожному з них, щоби відрегулювати рядок для відповідного параметра</string>
     <string name="prefsRoundedCornersTitle">Використовувати індикатор виконання із закругленими кутами</string>
-    <string name="prefsShowForDownloadsTitle">Показувати індикатор прогресу завантаження</string>
-    <string name="prefsShowForDownloadsSummary">Показувати індикатор виконання під час передачі вмісту</string>
     <string name="prefsNotificationPermissionSummary">Необхідно для читання сповіщень з індикатором виконання</string>
     <string name="prefsNotificationPermissionTitle">Надайте доступ до сповіщень</string>
     <string name="prefsAccessibilityPermissionTitle">Надайте дозвіл на доступність</string>
@@ -49,8 +47,6 @@
     <string name="prefsPerAppSettingsTitle">Налаштування для кожного застосунку</string>
     <string name="prefsPerAppSettingsSummary">Перемикання noti для кожного застосунку</string>
     <string name="prefsRoundedCornersSummary">Перемкнутися на індикатор прогресу із закругленими краями</string>
-    <string name="prefsShowForMediaTitle">Показати індикатор виконання медіа</string>
-    <string name="prefsShowForMediaSummary">Показувати індикатора виконаннч під час відтворення музики</string>
     <string name="prefsShowInLockScreenTitle">Показувати індикатор виконання на екрані блокування</string>
     <string name="prefsShowInLockScreenSummary">Також буде показуватися на always on екранах</string>
     <string name="prefsDisableInFullScreenTitle">Вимкнути повноекранний режим</string>

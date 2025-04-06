@@ -31,7 +31,6 @@
     <string name="colorGrey">Gri</string>
     <string name="prefsCircularBarShareConfigSummary">Aynı cihaza sahip kişilerin ayarlarınızı kullanmasına izin verin</string>
     <string name="colorBlack">Siyah</string>
-    <string name="prefsShowForDownloadsSummary">İçerik transfer ederken ilerleme çubuğunu görüntüleme</string>
     <string name="colorRed">Kırmızı</string>
     <string name="perAppSettingsEmptyView">İlerleme çubuğu bulunamadı. İlerleme çubuğu olan uygulamalar siz cihazınızı kullandıkça keşfedilir.</string>
     <string name="prefsShowBelowNotchTitle">Ekranın altında göster</string>
@@ -47,8 +46,6 @@
     <string name="notificationListenerDescription">Bildirimleri ilerleme çubuğu ile okur</string>
     <string name="prefsBlackBackgroundSummary">İlerleme çubuğunun yolunu siyah yap</string>
     <string name="colorDeepPurple">Koyu Mor</string>
-    <string name="prefsShowForDownloadsTitle">İndirirken ilerleme çubuğunu göster</string>
-    <string name="prefsShowForMediaSummary">Müzik çalarken ilerleme çubuğunu göster</string>
     <string name="prefsCalentileSummary">Geliştiriciyi destekle</string>
     <string name="colorYellow">Sarı</string>
     <string name="prefsProgressBarMarginTopSummary">Ekranın üst kısmı ile olan aralığı değiştir</string>
@@ -60,7 +57,6 @@
     <string name="colorBrown">Kahverengi</string>
     <string name="colorPink">Pembe</string>
     <string name="prefsRoundedCornersSummary">İlerleme çubuğunun uçlarını yuvarlanmış hale getir</string>
-    <string name="prefsShowForMediaTitle">Medya ilerleme çubuğunu göster</string>
     <string name="colorLightBlue">Açık Mavi</string>
     <string name="prefsShowBelowNotchSummary">İlerleme çubuğunu bir çentik veya delik etrafında göster</string>
     <string name="prefsSAWPermissionSummary">İlerleme çubuğunu göstermek için gerekli</string>

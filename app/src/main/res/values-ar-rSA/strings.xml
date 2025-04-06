@@ -59,11 +59,7 @@
     <string name="prefsSAWPermissionSummary">مطلوب لعرض تراكب شريط التقدم</string>
     <string name="prefsCircularBarShareConfigTitle">أصبح مثالياً ؟ مشاركة التكوين</string>
     <string name="prefsCircularBarShareConfigSummary">اسمح للآخرين الذين لديهم نفس الجهاز باستخدام التكوين الخاص بك</string>
-    <string name="prefsShowForMediaTitle">إظهار شريط تقدم الوسائط</string>
-    <string name="prefsShowForMediaSummary">عرض شريط التقدم عند تشغيل الموسيقى</string>
     <string name="reset">إعادة ضبط</string>
     <string name="prefsCategoryGeneral">عام</string>
-    <string name="prefsShowForDownloadsTitle">إظهار شريط تقدم التنزيلات</string>
-    <string name="prefsShowForDownloadsSummary">عرض شريط التقدم عند نقل المحتوى</string>
     <string name="holePunchInstruction">تغيير المحاذاة في تعديلات شريط التقدم الدائري</string>
 </resources>

@@ -31,8 +31,6 @@
     <string name="prefsBatteryBannerButton">மேலும் அறிக</string>
     <string name="prefsCategorySetup">அமைவு</string>
     <string name="prefsCategoryGeneral">பொது</string>
-    <string name="prefsShowForDownloadsTitle">பதிவிறக்கங்களின் முன்னேற்றப் பட்டியைக் காட்டு</string>
-    <string name="prefsShowForDownloadsSummary">உள்ளடக்கத்தை மாற்றும்போது முன்னேற்றப் பட்டியைக் காண்பி</string>
     <string name="prefsNotificationPermissionTitle">அறிவிப்பு அணுகல் வழங்கவும்</string>
     <string name="prefsAccessibilityPermissionTitle">அணுகல் இசைவு வழங்கவும்</string>
     <string name="prefsProgressBarStyleTitle">முன்னேற்றப் பட்டி பாணியைத் தேர்ந்தெடுக்கவும்</string>
@@ -57,8 +55,6 @@
     <string name="prefsPerAppSettingsSummary">பயன்பாட்டிற்கு ஒரு பயன்பாட்டை மாற்றவும்</string>
     <string name="prefsRoundedCornersTitle">வட்டமான மூலைகளுடன் முன்னேற்றப் பட்டியைப் பயன்படுத்தவும்</string>
     <string name="prefsRoundedCornersSummary">வட்டமான முனைகளுடன் முன்னேற்ற பட்டிக்கு மாறவும்</string>
-    <string name="prefsShowForMediaTitle">மீடியா முன்னேற்றப் பட்டியைக் காட்டு</string>
-    <string name="prefsShowForMediaSummary">இசையை இசைக்கும்போது முன்னேற்றப் பட்டியைக் காண்பி</string>
     <string name="prefsShowInLockScreenTitle">பூட்டுத் திரையில் முன்னேற்றப் பட்டியைக் காட்டு</string>
     <string name="prefsShowInLockScreenSummary">எப்போதும் காட்சிக்கு வைக்கப்பட்டிருக்கும்</string>
     <string name="prefsDisableInFullScreenTitle">முழுத்திரை பயன்முறையில் முடக்கு</string>

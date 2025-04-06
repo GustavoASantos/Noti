@@ -4,7 +4,6 @@
     <string name="holePunchInstruction">შეცვალე მდებარეობა წრიული პროგრესის ზოლის პარამეტრებში</string>
     <string name="prefsCategorySetup">მოწყობა</string>
     <string name="prefsCategoryGeneral">მთავარი პარამეტრები</string>
-    <string name="prefsShowForDownloadsTitle">აჩვენე ჩამოტვირთვის პროგრესის ზოლი</string>
     <string name="prefsNotificationPermissionTitle">მიეცი შეტყობინებებზე წვდომა</string>
     <string name="prefsNotificationPermissionSummary">საჭიროა, რომ იცნოს შეტყობინებები პროგრესის ზოლით</string>
     <string name="prefsAccessibilityPermissionSummary">საჭიროა, რომ გამოჩნდეს გაუხსნელ ეკრანზე და სისტემურ აპლიკაციებში</string>
@@ -16,7 +15,6 @@
     <string name="settingsPreviewFab">მაგალითის ჩვენება</string>
     <string name="notificationListenerDescription">კითხულობს შეტყობინებებს პროგრესის ზოლით</string>
     <string name="perAppSettingsEmptyView">პროგრესის ზოლი ვერ იქნა ნაპოვნი. აპლიკაციები პროგრესის ზოლებით გამოვლინდებიან ტელეფონის გამოყენებისას.</string>
-    <string name="prefsShowForDownloadsSummary">აჩვენე პროგრესის ზოლი მედიის გადაგზავნისას</string>
     <string name="prefsAccessibilityPermissionTitle">მიეცი ხელმისაწვდომობის (accessibility) უფლება</string>
     <string name="prefsSAWPermissionTitle">მიეცი უფლება, რომ სხვა აპლიკაციებზე გამოჩნდეს</string>
     <string name="prefsSAWPermissionSummary">საჭიროა, რომ პროგრესული ზოლი გამოჩნდეს</string>

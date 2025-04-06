@@ -24,4 +24,10 @@
         <item name="postSplashScreenTheme">@style/Theme.NotiProgressBar</item>
     </style>
 
+    <style name="ToggleGroupButtonStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="backgroundTint">@color/outlined_button_selector</item>
+    </style>
 </resources>

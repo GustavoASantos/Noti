@@ -18,7 +18,6 @@
     <string name="colorBlack">Negru</string>
     <string name="prefsAccessibilityPermissionTitle">Acordați permisiunea pentru accesibilitate</string>
     <string name="prefsCategoryCustomization">personalizare</string>
-    <string name="prefsShowForDownloadsSummary">Arată bara de progres se transferă conținut</string>
     <string name="prefsAccessibilityPermissionSummary">Necesar pentru a fi afișat în ecranul de blocare și în aplicațiile de sistem</string>
     <string name="colorRed">Roșu</string>
     <string name="prefsShowBelowNotchTitle">Arată sub decupajul afișajului</string>
@@ -37,9 +36,7 @@
     <string name="colorLime">Verde lămâie</string>
     <string name="prefsBlackBackgroundSummary">Comutați la bara de progres cu pistă neagră</string>
     <string name="colorDeepPurple">Mov închis</string>
-    <string name="prefsShowForDownloadsTitle">Arată bara de progres a descărcărilor</string>
     <string name="prefsCircularProgressBarTweaks">Ajustări ale barei circulare de progres</string>
-    <string name="prefsShowForMediaSummary">Arată bara de progres când ascultați/redați muzică</string>
     <string name="prefsProgressBarStyleEntryCircular">Bară de progres circulară</string>
     <string name="prefsNotificationPermissionTitle">Acordați acces la notificări</string>
     <string name="prefsCalentileSummary">Susține dezvoltatorul</string>
@@ -58,7 +55,6 @@
     <string name="prefsCategoryTweaks">ajustări</string>
     <string name="colorPink">Roz</string>
     <string name="prefsRoundedCornersSummary">Comutați la bara de progres cu capete rotunjite</string>
-    <string name="prefsShowForMediaTitle">Arată bara de progres media</string>
     <string name="prefsCategoryMore">mai mult</string>
     <string name="colorLightBlue">Albastru deschis</string>
     <string name="prefsShowBelowNotchSummary">Pentru tipurile de ecran ce au crestătură (notch) sau gaură pentru cameră (hole punch), afișează bara de progres dedesubt</string>

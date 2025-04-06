@@ -5,8 +5,6 @@
     <string name="reset">Ponastavi</string>
     <string name="prefsCategorySetup">začetna nastavitev</string>
     <string name="prefsCategoryGeneral">splošno</string>
-    <string name="prefsShowForDownloadsTitle">Pokaži vrstico napredka za prenose</string>
-    <string name="prefsShowForDownloadsSummary">Prikaz vrstice napredka pri prenosu vsebine</string>
     <string name="prefsNotificationPermissionSummary">Potrebno za branje obvestil z vrstico napredka</string>
     <string name="prefsAccessibilityPermissionTitle">Podeli dovoljenje za dostopnost</string>
     <string name="notificationListenerDescription">Prebere obvestila z vrstico napredka</string>

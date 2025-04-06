@@ -2,6 +2,9 @@ package com.gustavoas.noti
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager.NameNotFoundException
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -258,5 +261,25 @@ object Utils {
                 "dimen",
                 "android"
             )))
+    }
+
+    fun getApplicationInfo(context: Context, packageName: String): ApplicationInfo? {
+        return try {
+            context.packageManager.getApplicationInfo(packageName, 0)
+        } catch (e: NameNotFoundException) {
+            null
+        }
+    }
+
+    fun getApplicationName(context: Context, packageName: String): String? {
+        return context.packageManager.getApplicationLabel(
+            getApplicationInfo(context, packageName) ?: return null
+        ).toString()
+    }
+
+    fun getApplicationIcon(context: Context, packageName: String): Drawable? {
+        return context.packageManager.getApplicationIcon(
+            getApplicationInfo(context, packageName) ?: return null
+        )
     }
 }

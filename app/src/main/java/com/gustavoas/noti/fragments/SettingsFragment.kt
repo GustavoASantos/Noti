@@ -56,9 +56,6 @@ class SettingsFragment : BasePreferenceFragment(),
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        findPreference<Preference>("showForMedia")?.isVisible =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
         if (!sharedPreferences.contains("batteryOptimizations")) {

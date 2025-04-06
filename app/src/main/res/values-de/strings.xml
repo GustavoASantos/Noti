@@ -5,8 +5,6 @@
     <string name="reset">Zurücksetzen</string>
     <string name="prefsCategorySetup">Aufbau</string>
     <string name="prefsCategoryGeneral">Allgemein</string>
-    <string name="prefsShowForDownloadsTitle">Downloads in Fortschrittsbalken anzeigen</string>
-    <string name="prefsShowForDownloadsSummary">Fortschrittsbalken bei Inhaltsübertragung anzeigen</string>
     <string name="prefsNotificationPermissionTitle">Erlaube Benachrichtigungen</string>
     <string name="prefsNotificationPermissionSummary">Erforderlich, um Benachrichtigungen mit einem Fortschrittsbalken zu lesen</string>
     <string name="prefsAccessibilityPermissionTitle">Zugriffsberechtigung erteilen</string>

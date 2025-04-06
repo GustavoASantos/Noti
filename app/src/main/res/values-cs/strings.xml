@@ -3,8 +3,6 @@
     <string name="menuReportBug">Nahlásit chybu</string>
     <string name="notificationListenerDescription">Čtení notifikací s ukazatelem průběhu</string>
     <string name="reset">Reset</string>
-    <string name="prefsShowForDownloadsTitle">Zobrazit ukazatel průběhu stahování</string>
-    <string name="prefsShowForDownloadsSummary">Zobrazení ukazatele průběhu při přenosu obsahu</string>
     <string name="prefsNotificationPermissionTitle">Udělení přístupu k oznámení</string>
     <string name="prefsNotificationPermissionSummary">Nutné pro čtení oznámení s ukazatelem průběhu</string>
     <string name="prefsAccessibilityPermissionTitle">Udělení povolení k přístupnosti</string>
@@ -48,8 +46,6 @@
     <string name="prefsPerAppSettingsTitle">Nastavení pro jednotlivé aplikace</string>
     <string name="prefsRoundedCornersSummary">Přepnutí na ukazatel průběhu se zaoblenými konci</string>
     <string name="prefsRoundedCornersTitle">Použití ukazatele průběhu se zaoblenými rohy</string>
-    <string name="prefsShowForMediaSummary">Zobrazení ukazatele průběhu při přehrávání hudby</string>
-    <string name="prefsShowForMediaTitle">Zobrazit ukazatel průběhu médií</string>
     <string name="prefsShowInLockScreenTitle">Zobrazení ukazatele průběhu na zamčené obrazovce</string>
     <string name="colorTeal">Čírková</string>
     <string name="colorGreen">Zelená</string>

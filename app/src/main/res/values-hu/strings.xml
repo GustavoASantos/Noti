@@ -10,8 +10,6 @@
     <string name="holePunchInstruction">A körkörös előrehaladási sáv beállításának megváltoztatása</string>
     <string name="prefsCategorySetup">beállítás</string>
     <string name="prefsCategoryGeneral">általános</string>
-    <string name="prefsShowForDownloadsTitle">Letöltések előrehaladási sávjának megjelenítése</string>
-    <string name="prefsShowForDownloadsSummary">Előrehaladási sáv megjelenítése a tartalom átvitelekor</string>
     <string name="prefsNotificationPermissionTitle">Értesítésekhez való hozzáférés engedélyezése</string>
     <string name="prefsNotificationPermissionSummary">Szükséges az értesítések olvasásához előrehaladási sávval</string>
     <string name="prefsAccessibilityPermissionSummary">A zárolási képernyőn és a rendszeralkalmazásokban való megjelenítéshez szükséges</string>

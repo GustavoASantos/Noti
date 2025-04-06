@@ -27,8 +27,6 @@
     <string name="prefsPerAppSettingsTitle">Pengaturan per aplikasi</string>
     <string name="holePunchInstruction">Atur posisi untuk bar progres bundar</string>
     <string name="prefsCategoryGeneral">Umum</string>
-    <string name="prefsShowForDownloadsTitle">Tampilkan bilah kemajuan unduhan</string>
-    <string name="prefsShowForDownloadsSummary">Tampilkan bilah kemajuan saat mentransfer konten</string>
     <string name="prefsSAWPermissionTitle">Izinkan untuk menampilkan di atas aplikasi lain</string>
     <string name="perAppSettingsEmptyView">Belum ada bilah kemajuan yang ditemukan. Aplikasi yang kompatibel ditemukan saat Anda menggunakan perangkat.</string>
     <string name="prefsSAWPermissionSummary">Diperlukan untuk menampilkan hamparan bilah kemajuan</string>

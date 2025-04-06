@@ -5,8 +5,6 @@
     <string name="holePunchInstruction">Cambiar la alineación en los ajustes de la barra de progreso circular</string>
     <string name="prefsCategorySetup">Primeros Pasos</string>
     <string name="prefsCategoryGeneral">General</string>
-    <string name="prefsShowForDownloadsTitle">Mostrar barras de progreso para descargas</string>
-    <string name="prefsShowForDownloadsSummary">Mostrar barras de progreso para la transferencia de contenido</string>
     <string name="prefsNotificationPermissionTitle">Permite el acceso a las notificaciones</string>
     <string name="prefsAccessibilityPermissionTitle">Permite los servicios de accesibilidad</string>
     <string name="prefsAccessibilityPermissionSummary">Necesarios para mostrar noti en la pantalla de bloqueo y sobre aplicaciones del sistema</string>
@@ -45,7 +43,6 @@
     <string name="prefsPerAppSettingsSummary">Alternar notificaciones por aplicación</string>
     <string name="prefsRoundedCornersTitle">Utilizar barra de progreso con esquinas redondeadas</string>
     <string name="prefsRoundedCornersSummary">Cambiar la barra de progreso con extremos redondeados</string>
-    <string name="prefsShowForMediaSummary">Mostrar barra de progreso al reproducir música</string>
     <string name="prefsShowInLockScreenTitle">Mostrar barra de progreso en pantalla de bloqueo</string>
     <string name="prefsDisableInFullScreenTitle">Desactivar en modo pantalla completa</string>
     <string name="prefsDisableInFullScreenSummary">Ocultar la barra de progreso en las aplicaciones a pantalla completa</string>
@@ -66,7 +63,6 @@
     <string name="colorLightGreen">Verde claro</string>
     <string name="colorYellow">Amarillo</string>
     <string name="colorAmber">Ámbar</string>
-    <string name="prefsShowForMediaTitle">Mostrar barra de progreso multimedia</string>
     <string name="prefsShowInLockScreenSummary">También aparecerá en Always On Display si su teléfono admite esta función</string>
     <string name="colorLime">Lima</string>
     <string name="prefsCircularBarShareConfigTitle">¿Ajuste perfecto? Compartir configuración</string>

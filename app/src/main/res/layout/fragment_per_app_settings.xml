@@ -10,7 +10,6 @@
         android:id="@+id/apps_recycler_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:paddingTop="15dp"
         android:paddingBottom="100dp"
         android:scrollbars="none"
         android:visibility="gone"
@@ -25,6 +24,6 @@
         android:text="@string/perAppSettingsEmptyView"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="20sp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="100dp"/>
 
 </LinearLayout>

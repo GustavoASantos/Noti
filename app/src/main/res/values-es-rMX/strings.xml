@@ -59,6 +59,4 @@
     <string name="prefsSAWPermissionSummary">Necesario para mostrar la barra de progreso</string>
     <string name="prefsCircularBarShareConfigTitle">¿Forma perfecta? Compartir configuración</string>
     <string name="prefsCircularBarShareConfigSummary">Permitir que otras personas con el mismo dispositivo utilicen tu configuración</string>
-    <string name="prefsShowForDownloadsTitle">Mostrar barras de progreso para las descargas</string>
-    <string name="prefsShowForDownloadsSummary">Mostrar barras de progreso cuando se transfiera contenido</string>
 </resources>

@@ -7,8 +7,6 @@
     <string name="holePunchInstruction">在圓形進度條調整中更改對齊方式</string>
     <string name="prefsCategorySetup">設定</string>
     <string name="prefsCategoryGeneral">一般</string>
-    <string name="prefsShowForDownloadsTitle">顯示下載進度條</string>
-    <string name="prefsShowForDownloadsSummary">當傳輸內容時顯示進度條</string>
     <string name="prefsNotificationPermissionTitle">授予通知存取權限</string>
     <string name="prefsAccessibilityPermissionTitle">授予協助工具權限</string>
     <string name="prefsAccessibilityPermissionSummary">需要以在鎖定畫面和系統應用程式中顯示</string>
@@ -34,8 +32,6 @@
     <string name="prefsPerAppSettingsSummary">根據個別應用程式調整 noti</string>
     <string name="prefsRoundedCornersTitle">使用圓角的進度條</string>
     <string name="prefsRoundedCornersSummary">切換成具有圓角末端的進度條</string>
-    <string name="prefsShowForMediaTitle">顯示媒體進度條</string>
-    <string name="prefsShowForMediaSummary">當播放音樂時顯示進度條</string>
     <string name="prefsShowInLockScreenSummary">也會在 always on display 中顯示</string>
     <string name="prefsChangeColorTitle">更改進度條顏色</string>
     <string name="prefsCategoryMore">更多</string>

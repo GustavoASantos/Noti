@@ -59,7 +59,5 @@
     <string name="prefsSAWPermissionSummary">Изисква се за показване на наслагването на лентата за прогрес</string>
     <string name="prefsCircularBarShareConfigTitle">Перфектно прилягане? Споделете конфигурацията</string>
     <string name="prefsCircularBarShareConfigSummary">Позволете на други със същото устройство да използват вашата конфигурация</string>
-    <string name="prefsShowForMediaTitle">Показване на лентата за прогрес на медията</string>
-    <string name="prefsShowForMediaSummary">Покажи лентата за прогрес при слушане на музика</string>
     <string name="reset">Рестартирай</string>
 </resources>

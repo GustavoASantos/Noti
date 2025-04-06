@@ -4,8 +4,6 @@
     <string name="settingsPreviewFab">Xem trước</string>
     <string name="reset">Đặt lại</string>
     <string name="prefsCategoryGeneral">chung</string>
-    <string name="prefsShowForDownloadsTitle">Hiển thị thanh tiến trình tải xuống</string>
-    <string name="prefsShowForDownloadsSummary">Hiển thị thanh tiến trình khi truyền nội dung</string>
     <string name="prefsNotificationPermissionTitle">Cấp quyền truy cập thông báo</string>
     <string name="prefsAccessibilityPermissionTitle">Cấp quyền truy cập trợ năng</string>
     <string name="prefsAccessibilityPermissionSummary">Dùng để hiển thị trên màn hình khoá và trong các ứng dụng hệ thống</string>
@@ -21,7 +19,6 @@
     <string name="prefsCircularBarShareConfigSummary">Cho phép người khác có cùng thiết bị sử dụng cấu hình của bạn</string>
     <string name="prefsBlackBackgroundSummary">Chuyển sang thanh tiến trình đen</string>
     <string name="prefsRoundedCornersTitle">Sử dụng thanh tiến trình với các góc tròn</string>
-    <string name="prefsShowForMediaTitle">Hiển thị thanh tiến trình phương tiện</string>
     <string name="prefsShowInLockScreenSummary">Cũng sẽ hiển thị ở chế độ luôn hiển thị</string>
     <string name="prefsChangeColorTitle">Thay đổi màu thanh tiến trình</string>
     <string name="prefsCalentileTitle">Thử CalenTile trên Google Play</string>
@@ -62,7 +59,6 @@
     <string name="prefsCircularBarShareConfigTitle">Hoàn toàn phù hợp? Hãy chia sẻ cấu hình</string>
     <string name="prefsPerAppSettingsSummary">Bật tắt noti trong từng ứng dụng</string>
     <string name="prefsRoundedCornersSummary">Chuyển sang thanh tiến trình với các đầu tròn</string>
-    <string name="prefsShowForMediaSummary">Hiển thị thanh tiến trình khi đang phát nhạc</string>
     <string name="prefsShowInLockScreenTitle">Hiển thị thanh tiến trình ở màn hình khóa</string>
     <string name="holePunchInstruction">Thay đổi căn chỉnh trong các chỉnh sửa của thanh tiến trình tròn</string>
 </resources>

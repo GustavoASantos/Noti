@@ -3,12 +3,11 @@
     <string name="menuReportBug">Reportar Erro</string>
     <string name="settingsPreviewFab">Pré-visualizar</string>
     <string name="notificationListenerDescription">Lê notificações com uma barra de progresso</string>
+    <string name="media">Multimédia</string>
     <string name="reset">Restaurar</string>
     <string name="prefsBatteryBannerSummary">Podes ter de desativar otimizações da bateria e permitir o início automático para o Noti funcionar em segundo plano. Pode ser necessário reiniciar após estes passos</string>
     <string name="prefsBatteryBannerButton">Saber mais</string>
     <string name="prefsCategorySetup">configuração</string>
-    <string name="prefsShowForDownloadsTitle">Mostrar barra de progresso para downloads</string>
-    <string name="prefsShowForDownloadsSummary">Exibir barra de progresso ao transferir conteúdo</string>
     <string name="prefsNotificationPermissionTitle">Conceder acesso às notificações</string>
     <string name="prefsNotificationPermissionSummary">Necessário para ler notificações com uma barra de progresso</string>
     <string name="prefsAccessibilityPermissionTitle">Conceder permissão de acessibilidade</string>
@@ -64,7 +63,7 @@
     <string name="colorWhite">Branco</string>
     <string name="prefsPerAppSettingsTitle">Definições por app</string>
     <string name="prefsPerAppSettingsSummary">Ativar noti por aplicação</string>
-    <string name="perAppSettingsEmptyView">Nenhuma barra de progresso encontrada ainda. Aplicações compatíveis são descobertas ao usares o telemóvel.</string>
+    <string name="perAppSettingsEmptyView">O noti vai identificar mais aplicações compatíveis ao receberes notificações</string>
     <string name="prefsCircularBarShareConfigTitle">Encaixe perfeito? Partilha a configuração</string>
     <string name="prefsMultiScreenInfoCard">Com vários ecrãs, acede às definições através de cada ecrã para ajustar a barra para essa configuração</string>
     <string name="prefsBlackBackgroundTitle">Usar fundo preto</string>
@@ -72,8 +71,6 @@
     <string name="prefsAccessibilityPermissionSummary">Necessário para mostrar no ecrã de bloqueio e aplicações de sistema</string>
     <string name="prefsSAWPermissionTitle">Permitir sobrepor a outras apps</string>
     <string name="prefsCircularBarShareConfigSummary">Permite a outros com o mesmo dispositivo usar a tua configuração</string>
-    <string name="prefsShowForMediaTitle">Mostrar barra de progresso para multimédia</string>
-    <string name="prefsShowForMediaSummary">Exibir barra de progresso ao reproduzir música</string>
     <string name="prefsCategoryGeneral">geral</string>
     <string name="holePunchInstruction">Mudar alinhamento em ajustes da barra de progresso circular</string>
     <string name="prefsDisableInFullScreenTitle">Desativar em ecrã inteiro</string>
@@ -81,4 +78,6 @@
     <string name="prefsCutoutSizeTitle">Tamanho do recorte</string>
     <string name="prefsCutoutSizeSummary">Mudar tamanho do diâmetro interior</string>
     <string name="shareConfigNoInternetMessage">Ativa a internet para partilhar a configuração</string>
+    <string name="activateToggle">Ativo para</string>
+    <string name="downloads">Transferências</string>
 </resources>

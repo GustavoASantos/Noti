@@ -1,5 +1,6 @@
 package com.gustavoas.noti.fragments
 
+import android.content.pm.PackageManager.NameNotFoundException
 import android.os.Build
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
@@ -70,16 +71,15 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
     private fun updateAppsFromDatabase() {
         apps.clear()
         apps.addAll(appsRepository.getAll())
-        removeUninstalledApps()
+        removeUnavailableApps()
         alphabetizeApps()
     }
 
-    private fun removeUninstalledApps() {
+    private fun removeUnavailableApps() {
         apps.removeAll { app ->
             try {
-                packageManager.getApplicationInfo(app.packageName, 0)
-                false
-            } catch (e: Exception) {
+                !packageManager.getApplicationInfo(app.packageName, 0).enabled
+            } catch (e: NameNotFoundException) {
                 true
             }
         }
@@ -93,7 +93,7 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
                         it.packageName, 0
                     )
                 ).toString().lowercase()
-            } catch (e: Exception) {
+            } catch (e: NameNotFoundException) {
                 it.packageName
             }
         }

@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -69,12 +68,6 @@ class SettingsFragment : BasePreferenceFragment(),
         val batterOptimizationsBanner = findPreference<BannerPreference>("batteryOptimizations")
         if (!sharedPreferences.getBoolean("batteryOptimizations", true)) {
             batterOptimizationsBanner?.isVisible = false
-        } else {
-            batterOptimizationsBanner?.onBtnClick = {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://dontkillmyapp.com"))
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
         }
 
         findPreference<Preference>("accessibilityPermission")?.setOnPreferenceClickListener {

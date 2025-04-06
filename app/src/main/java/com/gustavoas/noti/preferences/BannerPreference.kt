@@ -10,7 +10,7 @@ import com.gustavoas.noti.R
 
 class BannerPreference(context: Context, attrs: AttributeSet): Preference(context, attrs) {
 
-    var onBtnClick = {}
+    var onBtnClick = { intent?.let { context.startActivity(intent) } }
 
     init {
         layoutResource = R.layout.banner_preference

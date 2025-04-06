@@ -7,6 +7,9 @@
         android:key="batteryOptimizations"
         android:title="@string/prefsBatteryBannerSummary"
         android:summary="@string/prefsBatteryBannerButton">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://dontkillmyapp.com"/>
     </com.gustavoas.noti.preferences.BannerPreference>
 
     <PreferenceCategory

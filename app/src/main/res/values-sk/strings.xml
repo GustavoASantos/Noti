@@ -27,4 +27,7 @@
     <string name="prefsProgressBarStyleLandscapeTitle">Štýl ukazovateľa priebehu na šírku</string>
     <string name="prefsProgressBarStyleEntryNone">Žiadny ukazovateľ priebehu</string>
     <string name="prefsProgressBarThicknessSummary">Zmeniť hrúbku dráhy ukazovateľa priebehu</string>
+    <string name="prefsBatteryBannerButton">Zistite viac</string>
+    <string name="notificationListenerDescription">Číta oznámenia s ukazovateľom priebehu</string>
+    <string name="prefsBatteryBannerSummary">Možno bude potrebné vypnúť optimalizáciu batérie a povoliť automatické spúšťanie, aby aplikácia Noti fungovala na pozadí. Po tomto úkone môže byť potrebný reštart</string>
 </resources>

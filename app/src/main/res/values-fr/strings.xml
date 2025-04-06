@@ -72,4 +72,13 @@
     <string name="prefsDisableInFullScreenSummary">Cacher la barre de progression dans les applications en plein écran</string>
     <string name="prefsDisableInFullScreenTitle">Désactiver en mode plein écran</string>
     <string name="prefsProgressBarStyleLandscapeTitle">Style de la barre de progression en mode paysage</string>
+    <string name="prefsBatteryBannerSummary">Vous allez peut-être avoir besoin de désactiver l\'optimisation de batterie et permettre à Noti de s\'exécuter dans l\'arrière-plan. Un redémarrage pourrait être nécessaire</string>
+    <string name="prefsBatteryBannerButton">En savoir plus</string>
+    <string name="prefsStatusBarHeightInfo">La largeur de ta barre de status est de %d pixels</string>
+    <string name="prefsProgressBarOffsetTitle">Déplacement horizontal</string>
+    <string name="prefsCutoutSizeTitle">Taille de la coupe</string>
+    <string name="prefsCutoutSizeSummary">Changer la taille du diamètre intérieur</string>
+    <string name="prefsMultiScreenInfoCard">Pour les écrans partagés, accédez au paramètres de chaque écran pour ajuster la barre</string>
+    <string name="shareConfigPositiveMessage">Merci d\'avoir partagé votre configuration !</string>
+    <string name="shareConfigNoInternetMessage">Activez le réseau pour téléverser la configuration</string>
 </resources>

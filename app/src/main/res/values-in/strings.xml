@@ -30,7 +30,7 @@
     <string name="prefsShowForDownloadsTitle">Tampilkan bilah kemajuan unduhan</string>
     <string name="prefsShowForDownloadsSummary">Tampilkan bilah kemajuan saat mentransfer konten</string>
     <string name="prefsSAWPermissionTitle">Izinkan untuk menampilkan di atas aplikasi lain</string>
-    <string name="perAppSettingsEmptyView">Bar progres tidak ditemukan. Aplikasi dengan bar progres akan muncul saat kamu menggunakan perangkatmu</string>
+    <string name="perAppSettingsEmptyView">Belum ada bilah kemajuan yang ditemukan. Aplikasi yang kompatibel ditemukan saat Anda menggunakan perangkat.</string>
     <string name="prefsSAWPermissionSummary">Diperlukan untuk menampilkan hamparan bilah kemajuan</string>
     <string name="advancedOptions">Opsi Lanjutan</string>
     <string name="prefsProgressBarMarginTopTitle">Margin dari atas</string>
@@ -40,4 +40,9 @@
     <string name="prefsCircularBarShareConfigSummary">Izinkan orang lain dengan perangkat yang sama menggunakan konfigurasi Anda</string>
     <string name="reset">Setel ulang</string>
     <string name="prefsPerAppSettingsSummary">Atur noti dalam setiap aplikasi</string>
+    <string name="prefsBatteryBannerSummary">Anda mungkin perlu menonaktifkan pengoptimalan baterai dan mengizinkan mulai otomatis agar Noti bekerja di latar belakang. Reboot setelah melakukan hal ini mungkin diperlukan</string>
+    <string name="prefsBatteryBannerButton">Pelajari lebih</string>
+    <string name="prefsStatusBarHeightInfo">Bilah status Anda memiliki tinggi %d piksel</string>
+    <string name="prefsProgressBarOffsetTitle">Pergeseran horizontal</string>
+    <string name="prefsCutoutSizeTitle">Ukuran potongan</string>
 </resources>

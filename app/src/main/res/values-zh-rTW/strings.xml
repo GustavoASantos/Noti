@@ -67,9 +67,18 @@
     <string name="colorGreen">綠色</string>
     <string name="colorBlack">黑色</string>
     <string name="colorAmber">琥珀色</string>
-    <string name="perAppSettingsEmptyView">未找到進度條。當你使用裝置時，會發現具有進度條的應用程式。</string>
+    <string name="perAppSettingsEmptyView">未找到進度條。相容的應用程式會隨你使用裝置時被發現。</string>
     <string name="advancedOptions">進階設定</string>
     <string name="prefsDisableInFullScreenTitle">在全螢幕時禁用</string>
     <string name="prefsDisableInFullScreenSummary">在全螢幕應用程式中隱藏進度條</string>
     <string name="prefsProgressBarStyleTitle">選擇進度條樣式</string>
+    <string name="prefsBatteryBannerSummary">要讓Noti在背景運作，你可能需要禁用電池最佳化並允許自啟動。完成此步驟後可能需要重新啟動設備</string>
+    <string name="prefsBatteryBannerButton">查看更多</string>
+    <string name="prefsStatusBarHeightInfo">你的狀態列高度是%d像素</string>
+    <string name="prefsProgressBarOffsetTitle">水平偏移</string>
+    <string name="prefsCutoutSizeTitle">螢幕缺口尺寸</string>
+    <string name="prefsMultiScreenInfoCard">對於多螢幕裝置，你需要通過每個螢幕的設定來調整該設定的進度條</string>
+    <string name="prefsCutoutSizeSummary">更改內徑尺寸</string>
+    <string name="shareConfigNoInternetMessage">開啟網路來上傳你的配置</string>
+    <string name="shareConfigPositiveMessage">謝謝你分享自己的配置！</string>
 </resources>

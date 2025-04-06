@@ -11,19 +11,20 @@ abstract class TimedProgressBar(
     sbn: StatusBarNotification,
     appsRepository: ProgressBarAppsRepository
 ): ProgressBarNotification(ctx, sbn, appsRepository) {
-    protected val handler = Handler(Looper.getMainLooper())
+    private val handler = Handler(Looper.getMainLooper())
+
+    private var updatesRunnable: Runnable? = null
 
     protected fun startUpdatingTimedPosition(
         initialPosition: Long,
         duration: Long,
         speed: Float
     ) {
-        // TODO: check if this is necessary
         handler.removeCallbacksAndMessages(null)
         val updateInterval = 1000
         var currProgress = initialPosition
         val initialTime = System.currentTimeMillis()
-        val runnable = object : Runnable {
+        updatesRunnable = object : Runnable {
             override fun run() {
                 if (currProgress !in 0..duration) {
                     return
@@ -43,15 +44,17 @@ abstract class TimedProgressBar(
                     duration.toInt(),
                 )
 
-                handler.postDelayed(this, updateInterval.toLong())
+                updatesRunnable?.let { handler.postDelayed(it, updateInterval.toLong()) }
             }
         }
-        runnable.run()
+
+        updatesRunnable?.let { handler.post(it) }
     }
 
     override fun cancel() {
         super.cancel()
 
         handler.removeCallbacksAndMessages(null)
+        updatesRunnable = null
     }
 }

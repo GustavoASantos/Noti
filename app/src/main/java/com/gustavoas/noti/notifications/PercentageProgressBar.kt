@@ -3,6 +3,7 @@ package com.gustavoas.noti.notifications
 import android.app.Notification
 import android.content.Context
 import android.service.notification.StatusBarNotification
+import androidx.preference.PreferenceManager
 import com.gustavoas.noti.ProgressBarAppsRepository
 import kotlin.math.roundToInt
 
@@ -21,6 +22,14 @@ class PercentageProgressBar(
 
     override fun updateNotification(sbn: StatusBarNotification) {
         super.updateNotification(sbn)
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val enabledForDownloads = sharedPrefs.getBoolean("showForDownloads", true)
+
+        if (!enabledForDownloads) {
+            cancel()
+            return
+        }
 
         val percentageProgress = getProgressFromPercentage(sbn)
 

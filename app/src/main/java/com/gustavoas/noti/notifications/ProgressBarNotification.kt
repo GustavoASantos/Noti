@@ -37,6 +37,11 @@ abstract class ProgressBarNotification(
 
         val appInDatabase = getOrCreateAppInDatabase()
 
+        if (!appInDatabase.showProgressBar) {
+            cancel()
+            return
+        }
+
         val progressBarMax = ctx.resources.getInteger(R.integer.progress_bar_max)
         val progressNormalized = if (progress in 1..progressMax) {
             (progress.toFloat() / progressMax.toFloat() * progressBarMax).roundToInt()

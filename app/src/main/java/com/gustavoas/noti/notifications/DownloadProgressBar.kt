@@ -3,6 +3,7 @@ package com.gustavoas.noti.notifications
 import android.app.Notification
 import android.content.Context
 import android.service.notification.StatusBarNotification
+import androidx.preference.PreferenceManager
 import com.gustavoas.noti.ProgressBarAppsRepository
 
 class DownloadProgressBar(
@@ -18,6 +19,14 @@ class DownloadProgressBar(
 
     override fun updateNotification(sbn: StatusBarNotification) {
         super.updateNotification(sbn)
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val enabledForDownloads = sharedPrefs.getBoolean("showForDownloads", true)
+
+        if (!enabledForDownloads) {
+            cancel()
+            return
+        }
 
         val (progress, progressMax) = getProgressBarValues(sbn)
 

@@ -7,6 +7,7 @@ import android.media.session.MediaSession
 import android.media.session.PlaybackState
 import android.service.notification.StatusBarNotification
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import com.gustavoas.noti.ProgressBarAppsRepository
 
 class MediaProgressBar(
@@ -26,6 +27,14 @@ class MediaProgressBar(
     override fun updateNotification(sbn: StatusBarNotification) {
         super.updateNotification(sbn)
 
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val enabledForMedia = sharedPrefs.getBoolean("showForMedia", true)
+
+        if (!enabledForMedia) {
+            cancel()
+            return
+        }
+
         val mediaSession =
             sbn.notification.extras.get(NotificationCompat.EXTRA_MEDIA_SESSION) as? MediaSession.Token
 
@@ -35,7 +44,7 @@ class MediaProgressBar(
         }
 
         val newMediaController = MediaController(ctx, mediaSession)
-        if (mediaController == null && newMediaController.playbackState?.state == PlaybackState.STATE_PLAYING) {
+        if (mediaController == null) {
             createProgressBarFromMedia(newMediaController)
         }
     }
@@ -43,16 +52,18 @@ class MediaProgressBar(
     private fun createProgressBarFromMedia(newMediaController: MediaController) {
         mediaController = newMediaController
 
-        startUpdatingTimedPosition(
-            mediaController?.playbackState?.position ?: 0,
-            mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
-            mediaController?.playbackState?.playbackSpeed ?: 1f
-        )
+        if (mediaController?.playbackState?.state == PlaybackState.STATE_PLAYING) {
+            startUpdatingTimedPosition(
+                mediaController?.playbackState?.position ?: 0,
+                mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
+                mediaController?.playbackState?.playbackSpeed ?: 1f
+            )
+        }
 
         mediaCallback = object : MediaController.Callback() {
             override fun onPlaybackStateChanged(state: PlaybackState?) {
                 super.onPlaybackStateChanged(state)
-//                val mediaState = mediaController?.playbackState?.state // TODO: TEST
+
                 if (state?.state == PlaybackState.STATE_PLAYING) {
                     startUpdatingTimedPosition(
                         mediaController?.playbackState?.position ?: 0,

@@ -90,19 +90,15 @@ class NotificationListenerService : NotificationListenerService() {
             return false
         }
 
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val enabledForMedia = sharedPreferences.getBoolean("showForMedia", true)
-        if (isMediaNotification(sbn) && enabledForMedia) {
-            return true
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val enabledForMedia = sharedPrefs.getBoolean("showForMedia", true)
+        if (isMediaNotification(sbn)) {
+            return enabledForMedia
         }
 
-        val enabledForDownloads = sharedPreferences.getBoolean("showForDownloads", true)
-        if (isDownloadNotification(sbn) && enabledForDownloads) {
-            return true
-        }
-
-        if (getProgressFromPercentage(sbn) > 0 && enabledForDownloads) {
-            return true
+        val enabledForDownloads = sharedPrefs.getBoolean("showForDownloads", true)
+        if (isDownloadNotification(sbn) || getProgressFromPercentage(sbn) > 0) {
+            return enabledForDownloads
         }
 
         return isGoogleTimerNotification(sbn)

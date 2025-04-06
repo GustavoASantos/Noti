@@ -6,5 +6,6 @@ data class DeviceConfiguration (
     var deviceHeight: String? = null,
     var size: String? = null,
     var marginTop: String? = null,
+    var topOffset: String? = null,
     var horizontalOffset: String? = null,
 )

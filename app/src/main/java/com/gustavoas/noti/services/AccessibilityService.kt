@@ -171,7 +171,7 @@ class AccessibilityService : AccessibilityService() {
 
         circularProgressBar.trackThickness = trackThickness
 
-        val marginTop = sharedPrefs.getSizeDependentInt("circularProgressBarMarginTop", 30) - trackThickness
+        val marginTop = sharedPrefs.getSizeDependentInt("circularProgressBarTopOffset", 60) - trackThickness - cutoutSize / 2
         val horizontalOffset = sharedPrefs.getSizeDependentInt("circularProgressBarHorizontalOffset", 0)
 
         val overlayParams = overlayView.layoutParams as WindowManager.LayoutParams

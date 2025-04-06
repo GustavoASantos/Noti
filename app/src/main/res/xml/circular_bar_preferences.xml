@@ -30,12 +30,12 @@
             app:min_number="1"/>
 
         <com.gustavoas.noti.preferences.SeekBarPreference
-            android:key="circularProgressBarMarginTop"
+            android:key="circularProgressBarTopOffset"
             android:title="@string/prefsProgressBarMarginTopTitle"
             android:summary="@string/prefsProgressBarMarginTopSummary"
             app:singleLineTitle="false"
             app:icon="@drawable/ic_margin_top"
-            app:default_value="30"
+            app:default_value="60"
             app:max_number="150"
             app:min_number="1"/>
 

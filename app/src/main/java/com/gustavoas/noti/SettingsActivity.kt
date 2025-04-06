@@ -62,7 +62,7 @@ class SettingsActivity : AppCompatActivity(),
         Pair("progressBarStyleLandscape", "linear"),
         Pair("circularProgressBarThickness", 15),
         Pair("circularProgressBarSize", 65),
-        Pair("circularProgressBarMarginTop", 30),
+        Pair("circularProgressBarTopOffset", 60),
         Pair("circularProgressBarHorizontalOffset", 0),
         Pair("linearProgressBarSize", 15),
         Pair("matchStatusBarHeight", false),
@@ -337,6 +337,7 @@ class SettingsActivity : AppCompatActivity(),
                     when (parser.name) {
                         "size" -> config.size = parser.nextText()
                         "marginTop" -> config.marginTop = parser.nextText()
+                        "topOffset" -> config.topOffset = parser.nextText()
                         "offset" -> config.horizontalOffset = parser.nextText()
                     }
                 }
@@ -381,7 +382,7 @@ class SettingsActivity : AppCompatActivity(),
                 .putString("progressBarStyle$appendix", "circular")
                 .putBoolean("blackBackground", true)
                 .putInt("circularProgressBarSize$appendix", config.size?.toIntOrNull() ?: 65)
-                .putInt("circularProgressBarMarginTop$appendix", config.marginTop?.toIntOrNull() ?: 30)
+                .putInt("circularProgressBarTopOffset$appendix", config.topOffset?.toIntOrNull() ?: 60)
                 .putInt("circularProgressBarHorizontalOffset$appendix", config.horizontalOffset?.toIntOrNull() ?: 0)
                 .apply()
         } else {

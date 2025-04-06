@@ -153,15 +153,12 @@ object Utils {
 
         if (configuration == "circular") {
             val size = sharedPreferences.getInt("circularProgressBarSize$display", 65)
-            val marginTop = sharedPreferences.getInt("circularProgressBarMarginTop$display", 30)
+            val marginTop = sharedPreferences.getInt("circularProgressBarTopOffset$display", 60)
             val offset = sharedPreferences.getInt("circularProgressBarHorizontalOffset$display", 0)
 
-            if (size != 65)
-                displayConfig.append("\t\t<size>$size</size>\n")
-            if (marginTop != 30)
-                displayConfig.append("\t\t<marginTop>$marginTop</marginTop>\n")
-            if (offset != 0)
-                displayConfig.append("\t\t<offset>$offset</offset>\n")
+            displayConfig.append("\t\t<size>$size</size>\n")
+            displayConfig.append("\t\t<topOffset>$marginTop</topOffset>\n")
+            displayConfig.append("\t\t<offset>$offset</offset>\n")
         }
 
         displayConfig.append("\t</display>")

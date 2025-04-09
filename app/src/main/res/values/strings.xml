@@ -15,7 +15,7 @@
     <string name="prefsBatteryBannerButton">Learn more</string>
     <string name="prefsCategorySetup">setup</string>
     <string name="prefsCategoryGeneral">general</string>
-    <string name="prefsNotificationPermissionTitle">Grant notification access</string>
+    <string name="prefsNotificationPermissionTitle">Allow notification access</string>
     <string name="prefsNotificationPermissionSummary">Required to read notifications with a progress bar</string>
     <string name="prefsAccessibilityPermissionTitle">Grant accessibility permission</string>
     <string name="prefsAccessibilityPermissionSummary">Required to display in the lock screen and system apps</string>

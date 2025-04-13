@@ -93,7 +93,9 @@ class AccessibilityService : AccessibilityService() {
             if (!this::overlayView.isInitialized || !overlayView.isShown) {
                 return
             }
-            hideProgressBarIn(hideDelay)
+            handler.postDelayed({
+                hideProgressBarIn(hideDelay / 2)
+            }, hideDelay)
         } else {
             getActiveNotification()?.let {
                 showOverlayWithProgress(it)
@@ -128,7 +130,7 @@ class AccessibilityService : AccessibilityService() {
 
         if(progressBarStyle == "none") {
             if (this::overlayView.isInitialized && overlayView.isShown) {
-                hideProgressBarIn(0)
+                hideProgressBarIn()
             }
             return
         }
@@ -349,14 +351,12 @@ class AccessibilityService : AccessibilityService() {
         circularProgressBar.progress = 0
     }
 
-    private fun hideProgressBarIn(delay: Long) {
+    private fun hideProgressBarIn(delay: Long = 500) {
+        progressBar.hide()
+        circularProgressBar.hide()
         handler.postDelayed({
-            progressBar.hide()
-            circularProgressBar.hide()
-            handler.postDelayed({
-                setProgressToZero()
-                hideOverlay()
-            }, 500)
+            setProgressToZero()
+            hideOverlay()
         }, delay)
     }
 

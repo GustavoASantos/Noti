@@ -20,7 +20,7 @@ class GoogleTimerProgressBar(
 
         val sortKey = sbn.notification.sortKey
 
-        if (!sortKey.contains("RUNNING")) {
+        if (sortKey == null || !sortKey.contains("RUNNING")) {
             cancel()
             return
         }

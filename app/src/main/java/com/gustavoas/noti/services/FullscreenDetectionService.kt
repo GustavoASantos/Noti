@@ -65,7 +65,7 @@ class FullscreenDetectionService : Service() {
 
             val isFullscreen = fullscreenDetectionView.height == displayHeight
 
-            val intent = Intent("fullscreenDetectionService")
+            val intent = Intent(this.javaClass.simpleName)
             intent.putExtra("isFullscreen", isFullscreen)
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent)

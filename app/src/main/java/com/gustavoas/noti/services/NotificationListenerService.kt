@@ -15,7 +15,7 @@ import com.gustavoas.noti.notifications.ProgressBarNotification
 import kotlin.math.roundToInt
 
 class NotificationListenerService : NotificationListenerService() {
-    private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(this) }
+    private val appsRepository by lazy { ProgressBarAppsRepository(this) }
 
     private val activeProgressBars = mutableMapOf<String, ProgressBarNotification>()
 
@@ -91,13 +91,13 @@ class NotificationListenerService : NotificationListenerService() {
         }
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val enabledForMedia = sharedPrefs.getBoolean("showForMedia", true)
         if (isMediaNotification(sbn)) {
+            val enabledForMedia = sharedPrefs.getBoolean("showForMedia", true)
             return enabledForMedia
         }
 
-        val enabledForDownloads = sharedPrefs.getBoolean("showForDownloads", true)
         if (isDownloadNotification(sbn) || getProgressFromPercentage(sbn) > 0) {
+            val enabledForDownloads = sharedPrefs.getBoolean("showForDownloads", true)
             return enabledForDownloads
         }
 
@@ -151,12 +151,14 @@ class NotificationListenerService : NotificationListenerService() {
     }
 
     private fun showForApp(packageName: String): Boolean {
-        val appInDatabase = appsRepository.getApp(packageName)
+        return packageName.isNotEmpty() && appsRepository.showProgressForApp(packageName) != false
+    }
 
-        if (appInDatabase == null && packageName.isNotEmpty()) {
-            return true
-        }
+    override fun onDestroy() {
+        super.onDestroy()
 
-        return appInDatabase?.showProgressBar == true
+        activeProgressBars.values.forEach { it.cancel() }
+        activeProgressBars.clear()
+        appsRepository.close()
     }
 }

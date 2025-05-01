@@ -56,6 +56,8 @@
     <string name="prefsShowInLockScreenSummary">Will also show in the always on display</string>
     <string name="prefsDisableInFullScreenTitle">Disable in fullscreen mode</string>
     <string name="prefsDisableInFullScreenSummary">Hide progress bar in fullscreen apps</string>
+    <string name="prefsNotificationColorTitle">Match notification color</string>
+    <string name="prefsNotificationColorSummary">Use the notification\'s color for the progress bar</string>
     <string name="prefsChangeColorTitle">Change progress bar color</string>
     <string name="prefsCategoryMore">more</string>
     <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>

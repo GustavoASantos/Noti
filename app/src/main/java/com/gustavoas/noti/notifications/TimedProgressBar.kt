@@ -5,12 +5,15 @@ import android.os.Handler
 import android.os.Looper
 import android.service.notification.StatusBarNotification
 import com.gustavoas.noti.ProgressBarAppsRepository
+import kotlin.math.abs
 
 abstract class TimedProgressBar(
     ctx: Context,
     sbn: StatusBarNotification,
     appsRepository: ProgressBarAppsRepository
 ): ProgressBarNotification(ctx, sbn, appsRepository) {
+    private val updateInterval = 1000
+
     private val handler = Handler(Looper.getMainLooper())
 
     private var updatesRunnable: Runnable? = null
@@ -20,23 +23,23 @@ abstract class TimedProgressBar(
         duration: Long,
         speed: Float
     ) {
-        handler.removeCallbacksAndMessages(null)
-        val updateInterval = 1000
-        var currProgress = initialPosition
+        stopUpdatingTimedPosition()
+
         val initialTime = System.currentTimeMillis()
         updatesRunnable = object : Runnable {
             override fun run() {
+                val currTime = System.currentTimeMillis()
+                var currProgress = (initialPosition + (currTime - initialTime) * speed).toLong()
+
                 if (currProgress !in 0..duration) {
                     return
                 }
 
-                val currTime = System.currentTimeMillis()
-
-                currProgress = (initialPosition + (currTime - initialTime) * speed).toLong()
-                if (speed > 0 && duration - currProgress in 1 until (updateInterval * speed).toInt()) {
+                val updateStep = abs(updateInterval * speed).toInt()
+                if (duration - currProgress < updateStep) {
                     currProgress = duration
-                } else if (speed < 0 && currProgress in 2..updateInterval) {
-                    currProgress = 1
+                } else if (currProgress < updateStep) {
+                    currProgress = 0
                 }
 
                 sendProgressToAccessibilityService(
@@ -51,10 +54,14 @@ abstract class TimedProgressBar(
         updatesRunnable?.let { handler.post(it) }
     }
 
+    protected fun stopUpdatingTimedPosition() {
+        handler.removeCallbacksAndMessages(null)
+        updatesRunnable = null
+    }
+
     override fun cancel() {
         super.cancel()
 
-        handler.removeCallbacksAndMessages(null)
-        updatesRunnable = null
+        stopUpdatingTimedPosition()
     }
 }

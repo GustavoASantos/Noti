@@ -36,6 +36,8 @@
     <string name="prefsRoundedCornersSummary">Mudar para barra de progresso com pontas arredondadas</string>
     <string name="prefsShowInLockScreenTitle">Mostrar barra de progresso no ecrã de bloqueio</string>
     <string name="prefsShowInLockScreenSummary">Irá também aparecer no always on display</string>
+    <string name="prefsNotificationColorTitle">Usar cor da notificação</string>
+    <string name="prefsNotificationColorSummary">Retirar cor da notificação para a barra de progresso</string>
     <string name="prefsChangeColorTitle">Mudar cor da barra de progresso</string>
     <string name="prefsCategoryMore">mais</string>
     <string name="prefsCalentileTitle">Experimentar o CalenTile no Google Play</string>

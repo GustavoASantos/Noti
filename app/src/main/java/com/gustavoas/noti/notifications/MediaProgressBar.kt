@@ -53,32 +53,44 @@ class MediaProgressBar(
         mediaController = newMediaController
 
         if (mediaController?.playbackState?.state == PlaybackState.STATE_PLAYING) {
-            startUpdatingTimedPosition(
-                mediaController?.playbackState?.position ?: 0,
-                mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
-                mediaController?.playbackState?.playbackSpeed ?: 1f
-            )
+            startTrackingMediaPosition()
         }
 
         mediaCallback = object : MediaController.Callback() {
             override fun onPlaybackStateChanged(state: PlaybackState?) {
                 super.onPlaybackStateChanged(state)
 
-                if (state?.state == PlaybackState.STATE_PLAYING) {
-                    startUpdatingTimedPosition(
-                        mediaController?.playbackState?.position ?: 0,
-                        mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
-                        mediaController?.playbackState?.playbackSpeed ?: 1f
-                    )
-                } else if (state?.state == PlaybackState.STATE_NONE || state?.state == PlaybackState.STATE_STOPPED ||
-                    state?.state == PlaybackState.STATE_PAUSED || state?.state == PlaybackState.STATE_ERROR
-                ) {
-                    cancel()
+                when (state?.state) {
+                    PlaybackState.STATE_PLAYING -> {
+                        startTrackingMediaPosition()
+                    }
+                    PlaybackState.STATE_NONE, PlaybackState.STATE_STOPPED,
+                    PlaybackState.STATE_PAUSED, PlaybackState.STATE_ERROR -> {
+                        cancel()
+                    }
+                    else -> {
+                        stopUpdatingTimedPosition()
+                    }
                 }
             }
         }
 
         mediaController?.registerCallback(mediaCallback as MediaController.Callback)
+    }
+
+    private fun startTrackingMediaPosition() {
+        val artwork = mediaController?.metadata?.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART)
+        artwork?.let {
+            getColorFromBitmap(it)?.let { color ->
+                notificationColor = color
+            }
+        }
+
+        startUpdatingTimedPosition(
+            mediaController?.playbackState?.position ?: 0,
+            mediaController?.metadata?.getLong(MediaMetadata.METADATA_KEY_DURATION) ?: 0,
+            mediaController?.playbackState?.playbackSpeed ?: 1f
+        )
     }
 
     override fun cancel() {

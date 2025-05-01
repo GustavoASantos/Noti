@@ -31,11 +31,13 @@ import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.gustavoas.noti.R
+import com.gustavoas.noti.Utils.getColorForApp
 import com.gustavoas.noti.Utils.getScreenLargeSide
 import com.gustavoas.noti.Utils.getScreenSmallSide
 import com.gustavoas.noti.Utils.getStatusBarHeight
 import com.gustavoas.noti.Utils.hasAccessibilityPermission
 import com.gustavoas.noti.Utils.hasSystemAlertWindowPermission
+import com.gustavoas.noti.model.ProgressBarApp
 import com.gustavoas.noti.model.ProgressNotification
 import kotlin.math.abs
 import kotlin.math.max
@@ -53,6 +55,10 @@ class AccessibilityService : AccessibilityService() {
     private val handler = Handler(Looper.getMainLooper())
 
     private val activeProgressBars = mutableMapOf<String, ProgressNotification>()
+
+    private val fullscreenDetectionService by lazy {
+        Intent(this, FullscreenDetectionService::class.java)
+    }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
 
@@ -155,7 +161,7 @@ class AccessibilityService : AccessibilityService() {
             linearProgressBarCustomizations(sharedPreferences)
         }
 
-        applyCommonProgressBarCustomizations(sharedPreferences, notification.progressBarApp.color)
+        applyCommonProgressBarCustomizations(sharedPreferences, notification.progressBarApp)
 
         animateProgressBarTo(notification.progress, progressBarStyle == "circular")
 
@@ -279,17 +285,8 @@ class AccessibilityService : AccessibilityService() {
         } catch (_: Exception) {}
     }
 
-    private fun applyCommonProgressBarCustomizations(sharedPrefs: SharedPreferences, color: Int) {
-        val useMaterialYou = sharedPrefs.getBoolean("usingMaterialYouColor", false)
-        val progressBarColor = if (color == 1 && !useMaterialYou) {
-            sharedPrefs.getInt(
-                "progressBarColor", ContextCompat.getColor(this, R.color.purple_500)
-            )
-        } else if (color == 2 || (useMaterialYou && color == 1)) {
-            ContextCompat.getColor(this, R.color.system_accent_color)
-        } else {
-            color
-        }
+    private fun applyCommonProgressBarCustomizations(sharedPrefs: SharedPreferences, progressBarApp: ProgressBarApp) {
+        val progressBarColor = getColorForApp(this, progressBarApp)
         progressBar.setIndicatorColor(progressBarColor)
         circularProgressBar.setIndicatorColor(progressBarColor)
 
@@ -433,9 +430,9 @@ class AccessibilityService : AccessibilityService() {
                 overlayView.alpha = 0f
                 LocalBroadcastManager.getInstance(this).registerReceiver(
                     fullscreenDetectionReceiver,
-                    IntentFilter("fullscreenDetectionService")
+                    IntentFilter(FullscreenDetectionService::class.java.simpleName)
                 )
-                startService(Intent(this, FullscreenDetectionService::class.java))
+                startService(fullscreenDetectionService)
             }
         }
     }
@@ -458,7 +455,7 @@ class AccessibilityService : AccessibilityService() {
         if (this::overlayView.isInitialized && overlayView.isShown) {
             windowManager.removeView(overlayView)
         }
-        stopService(Intent(this, FullscreenDetectionService::class.java))
+        stopService(fullscreenDetectionService)
         LocalBroadcastManager.getInstance(this).unregisterReceiver(fullscreenDetectionReceiver)
         stopSelf()
     }

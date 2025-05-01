@@ -17,6 +17,7 @@ import com.gustavoas.noti.ProgressBarAppsRepository
 import com.gustavoas.noti.R
 import com.gustavoas.noti.Utils.getApplicationInfo
 import com.gustavoas.noti.Utils.getApplicationName
+import com.gustavoas.noti.Utils.getColorForApp
 import com.gustavoas.noti.model.ProgressBarApp
 import eltos.simpledialogfragment.SimpleDialog
 import eltos.simpledialogfragment.SimpleDialog.OnDialogResultListener.BUTTON_NEUTRAL
@@ -25,7 +26,7 @@ import eltos.simpledialogfragment.color.SimpleColorDialog
 
 class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
     private val apps = ArrayList<ProgressBarApp>()
-    private val appsRepository by lazy { ProgressBarAppsRepository.getInstance(requireContext()) }
+    private val appsRepository by lazy { ProgressBarAppsRepository(requireContext()) }
     private val recyclerView by lazy { requireView().findViewById<RecyclerView>(R.id.apps_recycler_view) }
 
     override fun onCreateView(
@@ -38,33 +39,50 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
         updateAppsFromDatabase()
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ProgressBarAppsAdapter(this, requireContext(), apps)
+        recyclerView.adapter =
+            ProgressBarAppsAdapter(this, requireContext(), apps, appsRepository)
 
         updateRecyclerViewVisibility()
     }
 
     override fun onResult(dialogTag: String, which: Int, extras: Bundle): Boolean {
-        if (which == BUTTON_POSITIVE || which == BUTTON_NEUTRAL) {
-            var color = extras.getInt(SimpleColorDialog.COLOR)
-            if (which == BUTTON_NEUTRAL || color == PreferenceManager.getDefaultSharedPreferences(requireContext())
-                .getInt(
-                    "progressBarColor",
-                    ContextCompat.getColor(requireContext(), R.color.purple_500)
-                )
+        val progressBarApp = apps[dialogTag.toInt()].copy()
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val defaultColor = sharedPrefs.getInt(
+            "progressBarColor", ContextCompat.getColor(requireContext(), R.color.purple_500)
+        )
+        val existingSelectedColor = getColorForApp(requireContext(), progressBarApp)
+        val useMaterialYou = sharedPrefs.getBoolean("usingMaterialYouColor", false)
+
+        val color = extras.getInt(SimpleColorDialog.COLOR)
+        val selectedPosition = extras.getInt(SimpleColorDialog.SELECTED_SINGLE_POSITION)
+
+        if (which == BUTTON_NEUTRAL || (color == defaultColor && (!useMaterialYou || selectedPosition != 19))) {
+            progressBarApp.useDefaultColor = true
+            progressBarApp.useMaterialYouColor = false
+            progressBarApp.color = null
+        } else if (which == BUTTON_POSITIVE) {
+            if (
+                Build.VERSION.SDK_INT >= VERSION_CODES.S && selectedPosition != 19 &&
+                color == ContextCompat.getColor(requireContext(), R.color.system_accent_color)
             ) {
-                color = 1
-            } else if (Build.VERSION.SDK_INT >= VERSION_CODES.S && color == ContextCompat.getColor(
-                    requireContext(), R.color.system_accent_color
-                ) && extras.getInt(SimpleColorDialog.SELECTED_SINGLE_POSITION) != 19
-            ) {
-                color = 2
-            }
-            if (apps[dialogTag.toInt()].color != color) {
-                apps[dialogTag.toInt()].color = color
-                appsRepository.updateApp(apps[dialogTag.toInt()])
-                recyclerView.adapter?.notifyItemChanged(dialogTag.toInt() + 1)
+                progressBarApp.useDefaultColor = false
+                progressBarApp.useMaterialYouColor = true
+                progressBarApp.color = null
+            } else if (color != existingSelectedColor || (progressBarApp.useMaterialYouColor && selectedPosition == 19)) {
+                progressBarApp.useDefaultColor = false
+                progressBarApp.useMaterialYouColor = false
+                progressBarApp.color = color
             }
         }
+
+        if (apps[dialogTag.toInt()] != progressBarApp) {
+            apps[dialogTag.toInt()] = progressBarApp
+            appsRepository.updateApp(apps[dialogTag.toInt()])
+            recyclerView.adapter?.notifyItemChanged(dialogTag.toInt() + 1)
+        }
+
         return true
     }
 
@@ -96,5 +114,11 @@ class PerAppSettingsFragment : Fragment(), SimpleDialog.OnDialogResultListener {
             recyclerView.visibility = View.VISIBLE
             emptyRecyclerView.visibility = View.GONE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        appsRepository.close()
     }
 }

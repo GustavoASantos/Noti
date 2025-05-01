@@ -34,8 +34,6 @@
     <string name="prefsPerAppSettingsSummary">アプリごとにNotiの有効/無効を切り替え</string>
     <string name="prefsRoundedCornersTitle">角が丸いプログレスバーを使用</string>
     <string name="prefsRoundedCornersSummary">端が丸いプログレスバーに切り替え</string>
-    <string name="prefsShowForMediaTitle">メディアのプログレスバーを表示</string>
-    <string name="prefsShowForMediaSummary">音楽再生時にプログレスバーを表示</string>
     <string name="prefsShowInLockScreenTitle">ロック画面でプログレスバーを表示</string>
     <string name="prefsShowInLockScreenSummary">常時表示画面でも表示されます</string>
     <string name="prefsDisableInFullScreenTitle">全画面モードで無効にする</string>
@@ -64,8 +62,6 @@
     <string name="colorBrown">茶色</string>
     <string name="menuReportBug">問題を報告</string>
     <string name="settingsPreviewFab">プレビュー</string>
-    <string name="prefsShowForDownloadsTitle">ダウンロードのプログレスバーを表示</string>
-    <string name="prefsShowForDownloadsSummary">コンテンツ転送時にプログレスバーを表示</string>
     <string name="prefsNotificationPermissionTitle">通知アクセスを許可</string>
     <string name="prefsNotificationPermissionSummary">プログレスバー付きの通知を読み取るために必要</string>
     <string name="prefsAccessibilityPermissionTitle">アクセシビリティ権限を許可</string>

@@ -107,6 +107,14 @@
             app:fragment="PerAppSettingsFragment"
             app:icon="@drawable/ic_apps"/>
 
+        <SwitchPreferenceCompat
+            android:key="useNotificationColor"
+            android:title="@string/prefsNotificationColorTitle"
+            android:summary="@string/prefsNotificationColorSummary"
+            app:singleLineTitle="false"
+            android:defaultValue="true"
+            app:icon="@drawable/ic_palette"/>
+
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:key="progressBarColor"
             android:title="@string/prefsChangeColorTitle"

@@ -11,6 +11,8 @@ import android.util.Xml
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,7 +24,6 @@ import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.firebase.storage.StorageException
 import com.gustavoas.noti.Utils.dpToPx
 import com.gustavoas.noti.Utils.getFirebaseConfigStorageReference
 import com.gustavoas.noti.Utils.getScreenLargeSide
@@ -154,15 +155,17 @@ class SettingsActivity : AppCompatActivity(),
 
     private fun moveSharedPreferenceValue(key: String, oldKey: String, defaultValue: Any, reductionRatio: Float = 1f) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = sharedPreferences.edit()
-
-        when (defaultValue) {
-            is Boolean -> editor.putBoolean(key, sharedPreferences.getBoolean(oldKey, defaultValue))
-            is Int -> editor.putInt(key, sharedPreferences.getInt(oldKey, defaultValue).times(reductionRatio).roundToInt())
-            is String -> editor.putString(key, sharedPreferences.getString(oldKey, defaultValue))
+        sharedPreferences.edit {
+            when (defaultValue) {
+                is Boolean -> putBoolean(key, sharedPreferences.getBoolean(oldKey, defaultValue))
+                is Int -> putInt(
+                    key,
+                    sharedPreferences.getInt(oldKey, defaultValue).times(reductionRatio)
+                        .roundToInt()
+                )
+                is String -> putString(key, sharedPreferences.getString(oldKey, defaultValue))
+            }
         }
-
-        editor.apply()
     }
 
     override fun onStart() {
@@ -211,7 +214,7 @@ class SettingsActivity : AppCompatActivity(),
                 R.id.bug_report -> {
                     val sendEmail = Intent(Intent.ACTION_SENDTO).apply {
                         data =
-                            Uri.parse("mailto:gustavoasgas1@gmail.com" + "?subject=" + Uri.encode("Noti"))
+                            ("mailto:gustavoasgas1+noti@gmail.com" + "?subject=" + Uri.encode("Noti")).toUri()
                     }
                     sendEmail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(sendEmail)
@@ -296,17 +299,17 @@ class SettingsActivity : AppCompatActivity(),
             val inputStream: InputStream = taskSnapshot.stream
 
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            sharedPreferences.edit()
-                .putString("progressBarStyle", "circular")
-                .apply()
+            sharedPreferences.edit {
+                putString("progressBarStyle", "circular")
+            }
 
             parseDeviceConfiguration(inputStream)
 
-        } catch (e: StorageException) {
+        } catch (_: Exception) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            sharedPreferences.edit()
-                .putString("progressBarStyle", "linear")
-                .apply()
+            sharedPreferences.edit {
+                putString("progressBarStyle", "linear")
+            }
         }
     }
 
@@ -378,17 +381,17 @@ class SettingsActivity : AppCompatActivity(),
         val appendix = config.deviceHeight + "x" + config.deviceWidth
 
         if (config.configuration == "circular") {
-            sharedPreferences.edit()
-                .putString("progressBarStyle$appendix", "circular")
-                .putBoolean("blackBackground", true)
-                .putInt("circularProgressBarSize$appendix", config.size?.toIntOrNull() ?: 65)
-                .putInt("circularProgressBarTopOffset$appendix", config.topOffset?.toIntOrNull() ?: 60)
-                .putInt("circularProgressBarHorizontalOffset$appendix", config.horizontalOffset?.toIntOrNull() ?: 0)
-                .apply()
+            sharedPreferences.edit {
+                putString("progressBarStyle$appendix", "circular")
+                putBoolean("blackBackground", true)
+                putInt("circularProgressBarSize$appendix", config.size?.toIntOrNull() ?: 65)
+                putInt("circularProgressBarTopOffset$appendix", config.topOffset?.toIntOrNull() ?: 60)
+                putInt("circularProgressBarHorizontalOffset$appendix", config.horizontalOffset?.toIntOrNull() ?: 0)
+            }
         } else {
-            sharedPreferences.edit()
-                .putString("progressBarStyle$appendix", "linear")
-                .apply()
+            sharedPreferences.edit {
+                putString("progressBarStyle$appendix", "linear")
+            }
         }
     }
 
@@ -396,23 +399,24 @@ class SettingsActivity : AppCompatActivity(),
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            sharedPreferences.edit()
-                .putInt(
+            sharedPreferences.edit {
+                putInt(
                     "progressBarColor", ContextCompat.getColor(
-                        this,
+                        this@SettingsActivity,
                         R.color.system_accent_color
                     )
                 )
-                .putBoolean("usingMaterialYouColor", true)
-                .apply()
+                putBoolean("usingMaterialYouColor", true)
+            }
         } else {
-            sharedPreferences.edit()
-                .putInt(
+            sharedPreferences.edit {
+                putInt(
                     "progressBarColor", ContextCompat.getColor(
-                        this,
+                        this@SettingsActivity,
                         R.color.purple_500
                     )
-                ).apply()
+                )
+            }
         }
     }
 

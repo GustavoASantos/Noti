@@ -249,6 +249,10 @@ class AccessibilityService : AccessibilityService() {
             }
         }
 
+        if (SDK_INT >= Build.VERSION_CODES.P) {
+            overlayParams.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+
         circularProgressBar.layoutParams = progressParams
 
         try {
@@ -412,10 +416,6 @@ class AccessibilityService : AccessibilityService() {
 
         if (SDK_INT >= Build.VERSION_CODES.S && hasSAWPermission && !showInLockscreen) {
             params.alpha = 0.8f
-        }
-
-        if (SDK_INT >= Build.VERSION_CODES.P) {
-            params.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
         }
 
         if (!overlayView.isShown) {

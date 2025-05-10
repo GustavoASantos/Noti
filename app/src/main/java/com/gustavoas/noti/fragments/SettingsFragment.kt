@@ -137,7 +137,7 @@ class SettingsFragment : BasePreferenceFragment(),
     private fun updateColorPreferenceState() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val colorPreference = findPreference<ColorPreferenceCompat>("progressBarColor")
-        val useNotificationColor = sharedPreferences.getBoolean("useNotificationColor", true)
+        val useNotificationColor = sharedPreferences.getBoolean("useNotificationColor", false)
 
         colorPreference?.isEnabled = !useNotificationColor
         colorPreference?.icon?.alpha = if (useNotificationColor) 80 else 255

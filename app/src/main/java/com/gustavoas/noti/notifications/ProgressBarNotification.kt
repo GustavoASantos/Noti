@@ -26,7 +26,7 @@ abstract class ProgressBarNotification(
     private var sbn: StatusBarNotification,
     private val appsRepository: ProgressBarAppsRepository
 ) {
-    abstract val priorityLevel: Int
+    protected abstract val priorityLevel: Int
 
     protected var notificationColor = sbn.notification.color
 
@@ -91,7 +91,7 @@ abstract class ProgressBarNotification(
 
     private fun updateProgressBarColor(progressBarApp: ProgressBarApp) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx)
-        val useNotificationColor = sharedPrefs.getBoolean("useNotificationColor", true)
+        val useNotificationColor = sharedPrefs.getBoolean("useNotificationColor", false)
 
         if (!progressBarApp.useDefaultColor || !useNotificationColor) {
             return

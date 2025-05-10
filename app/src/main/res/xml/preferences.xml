@@ -112,7 +112,7 @@
             android:title="@string/prefsNotificationColorTitle"
             android:summary="@string/prefsNotificationColorSummary"
             app:singleLineTitle="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             app:icon="@drawable/ic_palette"/>
 
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat

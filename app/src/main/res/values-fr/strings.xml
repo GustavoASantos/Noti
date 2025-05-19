@@ -80,4 +80,6 @@
     <string name="activateToggle">Activé pour</string>
     <string name="downloads">Téléchargements</string>
     <string name="media">Médias</string>
+    <string name="prefsNotificationColorTitle">Faire correspondre avec la couleur de la notification</string>
+    <string name="prefsNotificationColorSummary">Utiliser la couleur de la notification pour la barre de progression</string>
 </resources>

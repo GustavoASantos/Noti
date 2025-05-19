@@ -8,12 +8,12 @@
     <string name="prefsCategorySetup">налаштування</string>
     <string name="prefsCategoryGeneral">загальні</string>
     <string name="menuReportBug">Повідомити про ваду</string>
-    <string name="perAppSettingsEmptyView">Індикатори прогресу ще не знайдено. Сумісні застосунки виявляються під час використання пристрою.</string>
+    <string name="perAppSettingsEmptyView">Noti визначатиме більш сумісні застосунки під час отримання сповіщень</string>
     <string name="prefsBatteryBannerSummary">Можливо, вам доведеться вимкнути оптимізацію заряду батареї і дозволити автозапуск для роботи Noti у фоновому режимі. Після цього може знадобитися перезавантаження</string>
     <string name="prefsMultiScreenInfoCard">Для кількох екранів перейдіть до налаштувань на кожному з них, щоби відрегулювати рядок для відповідного параметра</string>
     <string name="prefsRoundedCornersTitle">Використовувати індикатор виконання із закругленими кутами</string>
     <string name="prefsNotificationPermissionSummary">Необхідно для читання сповіщень з індикатором виконання</string>
-    <string name="prefsNotificationPermissionTitle">Надайте доступ до сповіщень</string>
+    <string name="prefsNotificationPermissionTitle">Дозволити доступ до сповіщень</string>
     <string name="prefsAccessibilityPermissionTitle">Надайте дозвіл на доступність</string>
     <string name="prefsAccessibilityPermissionSummary">Необхідно для показу на екрані блокування та в системних застосунках</string>
     <string name="prefsSAWPermissionTitle">Дозволити показ поверх інших застосунків</string>
@@ -77,4 +77,7 @@
     <string name="colorBlack">Чорний</string>
     <string name="colorGrey">Сірий</string>
     <string name="colorWhite">Білий</string>
+    <string name="activateToggle">Увімкнено для</string>
+    <string name="downloads">Завантаження</string>
+    <string name="media">Медіа</string>
 </resources>

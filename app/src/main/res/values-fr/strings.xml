@@ -47,7 +47,7 @@
     <string name="prefsProgressBarMarginTopSummary">Changer l\'espacement du haut de l\'écran</string>
     <string name="prefsPerAppSettingsTitle">Paramètres par application</string>
     <string name="colorCyan">Cyan</string>
-    <string name="prefsCircularBarShareConfigTitle">Ajusté parfaitement ? Partagez votre configuration</string>
+    <string name="prefsCircularBarShareConfigTitle">Ajusté parfaitement? Partagez votre configuration</string>
     <string name="prefsLinearProgressBarTweaks">Ajustements de la barre de progression linéaire</string>
     <string name="holePunchInstruction">Changez l\'alignement de la barre de progression circulaire avec les curseurs</string>
     <string name="colorIndigo">Indigo</string>
@@ -75,7 +75,7 @@
     <string name="prefsCutoutSizeTitle">Taille de la coupe</string>
     <string name="prefsCutoutSizeSummary">Changer la taille du diamètre intérieur</string>
     <string name="prefsMultiScreenInfoCard">Pour les écrans partagés, accédez au paramètres de chaque écran pour ajuster la barre</string>
-    <string name="shareConfigPositiveMessage">Merci d\'avoir partagé votre configuration !</string>
+    <string name="shareConfigPositiveMessage">Merci d\'avoir partagé votre configuration!</string>
     <string name="shareConfigNoInternetMessage">Activez le réseau pour téléverser la configuration</string>
     <string name="activateToggle">Activé pour</string>
     <string name="downloads">Téléchargements</string>

@@ -34,8 +34,11 @@ object Utils {
     fun hasAccessibilityPermission(context: Context): Boolean {
         val accessibilityServiceComponentName = ComponentName(context, AccessibilityService::class.java)
         val enabledServices = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)
-        return enabledServices?.contains(accessibilityServiceComponentName.flattenToString())
-            ?: enabledServices?.contains(accessibilityServiceComponentName.flattenToShortString()) ?: false
+
+        return enabledServices.orEmpty().let {
+            it.contains(accessibilityServiceComponentName.flattenToString()) ||
+                    it.contains(accessibilityServiceComponentName.flattenToShortString())
+        }
     }
 
     fun hasNotificationListenerPermission(context: Context): Boolean {
@@ -286,7 +289,7 @@ object Utils {
 
     fun getColorForApp(context: Context, progressBarApp: ProgressBarApp): Int {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val useNotificationColor = sharedPrefs.getBoolean("useNotificationColor", true)
+        val useNotificationColor = sharedPrefs.getBoolean("useNotificationColor", false)
         val useMaterialYou = sharedPrefs.getBoolean("usingMaterialYouColor", false)
 
         if ((progressBarApp.useDefaultColor && useNotificationColor) ||

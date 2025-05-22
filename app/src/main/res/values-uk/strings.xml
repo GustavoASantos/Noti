@@ -80,4 +80,6 @@
     <string name="activateToggle">Увімкнено для</string>
     <string name="downloads">Завантаження</string>
     <string name="media">Медіа</string>
+    <string name="prefsNotificationColorSummary">Використовувати колір сповіщення для панелі прогресу</string>
+    <string name="prefsNotificationColorTitle">Підібрати колір сповіщень</string>
 </resources>

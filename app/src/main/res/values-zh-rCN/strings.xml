@@ -37,7 +37,7 @@
     <string name="prefsCategorySetup">设置</string>
     <string name="prefsCategoryGeneral">常规</string>
     <string name="prefsCategoryMore">更多</string>
-    <string name="prefsCalentileTitle">试试 Google Play 上的 CalenTile</string>
+    <string name="prefsCalentileTitle">试试 Google Play 上的 %s</string>
     <string name="prefsCalentileSummary">支持开发者</string>
     <string name="prefsPerAppSettingsTitle">分应用设置</string>
     <string name="prefsCircularBarShareConfigTitle">完美贴合？分享配置吧</string>

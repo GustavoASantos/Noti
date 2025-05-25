@@ -149,14 +149,9 @@
         app:isPreferenceVisible="true">
 
         <Preference
-            android:key="calentile"
-            android:title="@string/prefsCalentileTitle"
+            android:key="selfPromo"
             android:summary="@string/prefsCalentileSummary"
-            app:singleLineTitle="false"
-            app:icon="@drawable/ic_calentile">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://play.google.com/store/apps/details?id=com.gustavoas.calendarqst"/>
+            app:singleLineTitle="false">
         </Preference>
 
     </PreferenceCategory>

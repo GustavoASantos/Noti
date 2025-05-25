@@ -43,7 +43,7 @@
     <string name="prefsChangeColorTitle">പ്രോഗ്രസ് ബാറിന്റെ നിറം മാറ്റുക</string>
     <string name="prefsDisableInFullScreenSummary">പൂർണ്ണസ്‌ക്രീൻ ആപ്പുകളിൽ പ്രോഗ്രസ് ബാർ മറയ്ക്കുക</string>
     <string name="prefsCategoryMore">കൂടുതൽ</string>
-    <string name="prefsCalentileTitle">ഗൂഗിൾ പ്ലേയിൽ CalenTile പരീക്ഷിച്ചു നോക്കൂ</string>
+    <string name="prefsCalentileTitle">ഗൂഗിൾ പ്ലേയിൽ %s പരീക്ഷിച്ചു നോക്കൂ</string>
     <string name="prefsCalentileSummary">ഡെവലപ്പറെ പിന്തുണയ്ക്കുക</string>
     <string name="colorRed">ചുവപ്പ്</string>
     <string name="colorPink">പിങ്ക്</string>

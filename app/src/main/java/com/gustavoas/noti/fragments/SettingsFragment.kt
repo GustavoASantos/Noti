@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
@@ -48,6 +49,11 @@ class SettingsFragment : BasePreferenceFragment(),
         }
     }
 
+    private val myApps = listOf(
+        Triple("CalenTile", "https://play.google.com/store/apps/details?id=com.gustavoas.calendarqst", R.drawable.ic_calentile),
+        Triple("Sum Up", "https://play.google.com/store/apps/details?id=com.gustavoas.sumup", R.drawable.ic_sumup),
+    )
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
@@ -62,6 +68,12 @@ class SettingsFragment : BasePreferenceFragment(),
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+
+        val appIndex = myApps.indices.random()
+        val appPromo = findPreference<Preference>("selfPromo")
+        appPromo?.title = getString(R.string.prefsCalentileTitle, myApps[appIndex].first)
+        appPromo?.intent = Intent(Intent.ACTION_VIEW, myApps[appIndex].second.toUri())
+        appPromo?.icon = ContextCompat.getDrawable(requireContext(), myApps[appIndex].third)
 
         if (!sharedPreferences.contains("batteryOptimizations")) {
             sharedPreferences.edit {

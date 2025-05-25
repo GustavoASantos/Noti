@@ -53,7 +53,7 @@
     <string name="prefsDisableInFullScreenSummary">Приховати індикатор виконання в повноекранних застосунках</string>
     <string name="prefsChangeColorTitle">Змінити колір індикатора виконання</string>
     <string name="prefsCategoryMore">Більше</string>
-    <string name="prefsCalentileTitle">Спробуйте CalenTile в Google Play</string>
+    <string name="prefsCalentileTitle">Спробуйте %s в Google Play</string>
     <string name="prefsCalentileSummary">Підтримати розробника</string>
     <string name="shareConfigPositiveMessage">Дякуємо, що поділилися своєю конфігурацією!</string>
     <string name="shareConfigNoInternetMessage">Увімкніть інтернет для завантаження конфігурації</string>

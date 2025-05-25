@@ -14,7 +14,7 @@
     <string name="colorGreen">Verde</string>
     <string name="colorGrey">Gri</string>
     <string name="prefsCircularBarShareConfigSummary">Permite și celor ce au același dispozitiv să utilizeze configurația ta</string>
-    <string name="prefsCalentileTitle">Încearcă aplicația CalenTile pe Google Play</string>
+    <string name="prefsCalentileTitle">Încearcă aplicația %s pe Google Play</string>
     <string name="colorBlack">Negru</string>
     <string name="prefsAccessibilityPermissionTitle">Acordați permisiunea pentru accesibilitate</string>
     <string name="prefsCategoryCustomization">personalizare</string>

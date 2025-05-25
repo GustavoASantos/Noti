@@ -14,7 +14,7 @@
     <string name="prefsCircularBarShareConfigTitle">சரியான பொருத்தம்? உள்ளமைவைப் பகிரவும்</string>
     <string name="prefsCircularBarShareConfigSummary">அதே சாதனத்துடன் கூடிய மற்றவர்கள் உங்கள் உள்ளமைவைப் பயன்படுத்தட்டும்</string>
     <string name="prefsChangeColorTitle">முன்னேற்றப் பட்டி நிறத்தை மாற்றவும்</string>
-    <string name="prefsCalentileTitle">கூகிள் பிளேயில் காலென்டைலை முயற்சிக்கவும்</string>
+    <string name="prefsCalentileTitle">Google Play இல் %s ஐ முயற்சிக்கவும்</string>
     <string name="prefsCalentileSummary">டெவலப்பரை ஆதரிக்கவும்</string>
     <string name="shareConfigPositiveMessage">உங்கள் உள்ளமைவைப் பகிர்ந்தமைக்கு நன்றி!</string>
     <string name="colorRed">சிவப்பு</string>

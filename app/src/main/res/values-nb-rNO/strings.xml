@@ -9,7 +9,7 @@
     <string name="colorBlue">Blå</string>
     <string name="colorGreen">Grønn</string>
     <string name="colorGrey">Grå</string>
-    <string name="prefsCalentileTitle">Prøv CalenTile på Google Play</string>
+    <string name="prefsCalentileTitle">Prøv %s på Google Play</string>
     <string name="colorBlack">Svart</string>
     <string name="prefsAccessibilityPermissionTitle">Innvilg tilgjengelighetstilgang</string>
     <string name="colorRed">Rød</string>

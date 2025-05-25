@@ -39,7 +39,7 @@
     <string name="prefsDisableInFullScreenTitle">全画面モードで無効にする</string>
     <string name="prefsDisableInFullScreenSummary">全画面アプリでプログレスバーを非表示</string>
     <string name="prefsChangeColorTitle">プログレスバーの色を変更</string>
-    <string name="prefsCalentileTitle">Google PlayでCalenTileを試す</string>
+    <string name="prefsCalentileTitle">Google Playで%sを試す</string>
     <string name="prefsCalentileSummary">開発者をサポート</string>
     <string name="shareConfigPositiveMessage">設定を共有していただきありがとうございます！</string>
     <string name="shareConfigNoInternetMessage">設定をアップロードするにはインターネットを有効にしてください</string>

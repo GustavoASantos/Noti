@@ -40,7 +40,7 @@
     <string name="prefsNotificationColorSummary">Retirar cor da notificação para a barra de progresso</string>
     <string name="prefsChangeColorTitle">Mudar cor da barra de progresso</string>
     <string name="prefsCategoryMore">mais</string>
-    <string name="prefsCalentileTitle">Experimentar o CalenTile no Google Play</string>
+    <string name="prefsCalentileTitle">Experimentar o %s no Google Play</string>
     <string name="prefsCalentileSummary">Apoiar o criador</string>
     <string name="shareConfigPositiveMessage">Obrigado por partilhares a configuração!</string>
     <string name="colorRed">Vermelho</string>

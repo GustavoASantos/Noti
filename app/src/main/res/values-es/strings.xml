@@ -48,7 +48,7 @@
     <string name="prefsDisableInFullScreenSummary">Ocultar la barra de progreso en las aplicaciones a pantalla completa</string>
     <string name="prefsChangeColorTitle">Cambiar el color de la barra de progreso</string>
     <string name="prefsCategoryMore">más</string>
-    <string name="prefsCalentileTitle">Prueba CalenTile en Google Play</string>
+    <string name="prefsCalentileTitle">Prueba %s en Google Play</string>
     <string name="prefsCalentileSummary">Apoyar al desarrollador</string>
     <string name="colorRed">Rojo</string>
     <string name="colorPink">Rosa</string>

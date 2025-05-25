@@ -7,7 +7,7 @@
     <string name="prefsShowInLockScreenSummary">Sarà mostrata anche nella schermata Always On</string>
     <string name="prefsChangeColorTitle">Cambia il colore della barra di avanzamento</string>
     <string name="prefsCategoryMore">Di più</string>
-    <string name="prefsCalentileTitle">Prova CalenTile disponibile su Play Store</string>
+    <string name="prefsCalentileTitle">Prova %s disponibile su Play Store</string>
     <string name="prefsCalentileSummary">Supporta lo sviluppatore</string>
     <string name="colorLightBlue">Celeste</string>
     <string name="colorIndigo">Indaco</string>

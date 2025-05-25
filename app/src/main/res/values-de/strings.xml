@@ -50,7 +50,7 @@
     <string name="prefsRoundedCornersTitle">benutze Fortschrittsbalken mit runden Ecken</string>
     <string name="prefsCategoryMore">mehr</string>
     <string name="prefsRoundedCornersSummary">wechsle zu Fortschrittsbalken mit runden Enden</string>
-    <string name="prefsCalentileTitle">Teste CalenTile im Google Play Store</string>
+    <string name="prefsCalentileTitle">Teste %s im Google Play Store</string>
     <string name="prefsShowInLockScreenTitle">zeige Fortschrittsbalken auf dem Sperrbildschirm</string>
     <string name="prefsShowInLockScreenSummary">wird auch auf dem Always-on-Display gezeigt</string>
     <string name="prefsDisableInFullScreenTitle">deaktiviere im Vollbildmodus</string>

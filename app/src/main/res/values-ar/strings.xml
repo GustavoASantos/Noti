@@ -30,7 +30,7 @@
     <string name="prefsShowInLockScreenSummary">سيظهر أيضًا في العرض دوماً على الشاشة إن كان هاتفك يدعم هذه الخاصية</string>
     <string name="prefsChangeColorTitle">تغيير لون شريط التقدم</string>
     <string name="prefsCategoryMore">المزيد</string>
-    <string name="prefsCalentileTitle">جرب CalenTile على Google Play</string>
+    <string name="prefsCalentileTitle">جرب %s على Google Play</string>
     <string name="prefsCalentileSummary">دعم المطور</string>
     <string name="colorRed">أحمر</string>
     <string name="colorPink">وردي</string>

@@ -18,7 +18,7 @@
     <string name="colorGreen">Vert</string>
     <string name="colorGrey">Gris</string>
     <string name="prefsCircularBarShareConfigSummary">Laissez d\'autres personnes possédant le même appareil d\'utiliser votre configuration</string>
-    <string name="prefsCalentileTitle">Essayez CalenTile sur Google Play</string>
+    <string name="prefsCalentileTitle">Essayez %s sur Google Play</string>
     <string name="colorBlack">Noir</string>
     <string name="prefsAccessibilityPermissionTitle">Accorder la permission d\'accessibilité</string>
     <string name="prefsCategoryCustomization">Personnalisation</string>

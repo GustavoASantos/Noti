@@ -60,7 +60,7 @@
     <string name="prefsNotificationColorSummary">Use the notification\'s color for the progress bar</string>
     <string name="prefsChangeColorTitle">Change progress bar color</string>
     <string name="prefsCategoryMore">more</string>
-    <string name="prefsCalentileTitle">Try CalenTile on Google Play</string>
+    <string name="prefsCalentileTitle">Try %s on Google Play</string>
     <string name="prefsCalentileSummary">Support the developer</string>
     <string name="shareConfigPositiveMessage">Thanks for sharing your configuration!</string>
     <string name="shareConfigNoInternetMessage">Enable internet to upload configuration</string>

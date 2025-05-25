@@ -19,7 +19,7 @@
     <string name="prefsPerAppSettingsSummary">Zapnutí Noti pro jednotlivé aplikace</string>
     <string name="prefsDisableInFullScreenSummary">Skrytí ukazatele průběhu v aplikacích spuštěných v režimu celé obrazovky</string>
     <string name="prefsChangeColorTitle">Změna barvy ukazatele průběhu</string>
-    <string name="prefsCalentileTitle">Vyzkoušejte CalenTile na Google Play</string>
+    <string name="prefsCalentileTitle">Vyzkoušejte %s na Google Play</string>
     <string name="prefsCalentileSummary">Podpořte vývojáře</string>
     <string name="colorRed">Červená</string>
     <string name="colorPink">Růžová</string>

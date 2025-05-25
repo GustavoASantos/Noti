@@ -28,7 +28,7 @@
     <string name="prefsShowInLockScreenSummary">También mostrar en pantalla siempre encendida</string>
     <string name="prefsChangeColorTitle">Cambiar color de la barra de progreso</string>
     <string name="prefsCategoryMore">más</string>
-    <string name="prefsCalentileTitle">Prueba CalenTile en Google Play</string>
+    <string name="prefsCalentileTitle">Prueba %s en Google Play</string>
     <string name="prefsCalentileSummary">Apoya al desarrollador</string>
     <string name="colorRed">Rojo</string>
     <string name="colorPink">Rosa</string>

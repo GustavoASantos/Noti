@@ -19,7 +19,7 @@
     <string name="prefsShowInLockScreenTitle">Kilit ekranında ilerleme çubuğunu göster</string>
     <string name="prefsChangeColorTitle">İlerleme çubuğunun rengini değiştir</string>
     <string name="prefsCategoryMore">daha fazla</string>
-    <string name="prefsCalentileTitle">CalenTile\'ı Google Play\'de deneyin</string>
+    <string name="prefsCalentileTitle">%s\'ı Google Play\'de deneyin</string>
     <string name="colorOrange">Turuncu</string>
     <string name="colorWhite">Beyaz</string>
     <string name="colorAmber">Kehribar rengi</string>

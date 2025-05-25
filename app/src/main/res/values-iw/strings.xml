@@ -28,7 +28,7 @@
     <string name="prefsShowInLockScreenSummary">יופיע גם ב always on display</string>
     <string name="prefsChangeColorTitle">שנה את צבע פס ההתקדמות</string>
     <string name="prefsCategoryMore">עוד</string>
-    <string name="prefsCalentileTitle">נסה את CalenTile בחנות play</string>
+    <string name="prefsCalentileTitle">נסה את %s בחנות play</string>
     <string name="prefsCalentileSummary">תמוך במפתח</string>
     <string name="colorRed">אדום</string>
     <string name="colorPink">ורוד</string>

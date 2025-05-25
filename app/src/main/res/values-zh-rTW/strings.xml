@@ -56,7 +56,7 @@
     <string name="prefsProgressBarMarginTopSummary">更改距離螢幕上方的間距</string>
     <string name="prefsCircularBarShareConfigSummary">讓其他相同裝置的使用者使用你的配置</string>
     <string name="prefsShowInLockScreenTitle">在鎖定螢幕中顯示進度條</string>
-    <string name="prefsCalentileTitle">試試 Google Play 上的 CalenTile</string>
+    <string name="prefsCalentileTitle">試試 Google Play 上的 %s</string>
     <string name="colorCyan">青色</string>
     <string name="colorLightBlue">淺藍色</string>
     <string name="colorTeal">深青色</string>

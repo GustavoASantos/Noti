@@ -21,7 +21,7 @@
     <string name="prefsRoundedCornersTitle">Sử dụng thanh tiến trình với các góc tròn</string>
     <string name="prefsShowInLockScreenSummary">Cũng sẽ hiển thị ở chế độ luôn hiển thị</string>
     <string name="prefsChangeColorTitle">Thay đổi màu thanh tiến trình</string>
-    <string name="prefsCalentileTitle">Thử CalenTile trên Google Play</string>
+    <string name="prefsCalentileTitle">Thử %s trên Google Play</string>
     <string name="colorRed">Đỏ</string>
     <string name="colorPink">Hồng</string>
     <string name="colorPurple">Tím</string>

@@ -28,7 +28,7 @@
     <string name="prefsShowInLockScreenSummary">Ще се показва и на постоянно включен дисплей</string>
     <string name="prefsChangeColorTitle">Промяна на цвета на лентата за прогрес</string>
     <string name="prefsCategoryMore">Още</string>
-    <string name="prefsCalentileTitle">Пробвай CalenTile в Google Play</string>
+    <string name="prefsCalentileTitle">Пробвай %s в Google Play</string>
     <string name="prefsCalentileSummary">Подкрепете разработчика</string>
     <string name="colorRed">Червено</string>
     <string name="colorPink">Розово</string>

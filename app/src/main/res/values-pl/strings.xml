@@ -30,7 +30,7 @@
     <string name="prefsShowInLockScreenSummary">Będzie także działać w trybie \"Always on display\"</string>
     <string name="prefsChangeColorTitle">Zmień kolor paska postępu</string>
     <string name="prefsCategoryMore">więcej</string>
-    <string name="prefsCalentileTitle">Wypróbuj CalenTile w Google Play</string>
+    <string name="prefsCalentileTitle">Wypróbuj %s w Google Play</string>
     <string name="prefsCalentileSummary">Wspomóż twórcę</string>
     <string name="colorRed">Czerwony</string>
     <string name="colorPink">Różowy</string>

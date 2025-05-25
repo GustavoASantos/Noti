@@ -72,9 +72,13 @@ class FullscreenDetectionService : Service() {
             val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
             val isKeyguardShown = keyguardManager.isKeyguardLocked
 
-            if (!isKeyguardShown) {
-                broadcastFullscreenState(isFullScreen())
-            }
+            broadcastFullscreenState(
+                if (!isKeyguardShown) {
+                    isFullScreen()
+                } else {
+                    false
+                }
+            )
         }
 
         fullscreenDetectionView.viewTreeObserver.addOnGlobalLayoutListener(

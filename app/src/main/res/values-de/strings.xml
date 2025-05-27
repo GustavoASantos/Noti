@@ -44,7 +44,7 @@
     <string name="prefsProgressBarOffsetSummary">ändere Fortschrittsbalkenausrichtung</string>
     <string name="prefsProgressBarMarginTopSummary">Ändere den Zwischenraum vom oberen Teil des Bildschirms</string>
     <string name="prefsCircularBarShareConfigSummary">Lasse andere mit dem selben Gerät deine Konfiguration nutzen</string>
-    <string name="prefsBlackBackgroundSummary">wechsle zum Fortschrittsbalken mit schwarzem \"track\"</string>
+    <string name="prefsBlackBackgroundSummary">wechsle zum Fortschrittsbalken auf schwarzer Spur</string>
     <string name="prefsPerAppSettingsTitle">App-spezifische Einstellungen</string>
     <string name="prefsPerAppSettingsSummary">Schalte noti auf App-spezifisch um</string>
     <string name="prefsRoundedCornersTitle">benutze Fortschrittsbalken mit runden Ecken</string>

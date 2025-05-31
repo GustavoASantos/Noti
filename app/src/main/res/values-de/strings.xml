@@ -29,7 +29,7 @@
     <string name="prefsCategoryTweaks">Anpassungen</string>
     <string name="prefsShowBelowNotchTitle">Unterhalb des Displayausschnitts anzeigen</string>
     <string name="prefsBatteryBannerSummary">Eventuell müssen akkuschonende Einstellungen deaktiviert und Autostart erlaubt werden, damit Noti im Hintergrund wirkt. Ein Neustart kann nötig sein.</string>
-    <string name="activateToggle">Erlaubt für</string>
+    <string name="activateToggle">Aktiviert für</string>
     <string name="downloads">Downloads</string>
     <string name="media">Medien</string>
     <string name="prefsBatteryBannerButton">erfahre mehr</string>

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="perAppSettingsEmptyView">Aún no se han encontrado barras de progreso. Las aplicaciones compatibles se descubren a medida que usas el dispositivo.</string>
-    <string name="reset">Reset</string>
+    <string name="perAppSettingsEmptyView">Noti identificará más aplicaciones compatibles a medida que se reciban notificaciones</string>
+    <string name="reset">Reiniciar</string>
     <string name="holePunchInstruction">Cambiar la alineación en los ajustes de la barra de progreso circular</string>
     <string name="prefsCategorySetup">Primeros Pasos</string>
     <string name="prefsCategoryGeneral">General</string>
     <string name="prefsNotificationPermissionTitle">Permite el acceso a las notificaciones</string>
     <string name="prefsAccessibilityPermissionTitle">Permite los servicios de accesibilidad</string>
-    <string name="prefsAccessibilityPermissionSummary">Necesarios para mostrar noti en la pantalla de bloqueo y sobre aplicaciones del sistema</string>
+    <string name="prefsAccessibilityPermissionSummary">Necesario para mostrar noti en la pantalla de bloqueo y sobre aplicaciones del sistema</string>
     <string name="prefsSAWPermissionTitle">Permite mostrar a noti sobre otras apps</string>
-    <string name="prefsSAWPermissionSummary">Necesario para mostrar la superposición de las barras de progreso</string>
+    <string name="prefsSAWPermissionSummary">Necesario para mostrar la barra de progreso</string>
     <string name="prefsCategoryCustomization">Personalización</string>
     <string name="prefsProgressBarStyleTitle">Selecciona estilos para la barra de progreso</string>
     <string name="prefsProgressBarStyleEntryNone">Ninguno</string>
@@ -25,7 +25,7 @@
     <string name="prefsProgressBarMarginTopSummary">Cambia el margen desde el tope de la pantalla</string>
     <string name="menuReportBug">Reportar un error</string>
     <string name="settingsPreviewFab">Vista previa</string>
-    <string name="prefsNotificationPermissionSummary">Necesario para leer las notificaciones que contengan barras de progreso</string>
+    <string name="prefsNotificationPermissionSummary">Necesario para leer las notificaciones con la barra de progreso</string>
     <string name="prefsProgressBarStyleEntryCircular">Barra circular</string>
     <string name="prefsProgressBarOffsetSummary">Cambiar la alineación de la barra de progreso</string>
     <string name="notificationListenerDescription">Lea notificaciones con una barra de progreso</string>
@@ -65,10 +65,10 @@
     <string name="colorAmber">Ámbar</string>
     <string name="prefsShowInLockScreenSummary">También aparecerá en Always On Display si su teléfono admite esta función</string>
     <string name="colorLime">Lima</string>
-    <string name="prefsCircularBarShareConfigTitle">¿Ajuste perfecto? Compartir configuración</string>
-    <string name="prefsCircularBarShareConfigSummary">Permita que otras personas con el mismo dispositivo utilicen su configuración</string>
-    <string name="prefsBlackBackgroundTitle">Utilice un fondo negro</string>
-    <string name="prefsBatteryBannerButton">Más información</string>
+    <string name="prefsCircularBarShareConfigTitle">¿Ajuste perfecto? Comparte tu configuración</string>
+    <string name="prefsCircularBarShareConfigSummary">Permita que otras personas con el mismo dispositivo utilicen tu configuración</string>
+    <string name="prefsBlackBackgroundTitle">Usar fondo negro</string>
+    <string name="prefsBatteryBannerButton">Conoce más</string>
     <string name="prefsStatusBarHeightInfo">Tu barra de estado mide %d píxeles de alto</string>
     <string name="prefsProgressBarOffsetTitle">Desplazamiento horizontal</string>
     <string name="prefsCutoutSizeTitle">Tamaño del recorte</string>
@@ -77,4 +77,9 @@
     <string name="shareConfigPositiveMessage">¡Gracias por compartir tu configuración!</string>
     <string name="prefsBatteryBannerSummary">Es posible que tengas que desactivar las optimizaciones de la batería y permitir el inicio automático para que Noti funcione en segundo plano. Puede ser necesario reiniciar el sistema después de hacer esto</string>
     <string name="shareConfigNoInternetMessage">Activar internet para cargar la configuración</string>
+    <string name="downloads">Descargas</string>
+    <string name="media">Medios</string>
+    <string name="activateToggle">Habilitado para</string>
+    <string name="prefsNotificationColorTitle">Coincidir con el color de la notificación</string>
+    <string name="prefsNotificationColorSummary">Usar el color de la notificación para la barra de progreso</string>
 </resources>

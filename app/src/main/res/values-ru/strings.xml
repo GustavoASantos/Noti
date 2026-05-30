@@ -2,4 +2,10 @@
 <resources>
     <string name="settingsPreviewFab">Предпросмотр</string>
     <string name="menuReportBug">Сообщить о сбое</string>
+    <string name="activateToggle">Включить для</string>
+    <string name="downloads">Загрузки</string>
+    <string name="media">Медиа</string>
+    <string name="reset">Сброс</string>
+    <string name="holePunchInstruction">Изменение выравнивания кругового прогресс бара</string>
+    <string name="prefsBatteryBannerSummary">Возможно, вам потребуется отключить оптимизацию энергопотребления и разрешить автозапуск, чтобы Noti работал в фоновом режиме. После этого может потребоваться перезагрузка.</string>
 </resources>

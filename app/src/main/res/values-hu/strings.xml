@@ -4,7 +4,7 @@
     <string name="settingsPreviewFab">Előnézet</string>
     <string name="notificationListenerDescription">Értesítések mutatása előrehaladási sávval</string>
     <string name="reset">Visszaállítása</string>
-    <string name="perAppSettingsEmptyView">Nem találtunk előrehaladási sávokat. Az előrehaladási sávokkal rendelkező alkalmazások a készülék használata során kerülnek felfedezésre.</string>
+    <string name="perAppSettingsEmptyView">A Noti további kompatibilis alkalmazásokat fog azonosítani, amint értesítéseket kap.</string>
     <string name="prefsProgressBarStyleTitle">Haladási sáv stílusának kiválasztása</string>
     <string name="prefsAccessibilityPermissionTitle">Akadálymentesítési engedély megadása</string>
     <string name="holePunchInstruction">A körkörös előrehaladási sáv beállításának megváltoztatása</string>

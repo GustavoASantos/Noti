@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prefsNotificationPermissionTitle">อนุญาตการเข้าถึงการแจ้งเตือน</string>
+    <string name="settingsPreviewFab">ดูตัวอย่าง</string>
+    <string name="notificationListenerDescription">อ่านการแจ้งเตือนด้วย progress bar</string>
+    <string name="perAppSettingsEmptyView">Noti จะรับุแอปที่ใช้งานร่วมกันได้เมื่อได้รับการแจ้งเตือน</string>
+    <string name="activateToggle">เปิด</string>
+    <string name="downloads">ดาวน์โหลด</string>
+    <string name="media">มีเดีย</string>
+    <string name="reset">รีเซ็ต</string>
+    <string name="holePunchInstruction">เปลี่ยนตำแหล่งของ progress bar แบบวงกลม</string>
+    <string name="prefsBatteryBannerSummary">คุณอาจจะต้องปิดการเพิ่มประสิทธิภาพของแบตเตอรี่และอนุญาตให้แอปเริ่มต้นอัตโนมัติเพื่อให้ noti ทำงานในพื้นหลัง อาจจำเป็นรีสตาร์เครื่อง</string>
+    <string name="prefsBatteryBannerButton">เรียนรู้เพิ่มเติม</string>
+    <string name="prefsCategorySetup">ตั้งค่า</string>
+    <string name="prefsCategoryGeneral">ทั่วไป</string>
+    <string name="prefsNotificationPermissionSummary">จำเป็นต้องอ่านการแจ้งเตือนด้วย progress bar</string>
+    <string name="prefsAccessibilityPermissionTitle">ให้สิทธิการเข้าถึงการช่วยเหลือการเข้าถึง</string>
+    <string name="prefsAccessibilityPermissionSummary">จำเป็นต้องแสดงบนหน้าจอล็อกและแอประบบ</string>
+    <string name="prefsSAWPermissionTitle">อนุญาตให้แสดงบนแอปอื่นๆ</string>
+    <string name="prefsSAWPermissionSummary">จำเป็นต้องแสดง progress bar overlay</string>
+    <string name="prefsCategoryCustomization">การปรับแต่ง</string>
+    <string name="prefsProgressBarStyleTitle">เลือกรูปแบบ progress bar</string>
+    <string name="prefsProgressBarStylePortraitTitle">รูปแบบ progress bar ในแนวตั้ง</string>
+    <string name="prefsProgressBarStyleLandscapeTitle">รูปแบบ progress bar ในแนวนอน</string>
+    <string name="advancedOptions">การตั้งค่าขั้นสูง</string>
+    <string name="prefsProgressBarStyleEntryNone">ไม่มี progress bar</string>
+    <string name="prefsProgressBarStyleEntryLinear">Progress bar แบบเส้น</string>
+    <string name="prefsProgressBarStyleEntryCircular">Progress bar แบบวงกลม</string>
+    <string name="prefsCategoryTweaks">การปรับแต่ง</string>
+    <string name="prefsLinearProgressBarTweaks">การปรับแต่ง progress bar แบบเส้น</string>
+    <string name="prefsProgressBarThicknessTitle">ความหนาของ progress bar</string>
+    <string name="prefsProgressBarThicknessSummary">เปลี่ยนขนาดของ progress bar</string>
+    <string name="prefsShowBelowNotchTitle">แสดงด้านล่างกล้อง</string>
+    <string name="prefsShowBelowNotchSummary">แสดง progress bar ด้านล่างแถบนำทางหรือรูกล้อง</string>
+    <string name="prefsStatusBarHeightInfo">แถบสถานะของคุณสูง %d พิกเซล</string>
+    <string name="prefsCircularProgressBarTweaks">การปรับแต่ง progress bar แบบวงกลม</string>
+    <string name="prefsProgressBarOffsetTitle">การขยับแนวนอน</string>
+    <string name="prefsProgressBarOffsetSummary">เปลี่ยนตำแหน่งของ progress bar</string>
+    <string name="prefsCutoutSizeTitle">ขนาดของรูกล้อง</string>
+    <string name="prefsCutoutSizeSummary">เปลี่ยนขนาดของเส้นผ่านศูนย์กลาง</string>
+    <string name="prefsProgressBarMarginTopTitle">ห่างจากขอบด้านบน</string>
+    <string name="prefsProgressBarMarginTopSummary">เปลี่ยนความห่างจากขอบด้านบนของหน้าจอ</string>
+    <string name="prefsCircularBarShareConfigTitle">ขนาดที่พอดี? แชร์การปรับแต่ง</string>
+    <string name="prefsCircularBarShareConfigSummary">ให้คนอื่นที่มีอุปกรณ์เดียวกันใช้การปรับแต่งของคุณ</string>
+    <string name="prefsMultiScreenInfoCard">สำหรับหลายหน้าจอเข้าถึงการตั้งค่าจากหน้าจอต่างๆเพื่อเปลี่ยนการตั้งค่าสำหรับหน้าจอนั้นๆ</string>
+    <string name="prefsBlackBackgroundTitle">ใช่พื้นหลังสีดำ</string>
+</resources>
